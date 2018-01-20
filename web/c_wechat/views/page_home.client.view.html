@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no,width=device-width" />
+
+  <title>OPENPORT</title>
+  <link rel="stylesheet" href="../libs/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../libs/font-awesome/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="../c_wechat/css/page_index.client.style.css" />
+  <link rel="stylesheet" href="../c_wechat/css/page_home.client.style.css" />
+
+  <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
+
+  <script src="../libs/jquery/dist/jquery.js"></script>
+  <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
+  <script src="../c_wechat/controllers/page_home.client.controller.js"></script>
+</head>
+
+<body>
+  <div class="o-page o-page-home">
+    <div class="o-page-header">
+      <div class="o-page-header-left">
+      </div>
+      <div class="o-page-header-center">OPENPORT</div>
+      <div class="o-page-header-right">
+      </div>
+    </div>
+    <div class="o-page-tab">
+      <a href="/page_wechat/page_home?status=ETD" class="tab-item <%= (status==='ETD'?'select':'') %>">未提货</a>
+      <a href="/page_wechat/page_home?status=ETA" class="tab-item <%= (status==='ETA'?'select':'') %>">未送货</a>
+      <a href="/page_wechat/page_home?status=DELIVERED" class="tab-item <%= (status==='DELIVERED'?'select':'') %>">已送货</a>
+    </div>
+    <div class="o-page-body has-tab">
+      <div class="o-body-header">
+        <div class="header-left">
+          <i class="fa fa-sort-amount-asc" aria-hidden="true"></i>排序</div>
+        <div class="header-right">交付日期</div>
+      </div>
+      <div class="o-body-sync-time">上次同步2分23秒之前</div>
+      <div class="o-body-list">
+        <% for(var i=0; i<shippments.length; i++) {%>
+          <% if(shippments[i].shipmentStatus===status) {%>
+            <a href="/page_wechat/page_detail?id=<%= shippments[i].id %>" class="list-item">
+              <div class="item-row">
+                <div class="row-icon">
+                  <div class="icon <%= shippments[i].statusStr %>">
+                    <img class="img" src="/c_wechat/images/shippment/<%= shippments[i].statusStr %>.png">
+                  </div>
+                  <!-- <i class="fa fa-check-circle" aria-hidden="true"></i> -->
+                </div>
+                <div class="row-content">
+                  <div class="content-left">
+                    <%= shippments[i].shipmentNumber %>
+                  </div>
+                  <div class="content-right">
+                    <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    <i class="fa fa-info-circle" aria-hidden="true"></i>
+                    <i class="fa fa-folder-o" aria-hidden="true"></i>
+                  </div>
+                </div>
+              </div>
+
+              <% if(user.choose_list_view==='简单') {%>
+                <div class="item-row">
+                  <div class="row-icon">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                  </div>
+
+
+                  <div class="row-content">
+                    <div class="content-left">
+                      <%= (status==='ETD'?shippments[i].from.name:shippments[i].to.name) %>
+                    </div>
+                    <div class="content-right">
+                      <%= (status==='ETD'?(shippments[i].etdDate.replace('T',' ')):(shippments[i].etaDate.replace('T',' '))) %>
+                    </div>
+                  </div>
+                </div>
+                <% }else{ %>
+                  <div class="item-content">
+                    <div class="content-title">
+                      <div class="left">提取</div>
+                      <div class="right">配送</div>
+                    </div>
+                    <div class="content-city">
+                      <div class="left">
+                        <%= (shippments[i].from.cityLocality) %>
+                      </div>
+                      <div class="right">
+                        <%= (shippments[i].to.cityLocality) %>
+                      </div>
+                    </div>
+
+                    <div class="content-address">
+                      <div class="left">
+                        <%= (shippments[i].from.line1) %>
+                      </div>
+                      <div class="right">
+                        <%= (shippments[i].to.line1) %>
+                      </div>
+                    </div>
+                    <div class="content-time">
+                      <div class="left">
+                        <%= (shippments[i].etdDate.replace('T',' ')) %>
+                      </div>
+                      <div class="right">
+                        <%= (shippments[i].etaDate?shippments[i].etaDate.replace('T',' '):'') %>
+                      </div>
+                    </div>
+                  </div>
+                  <% } %>
+
+
+
+            </a>
+            <% } %>
+              <% } %>
+                <div class="list-item-footer">加载更多...</div>
+      </div>
+    </div>
+    <div class="o-body-add-btn">
+      +
+    </div>
+  </div>
+</body>
+
+</html>

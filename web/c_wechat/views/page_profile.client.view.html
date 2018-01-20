@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no,width=device-width" />
+
+  <title>OPENPORT</title>
+  <link rel="stylesheet" href="../libs/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../libs/font-awesome/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="../c_wechat/css/page_index.client.style.css" />
+  <link rel="stylesheet" href="../c_wechat/css/page_profile.client.style.css" />
+  <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
+
+  <script src="../libs/jquery/dist/jquery.js"></script>
+  <script src="../c_wechat/controllers/page_home.client.controller.js"></script>
+</head>
+
+<body>
+  <div class="o-page o-page-profile">
+    <div class="profile-header">
+      <div src="" class="header-photo"><%= (userName.split(' ')[0].substring(0,1)) %></div>
+      <div class="header-text">更新照片</div>
+      <div class="header-name">
+        <%= userName %>
+      </div>
+    </div>
+    <div class="profile-driver">
+      <div class="driver-item">
+        <i class="fa fa-phone" aria-hidden="true"></i>
+        <div class="phone">
+          <%= phoneNumber %>
+        </div>
+      </div>
+      <div class="driver-item">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <div class="driver">Driver</div>
+      </div>
+    </div>
+
+    <div class="profile-body">
+      <div class="profile-description">
+        <div class="description-row">
+          <div class="row-left">积分奖励</div>
+          <div class="row-right">查看详情</div>
+        </div>
+        <div class="description-content">
+          <div class="content-left">
+            <img src="/c_wechat/images/profile/badge_level_1.png" class="left-icon"></img>
+            <div class="left-text">等级:1</div>
+          </div>
+          <div class="content-right">
+            <div class="right-title">目前情况</div>
+            <div class="right-level">等级</div>
+            <div class="right-to-next-level-bar-text">进行至下一个等级</div>
+            <div class="right-to-next-level-bar">
+              <div class="weui-progress">
+                <div class="weui-progress__bar">
+                  <div class="weui-progress__inner-bar js_progress" style="width: 50%;"></div>
+                </div>
+              </div>
+              <div class="percent">0.00%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="profile-rank">
+        <div class="rank-title">
+          <div class="title-left">排行榜</div>
+          <div class="title-right">更新</div>
+        </div>
+        <div class="rank-list">
+          <div class="list-header">
+            <div class="header-item">定位</div>
+            <div class="header-item">名称</div>
+            <div class="header-item right">徽章</div>
+            <div class="header-item right">得分</div>
+          </div>
+          <% for(var i=0; i<topList.length; i++) {%>
+            <div class="list-row">
+              <div class="row-item">
+                <%= topList[i].rnk %>
+              </div>
+              <div class="row-item">
+                <%= topList[i].name %>
+              </div>
+              <div class="row-item right">
+                <img src="/c_wechat/images/profile/badge_level_<%= topList[i].lvl %>.png">
+                </img>
+              </div>
+              <div class="row-item right">
+                <%= topList[i].score %>
+              </div>
+            </div>
+            <% } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,169 @@
+.o-page-profile {
+  background-color: #e6e6e6;
+}
+.o-page-profile .profile-header {
+  padding: 20px;
+  text-align: center;
+  background-color: #3c8edb;
+  height: 200px;
+  width: 100%;
+  color: white;
+}
+.o-page-profile .profile-header .header-photo {
+  background-color: white;
+  color: #3c8edb;
+  line-height: 100px;
+  font-size: 40px;
+  height: 100px;
+  border-radius: 90px;
+  width: 100px;
+  margin: auto;
+}
+.o-page-profile .profile-header .header-text {
+  font-size: 14px;
+  line-height: 30px;
+}
+.o-page-profile .profile-header .header-name {
+  font-size: 18px;
+}
+.o-page-profile .profile-driver {
+  height: 50px;
+  margin-bottom: 20px;
+  background-color: white;
+  color: #666;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px 10px;
+  align-items: center;
+}
+.o-page-profile .profile-driver .driver-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.o-page-profile .profile-driver .driver-item .fa {
+  margin-right: 10px;
+  font-size: 20px;
+  color: #3c8edb;
+}
+.o-page-profile .profile-body {
+  position: absolute;
+  width: 100%;
+  top: 250px;
+  bottom: 0px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.o-page-profile .profile-body .profile-description {
+  color: #666;
+  margin-bottom: 20px;
+}
+.o-page-profile .profile-body .profile-description .description-row {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px 10px;
+  align-items: center;
+}
+.o-page-profile .profile-body .profile-description .description-content {
+  margin: 0px 10px;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: white;
+  flex-direction: row;
+  display: flex;
+}
+.o-page-profile .profile-body .profile-description .description-content .content-left {
+  text-align: center;
+  width: 100px;
+}
+.o-page-profile .profile-body .profile-description .description-content .content-left .left-icon {
+  width: 100px;
+  margin-bottom: 10px;
+}
+.o-page-profile .profile-body .profile-description .description-content .content-right {
+  flex-grow: 1;
+  font-size: 12px;
+}
+.o-page-profile .profile-body .profile-description .description-content .content-right .right-title {
+  font-size: 16px;
+}
+.o-page-profile .profile-body .profile-description .description-content .content-right .right-level {
+  line-height: 40px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid #e8e8e8;
+}
+.o-page-profile .profile-body .profile-description .description-content .content-right .right-to-next-level-bar {
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.o-page-profile .profile-body .profile-description .description-content .content-right .right-to-next-level-bar .weui-progress {
+  margin-right: 5px;
+  width: 80%;
+}
+.o-page-profile .profile-body .profile-description .description-content .content-right .right-to-next-level-bar .weui-progress .weui-progress__bar {
+  height: 6px;
+}
+.o-page-profile .profile-body .profile-description .description-content .content-right .right-to-next-level-bar .weui-progress .weui-progress__bar .js_progress {
+  background-color: #3c8edb;
+}
+.o-page-profile .profile-body .profile-rank {
+  margin: 0px 10px;
+  color: #666;
+}
+.o-page-profile .profile-body .profile-rank .rank-title {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px 10px;
+  align-items: center;
+}
+.o-page-profile .profile-body .profile-rank .rank-title .title-right {
+  color: #3c8edb;
+}
+.o-page-profile .profile-body .profile-rank .rank-list {
+  background-color: white;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 0px 10px;
+}
+.o-page-profile .profile-body .profile-rank .rank-list .list-header {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px 10px;
+  align-items: center;
+}
+.o-page-profile .profile-body .profile-rank .rank-list .list-header .header-item {
+  width: 25%;
+  flex-grow: 1;
+}
+.o-page-profile .profile-body .profile-rank .rank-list .list-header .header-item.right {
+  text-align: right;
+}
+.o-page-profile .profile-body .profile-rank .rank-list .list-row {
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0px 10px;
+  align-items: center;
+  border-bottom: 1px solid #efefef;
+}
+.o-page-profile .profile-body .profile-rank .rank-list .list-row .row-item {
+  width: 25%;
+  flex-grow: 1;
+}
+.o-page-profile .profile-body .profile-rank .rank-list .list-row .row-item.right {
+  text-align: right;
+}
+.o-page-profile .profile-body .profile-rank .rank-list .list-row .row-item img {
+  height: 20px;
+  width: 20px;
+}
