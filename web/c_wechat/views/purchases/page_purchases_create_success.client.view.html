@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no">
+  <link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+  <link rel="stylesheet" type="text/css" href="../font-awesome-4.7.0/css/font-awesome.css" />
+  <script src="../c_libs/bscroll.min.js"></script>
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+
+    #app {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    header {
+      height: 40px;
+      line-height: 40px;
+      background-color: #DDD;
+    }
+
+    main {
+      flex: 1;
+      display: block;
+      position: relative;
+      overflow: hidden;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      position: initial;
+    }
+
+    footer {
+      height: 40px;
+      line-height: 40px;
+      background-color: #DDD;
+    }
+
+    li {
+      height: 100px;
+      border-bottom: 1px solid #DDD;
+    }
+
+    .boxconter {
+      text-align: center;
+      padding: 10px 0;
+      height: 50px;
+    }
+
+    .boxconter p {
+      margin-top: 10px;
+      margin-bottom: 0;
+    }
+
+    .div {
+      height: 100%;
+      width: 100%;
+    }
+
+    .boxconter:last-child {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <header>
+      我是header
+    </header>
+    <main>
+      <div class="div">
+        <ul>
+          <li class="boxconter">加载更多</li>
+          <li class="boxconter">
+            <span class="fa fa-spinner fa-pulse"></span>
+            <p>加载中</p>
+          </li>
+        </ul>
+      </div>
+    </main>
+    <footer>
+      我是footer
+    </footer>
+  </div>
+  <script src="dist/bscroll.min.js"></script>
+  <script>
+    var div = document.getElementsByClassName('div')[0];
+    var ul = document.querySelector('.div ul');
+    var more = document.querySelectorAll('.div .boxconter');
+    var lis = 10;
+    for (var i = 0; i < lis; i++) {
+      var li = document.createElement('li');
+      var li_text = document.createTextNode(i);
+      li.appendChild(li_text);
+      ul.insertBefore(li, more[0]);
+    }
+    var meunScroll1 = new BScroll(div, {
+      click: true,
+      scrollY: true,
+      pullUpLoad: {                //做加载更多时用
+        threshold: -70, // 当上拉到超过顶部 70px 时，                    
+      }
+    });
+    meunScroll1.on("pullingUp", function () {     //做加载更多时用
+      more[0].style.display = "none";
+      more[1].style.display = "block";
+      setTimeout(function () {
+        for (var i = 0; i < lis; i++) {
+          var li = document.createElement('li');
+          var li_text = document.createTextNode(i);
+          li.appendChild(li_text);
+          ul.insertBefore(li, more[0]);
+        }
+        more[1].style.display = "none";
+        more[0].style.display = "block";
+        meunScroll1.finishPullUp();
+        meunScroll1.refresh();
+      }, 1000);
+
+    }); 
+  </script>
+</body>
+
+</html>
