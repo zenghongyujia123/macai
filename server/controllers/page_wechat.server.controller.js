@@ -81,6 +81,10 @@ exports.page_purchases_list = function (req, res, next) {
   var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_list.client.view.html');
   return res.render(filepath, {});
 };
+exports.page_purchases_detail = function (req, res, next) {
+  var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_detail.client.view.html');
+  return res.render(filepath, {});
+};
 
 exports.page_purchases_my_list = function (req, res, next) {
   var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_my_list.client.view.html');

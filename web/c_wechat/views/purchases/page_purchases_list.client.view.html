@@ -4,15 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no,width=device-width" />
-  <meta name="x5-fullscreen" content="true">
-  <meta name="full-screen" content="yes">
   <title>采购列表</title>
   <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
-  <link rel="stylesheet" href="../c_libs/minirefresh.min.css" />
-  <link rel="stylesheet" href="../c_libs/common.css" />
   <link rel="stylesheet" href="../libs/Swiper/dist/css/swiper.min.css" />
 
   <link rel="stylesheet" href="../c_wechat/css/page_index.client.style.css" />
+  <link rel="stylesheet" href="../c_wechat/css/page_purchases_list.client.style.css" />
 
   <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
   <script type="text/javascript" src="../libs/Swiper/dist/js/swiper.min.js"></script>
@@ -26,164 +23,408 @@
 
   <script src="../c_libs/common.js"></script>
   <style>
-    .swiper-container {
-      position: absolute;
-      top: 50px;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    .minirefresh-wrap {
-      top: 0;
-    }
   </style>
 </head>
 
 <body>
-  <div class="weui-tab">
+
+  <div class="weui-tab page-purchases-list">
+    <div class="weui-navbar">
+      <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
+        供应大厅
+      </a>
+      <a class="weui-navbar__item" href="#tab2">
+        行情大厅
+      </a>
+      <a class="weui-navbar__item" href="#tab3">
+        我的采购
+      </a>
+    </div>
+
     <div class="weui-tab__bd">
-      <div class="content">
-        <div class="nav-control">
-          <p class="active" list-type="0">供应大厅</p>
-          <p list-type="1">我的采购</p>
-          <p list-type="2">行情大厅</p>
-        </div>
+      <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
         <div class="swiper-container">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
-              <div id="minirefresh0" class="minirefresh-wrap">
-                <div class="minirefresh-scroll">
-                  <ul class="data-list" id="listdata0">
-                  </ul>
-                </div>
-              </div>
+              <img style="width:100%" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516822610859&di=e3b3277e745aba4382be0773d3d1f0f5&imgtype=0&src=http%3A%2F%2Fpic24.nipic.com%2F20121019%2F8575724_084141778000_2.jpg">
             </div>
             <div class="swiper-slide">
-              <div id="minirefresh1" class="minirefresh-wrap">
-                <div class="minirefresh-scroll">
-                  <ul class="data-list" id="listdata1">
-                  </ul>
-                </div>
-              </div>
+              <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516814838684&di=d9fea51c2e8a8bf459d530a73b86073b&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F39%2F05%2F96N58PICsWH_1024.jpg">
             </div>
             <div class="swiper-slide">
-              <div id="minirefresh2" class="minirefresh-wrap">
-                <div class="minirefresh-scroll">
-                  <ul class="data-list" id="listdata2">
-                  </ul>
-                </div>
-              </div>
+              <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516814838684&di=d9fea51c2e8a8bf459d530a73b86073b&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F39%2F05%2F96N58PICsWH_1024.jpg">
             </div>
           </div>
         </div>
+        <a href="/page_wechat/page_purchases_detail" class="weui-media-box weui-media-box_appmsg purchases-list-item">
+          <div class="weui-media-box__hd">
+            <img class="weui-media-box__thumb" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516813447292&di=5f4eaade66c430dd3a958c2cfac95425&imgtype=0&src=http%3A%2F%2Fpic32.photophoto.cn%2F20140821%2F0006019010973602_b.jpg">
+          </div>
+          <div class="weui-media-box__bd">
+            <div class="title1">八月桂
+            </div>
+            <div class="title2">湖北省武汉市 张先生</div>
+
+            <span class="tag blue">实地认证</span>
+            <span class="tag orange">企业</span>
+            <div class="item-bottom">
+              <div class="price">12.00
+                <span class="price-unit">元／斤</span>
+              </div>
+              <div class="time">
+                12小时前
+              </div>
+            </div>
+
+
+          </div>
+        </a>
+        <a href="/page_wechat/page_purchases_detail" class="weui-media-box weui-media-box_appmsg purchases-list-item">
+          <div class="weui-media-box__hd">
+            <img class="weui-media-box__thumb" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516813447292&di=5f4eaade66c430dd3a958c2cfac95425&imgtype=0&src=http%3A%2F%2Fpic32.photophoto.cn%2F20140821%2F0006019010973602_b.jpg">
+          </div>
+          <div class="weui-media-box__bd">
+            <div class="title1">八月桂
+            </div>
+            <div class="title2">湖北省武汉市 张先生</div>
+
+            <span class="tag blue">实地认证</span>
+            <span class="tag orange">企业</span>
+            <div class="item-bottom">
+              <div class="price">12.00
+                <span class="price-unit">元／斤</span>
+              </div>
+              <div class="time">
+                12小时前
+              </div>
+            </div>
+
+
+          </div>
+        </a>
+        <a href="/page_wechat/page_purchases_detail" class="weui-media-box weui-media-box_appmsg purchases-list-item">
+          <div class="weui-media-box__hd">
+            <img class="weui-media-box__thumb" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516813447292&di=5f4eaade66c430dd3a958c2cfac95425&imgtype=0&src=http%3A%2F%2Fpic32.photophoto.cn%2F20140821%2F0006019010973602_b.jpg">
+          </div>
+          <div class="weui-media-box__bd">
+            <div class="title1">八月桂
+            </div>
+            <div class="title2">湖北省武汉市 张先生</div>
+
+            <span class="tag blue">实地认证</span>
+            <span class="tag orange">企业</span>
+            <div class="item-bottom">
+              <div class="price">12.00
+                <span class="price-unit">元／斤</span>
+              </div>
+              <div class="time">
+                12小时前
+              </div>
+            </div>
+
+
+          </div>
+        </a>
+        <a href="/page_wechat/page_purchases_detail" class="weui-media-box weui-media-box_appmsg purchases-list-item">
+          <div class="weui-media-box__hd">
+            <img class="weui-media-box__thumb" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516813447292&di=5f4eaade66c430dd3a958c2cfac95425&imgtype=0&src=http%3A%2F%2Fpic32.photophoto.cn%2F20140821%2F0006019010973602_b.jpg">
+          </div>
+          <div class="weui-media-box__bd">
+            <div class="title1">八月桂
+            </div>
+            <div class="title2">湖北省武汉市 张先生</div>
+
+            <span class="tag blue">实地认证</span>
+            <span class="tag orange">企业</span>
+            <div class="item-bottom">
+              <div class="price">12.00
+                <span class="price-unit">元／斤</span>
+              </div>
+              <div class="time">
+                12小时前
+              </div>
+            </div>
+
+
+          </div>
+        </a>
+        <a href="/page_wechat/page_purchases_detail" class="weui-media-box weui-media-box_appmsg purchases-list-item">
+          <div class="weui-media-box__hd">
+            <img class="weui-media-box__thumb" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516813447292&di=5f4eaade66c430dd3a958c2cfac95425&imgtype=0&src=http%3A%2F%2Fpic32.photophoto.cn%2F20140821%2F0006019010973602_b.jpg">
+          </div>
+          <div class="weui-media-box__bd">
+            <div class="title1">八月桂
+            </div>
+            <div class="title2">湖北省武汉市 张先生</div>
+
+            <span class="tag blue">实地认证</span>
+            <span class="tag orange">企业</span>
+            <div class="item-bottom">
+              <div class="price">12.00
+                <span class="price-unit">元／斤</span>
+              </div>
+              <div class="time">
+                12小时前
+              </div>
+            </div>
+
+
+          </div>
+        </a>
+        <a href="/page_wechat/page_purchases_detail" class="weui-media-box weui-media-box_appmsg purchases-list-item">
+          <div class="weui-media-box__hd">
+            <img class="weui-media-box__thumb" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516813447292&di=5f4eaade66c430dd3a958c2cfac95425&imgtype=0&src=http%3A%2F%2Fpic32.photophoto.cn%2F20140821%2F0006019010973602_b.jpg">
+          </div>
+          <div class="weui-media-box__bd">
+            <div class="title1">八月桂
+            </div>
+            <div class="title2">湖北省武汉市 张先生</div>
+
+            <span class="tag blue">实地认证</span>
+            <span class="tag orange">企业</span>
+            <div class="item-bottom">
+              <div class="price">12.00
+                <span class="price-unit">元／斤</span>
+              </div>
+              <div class="time">
+                12小时前
+              </div>
+            </div>
+
+
+          </div>
+        </a>
+        <a href="/page_wechat/page_purchases_detail" class="weui-media-box weui-media-box_appmsg purchases-list-item">
+          <div class="weui-media-box__hd">
+            <img class="weui-media-box__thumb" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516813447292&di=5f4eaade66c430dd3a958c2cfac95425&imgtype=0&src=http%3A%2F%2Fpic32.photophoto.cn%2F20140821%2F0006019010973602_b.jpg">
+          </div>
+          <div class="weui-media-box__bd">
+            <div class="title1">八月桂
+            </div>
+            <div class="title2">湖北省武汉市 张先生</div>
+
+            <span class="tag blue">实地认证</span>
+            <span class="tag orange">企业</span>
+            <div class="item-bottom">
+              <div class="price">12.00
+                <span class="price-unit">元／斤</span>
+              </div>
+              <div class="time">
+                12小时前
+              </div>
+            </div>
+
+
+          </div>
+        </a>
+        <a href="/page_wechat/page_purchases_detail" class="weui-media-box weui-media-box_appmsg purchases-list-item">
+          <div class="weui-media-box__hd">
+            <img class="weui-media-box__thumb" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516813447292&di=5f4eaade66c430dd3a958c2cfac95425&imgtype=0&src=http%3A%2F%2Fpic32.photophoto.cn%2F20140821%2F0006019010973602_b.jpg">
+          </div>
+          <div class="weui-media-box__bd">
+            <div class="title1">八月桂
+            </div>
+            <div class="title2">湖北省武汉市 张先生</div>
+
+            <span class="tag blue">实地认证</span>
+            <span class="tag orange">企业</span>
+            <div class="item-bottom">
+              <div class="price">12.00
+                <span class="price-unit">元／斤</span>
+              </div>
+              <div class="time">
+                12小时前
+              </div>
+            </div>
+
+
+          </div>
+        </a>
+        <a href="/page_wechat/page_purchases_detail" class="weui-media-box weui-media-box_appmsg purchases-list-item">
+          <div class="weui-media-box__hd">
+            <img class="weui-media-box__thumb" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516813447292&di=5f4eaade66c430dd3a958c2cfac95425&imgtype=0&src=http%3A%2F%2Fpic32.photophoto.cn%2F20140821%2F0006019010973602_b.jpg">
+          </div>
+          <div class="weui-media-box__bd">
+            <div class="title1">八月桂
+            </div>
+            <div class="title2">湖北省武汉市 张先生</div>
+
+            <span class="tag blue">实地认证</span>
+            <span class="tag orange">企业</span>
+            <div class="item-bottom">
+              <div class="price">12.00
+                <span class="price-unit">元／斤</span>
+              </div>
+              <div class="time">
+                12小时前
+              </div>
+            </div>
+
+
+          </div>
+        </a>
+        <a href="/page_wechat/page_purchases_detail" class="weui-media-box weui-media-box_appmsg purchases-list-item">
+          <div class="weui-media-box__hd">
+            <img class="weui-media-box__thumb" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516813447292&di=5f4eaade66c430dd3a958c2cfac95425&imgtype=0&src=http%3A%2F%2Fpic32.photophoto.cn%2F20140821%2F0006019010973602_b.jpg">
+          </div>
+          <div class="weui-media-box__bd">
+            <div class="title1">八月桂
+            </div>
+            <div class="title2">湖北省武汉市 张先生</div>
+
+            <span class="tag blue">实地认证</span>
+            <span class="tag orange">企业</span>
+            <div class="item-bottom">
+              <div class="price">12.00
+                <span class="price-unit">元／斤</span>
+              </div>
+              <div class="time">
+                12小时前
+              </div>
+            </div>
+
+
+          </div>
+        </a>
+        <a href="/page_wechat/page_purchases_detail" class="weui-media-box weui-media-box_appmsg purchases-list-item">
+          <div class="weui-media-box__hd">
+            <img class="weui-media-box__thumb" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516813447292&di=5f4eaade66c430dd3a958c2cfac95425&imgtype=0&src=http%3A%2F%2Fpic32.photophoto.cn%2F20140821%2F0006019010973602_b.jpg">
+          </div>
+          <div class="weui-media-box__bd">
+            <div class="title1">八月桂
+            </div>
+            <div class="title2">湖北省武汉市 张先生</div>
+
+            <span class="tag blue">实地认证</span>
+            <span class="tag orange">企业</span>
+            <div class="item-bottom">
+              <div class="price">12.00
+                <span class="price-unit">元／斤</span>
+              </div>
+              <div class="time">
+                12小时前
+              </div>
+            </div>
+
+
+          </div>
+        </a>
+        <a href="/page_wechat/page_purchases_detail" class="weui-media-box weui-media-box_appmsg purchases-list-item">
+          <div class="weui-media-box__hd">
+            <img class="weui-media-box__thumb" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516813447292&di=5f4eaade66c430dd3a958c2cfac95425&imgtype=0&src=http%3A%2F%2Fpic32.photophoto.cn%2F20140821%2F0006019010973602_b.jpg">
+          </div>
+          <div class="weui-media-box__bd">
+            <div class="title1">八月桂
+            </div>
+            <div class="title2">湖北省武汉市 张先生</div>
+
+            <span class="tag blue">实地认证</span>
+            <span class="tag orange">企业</span>
+            <div class="item-bottom">
+              <div class="price">12.00
+                <span class="price-unit">元／斤</span>
+              </div>
+              <div class="time">
+                12小时前
+              </div>
+            </div>
+
+
+          </div>
+        </a>
+        <a href="/page_wechat/page_purchases_detail" class="weui-media-box weui-media-box_appmsg purchases-list-item">
+          <div class="weui-media-box__hd">
+            <img class="weui-media-box__thumb" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516813447292&di=5f4eaade66c430dd3a958c2cfac95425&imgtype=0&src=http%3A%2F%2Fpic32.photophoto.cn%2F20140821%2F0006019010973602_b.jpg">
+          </div>
+          <div class="weui-media-box__bd">
+            <div class="title1">八月桂
+            </div>
+            <div class="title2">湖北省武汉市 张先生</div>
+
+            <span class="tag blue">实地认证</span>
+            <span class="tag orange">企业</span>
+            <div class="item-bottom">
+              <div class="price">12.00
+                <span class="price-unit">元／斤</span>
+              </div>
+              <div class="time">
+                12小时前
+              </div>
+            </div>
+
+
+          </div>
+        </a>
+        <a href="/page_wechat/page_purchases_detail" class="weui-media-box weui-media-box_appmsg purchases-list-item">
+          <div class="weui-media-box__hd">
+            <img class="weui-media-box__thumb" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516813447292&di=5f4eaade66c430dd3a958c2cfac95425&imgtype=0&src=http%3A%2F%2Fpic32.photophoto.cn%2F20140821%2F0006019010973602_b.jpg">
+          </div>
+          <div class="weui-media-box__bd">
+            <div class="title1">八月桂
+            </div>
+            <div class="title2">湖北省武汉市 张先生</div>
+
+            <span class="tag blue">实地认证</span>
+            <span class="tag orange">企业</span>
+            <div class="item-bottom">
+              <div class="price">12.00
+                <span class="price-unit">元／斤</span>
+              </div>
+              <div class="time">
+                12小时前
+              </div>
+            </div>
+
+
+          </div>
+        </a>
 
       </div>
 
+      <div id="tab2" class="weui-tab__bd-item">
+        sda
+      </div>
+
+      <div id="tab3" class="weui-tab__bd-item">
+        wewe
+      </div>
 
     </div>
 
     <div class="weui-tabbar">
       <a href="javascript:;" class="weui-tabbar__item weui-bar__item--on">
-        <span class="weui-badge" style="position: absolute;top: -.4em;right: 1em;">8</span>
         <div class="weui-tabbar__icon">
           <img src="./images/icon_nav_button.png" alt="">
         </div>
-        <p class="weui-tabbar__label">微信</p>
+        <p class="weui-tabbar__label">我要买</p>
       </a>
       <a href="javascript:;" class="weui-tabbar__item">
         <div class="weui-tabbar__icon">
           <img src="./images/icon_nav_msg.png" alt="">
         </div>
-        <p class="weui-tabbar__label">通讯录</p>
+        <p class="weui-tabbar__label">我要卖</p>
       </a>
       <a href="javascript:;" class="weui-tabbar__item">
         <div class="weui-tabbar__icon">
           <img src="./images/icon_nav_article.png" alt="">
         </div>
-        <p class="weui-tabbar__label">发现</p>
-      </a>
-      <a href="javascript:;" class="weui-tabbar__item">
-        <div class="weui-tabbar__icon">
-          <img src="./images/icon_nav_cell.png" alt="">
-        </div>
-        <p class="weui-tabbar__label">我</p>
+        <p class="weui-tabbar__label">我的</p>
       </a>
     </div>
   </div>
 </body>
 <script>
-  var appendTestData = Common.appendTestData,
-    bindEvent = Common.bindEvent,
-    // 记录一个最新
-    maxDataSize = 30,
-    listDomArr = [],
-    requestDelayTime = 600,
-    miniRefreshArr = [],
-    currIndex = 0;
-
-  var initMiniRefreshs = function (index) {
-
-    listDomArr[index] = document.querySelector('#listdata' + index);
-
-    miniRefreshArr[index] = new MiniRefresh({
-      container: '#minirefresh' + index,
-      down: {
-        callback: function () {
-          setTimeout(function () {
-            // 每次下拉刷新后，上拉的状态会被自动重置
-            appendTestData(listDomArr[index], 10, true, index);
-            miniRefreshArr[index].endDownLoading(true);
-          }, requestDelayTime);
-        }
-      },
-      up: {
-        isAuto: true,
-        callback: function () {
-          setTimeout(function () {
-            appendTestData(listDomArr[index], 10, false, index);
-            miniRefreshArr[index].endUpLoading(listDomArr[index].children.length >= maxDataSize ? true : false);
-          }, requestDelayTime);
-        }
-      }
-    });
-  };
-
-  var navControl = document.querySelector('.nav-control');
+  // $('.weui-tab__bd').pullToRefresh(function () {
+  //   // 下拉刷新触发时执行的操作放这里。
+  //   // 从 v1.1.2 版本才支持回调函数，之前的版本只能通过事件监听
+  //   setTimeout(function () {
+  //     $('.weui-tab__bd').pullToRefreshDone();
+  //   }, 500);
+  // });
 
   var mySwiper = new Swiper('.swiper-container', {
-    autoplay: 0,
-    onSlideChangeEnd: function (swiper) {
-      var index = swiper.activeIndex;
-
-      console.log('滑动');
-      navControl.querySelector('.active').classList.remove('active');
-      navControl.children[index].classList.add('active');
-      currIndex = index;
-    }
-  });
-
-  bindEvent('.nav-control p', function (e) {
-    var type = this.getAttribute('list-type');
-
-    type = +type;
-
-    console.log(type + ',' + currIndex);
-
-    if (type !== currIndex) {
-      navControl.querySelector('.active').classList.remove('active');
-      this.classList.add('active');
-
-
-      currIndex = type;
-
-      mySwiper.slideTo(currIndex, 500);
-    }
-  }, 'click');
-
-  initMiniRefreshs(0);
-  initMiniRefreshs(1);
-  initMiniRefreshs(2);
+    autoplay: 5000,//可选选项，自动滑动
+  })
 </script>
 
 </html>

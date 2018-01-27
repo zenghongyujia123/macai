@@ -73,7 +73,7 @@ String.prototype.Trim = function () {
   return this.replace(/(^\s*)|(\s*$)/g, "");
 };
 //数字解析，解析不出来返回null
-function parseIntNumber(numberString){
+function parseIntNumber(numberString) {
   if (!(/((^[1-9]|^\-[1-9])[0-9]*$)|^0$/).test(numberString)) {
     return null;
   }
@@ -167,7 +167,7 @@ exports.allBooleanParse = function (value) {
     return null;
 
   var valueString = value.toString().toLowerCase();
-  return valueString === 'true' ||  valueString === '1' ? true : (valueString === 'false' || valueString === '0' ? false : null);
+  return valueString === 'true' || valueString === '1' ? true : (valueString === 'false' || valueString === '0' ? false : null);
 };
 
 
@@ -274,18 +274,18 @@ exports.getReplaceDirSpecialCharReg = function () {
   return /[:：\/]/g;
 };
 
-function getDateTypeData(timeString){
+function getDateTypeData(timeString) {
   var newDate;
   var dateTimeStamp = parseIntNumber(timeString);
-  if(dateTimeStamp){
+  if (dateTimeStamp) {
     newDate = new Date(dateTimeStamp);
-  }else{
+  } else {
     newDate = new Date(timeString);
   }
 
-  if(newDate && newDate.getTime()){
+  if (newDate && newDate.getTime()) {
     return newDate;
-  }else{
+  } else {
     return null;
   }
 }

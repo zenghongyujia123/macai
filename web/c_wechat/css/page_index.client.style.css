@@ -39,9 +39,10 @@ html .weui-tab .weui-panel_access,
 body .weui-tab .weui-panel_access {
   margin-top: 60px;
 }
-html .weui-tab .weui-panel__bd,
-body .weui-tab .weui-panel__bd {
+html .weui-tab .weui-tab__bd,
+body .weui-tab .weui-tab__bd {
   height: 100%;
+  padding-top: 50px;
   overflow-y: scroll;
   background-color: white;
   -webkit-overflow-scrolling: touch;
@@ -52,6 +53,11 @@ body .weui-tab .weui-media-box_appmsg {
 }
 html .weui-tab .weui-media-box_appmsg .weui-media-box__hd,
 body .weui-tab .weui-media-box_appmsg .weui-media-box__hd {
-  height: 80px;
-  width: 80px;
+  height: 90px;
+  width: 90px;
+}
+html .weui-tab .weui-media-box_appmsg .weui-media-box__hd .weui-media-box__thumb,
+body .weui-tab .weui-media-box_appmsg .weui-media-box__hd .weui-media-box__thumb {
+  width: 100%;
+  height: 100%;
 }

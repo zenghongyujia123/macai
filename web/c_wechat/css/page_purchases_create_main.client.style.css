@@ -1,0 +1,7 @@
+.page-purchases-create-main {
+  background-color: #eee;
+  height: 100%;
+}
+.page-purchases-create-main .weui-cells:first-child {
+  margin-top: 0px;
+}

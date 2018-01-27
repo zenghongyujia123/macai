@@ -1,0 +1,76 @@
+.page-purchases-detail {
+  background-color: #eee;
+  height: 100%;
+  .swiper-container {
+    height: 200px;
+    width: 100%;
+  }
+  .detail-content {
+    background-color: white;
+    padding: 10px 10px;
+    margin-bottom: 10px;
+    .name {
+      font-size: 16px;
+      line-height: 30px;
+      font-weight: bolder;
+    }
+    .address {
+      font-size: 12px;
+      margin-bottom: 10px;
+      color: #999;
+    }
+    .price {
+      color: #ff6000;
+      font-size: 24px;
+      .price-unit {
+        color: #ff6000;
+        font-size: 16px;
+      }
+      .price-min {
+        color: white;
+        border-radius: 2px;
+        font-size: 14px;
+        background-color: #ff6000;
+      }
+    }
+    .service-tip {
+      margin-right: 20px;
+      font-size: 14px;
+      color: #444;
+    }
+    .center-title {
+      font-size: 14px;
+      text-align: center;
+      margin-bottom: 10px;
+      font-weight: bolder;
+    }
+    .weui-flex {
+      font-size: 14px;
+      .weui-flex__item {
+        padding: 5px;
+        text-align: center;
+        border-right: 1px solid #e5e5e5;
+        border-top: 1px solid #e5e5e5;
+        &:first-child {
+          border-left: 1px solid #e5e5e5;
+        }
+        &:nth-child(odd) {
+          background-color: #f1f1f1;
+        }
+      }
+      &:last-child {
+        border-bottom: 1px solid #e5e5e5;
+      }
+    }
+    .center-content {
+      font-size: 12px;
+    }
+    .center-img {
+      width: 100%;
+      margin-bottom: 10px;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
