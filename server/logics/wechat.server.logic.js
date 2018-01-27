@@ -7,7 +7,7 @@ var agent = require('superagent').agent();
 var moment = require('moment');
 var access_token = '';
 var ticket = '';
-var appid = 'wx5b9d79d49848e982';
+var appid = 'wx682b6bf0f5c1e84d';
 var sk = '1500a633040b1c3e719dc5cd2d39b9b0';
 
 var xml2js = require('xml2js');
@@ -116,7 +116,7 @@ that.getAccessToken(function () {
 });
 
 exports.getUserAccessToken = function (code, callback) {
-  agent.get('https://api.weixin.qq.com/sns/oauth2/access_token?appid=' + appid + '&secret='+sk+'&code=' + code + '&grant_type=authorization_code ')
+  agent.get('https://api.weixin.qq.com/sns/oauth2/access_token?appid=' + appid + '&secret=' + sk + '&code=' + code + '&grant_type=authorization_code ')
     .end(function (err, result) {
       console.log(' code err-----');
       console.log(err);
