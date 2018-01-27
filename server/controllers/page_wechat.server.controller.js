@@ -8,9 +8,6 @@ var moment = require('moment');
 var cookieLib = require('../../libraries/cookie');
 var agent = require('superagent').agent();
 
-
-
-
 exports.page_home = function (req, res, next) {
   var cookie = cookieLib.getCookie(req);
   var username = cookie.userName;
@@ -19,8 +16,6 @@ exports.page_home = function (req, res, next) {
   return res.render(filepath, {});
 
 };
-
-
 exports.page_signin = function (req, res, next) {
   var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_list.client.view.html');
   // var filepath = path.join(__dirname, '../../web/c_wechat/views/page_signin.client.view.html');
@@ -48,38 +43,16 @@ exports.page_signin = function (req, res, next) {
   //   }
   // });
 };
-
-exports.page_purchases_create_category = function (req, res, next) {
-  var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_create_category.client.view.html');
-  return res.render(filepath, {});
-};
-exports.page_purchases_create_breed = function (req, res, next) {
-  var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_create_breed.client.view.html');
-  return res.render(filepath, {});
-};
-
 exports.page_purchases_create_main = function (req, res, next) {
   var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_create_main.client.view.html');
   return res.render(filepath, {});
 };
-
-exports.page_purchases_create_specs = function (req, res, next) {
-  var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_create_specs.client.view.html');
-  return res.render(filepath, {});
-};
-
-exports.page_purchases_create_success = function (req, res, next) {
-  var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_create_success.client.view.html');
-  return res.render(filepath, {});
-};
-
-exports.page_purchases_create_supply_location = function (req, res, next) {
-  var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_create_supply_location.client.view.html');
-  return res.render(filepath, {});
-};
-
 exports.page_purchases_list = function (req, res, next) {
   var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_list.client.view.html');
+  return res.render(filepath, {});
+};
+exports.page_purchases_my_list = function (req, res, next) {
+  var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_my_list.client.view.html');
   return res.render(filepath, {});
 };
 exports.page_purchases_detail = function (req, res, next) {
@@ -87,11 +60,18 @@ exports.page_purchases_detail = function (req, res, next) {
   return res.render(filepath, {});
 };
 
-exports.page_purchases_my_list = function (req, res, next) {
-  var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_my_list.client.view.html');
+exports.page_supply_create_main = function (req, res, next) {
+  var filepath = path.join(__dirname, '../../web/c_wechat/views/supply/page_supply_create_main.client.view.html');
   return res.render(filepath, {});
 };
-
+exports.page_supply_list = function (req, res, next) {
+  var filepath = path.join(__dirname, '../../web/c_wechat/views/supply/page_supply_list.client.view.html');
+  return res.render(filepath, {});
+};
+exports.page_supply_my_list = function (req, res, next) {
+  var filepath = path.join(__dirname, '../../web/c_wechat/views/supply/page_supply_my_list.client.view.html');
+  return res.render(filepath, {});
+};
 exports.page_supply_detail = function (req, res, next) {
   var filepath = path.join(__dirname, '../../web/c_wechat/views/supply/page_supply_detail.client.view.html');
   return res.render(filepath, {});
