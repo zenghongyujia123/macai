@@ -92,5 +92,10 @@ exports.page_purchases_my_list = function (req, res, next) {
   return res.render(filepath, {});
 };
 
+exports.page_supply_detail = function (req, res, next) {
+  var filepath = path.join(__dirname, '../../web/c_wechat/views/supply/page_supply_detail.client.view.html');
+  return res.render(filepath, {});
+};
+
 
 
