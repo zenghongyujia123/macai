@@ -16,6 +16,7 @@
   <script src="../libs/jquery/dist/jquery.js"></script>
 
   <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/city-picker.min.js"></script>
   <script src="../c_wechat/controllers/page_signin.client.controller.js"></script>
 </head>
 
@@ -45,16 +46,24 @@
         <div class="weui-cell__bd">
           <p>需求量</p>
         </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input" placeholder="请输入数量">
+        </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input" id="picker-requirement-unit" value="斤">
+        </div>
         <div class="weui-cell__ft">
-          速冻
         </div>
       </a>
       <a class="weui-cell weui-cell_access" href="javascript:;">
         <div class="weui-cell__bd">
           <p>期望货源地</p>
         </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input" id="city-picker"></input>
+        </div>
         <div class="weui-cell__ft">
-          速冻
+
         </div>
       </a>
     </div>
@@ -328,7 +337,21 @@
   </div>
 </body>
 <script>
-
+  $(function () {
+    $("#picker-requirement-unit").picker({
+      title: "请选择您的称呼",
+      cols: [
+        {
+          textAlign: 'center',
+          values: ['斤', '公斤', '吨', '箱', '盒']
+          //如果你希望显示文案和实际值不同，可以在这里加一个displayValues: [.....]
+        }
+      ]
+    });
+    $("#city-picker").cityPicker({
+      title: "请选择收货地址"
+    });
+  })
 </script>
 
 </html>

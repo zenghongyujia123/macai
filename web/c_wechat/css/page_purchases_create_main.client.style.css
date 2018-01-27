@@ -7,6 +7,9 @@
 .page-purchases-create-main .weui-cells:first-child {
   margin-top: 0px;
 }
+.page-purchases-create-main .weui-cells .weui-input {
+  text-align: right;
+}
 .goods-choose-container {
   display: flex;
   flex-direction: row;

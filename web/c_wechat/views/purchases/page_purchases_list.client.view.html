@@ -414,17 +414,14 @@
   </div>
 </body>
 <script>
-  // $('.weui-tab__bd').pullToRefresh(function () {
-  //   // 下拉刷新触发时执行的操作放这里。
-  //   // 从 v1.1.2 版本才支持回调函数，之前的版本只能通过事件监听
-  //   setTimeout(function () {
-  //     $('.weui-tab__bd').pullToRefreshDone();
-  //   }, 500);
-  // });
-
-  var mySwiper = new Swiper('.swiper-container', {
-    autoplay: 5000,//可选选项，自动滑动
+  $(function () {
+   
+    var mySwiper = new Swiper('.swiper-container', {
+      autoplay: 5000,//可选选项，自动滑动
+    })
   })
+
+
 </script>
 
 </html>
