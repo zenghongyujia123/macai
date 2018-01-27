@@ -50,3 +50,15 @@
 .goods-choose-container .right .weui-flex__item .weui-flex:last-child {
   border-bottom: 1px solid #e5e5e5;
 }
+.specs-choose-container .specs-container .specs-title {
+  padding: 10px;
+}
+.specs-choose-container .specs-container .weui-flex {
+  background-color: white;
+}
+.specs-choose-container .specs-container .weui-flex .weui-flex__item {
+  line-height: 40px;
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+  border-right: 1px solid #e5e5e5;
+}
