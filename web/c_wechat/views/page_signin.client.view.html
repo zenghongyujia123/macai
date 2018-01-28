@@ -43,9 +43,36 @@
         <div class="weui-cell__ft">
         </div>
       </div>
+      <div class="weui-cell">
+        <div class="weui-cell__hd">
+          <label class="weui-label">身份</label>
+        </div>
+        <div class="weui-cell__bd">
+          <input id="identity-name" class="weui-input" type="text" placeholder="请选择身份信息">
+        </div>
+        <div class="weui-cell__ft">
+        </div>
+      </div>
     </div>
     <a href="/page_wechat/page_purchases_list" class="weui-btn weui-btn_primary" style="margin:10px;">登录</a>
   </div>
 </body>
+<script>
+  $(function () {
+    $("#identity-name").picker({
+      cols: [
+        {
+          textAlign: 'center',
+          values: ['我来找货', '我来卖货']
+        },
+        {
+          textAlign: 'center',
+          values: ['批发商', '代办／代理人', '合作社', '家庭农场', '种植户／种植企业', '农机厂商']
+        }
+      ]
+    });
+  })
+
+</script>
 
 </html>

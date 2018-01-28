@@ -15,8 +15,6 @@ module.exports = function (app) {
   app.route('/page_wechat/page_purchases_my_list').get(index.page_purchases_my_list);
   app.route('/page_wechat/page_purchases_detail').get(index.page_purchases_detail);
 
-
-
   app.route('/page_wechat/page_supply_create_main').get(index.page_supply_create_main);
   app.route('/page_wechat/page_supply_list').get(index.page_supply_list);
   app.route('/page_wechat/page_supply_my_list').get(index.page_supply_my_list);
