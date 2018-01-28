@@ -381,6 +381,14 @@
       </div>
 
       <div id="tab3" class="weui-tab__bd-item">
+        <a class="weui-cell weui-cell_access" href="javascript:;">
+          <div class="weui-cell__bd">
+            <input id="my-purchases-status" class="weui-input" placeholder="状态">
+          </div>
+          <div class="weui-cell__ft">
+          </div>
+        </a>
+
         <a href="/page_wechat/page_purchases_detail" class="weui-media-box weui-media-box_appmsg purchases-list-item">
           <div class="weui-media-box__bd">
             <div class="title1">八月桂
@@ -474,7 +482,12 @@
 
     var mySwiper = new Swiper('.swiper-container', {
       autoplay: 5000,//可选选项，自动滑动
-    })
+    });
+
+    $("#my-purchases-status").select({
+      title: "选择状态",
+      items: ["采购中", "已停止", "被驳回"]
+    });
   })
 
 

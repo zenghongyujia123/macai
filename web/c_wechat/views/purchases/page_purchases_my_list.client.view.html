@@ -16,19 +16,6 @@
   <script type="text/javascript" src="../libs/Swiper/dist/js/swiper.min.js"></script>
   <script src="../c_libs/minirefresh.min.js"></script>
   <script src="../c_libs/common.js"></script>
-  <style>
-    .swiper-container {
-      position: absolute;
-      top: 60px;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    .minirefresh-wrap {
-      top: 0;
-    }
-  </style>
 </head>
 
 <body>
@@ -73,7 +60,10 @@
 
 
   <script>
-    
+    $("#purchases-status").select({
+      title: "选择状态",
+      items: ["采购中", "已停止", "被驳回"]
+    });
   </script>
 </body>
 
