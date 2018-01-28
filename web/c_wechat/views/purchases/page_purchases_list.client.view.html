@@ -7,6 +7,7 @@
   <title>采购列表</title>
   <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
   <link rel="stylesheet" href="../libs/Swiper/dist/css/swiper.min.css" />
+  <link rel="stylesheet" href="../libs/font-awesome/css/font-awesome.min.css" />
 
   <link rel="stylesheet" href="../c_wechat/css/page_index.client.style.css" />
   <link rel="stylesheet" href="../c_wechat/css/page_purchases_list.client.style.css" />
@@ -463,15 +464,21 @@
     </div>
     <div class="weui-tabbar">
       <a href="/page_wechat/page_purchases_list" class="weui-tabbar__item weui-bar__item--on">
-        <!-- <div class="weui-tabbar__icon"> -->
-        <!-- <img src="./images/icon_nav_button.png" alt=""> -->
-        <!-- </div> -->
-        <p class="weui-tabbar__label">买</p>
+        <div class="weui-tabbar__icon">
+          <i class="fa fa-shopping-basket"></i>
+        </div>
+        <p class="weui-tabbar__label">我要买</p>
       </a>
       <a href="/page_wechat/page_supply_list" class="weui-tabbar__item">
-        <p class="weui-tabbar__label">卖</p>
+        <div class="weui-tabbar__icon">
+          <i class="fa fa-shopping-cart"></i>
+        </div>
+        <p class="weui-tabbar__label">我要卖</p>
       </a>
       <a href="javascript:;" class="weui-tabbar__item">
+        <div class="weui-tabbar__icon">
+          <i class="fa fa-user"></i>
+        </div>
         <p class="weui-tabbar__label">我的</p>
       </a>
     </div>

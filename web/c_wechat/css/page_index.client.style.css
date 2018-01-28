@@ -61,7 +61,7 @@ body .weui-tab .weui-media-box_appmsg .weui-media-box__hd .weui-media-box__thumb
   width: 100%;
   height: 100%;
 }
-html .weui-tab .weui-tabbar p,
-body .weui-tab .weui-tabbar p {
-  font-size: 20px;
+html .weui-tab .weui-tabbar .weui-tabbar__item.weui-bar__item--on .fa,
+body .weui-tab .weui-tabbar .weui-tabbar__item.weui-bar__item--on .fa {
+  color: #04BE02;
 }

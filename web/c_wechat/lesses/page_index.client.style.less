@@ -54,8 +54,12 @@ body {
     //   background-color: white;
     // }
     .weui-tabbar {
-      p {
-        font-size: 20px;
+      .weui-tabbar__item {
+        &.weui-bar__item--on {
+          .fa {
+            color: #04BE02;
+          }
+        }
       }
     }
   }
