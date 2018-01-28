@@ -309,9 +309,14 @@
     var mySwiper = new Swiper('.swiper-container', {
       autoplay: 5000,//可选选项，自动滑动
     })
-    $("#my-supply-status").select({
+    $("#my-supply-status").picker({
       title: "选择状态",
-      items: ["销售中", "已下架", "被驳回"]
+      cols: [
+        {
+          textAlign: 'center',
+          values: ["销售中", "已下架", "被驳回"]
+        }
+      ]
     });
   })
 </script>
