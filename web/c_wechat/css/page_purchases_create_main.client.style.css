@@ -9,6 +9,8 @@
 }
 .page-purchases-create-main .weui-cells .weui-input {
   text-align: right;
+}
+.page-purchases-create-main .weui-cells .weui-input:disabled {
   color: #1aad19;
 }
 .goods-choose-container {
