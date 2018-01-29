@@ -4,20 +4,20 @@ function get_choose_categorys(callback) {
     data: {},
     method: 'post',
     success: function (data) {
-      getCategorysPage(data);
+      getCategorysPage(data, callback);
       console.log(data);
     }
   });
 }
 
-function getCategorysPage(data) {
+function getCategorysPage(data, callback) {
   var container = $('.goods-choose-container');
   container.children().remove();
   var left = $('<div class="left"></div>');
   var right = $('<div class="right"></div>');
   var list = [];
   for (var i = 0; i < data.length; i++) {
-    left.append(getCategoryObj(data[i], right));
+    left.append(getCategoryObj(data[i], right, callback));
   }
   container.append(left);
   container.append(right);
@@ -25,7 +25,7 @@ function getCategorysPage(data) {
 }
 
 
-function getCategoryObj(item, right) {
+function getCategoryObj(item, right, callback) {
   var category = $('<div class="weui-flex__item">' +
     '<div class="item">' + item.goods_category + '</div>' +
     '</div>');
@@ -37,14 +37,13 @@ function getCategoryObj(item, right) {
     $(this).siblings().removeClass('select');
     right.children().remove();
     for (var i = 0; i < item.goods_name_list.length; i++) {
-      getCategoryBrandObj(item.goods_name_list[i], right)
+      getCategoryBrandObj(item.goods_name_list[i], right, callback)
     }
   });
   return category;
 }
 
-function getCategoryBrandObj(item, right) {
-
+function getCategoryBrandObj(item, right, callback) {
   var itemObj = $(' <div class="weui-flex__item"><div class="title">' + item.first_pinyin + '</div></div>');
   var rowIndex = item.items.length / 3;
 
@@ -56,6 +55,10 @@ function getCategoryBrandObj(item, right) {
       '   <div class="weui-flex__item item">' + (item.items[i * 3 + 2] || '') + '</div>' +
       ' </div>'
     );
+    rowObj.children().click(function () {
+      callback($(this).text());
+      $.closePopup();
+    });;
     itemObj.append(rowObj);
   }
   right.append(itemObj);

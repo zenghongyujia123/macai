@@ -220,8 +220,8 @@
     $("#receiver-city-picker").cityPicker({
       title: "收获地址"
     });
-    get_choose_categorys(function () {
-
+    get_choose_categorys(function (text) {
+      console.log(text);
     })
   })
 </script>
