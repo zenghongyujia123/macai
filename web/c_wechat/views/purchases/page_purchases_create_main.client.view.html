@@ -29,19 +29,19 @@
           <p>采购货品</p>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input get_choose_categorys" disabled="disabled" placeholder="请选择采购货品">
+          <input class="weui-input get_choose_categorys goods_name" disabled="disabled" placeholder="请选择采购货品">
         </div>
         <div class="weui-cell__ft">
         </div>
       </a>
     </div>
     <div class="weui-cells">
-      <a class="weui-cell weui-cell_access  open-popup" href="javascript:;" data-target="#specs-choose">
+      <a class="weui-cell weui-cell_access" href="javascript:;" data-target="#specs-choose">
         <div class="weui-cell__bd">
           <p>规格要求</p>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input" disabled="disabled" placeholder="请选择规格要求">
+          <input class="weui-input goods_specs" disabled="disabled" placeholder="请选择规格要求">
         </div>
         <div class="weui-cell__ft">
         </div>
@@ -51,10 +51,10 @@
           <p>需求量</p>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input" placeholder="请输入数量">
+          <input class="weui-input need_number" placeholder="请输入数量">
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input" id="picker-requirement-unit" value="斤">
+          <input class="weui-input need_unit" disabled="disabled" id="picker-requirement-unit" value="斤">
         </div>
         <div class="weui-cell__ft">
         </div>
@@ -64,7 +64,7 @@
           <p>期望货源地</p>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input" id="sender-city-picker" placeholder="请选择期望货源地"></input>
+          <input class="weui-input expect_address" id="sender-city-picker" placeholder="请选择期望货源地"></input>
         </div>
         <div class="weui-cell__ft">
 
@@ -75,7 +75,7 @@
       <div class="weui-cell">
         <div class="weui-cell__bd">
           补充说明
-          <textarea class="weui-textarea" placeholder="请输入文本" rows="3"></textarea>
+          <textarea class="weui-textarea remark" placeholder="请输入文本" rows="3"></textarea>
           <div class="weui-textarea-counter">
             <span>0</span>/200</div>
         </div>
@@ -114,7 +114,7 @@
           <p>采购时长</p>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input" id="picker-purchases-duration" placeholder="请选择采购时长"></input>
+          <input class="weui-input duration" id="picker-purchases-duration" placeholder="请选择采购时长"></input>
         </div>
         <div class="weui-cell__ft">
         </div>
@@ -124,7 +124,7 @@
           <p>收货地址</p>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input" id="receiver-city-picker" placeholder="请选择收货地址"></input>
+          <input class="weui-input receive_address" id="receiver-city-picker" placeholder="请选择收货地址"></input>
         </div>
         <div class="weui-cell__ft">
         </div>
@@ -134,11 +134,11 @@
           <p>联系电话</p>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input" placeholder="请输入手机号"></input>
+          <input class="weui-input mobile_phone" placeholder="请输入手机号"></input>
         </div>
       </a>
     </div>
-    <a style="margin:20px;" href="javascript:;" class="weui-btn weui-btn_primary">确认发布</a>
+    <a style="margin:20px;" href="javascript:;" class="weui-btn weui-btn_primary submit">确认发布</a>
   </div>
   <div id="goods-choose" class="weui-popup__container">
     <div class="weui-popup__overlay"></div>
@@ -229,7 +229,67 @@
         });
       })
     });
-  })
+
+    $('.submit').click(function () {
+      var goods_name = $('.goods_name').val();
+      var goods_category = $('.goods_category').val();
+      var goods_brand = $('.goods_brand').val();
+      var goods_specs = $('.goods_specs').val();
+      var need_number = $('.need_number').val();
+      var need_unit = $('.need_unit').val();
+      var expect_address = $('.expect_address').val();
+      var remark = $('.remark').val();
+      var duration = $('.duration').val();
+      var receive_address = $('.receive_address').val();
+      var mobile_phone = $('.mobile_phone').val();
+
+      if (!goods_name) { return $.toptip('请选择货品', 'warning'); }
+      // if (!goods_specs) { return $.toptip('请选择规格', 'warning'); }
+      if (!need_number) { return $.toptip('请输入需求量', 'warning'); }
+      if (!need_unit) { return $.toptip('请输入单位', 'warning'); }
+      if (!expect_address) { return $.toptip('请输选择期望货源地', 'warning'); }
+      if (!remark) { return $.toptip('请输入补充说明', 'warning'); }
+      if (!duration) { return $.toptip('请输入采购市场', 'warning'); }
+      if (!receive_address) { return $.toptip('请选择收货地址', 'warning'); }
+      if (!mobile_phone) { return $.toptip('请输入联系电话', 'warning'); }
+      // photos
+      var data = {
+        goods_name: goods_name,
+        goods_category: goods_name.split(' ')[0],
+        goods_brand: goods_name.split(' ')[1],
+        goods_specs: goods_specs,
+        need_number: need_number,
+        need_unit: need_unit,
+        expect_address: expect_address,
+        expect_province: expect_address.split(' ')[0],
+        expect_city: expect_address.split(' ')[1],
+        expect_district: expect_address.split(' ')[2],
+        remark: remark,
+        duration: duration,
+        receive_province: receive_address.split(' ')[0],
+        receive_city: receive_address.split(' ')[1],
+        receive_district: receive_address.split(' ')[2],
+        receive_address: receive_address,
+        mobile_phone: mobile_phone,
+        photos: []
+      }
+
+      console.log(data);
+      return;
+      $.ajax({
+        url: '',
+        data: data,
+        method: 'post',
+        success: function (data) {
+
+        }
+      });
+    });
+  });
+
+
+
+
 </script>
 
 </html>

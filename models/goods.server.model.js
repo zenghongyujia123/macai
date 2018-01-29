@@ -40,10 +40,59 @@ module.exports = function (appDb) {
       type: String,
       default: 'Purchases'
     },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    },
     goods_name: {
       type: String
     },
     goods_category: {
+      type: String
+    },
+    goods_brand: {
+      type: String
+    },
+    goods_specs: {
+      type: String
+    },
+    need_number: {
+      type: String
+    },
+    need_unit: {
+      type: String
+    },
+    expect_province: {
+      type: String
+    },
+    expect_city: {
+      type: String
+    },
+    expect_district: {
+      type: String
+    },
+    address: {
+      type: String
+    },
+    duration: {
+      type: String
+    },
+    receive_province: {
+      type: String
+    },
+    receive_city: {
+      type: String
+    },
+    receive_district: {
+      type: String
+    },
+    mobile_phone: {
+      type: String
+    },
+    photos: {
+      type: String
+    },
+    remark: {
       type: String
     }
   });
