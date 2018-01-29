@@ -57,7 +57,7 @@ exports.get_choose_categorys = function (req, res, next) {
       goods_name_list: [
         {
           first_pinyin: 'A',
-          items: ['香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
+          items: ['sss', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
         },
         {
           first_pinyin: 'B',
@@ -91,7 +91,7 @@ exports.get_choose_categorys = function (req, res, next) {
         },
         {
           first_pinyin: 'B',
-          items: ['香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
+          items: ['ssddd', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
         },
         {
           first_pinyin: 'C',

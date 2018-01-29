@@ -26,7 +26,7 @@
   line-height: 50px;
   border-bottom: 1px solid #e5e5e5;
 }
-.goods-choose-container .left .weui-flex__item .item.select {
+.goods-choose-container .left .weui-flex__item.select .item {
   background-color: white;
   color: #1aad19;
 }
