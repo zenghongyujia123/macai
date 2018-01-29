@@ -80,7 +80,6 @@ exports.get_choose_categorys = function (req, res, next) {
           items: ['香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
         },
       ]
-
     },
     {
       goods_category: '水果',
@@ -116,9 +115,13 @@ exports.get_choose_categorys = function (req, res, next) {
 
 exports.get_choose_specs = function (req, res, next) {
   return res.send([
-
+    {}
   ])
 };
+
+exports.get_choose_brand = function (req, res, next) {
+  return res.send(['苹果', '栗子', '桃子', '苹果',]);
+}
 
 
 

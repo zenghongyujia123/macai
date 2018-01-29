@@ -10,8 +10,21 @@ function get_choose_categorys(callback) {
   });
 }
 
+function get_choose_brand(category, callback) {
+  $.ajax({
+    url: '/api_wechat/get_choose_brand',
+    data: { category: category },
+    method: 'post',
+    success: function (data) {
+      getBrandPage(data, callback);
+      console.log(data);
+    }
+  });
+}
+
 function getCategorysPage(data, callback) {
-  var container = $('.goods-choose-container');
+  var container = $('.weui-popup__modal')
+  container.removeClass('specs-choose-container').addClass('goods-choose-container');
   container.children().remove();
   var left = $('<div class="left"></div>');
   var right = $('<div class="right"></div>');
@@ -57,11 +70,32 @@ function getCategoryBrandObj(item, right, callback) {
     );
     rowObj.children().click(function () {
       callback($(this).text());
-      $.closePopup();
     });;
     itemObj.append(rowObj);
   }
   right.append(itemObj);
+}
+
+function getBrandPage(data, callback) {
+  var container = $('.weui-popup__modal')
+  container.removeClass('goods-choose-container').addClass('specs-choose-container');
+  container.children().remove();
+  // var child = 
+
+  var rowIndex = data.length / 3;
+  for (var i = 0; i < rowIndex; i++) {
+    var rowObj = $(
+      ' <div class="weui-flex brand">' +
+      '   <div class="weui-flex__item">' + (data[i * 3 + 0] || '') + '</div>' +
+      '   <div class="weui-flex__item">' + (data[i * 3 + 1] || '') + '</div>' +
+      '   <div class="weui-flex__item">' + (data[i * 3 + 2] || '') + '</div>' +
+      ' </div>'
+    );
+    rowObj.children().click(function () {
+      callback($(this).text());
+    });;
+    container.append(rowObj);
+  }
 }
 
 

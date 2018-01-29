@@ -24,7 +24,7 @@
 <body>
   <div class="weui-tab page-purchases-create-main">
     <div class="weui-cells">
-      <a class="weui-cell weui-cell_access open-popup" href="javascript:;" data-target="#goods-choose">
+      <a class="weui-cell weui-cell_access get_choose_categorys_row" href="javascript:;">
         <div class="weui-cell__bd">
           <p>采购货品</p>
         </div>
@@ -34,7 +34,6 @@
         <div class="weui-cell__ft">
         </div>
       </a>
-
     </div>
     <div class="weui-cells">
       <a class="weui-cell weui-cell_access  open-popup" href="javascript:;" data-target="#specs-choose">
@@ -42,7 +41,7 @@
           <p>规格要求</p>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input" placeholder="请选择规格要求">
+          <input class="weui-input" disabled="disabled" placeholder="请选择规格要求">
         </div>
         <div class="weui-cell__ft">
         </div>
@@ -146,14 +145,14 @@
     <div class="weui-popup__modal goods-choose-container">
     </div>
   </div>
-  <div id="specs-choose" class="weui-popup__container">
+  <!-- <div id="specs-choose" class="weui-popup__container">
     <div class="weui-popup__overlay"></div>
     <div class="weui-popup__modal specs-choose-container">
       <div class="specs-container">
         <div class="specs-title">单颗重（选填）
         </div>
         <div class="weui-flex">
-          <a class="weui-flex__item  close-popup" href="javascript:;">weui</a>
+          <a class="weui-flex__item " href="javascript:;">weui</a>
           <div class="weui-flex__item">weui</div>
           <div class="weui-flex__item">weui</div>
         </div>
@@ -190,7 +189,7 @@
 
       </div>
     </div>
-  </div>
+  </div> -->
 </body>
 <script>
   $(function () {
@@ -220,9 +219,16 @@
     $("#receiver-city-picker").cityPicker({
       title: "收获地址"
     });
-    get_choose_categorys(function (text) {
-      $('.get_choose_categorys').val(text);
-    })
+    $('.get_choose_categorys_row').click(function () {
+      $("#goods-choose").popup();
+      get_choose_categorys(function (category) {
+        $('.get_choose_categorys').val(category);
+        get_choose_brand(category, function (brand) {
+          $('.get_choose_categorys').val([category, brand].join(' '));
+          $.closePopup();
+        });
+      })
+    });
   })
 </script>
 

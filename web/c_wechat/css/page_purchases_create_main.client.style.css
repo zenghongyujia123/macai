@@ -65,3 +65,12 @@
   border-bottom: 1px solid #e5e5e5;
   border-right: 1px solid #e5e5e5;
 }
+.specs-choose-container .weui-flex {
+  background-color: white;
+}
+.specs-choose-container .weui-flex .weui-flex__item {
+  line-height: 40px;
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+  border-right: 1px solid #e5e5e5;
+}
