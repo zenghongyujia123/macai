@@ -16,24 +16,25 @@ module.exports = function (appDb) {
       default: 'User'
     },
     username: {
-      type: String
+      type: String,
+      trim: true
     },
     password: {
-      type: String
+      type: String,
+      trim: true
     },
     openid: {
       type: String,
       trim: true
     },
-    choose_country: { type: String },
-    choose_language: { type: String },
-    old_shippment_count: { type: String },
-    old_deliveried_shippment_count: { type: String },
-    show_old_un_deliveried_shippment: { type: String },
-    show_grouping_by_truckloads: { type: String },
-    choose_list_view: { type: String },
-    choose_shippment_count: { type: String },
-    choose_icon_tab: { type: String },
+    role: {
+      type: String,
+      trim: true
+    },
+    is_vip: {
+      type: Boolean,
+      default: false
+    }
   });
 
   UserSchema.plugin(timestamps, {

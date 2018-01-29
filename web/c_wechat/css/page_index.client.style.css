@@ -41,11 +41,15 @@ body .weui-tab .weui-panel_access {
 }
 html .weui-tab .weui-tab__bd,
 body .weui-tab .weui-tab__bd {
-  height: 100%;
   padding-top: 50px;
   overflow-y: scroll;
   background-color: white;
   -webkit-overflow-scrolling: touch;
+}
+html .weui-tab .weui-tab__bd .weui-tab__bd-item,
+body .weui-tab .weui-tab__bd .weui-tab__bd-item {
+  padding-bottom: 50px;
+  height: auto;
 }
 html .weui-tab .weui-media-box_appmsg,
 body .weui-tab .weui-media-box_appmsg {
