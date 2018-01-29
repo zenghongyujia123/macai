@@ -21,6 +21,9 @@ module.exports = function (appDb) {
     goods_category: {
       type: String
     },
+    goods_brand: {
+      type: String
+    },
     first_pinyin: {
       type: String
     }

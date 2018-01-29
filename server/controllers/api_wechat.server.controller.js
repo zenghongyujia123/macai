@@ -50,65 +50,75 @@ exports.signin = function (req, res, next) {
     });
 }
 
-exports.uploadEvent = function (req, res, next) {
-  var cookie = cookieLib.getCookie(req);
-  shippmentLogic.uploadEvent(cookie.accessToken, req.body, function (err, result) {
-    return res.send(result);
-  });
-}
+exports.get_choose_categorys = function (req, res, next) {
+  return res.send([
+    {
+      goods_category: '蔬菜',
+      goods_name_list: [
+        {
+          first_pinyin: 'A',
+          items: ['香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
+        },
+        {
+          first_pinyin: 'B',
+          items: ['香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
+        },
+        {
+          first_pinyin: 'C',
+          items: ['香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
+        },
+        {
+          first_pinyin: 'D',
+          items: ['香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
+        },
+        {
+          first_pinyin: 'E',
+          items: ['香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
+        },
+        {
+          first_pinyin: 'F',
+          items: ['香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
+        },
+      ]
 
-exports.createExpense = function (req, res, next) {
-  var cookie = cookieLib.getCookie(req);
-  req.body.driver = cookie.userName;
-  shippmentLogic.createExpense(cookie.accessToken, req.body, function (err, result) {
-    return res.send(result);
-  });
-}
+    },
+    {
+      goods_category: '水果',
+      goods_name_list: [
+        {
+          first_pinyin: 'A',
+          items: ['香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
+        },
+        {
+          first_pinyin: 'B',
+          items: ['香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
+        },
+        {
+          first_pinyin: 'C',
+          items: ['香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
+        },
+        {
+          first_pinyin: 'D',
+          items: ['香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
+        },
+        {
+          first_pinyin: 'E',
+          items: ['香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
+        },
+        {
+          first_pinyin: 'F',
+          items: ['香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
+        },
+      ]
+    }
+  ]);
+};
 
-exports.getUserJsApiTicket = function (req, res, next) {
-  wechatLogic.getUserJsApiTicket(req.body.url, function (err, data) {
-    return res.send(data);
-  });
-}
-var request = require("request");
+exports.get_choose_specs = function (req, res, next) {
+  return res.send([
 
-exports.downloadPhoto = function (req, res, next) {
-  var cookie = cookieLib.getCookie(req);
-  var options = {
-    method: 'GET',
-    url: 'https://cn-api.openport.com/delivery/shipments/' + req.query.id + '/pic/' + req.query.fileId,
-    headers:
-      {
-        'x-openport-token': cookie.accessToken
-      }
-  };
-  req.pipe(request(options)).pipe(res);
-}
-
-exports.getDeliveriedShippments = function (req, res, next) {
-  var username = cookie = cookieLib.getCookie(req).userName;
-  shippmentLogic.getDeliveriedShippments(req.user, function (err, shippments) {
-    return res.send(shippments);
-  });
-}
-
-exports.updateUserSetting = function (req, res, next) {
-  var username = cookie = cookieLib.getCookie(req).userName;
-  var userInfo = req.body.user_info;
-  userInfo.username = username;
-  shippmentLogic.updateUserSetting(userInfo, function (err, user) {
-    return res.send(err || user);
-  });
-}
-
-
-exports.getUserSetting = function (req, res, next) {
-  var username = cookie = cookieLib.getCookie(req).userName;
-  shippmentLogic.getUserSetting(username, function (err, user) {
-    return res.send(err || user);
-  });
-}
-
+  ])
+};
 
 
 
