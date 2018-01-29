@@ -22,10 +22,26 @@ function get_choose_brand(category, callback) {
   });
 }
 
+function get_choose_specs(callback) {
+  $.ajax({
+    url: '/api_wechat/get_choose_specs',
+    data: {},
+    method: 'post',
+    success: function (data) {
+      getSpecsPage(data, callback);
+      console.log(data);
+    }
+  });
+}
+
 function getCategorysPage(data, callback) {
   var container = $('.weui-popup__modal')
-  container.removeClass('specs-choose-container').addClass('goods-choose-container');
-  container.children().remove();
+  container.removeClass()
+    .addClass('goods-choose-container')
+    .addClass('weui-popup__modal');
+  container
+    .children()
+    .remove();
   var left = $('<div class="left"></div>');
   var right = $('<div class="right"></div>');
   var list = [];
@@ -78,7 +94,9 @@ function getCategoryBrandObj(item, right, callback) {
 
 function getBrandPage(data, callback) {
   var container = $('.weui-popup__modal')
-  container.removeClass('goods-choose-container').addClass('specs-choose-container');
+  container.removeClass()
+    .addClass('weui-popup__modal')
+    .addClass('specs-choose-container');
   container.children().remove();
   // var child = 
 
@@ -97,5 +115,53 @@ function getBrandPage(data, callback) {
     container.append(rowObj);
   }
 }
+
+function getSpecsPage(data, callback) {
+  var result = [];
+  var container = $('.weui-popup__modal')
+  var submit = $('    <a style="margin:20px;" href="javascript:;" class="weui-btn weui-btn_primary submit">选好了</a>  ');
+  container.removeClass()
+    .addClass('weui-popup__modal')
+    .addClass('specs-choose-container');
+  container.children().remove();
+  // var child = 
+
+  for (var i = 0; i < data.length; i++) {
+    container.append(getSpecsItemObj(data[i], function (text) {
+      if (result.indexOf(text) === -1) {
+        result.push(text);
+      }
+    }));
+  }
+  submit.click(function () {
+    callback(result.join(' '));
+  });
+  container.append(submit);
+}
+
+function getSpecsItemObj(data, callback) {
+  var rowIndex = data.list.length / 3;
+
+  var item = $(
+    '<div class="specs-container">' +
+    '  <div class="specs-title">' + data.title + '</div>' +
+    '</div>');
+  for (var i = 0; i < rowIndex; i++) {
+    var rowObj = $(
+      ' <div class="weui-flex">' +
+      '   <div class="weui-flex__item">' + (data.list[i * 3 + 0] || '') + '</div>' +
+      '   <div class="weui-flex__item">' + (data.list[i * 3 + 1] || '') + '</div>' +
+      '   <div class="weui-flex__item">' + (data.list[i * 3 + 2] || '') + '</div>' +
+      ' </div>'
+    );
+    rowObj.children().click(function () {
+      $(this).addClass('select').siblings().removeClass('select');
+      callback($(this).text());
+    });;
+    item.append(rowObj);
+    return item;
+  }
+}
+
 
 

@@ -36,12 +36,12 @@
       </a>
     </div>
     <div class="weui-cells">
-      <a class="weui-cell weui-cell_access" href="javascript:;" data-target="#specs-choose">
+      <a class="weui-cell weui-cell_access get_choose_specs_row" href="javascript:;" data-target="#specs-choose">
         <div class="weui-cell__bd">
           <p>规格要求</p>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input goods_specs" disabled="disabled" placeholder="请选择规格要求">
+          <input class="weui-input get_choose_specs goods_specs" disabled="disabled" placeholder="请选择规格要求">
         </div>
         <div class="weui-cell__ft">
         </div>
@@ -228,6 +228,14 @@
           $.closePopup();
         });
       })
+    });
+
+    $('.get_choose_specs_row').click(function () {
+      $("#goods-choose").popup();
+      get_choose_specs(function (specs) {
+        $('.get_choose_specs').val(specs);
+        $.closePopup();
+      });
     });
 
     $('.submit').click(function () {

@@ -115,7 +115,18 @@ exports.get_choose_categorys = function (req, res, next) {
 
 exports.get_choose_specs = function (req, res, next) {
   return res.send([
-    {}
+    {
+      title: '单果重',
+      list: ['60g以下', '60g以下', '60g以下', '60g以下', '60g以下', '60g以下', '60g以下']
+    },
+    {
+      title: '种植方式',
+      list: ['野生', '种植']
+    },
+    {
+      title: '外皮颜色',
+      list: ['黄色', '红色', '紫色', '黄麻', '红色']
+    }
   ])
 };
 
