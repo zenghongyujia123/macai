@@ -17,8 +17,8 @@ exports.page_home = function (req, res, next) {
 
 };
 exports.page_signin = function (req, res, next) {
-  // var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_list.client.view.html');
-  var filepath = path.join(__dirname, '../../web/c_wechat/views/page_signin.client.view.html');
+  var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_list.client.view.html');
+  // var filepath = path.join(__dirname, '../../web/c_wechat/views/page_signin.client.view.html');
   return res.render(filepath, {});
 
   // wechatLogic.getUserAccessToken(req.query.code, function (err, result) {
@@ -76,6 +76,12 @@ exports.page_supply_detail = function (req, res, next) {
   var filepath = path.join(__dirname, '../../web/c_wechat/views/supply/page_supply_detail.client.view.html');
   return res.render(filepath, {});
 };
+
+exports.page_market_list = function (req, res, next) {
+  var filepath = path.join(__dirname, '../../web/c_wechat/views/market/page_market_list.client.view.html');
+  return res.render(filepath, {});
+};
+
 
 
 

@@ -60,6 +60,7 @@ html .weui-tab .weui-media-box_appmsg .weui-media-box__hd .weui-media-box__thumb
 body .weui-tab .weui-media-box_appmsg .weui-media-box__hd .weui-media-box__thumb {
   width: 100%;
   height: 100%;
+  border-radius: 4px;
 }
 html .weui-tab .weui-tabbar .weui-tabbar__item.weui-bar__item--on .fa,
 body .weui-tab .weui-tabbar .weui-tabbar__item.weui-bar__item--on .fa {
