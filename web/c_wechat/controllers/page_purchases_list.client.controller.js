@@ -20,6 +20,9 @@ $(function () {
         success: function (data) {
           console.log(data);
           if (!data || data.err) {
+            if (data.err.type === 'user_not_exist') {
+              window.location = '/page_wechat/page_signin';
+            }
             return $.toptip(data.err.message, 'warning');
           }
           tab2.append_my_purchases_list(data);
