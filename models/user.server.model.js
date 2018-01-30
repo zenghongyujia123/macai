@@ -31,9 +31,31 @@ module.exports = function (appDb) {
       type: String,
       trim: true
     },
-    is_vip: {
+    vip_user: {
       type: Boolean,
       default: false
+    },
+    vip_user_time: {
+      type: Date
+    },
+
+    personal_auth: {
+      type: Boolean
+    },
+    personal_auth_by_user: {
+      type: String
+    },
+    personal_auth_time: {
+      type: Date
+    },
+    personal_auth_id_front_photo: {
+      type: String
+    },
+    personal_auth_id_back_photo: {
+      type: String
+    },
+    personal_auth_id_real_photo: {
+      type: String
     }
   });
 
