@@ -40,6 +40,14 @@ module.exports = function (appDb) {
       type: String,
       default: 'Purchases'
     },
+    status: {
+      type: String,
+      enum: ['submit', 'passed', 'unpassed'],
+      default: 'submit'
+    },
+    unpassed_reason: {
+      type: String
+    },
     user: {
       type: Schema.Types.ObjectId,
       ref: 'User'

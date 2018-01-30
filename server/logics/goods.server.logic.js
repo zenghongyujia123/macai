@@ -5,7 +5,9 @@ var mongoose = require('./../../libraries/mongoose');
 var appDb = mongoose.appDb;
 Purchases = appDb.model('Purchases');
 User = appDb.model('User');
+
 Goods = appDb.model('Goods');
+var sysErr = require('./../errors/system');
 
 exports.create_purchases = function (user, info, callback) {
   var purchases = new Purchases({
@@ -39,5 +41,30 @@ exports.create_purchases = function (user, info, callback) {
 }
 
 exports.my_purchases_list = function (user, info, callback) {
+  var last_item = info.last_item || {};
+
+  var query = {
+    user: user._id,
+  };
+  var create_time = info.last_create_time || '';
+
+  if (info.status) {
+    query.status = info.status;
+  }
+  if (last_item.create_time) {
+    query.create_time = { $lte: new Date(last_item.create_time) }
+    query._id = { $ne: last_item._id };
+  }
+
+  Purchases.find(query).limit(10).sort({ create_time: -1 }).exec(function (err, list) {
+    if (err || !list) {
+      return callback({ err: sysErr.database_query_error });
+    }
+    return callback(null, list);
+  });
+}
+
+exports.purchases_list = function (user, info, callback) {
 
 }
+

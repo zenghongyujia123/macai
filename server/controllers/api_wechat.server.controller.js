@@ -45,6 +45,18 @@ exports.create_purchases = function (req, res, next) {
   });
 }
 
+exports.my_purchases_list = function (req, res, next) {
+  goodsLogic.my_purchases_list(req.user, req.body, function (err, result) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(result);
+  });
+}
+
+
+
+
 exports.get_choose_categorys = function (req, res, next) {
   return res.send([
     {
