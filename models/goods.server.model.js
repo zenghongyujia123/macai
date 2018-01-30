@@ -79,7 +79,13 @@ module.exports = function (appDb) {
     expect_district: {
       type: String
     },
-    address: {
+    expect_price: {
+      type: Number
+    },
+    expect_price_unit: {
+      type: String
+    },
+    expect_address: {
       type: String
     },
     duration: {

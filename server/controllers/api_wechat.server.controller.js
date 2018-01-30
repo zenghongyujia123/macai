@@ -54,8 +54,13 @@ exports.my_purchases_list = function (req, res, next) {
   });
 }
 
+exports.purchases_by_id = function (req, res, next) {
+  return res.send(req.purchases);
+}
 
-
+exports.supply_by_id = function (req, res, next) {
+  return res.send(req.supply);
+}
 
 exports.get_choose_categorys = function (req, res, next) {
   return res.send([

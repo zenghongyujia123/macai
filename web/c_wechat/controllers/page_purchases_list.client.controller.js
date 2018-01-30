@@ -53,11 +53,11 @@ $(function () {
       for (var i = 0; i < data.length; i++) {
         var item = data[i];
         var obj = $(
-          ' <a href="/page_wechat/page_purchases_detail" class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
+          ' <a href="/page_wechat/page_purchases_detail?purchases_id=' + item._id + '"' + ' class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
           '   <div class="weui-media-box__bd">' +
           '     <div class="title1">' + item.goods_name +
           '     </div>' +
-          '     <div class="title2">品种：泰国小菠萝</div>' +
+          '     <div class="title2">品种：' + item.goods_brand + '</div>' +
           '     <div class="title2">浏览次数：111次</div>' +
           '     <div class="item-bottom">' +
           '       <div class="price">12.00' +

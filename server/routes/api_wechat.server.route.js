@@ -4,6 +4,7 @@
 
 var ctr = require('../controllers/api_wechat');
 var userFilter = require('../filters/user');
+var goodsFilter = require('../filters/goods');
 
 module.exports = function (app) {
   app.route('/api_wechat/send_verify_code').post(ctr.send_verify_code);
@@ -14,6 +15,9 @@ module.exports = function (app) {
 
   app.route('/api_wechat/purchases/create_purchases').post(userFilter.requireUser, ctr.create_purchases);
   app.route('/api_wechat/purchases/my_purchases_list').post(userFilter.requireUser, ctr.my_purchases_list);
+  app.route('/api_wechat/purchases/purchases_by_id').post(goodsFilter.requirePurchases, ctr.purchases_by_id);
+
+  app.route('/api_wechat/supply/supply_by_id').post(goodsFilter.requireSupply, ctr.supply_by_id);
 
   // app.route('/api_wechat/shippments').post(ctr.shippments);
   // app.route('/api_wechat/uploadEvent').post(ctr.uploadEvent);

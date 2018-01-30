@@ -4,8 +4,8 @@
 var mongoose = require('./../../libraries/mongoose');
 var appDb = mongoose.appDb;
 Purchases = appDb.model('Purchases');
+Supply = appDb.model('Supply');
 User = appDb.model('User');
-
 Goods = appDb.model('Goods');
 var sysErr = require('./../errors/system');
 
@@ -18,6 +18,8 @@ exports.create_purchases = function (user, info, callback) {
     goods_specs: info.goods_specs || '',
     need_number: info.need_number || '',
     need_unit: info.need_unit || '',
+    expect_price: info.expect_price || '',
+    expect_price_unit: info.expect_price_unit || '',
     expect_address: info.expect_address || '',
     expect_province: info.expect_province || '',
     expect_city: info.expect_city || '',
@@ -61,6 +63,24 @@ exports.my_purchases_list = function (user, info, callback) {
       return callback({ err: sysErr.database_query_error });
     }
     return callback(null, list);
+  });
+}
+
+exports.getPurchasesById = function (purchases_id, callback) {
+  Purchases.findOne({ _id: purchases_id }).populate('user').exec(function (err, purchases) {
+    if (err) {
+      return callback({ err: sysErr.database_query_error });
+    }
+    return callback(null, purchases);
+  });
+}
+
+exports.getSupplyById = function (id, callback) {
+  Supply.findOne({ _id: id }).populate('user').exec(function (err, supply) {
+    if (err) {
+      return callback({ err: sysErr.database_query_error });
+    }
+    return callback(null, supply);
   });
 }
 

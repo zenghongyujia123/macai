@@ -54,7 +54,20 @@
           <input class="weui-input need_number" placeholder="请输入数量">
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input need_unit" disabled="disabled" id="picker-requirement-unit" value="斤">
+          <input class="weui-input need_unit" id="picker-requirement-unit" value="斤">
+        </div>
+        <div class="weui-cell__ft">
+        </div>
+      </a>
+      <a class="weui-cell weui-cell_access" href="javascript:;">
+        <div class="weui-cell__bd">
+          <p>期望价格</p>
+        </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input expect_price" placeholder="请输入期望价格">
+        </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input expect_price_unit" id="picker-expect-price-unit" value="元/斤">
         </div>
         <div class="weui-cell__ft">
         </div>
@@ -145,51 +158,6 @@
     <div class="weui-popup__modal goods-choose-container">
     </div>
   </div>
-  <!-- <div id="specs-choose" class="weui-popup__container">
-    <div class="weui-popup__overlay"></div>
-    <div class="weui-popup__modal specs-choose-container">
-      <div class="specs-container">
-        <div class="specs-title">单颗重（选填）
-        </div>
-        <div class="weui-flex">
-          <a class="weui-flex__item " href="javascript:;">weui</a>
-          <div class="weui-flex__item">weui</div>
-          <div class="weui-flex__item">weui</div>
-        </div>
-        <div class="weui-flex">
-          <div class="weui-flex__item">weui</div>
-          <div class="weui-flex__item">weui</div>
-          <div class="weui-flex__item">weui</div>
-        </div>
-        <div class="weui-flex">
-          <div class="weui-flex__item">weui</div>
-          <div class="weui-flex__item">weui</div>
-          <div class="weui-flex__item"></div>
-        </div>
-
-      </div>
-      <div class="specs-container">
-        <div class="specs-title">单颗重（选填）
-        </div>
-        <div class="weui-flex">
-          <div class="weui-flex__item">weui</div>
-          <div class="weui-flex__item">weui</div>
-          <div class="weui-flex__item">weui</div>
-        </div>
-        <div class="weui-flex">
-          <div class="weui-flex__item">weui</div>
-          <div class="weui-flex__item">weui</div>
-          <div class="weui-flex__item">weui</div>
-        </div>
-        <div class="weui-flex">
-          <div class="weui-flex__item">weui</div>
-          <div class="weui-flex__item">weui</div>
-          <div class="weui-flex__item"></div>
-        </div>
-
-      </div>
-    </div>
-  </div> -->
 </body>
 <script>
   $(function () {
@@ -203,6 +171,18 @@
         }
       ]
     });
+
+    $("#picker-expect-price-unit").picker({
+      title: "请选择您的称呼",
+      cols: [
+        {
+          textAlign: 'center',
+          values: ['元/斤', '元/公斤', '元/吨', '元/箱', '元/盒']
+        }
+      ]
+    });
+
+
     $("#picker-purchases-duration").picker({
       title: "采购时长",
       cols: [
@@ -250,11 +230,16 @@
       var duration = $('.duration').val();
       var receive_address = $('.receive_address').val();
       var mobile_phone = $('.mobile_phone').val();
+      var expect_price = $('.expect_price').val();
+      var expect_price_unit = $('.expect_price_unit').val();
 
       if (!goods_name) { return $.toptip('请选择货品', 'warning'); }
       // if (!goods_specs) { return $.toptip('请选择规格', 'warning'); }
       if (!need_number) { return $.toptip('请输入需求量', 'warning'); }
       if (!need_unit) { return $.toptip('请输入单位', 'warning'); }
+
+      if (!expect_price) { return $.toptip('请输入期望价格', 'warning'); }
+      if (!expect_price_unit) { return $.toptip('请输入期望价格单位', 'warning'); }
       if (!expect_address) { return $.toptip('请输选择期望货源地', 'warning'); }
       if (!remark) { return $.toptip('请输入补充说明', 'warning'); }
       if (!duration) { return $.toptip('请输入采购市场', 'warning'); }
@@ -268,6 +253,8 @@
         goods_specs: goods_specs,
         need_number: need_number,
         need_unit: need_unit,
+        expect_price: expect_price,
+        expect_price_unit: expect_price_unit,
         expect_address: expect_address,
         expect_province: expect_address.split(' ')[0],
         expect_city: expect_address.split(' ')[1],
