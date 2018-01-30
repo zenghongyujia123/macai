@@ -283,13 +283,17 @@
       }
 
       console.log(data);
-      return;
       $.ajax({
-        url: '',
+        url: '/api_wechat/purchases/create_purchases',
         data: data,
         method: 'post',
         success: function (data) {
-
+          console.log(data);
+          if (!data || data.err) {
+            return $.toptip(data.err.message, 'warning');
+          }
+          $.toast("操作成功");
+          window.location = '/page_wechat/page_purchases_list'
         }
       });
     });

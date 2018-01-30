@@ -3,6 +3,7 @@
  */
 module.exports = function (appDb) {
   require('./user')(appDb);
+  require('./goods')(appDb);
   require('./user_wechat')(appDb);
   require('./shippment')(appDb);
 };

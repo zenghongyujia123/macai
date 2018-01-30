@@ -12,6 +12,8 @@ module.exports = function (app) {
   app.route('/api_wechat/get_choose_brand').post(ctr.get_choose_brand);
   app.route('/api_wechat/get_choose_specs').post(ctr.get_choose_specs);
 
+  app.route('/api_wechat/purchases/create_purchases').post(userFilter.requireUser,ctr.create_purchases);
+
   // app.route('/api_wechat/shippments').post(ctr.shippments);
   // app.route('/api_wechat/uploadEvent').post(ctr.uploadEvent);
   // app.route('/api_wechat/createExpense').post(ctr.createExpense);

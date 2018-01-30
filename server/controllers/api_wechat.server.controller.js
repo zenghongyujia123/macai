@@ -2,7 +2,7 @@
  * Created by zenghong on 2017/8/8.
  */
 var path = require('path');
-var shippmentLogic = require('../logics/shippment');
+var goodsLogic = require('../logics/goods');
 var wechatLogic = require('../logics/wechat');
 var userLogic = require('../logics/user');
 var cookieLib = require('../../libraries/cookie');
@@ -31,8 +31,17 @@ exports.signin = function (req, res, next) {
     if (err) {
       return res.send(err);
     }
-    cookieLib.setCookie(res, 'user_id', user._id);
+    cookieLib.setCookie(res, 'user_id', user._id.toString());
     return res.send({ success: true });
+  });
+}
+
+exports.create_purchases = function (req, res, next) {
+  goodsLogic.create_purchases(req.user, req.body, function (err, result) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(result);
   });
 }
 
