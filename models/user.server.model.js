@@ -31,6 +31,9 @@ module.exports = function (appDb) {
       type: String,
       trim: true
     },
+    identity: {
+      type: String,
+    },
     vip_user: {
       type: Boolean,
       default: false

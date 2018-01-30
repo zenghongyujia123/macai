@@ -4,6 +4,7 @@
 var path = require('path');
 var shippmentLogic = require('../logics/shippment');
 var wechatLogic = require('../logics/wechat');
+var userLogic = require('../logics/user');
 var cookieLib = require('../../libraries/cookie');
 var smsLib = require('../../libraries/sms');
 var agent = require('superagent').agent();
@@ -24,12 +25,15 @@ exports.send_verify_code = function (req, res, next) {
 exports.signin = function (req, res, next) {
   var cookie = cookieLib.getCookie(req);
   var openid = cookie.openid || '';
+  var role = req.body.role || '';
   var username = req.body.username;
-
-  cookieLib.setCookie(res, 'accessToken', result.token.accessToken);
-  cookieLib.setCookie(res, 'userName', result.user.userName);
-  cookieLib.setCookie(res, 'phoneNumber', result.user.phoneNumber);
-  cookieLib.setCookie(res, 'pic', result.user.pic);
+  userLogic.signin({ openid: openid, username: username, role: role }, function (err, user) {
+    if (err) {
+      return res.send(err);
+    }
+    cookieLib.setCookie(res, 'user_id', user._id);
+    return res.send({ success: true });
+  });
 }
 
 exports.get_choose_categorys = function (req, res, next) {

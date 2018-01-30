@@ -2,6 +2,6 @@
 
 module.exports = {
   env: 'production',
-  appDb: 'mongodb://localhost/o-pro',
+  appDb: 'mongodb://localhost/m-pro',
   port: 80
 };

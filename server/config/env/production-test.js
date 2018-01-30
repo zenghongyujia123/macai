@@ -2,5 +2,5 @@
 
 module.exports = {
   env: 'production-test',
-  appDb: 'mongodb://localhost/o-pro-test'
+  appDb: 'mongodb://localhost/m-pro-test'
 };
