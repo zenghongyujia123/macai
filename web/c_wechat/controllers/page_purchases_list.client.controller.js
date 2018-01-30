@@ -2,28 +2,14 @@ $(function () {
   var mySwiper = new Swiper('.swiper-container', {
     autoplay: 5000,//可选选项，自动滑动
   });
-  var loading = false;
-
-  $("#my-purchases-status").select({
-    title: "选择状态",
-    items: ["采购中", "已停止", "被驳回"]
-  });
-
-  $("#my-purchases-status").picker({
-    title: "选择状态",
-    cols: [
-      {
-        textAlign: 'center',
-        values: ["采购中", "已停止", "被驳回"]
-      }
-    ]
-  });
 
   var tab2 = {
+    nav: $('#nav2'),
     container: $('#tab2'),
     laodmore: $('#tab2').find('.weui-loadmore'),
     last_item: {},
     loading: false,
+    is_init: false,
     my_purchases_list: function (callback) {
       $.ajax({
         url: '/api_wechat/purchases/my_purchases_list',
@@ -71,19 +57,39 @@ $(function () {
           ' </a>');
         obj.insertBefore(tab2.laodmore);
       }
+    },
+    init: function () {
+      $("#my-purchases-status").select({
+        title: "选择状态",
+        items: ["采购中", "已停止", "被驳回"]
+      });
+
+      $("#my-purchases-status").picker({
+        title: "选择状态",
+        cols: [
+          {
+            textAlign: 'center',
+            values: ["采购中", "已停止", "被驳回"]
+          }
+        ]
+      });
     }
   };
 
-  tab2.container.infinite().on("infinite", function () {
-    if (tab2.loading) return;
-    tab2.loading = true;
-    tab2.my_purchases_list(function (last) {
-      tab2.loading = false;
+  tab2.nav.click(function () {
+    if (tab2.is_init) {
+      return;
+    }
+    tab2.is_init = true;
+    tab2.init();
+    tab2.container.infinite().on("infinite", function () {
+      if (tab2.loading) return;
+      tab2.loading = true;
+      tab2.my_purchases_list(function (last) {
+        tab2.loading = false;
+      });
     });
+    tab2.my_purchases_list();
   });
-
-  tab2.my_purchases_list()
-
-
-})
+});
 
