@@ -48,3 +48,12 @@ exports.getById = function (user_id, callback) {
   });
 }
 
+exports.getByOpenId = function (openid, callback) {
+  User.findOne({ openid: openid }, function (err, user) {
+    if (err) {
+      return callback({ err: sysErr.database_query_error });
+    }
+    return callback(null, user);
+  });
+}
+

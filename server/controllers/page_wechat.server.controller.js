@@ -2,7 +2,7 @@
  * Created by zenghong on 2017/8/8.
  */
 var path = require('path');
-var shippmentLogic = require('../logics/shippment');
+var userLogic = require('../logics/user');
 var wechatLogic = require('../logics/wechat');
 var moment = require('moment');
 var cookieLib = require('../../libraries/cookie');
@@ -16,10 +16,14 @@ exports.page_home = function (req, res, next) {
   return res.render(filepath, {});
 
 };
+
 exports.page_signin = function (req, res, next) {
   // var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_list.client.view.html');
-  var filepath = path.join(__dirname, '../../web/c_wechat/views/page_signin.client.view.html');
-  return res.render(filepath, {});
+  userLogic.getByOpenId(openid || '', function (err, user) {
+    var filepath = path.join(__dirname, '../../web/c_wechat/views/page_signin.client.view.html');
+    return res.render(filepath, { user: user || '' });
+  });
+
 
   // wechatLogic.getUserAccessToken(req.query.code, function (err, result) {
   //   if (result.openid) {
