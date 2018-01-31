@@ -3,6 +3,7 @@
  */
 var path = require('path');
 var userLogic = require('../logics/user');
+var goodsLogic = require('../logics/goods');
 var wechatLogic = require('../logics/wechat');
 var moment = require('moment');
 var cookieLib = require('../../libraries/cookie');
@@ -19,7 +20,8 @@ exports.page_home = function (req, res, next) {
 
 exports.page_signin = function (req, res, next) {
   // var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_list.client.view.html');
-  userLogic.getByOpenId(openid || '', function (err, user) {
+  var openid = '';
+  userLogic.getByOpenId(openid , function (err, user) {
     var filepath = path.join(__dirname, '../../web/c_wechat/views/page_signin.client.view.html');
     return res.render(filepath, { user: user || '' });
   });
@@ -60,8 +62,11 @@ exports.page_purchases_my_list = function (req, res, next) {
   return res.render(filepath, {});
 };
 exports.page_purchases_detail = function (req, res, next) {
+  var purchases = req.purchases || {};
   var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_detail.client.view.html');
-  return res.render(filepath, { purchases: req.purchases });
+  goodsLogic.increasePurchasesBrowseCount(purchases, function () {
+    return res.render(filepath, { purchases: req.purchases });
+  });
 };
 
 exports.page_supply_create_main = function (req, res, next) {

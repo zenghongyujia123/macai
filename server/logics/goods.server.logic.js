@@ -41,7 +41,6 @@ exports.create_purchases = function (user, info, callback) {
   });
 
 }
-
 exports.my_purchases_list = function (user, info, callback) {
   var last_item = info.last_item || {};
 
@@ -65,7 +64,6 @@ exports.my_purchases_list = function (user, info, callback) {
     return callback(null, list);
   });
 }
-
 exports.getPurchasesById = function (purchases_id, callback) {
   Purchases.findOne({ _id: purchases_id }).populate('user').exec(function (err, purchases) {
     if (err) {
@@ -74,7 +72,14 @@ exports.getPurchasesById = function (purchases_id, callback) {
     return callback(null, purchases);
   });
 }
-
+exports.increasePurchasesBrowseCount = function (purchases, callback) {
+  Purchases.update({ _id: purchases }, { $inc: { browse_count: 1 } }, function (err, result) {
+    if (err) {
+      console.error(err);
+    }
+    return callback();
+  })
+}
 exports.getSupplyById = function (id, callback) {
   Supply.findOne({ _id: id }).populate('user').exec(function (err, supply) {
     if (err) {
@@ -83,7 +88,6 @@ exports.getSupplyById = function (id, callback) {
     return callback(null, supply);
   });
 }
-
 exports.purchases_list = function (user, info, callback) {
 
 }

@@ -270,11 +270,13 @@
       }
 
       console.log(data);
+      $.showLoading();
       $.ajax({
         url: '/api_wechat/purchases/create_purchases',
         data: data,
         method: 'post',
         success: function (data) {
+          $.hideLoading();
           console.log(data);
           if (!data || data.err) {
             return $.toptip(data.err.message, 'warning');

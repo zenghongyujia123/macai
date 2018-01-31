@@ -42,8 +42,8 @@ module.exports = function (appDb) {
     },
     status: {
       type: String,
-      enum: ['submit', 'passed', 'unpassed'],
-      default: 'submit'
+      enum: ['progress', 'stop', 'passed', 'unpassed'],
+      default: 'progress'
     },
     unpassed_reason: {
       type: String
@@ -51,6 +51,10 @@ module.exports = function (appDb) {
     user: {
       type: Schema.Types.ObjectId,
       ref: 'User'
+    },
+    browse_count: {
+      type: Number,
+      default: 0
     },
     goods_name: {
       type: String
