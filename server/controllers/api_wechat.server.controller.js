@@ -62,6 +62,12 @@ exports.supply_by_id = function (req, res, next) {
   return res.send(req.supply);
 }
 
+
+
+
+
+
+
 exports.get_choose_categorys = function (req, res, next) {
   return res.send([
     {
