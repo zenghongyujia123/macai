@@ -126,13 +126,72 @@ module.exports = function (appDb) {
       type: String,
       default: 'Supply'
     },
-    name: {
+    status: {
+      type: String,
+      enum: ['progress', 'stop', 'passed', 'unpassed'],
+      default: 'progress'
+    },
+    unpassed_reason: {
       type: String
     },
-    category: {
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    browse_count: {
+      type: Number,
+      default: 0
+    },
+    goods_name: {
       type: String
     },
-    first_pinyin: {
+    goods_category: {
+      type: String
+    },
+    goods_brand: {
+      type: String
+    },
+    goods_specs: {
+      type: String
+    },
+    is_cash_goods: {
+      type: Boolean
+    },
+    undercarriage_time: {
+      type: Date
+    },
+    grounding_time: {
+      type: Date
+    },
+    price: {
+      type: Number
+    },
+    price_unit: {
+      type: String
+    },
+    min_count: {
+      type: Number
+    },
+    send_province: {
+      type: String
+    },
+    send_city: {
+      type: String
+    },
+    send_district: {
+      type: String
+    },
+    send_address: {
+      type: String
+    },
+    provide_services: [{ type: String }],
+    mobile_phone: {
+      type: String
+    },
+    photos: {
+      type: String
+    },
+    remark: {
       type: String
     }
   });

@@ -1,3 +1,5 @@
+import { stat } from 'fs';
+
 /**
  * Created by zenghong on 2017/8/8.
  */
@@ -41,6 +43,15 @@ exports.create_purchases = function (user, info, callback) {
   });
 
 }
+exports.update_purchases_status = function (user, purchases, status, callback) {
+  purchases.status = status;
+  purchases.save(function (err, savedPurchases) {
+    if (err || !savedPurchases) {
+      return callback({ err: sysErr.database_save_error });
+    }
+    return callback(null, savedPurchases);
+  });
+}
 exports.my_purchases_list = function (user, info, callback) {
   var last_item = info.last_item || {};
 
@@ -64,7 +75,7 @@ exports.my_purchases_list = function (user, info, callback) {
     return callback(null, list);
   });
 }
-exports.getPurchasesById = function (purchases_id, callback) {
+exports.get_purchases_by_id = function (purchases_id, callback) {
   Purchases.findOne({ _id: purchases_id }).populate('user').exec(function (err, purchases) {
     if (err) {
       return callback({ err: sysErr.database_query_error });
@@ -80,7 +91,27 @@ exports.increasePurchasesBrowseCount = function (purchases, callback) {
     return callback();
   })
 }
-exports.getSupplyById = function (id, callback) {
+exports.purchases_list = function (user, info, callback) {
+  var last_item = info.last_item || {};
+
+  var query = {
+  };
+  var create_time = info.last_create_time || '';
+
+  if (last_item.create_time) {
+    query.create_time = { $lte: new Date(last_item.create_time) }
+    query._id = { $ne: last_item._id };
+  }
+
+  Purchases.find(query).limit(10).sort({ create_time: -1 }).exec(function (err, list) {
+    if (err || !list) {
+      return callback({ err: sysErr.database_query_error });
+    }
+    return callback(null, list);
+  });
+}
+
+exports.get_supply_by_id = function (id, callback) {
   Supply.findOne({ _id: id }).populate('user').exec(function (err, supply) {
     if (err) {
       return callback({ err: sysErr.database_query_error });
@@ -88,7 +119,5 @@ exports.getSupplyById = function (id, callback) {
     return callback(null, supply);
   });
 }
-exports.purchases_list = function (user, info, callback) {
 
-}
 
