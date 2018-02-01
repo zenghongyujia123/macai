@@ -163,5 +163,9 @@ function getSpecsItemObj(data, callback) {
   }
 }
 
+function get_is_cash_goods() {
+
+}
+
 
 

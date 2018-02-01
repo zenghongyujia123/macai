@@ -15,7 +15,17 @@ module.exports = function (app) {
 
   app.route('/api_wechat/purchases/create_purchases').post(userFilter.requireUser, ctr.create_purchases);
   app.route('/api_wechat/purchases/my_purchases_list').post(userFilter.requirePostUser, ctr.my_purchases_list);
-
+  app.route('/api_wechat/purchases/purchases_by_id').post(userFilter.requirePostUser,ctr.purchases_by_id)
+  app.route('/api_wechat/purchases/supply_by_id').post(userFilter.requirePostUser,ctr.supply_by_id)
+  app.route('/api_wechat/purchases/update_purchases_status').post(userFilter.requirePostUser,ctr.update_purchases_status)
+  app.route('/api_wechat/purchases/increase_purchases_browse_count').post(userFilter.requirePostUser, ctr.increase_purchases_browse_count)
+  
+  app.route('/api_wechat/purchases/purchases_list').post(userFilter.requirePostUser,ctr.purchases_list)
+  app.route('/api_wechat/purchases/create_supply').post(userFilter.requirePostUser,ctr.create_supply)
+  app.route('/api_wechat/purchases/update_supply_status').post(userFilter.requirePostUser,ctr.update_supply_status)
+  app.route('/api_wechat/purchases/my_supply_list').post(userFilter.requirePostUser,ctr.my_supply_list)
+  app.route('/api_wechat/purchases/increase_supply_browse_count').post(userFilter.requirePostUser,ctr.increase_supply_browse_count)
+  app.route('/api_wechat/purchases/supply_list').post(userFilter.requirePostUser,ctr.supply_list)
   // app.route('/api_wechat/shippments').post(ctr.shippments);
   // app.route('/api_wechat/uploadEvent').post(ctr.uploadEvent);
   // app.route('/api_wechat/createExpense').post(ctr.createExpense);

@@ -9,25 +9,6 @@ var sysErr = require('./../errors/system');
 
 var that = exports;
 
-exports.backLogin = function (username, password, callback) {
-  if (!username) {
-    return callback({ err: { type: 'username_empty', message: '手机号不能为空' } });
-  }
-  if (!password) {
-    return callback({ err: { type: 'password_empty', message: '密码不能为空' } });
-  }
-
-  User.findOne({ username: username }, function (err, user) {
-    if (err) {
-      return callback({ err: sysErr.database_query_error });
-    }
-    if (!user) {
-      return callback({ err: { type: 'user_not_exist', message: '用户不存在' } });
-    }
-
-  });
-}
-
 exports.signin = function (userInfo, callback) {
   if (!userInfo.username) {
     return callback({ err: { type: 'username_empty', message: '手机号不能为空' } });
@@ -74,7 +55,7 @@ exports.getByOpenId = function (openid, callback) {
   });
 }
 
-exports.list = function (user, info, callback) {
+exports.user_list = function (user, info, callback) {
   info = info || {};
   info.last_item = info.last_item || {};
   var query = {};

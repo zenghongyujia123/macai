@@ -1,5 +1,3 @@
-import { stat } from 'fs';
-
 /**
  * Created by zenghong on 2017/8/8.
  */
@@ -75,7 +73,7 @@ exports.my_purchases_list = function (user, info, callback) {
     return callback(null, list);
   });
 }
-exports.get_purchases_by_id = function (purchases_id, callback) {
+exports.get_purchases_by_id = function (user, purchases_id, callback) {
   Purchases.findOne({ _id: purchases_id }).populate('user').exec(function (err, purchases) {
     if (err) {
       return callback({ err: sysErr.database_query_error });
@@ -83,7 +81,7 @@ exports.get_purchases_by_id = function (purchases_id, callback) {
     return callback(null, purchases);
   });
 }
-exports.increase_purchases_browse_count = function (purchases, callback) {
+exports.increase_purchases_browse_count = function (user, purchases, callback) {
   Purchases.update({ _id: purchases }, { $inc: { browse_count: 1 } }, function (err, result) {
     if (err) {
       console.error(err);
@@ -175,7 +173,7 @@ exports.my_supply_list = function (user, info, callback) {
     return callback(null, list);
   });
 }
-exports.increase_supply_browse_count = function (supply, callback) {
+exports.increase_supply_browse_count = function (user, supply, callback) {
   Supply.update({ _id: supply._id }, { $inc: { browse_count: 1 } }, function (err, result) {
     if (err) {
       console.error(err);
@@ -202,7 +200,7 @@ exports.supply_list = function (user, info, callback) {
     return callback(null, list);
   });
 }
-exports.get_supply_by_id = function (id, callback) {
+exports.get_supply_by_id = function (user, id, callback) {
   Supply.findOne({ _id: id }).populate('user').exec(function (err, supply) {
     if (err) {
       return callback({ err: sysErr.database_query_error });

@@ -3,6 +3,10 @@
  */
 var path = require('path');
 var goodsLogic = require('../logics/goods');
+var purchasesLogic = require('../logics/purchases');
+var supplyLogic = require('../logics/supply');
+var paymentLogic = require('../logics/payment');
+var marketLogic = require('../logics/market');
 var wechatLogic = require('../logics/wechat');
 var userLogic = require('../logics/user');
 var cookieLib = require('../../libraries/cookie');
@@ -21,7 +25,6 @@ exports.send_verify_code = function (req, res, next) {
     return res.send(result);
   })
 }
-
 exports.signin = function (req, res, next) {
   var cookie = cookieLib.getCookie(req);
   var openid = cookie.openid || '';
@@ -35,7 +38,6 @@ exports.signin = function (req, res, next) {
     return res.send({ success: true });
   });
 }
-
 exports.create_purchases = function (req, res, next) {
   goodsLogic.create_purchases(req.user, req.body, function (err, result) {
     if (err) {
@@ -44,7 +46,6 @@ exports.create_purchases = function (req, res, next) {
     return res.send(result);
   });
 }
-
 exports.my_purchases_list = function (req, res, next) {
   goodsLogic.my_purchases_list(req.user, req.body, function (err, result) {
     if (err) {
@@ -53,21 +54,76 @@ exports.my_purchases_list = function (req, res, next) {
     return res.send(result);
   });
 }
-
 exports.purchases_by_id = function (req, res, next) {
   return res.send(req.purchases);
 }
-
 exports.supply_by_id = function (req, res, next) {
   return res.send(req.supply);
 }
-
-
-
-
-
-
-
+exports.update_purchases_status = function (req, res, next) {
+  goodsLogic.update_purchases_status(req.user, req.body.status, function (err, result) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(result);
+  })
+}
+exports.increase_purchases_browse_count = function (req, res, next) {
+  goodsLogic.increase_purchases_browse_count(req.user, req.purchases, function (err, result) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(result);
+  })
+}
+exports.purchases_list = function (req, res, next) {
+  goodsLogic.purchases_list(req.user, req.body, function (err, result) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(result);
+  })
+}
+exports.create_supply = function (req, res, next) {
+  goodsLogic.create_supply(req.user, req.body, function (err, result) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(result);
+  })
+}
+exports.update_supply_status = function (req, res, next) {
+  goodsLogic.update_supply_status(req.user, req.supply, req.body.status, function (err, result) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(result);
+  })
+}
+exports.my_supply_list = function (req, res, next) {
+  goodsLogic.my_supply_list(req.user, req.body, function (err, result) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(result);
+  })
+}
+exports.increase_supply_browse_count = function (req, res, next) {
+  goodsLogic.increase_supply_browse_count(req.user, req.supply, function (err, result) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(result);
+  })
+}
+exports.supply_list = function (req, res, next) {
+  goodsLogic.supply_list(req.user, req.body, function (err, result) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(result);
+  })
+}
 exports.get_choose_categorys = function (req, res, next) {
   return res.send([
     {
@@ -130,7 +186,6 @@ exports.get_choose_categorys = function (req, res, next) {
     }
   ]);
 };
-
 exports.get_choose_specs = function (req, res, next) {
   return res.send([
     {
@@ -147,7 +202,6 @@ exports.get_choose_specs = function (req, res, next) {
     }
   ])
 };
-
 exports.get_choose_brand = function (req, res, next) {
   return res.send(['苹果', '栗子', '桃子', '苹果',]);
 }
