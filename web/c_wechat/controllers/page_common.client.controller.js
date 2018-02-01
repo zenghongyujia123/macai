@@ -163,8 +163,86 @@ function getSpecsItemObj(data, callback) {
   }
 }
 
-function get_is_cash_goods() {
+function get_is_cash_goods(callback) {
+  var container = $('.weui-popup__modal');
+  var submit = $('    <a style="margin:20px;" href="javascript:;" class="weui-btn weui-btn_primary submit">选好了</a>  ');
+  container.removeClass()
+    .addClass('weui-popup__modal')
+    .addClass('specs-choose-container');
+  container.children().remove();
+  var obj = $(
+    '  <div class="weui-cells weui-cells_checkbox">' +
+    '  <label class="weui-cell weui-check__label cash_goods" for="s11">' +
+    '    <div class="weui-cell__hd">' +
+    '      <input type="radio" class="weui-check" name="checkbox1" id="s11" checked="checked">' +
+    '      <i class="weui-icon-checked"></i>' +
+    '    </div>' +
+    '    <div class="weui-cell__bd">' +
+    '      <p>现货（供应充足）</p>' +
+    '    </div>' +
+    '  </label>' +
+    '  <label class="weui-cell weui-check__label un_cash_goods" for="s12">' +
+    '    <div class="weui-cell__hd">' +
+    '      <input type="radio" name="checkbox1" class="weui-check" id="s12">' +
+    '      <i class="weui-icon-checked"></i>' +
+    '    </div>' +
+    '    <div class="weui-cell__bd">' +
+    '      <p>预售（即将有货）</p>' +
+    '    </div>' +
+    '  </label>' +
+    '  <div class="weui-cell weui-cell_access" href="javascript:;">' +
+    '    <div class="weui-cell__bd">' +
+    '      <p>下架时间</p>' +
+    '    </div>' +
+    '    <div class="weui-cell__bd">' +
+    '      <input class="weui-input undercarriage_time" type="text">' +
+    '    </div>' +
+    '    <div class="weui-cell__ft">' +
+    '    </div>' +
+    '  </div>' +
+    '  <div class="weui-cell weui-cell_access undercarriage_time_row" href="javascript:;" style="display:none;">' +
+    '    <div class="weui-cell__bd">' +
+    '      <p>供货时间</p>' +
+    '    </div>' +
+    '    <div class="weui-cell__bd">' +
+    '      <input class="weui-input grounding_time" type="text">' +
+    '    </div>' +
+    '    <div class="weui-cell__ft">' +
+    '    </div>' +
+    '  </div>' +
+    '</div>'
+  );
 
+  obj.find('.undercarriage_time').calendar();
+  obj.find('.grounding_time').calendar();
+
+  obj.find('.un_cash_goods').click(function () {
+    obj.find(".undercarriage_time_row").show();
+  });
+  obj.find('.cash_goods').click(function () {
+    obj.find(".undercarriage_time_row").hide();
+  });
+  submit.click(function () {
+    var undercarriage_time = obj.find('.undercarriage_time').val();
+    var grounding_time = obj.find('.grounding_time').val();
+    var is_cash_goods = $('#s11')[0].checked;
+    return callback({
+      undercarriage_time: undercarriage_time,
+      grounding_time: grounding_time,
+      is_cash_goods: is_cash_goods
+    });
+  })
+  container.append(obj);
+  container.append(submit);
+}
+
+function get_price(callback) {
+  var container = $('.weui-popup__modal');
+  var submit = $('    <a style="margin:20px;" href="javascript:;" class="weui-btn weui-btn_primary submit">选好了</a>  ');
+  container.removeClass()
+    .addClass('weui-popup__modal')
+    .addClass('specs-choose-container');
+  container.children().remove();
 }
 
 

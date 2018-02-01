@@ -157,9 +157,11 @@ module.exports = function (appDb) {
     is_cash_goods: {
       type: Boolean
     },
+    //下架时间
     undercarriage_time: {
       type: Date
     },
+    //上架时间
     grounding_time: {
       type: Date
     },
