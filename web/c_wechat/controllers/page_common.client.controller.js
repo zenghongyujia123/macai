@@ -200,7 +200,7 @@ function get_is_cash_goods(callback) {
     '    <div class="weui-cell__ft">' +
     '    </div>' +
     '  </div>' +
-    '  <div class="weui-cell weui-cell_access undercarriage_time_row" href="javascript:;" style="display:none;">' +
+    '  <div class="weui-cell weui-cell_access grounding_time_row" href="javascript:;" style="display:none;">' +
     '    <div class="weui-cell__bd">' +
     '      <p>供货时间</p>' +
     '    </div>' +
@@ -217,10 +217,10 @@ function get_is_cash_goods(callback) {
   obj.find('.grounding_time').calendar();
 
   obj.find('.un_cash_goods').click(function () {
-    obj.find(".undercarriage_time_row").show();
+    obj.find(".grounding_time_row").show();
   });
   obj.find('.cash_goods').click(function () {
-    obj.find(".undercarriage_time_row").hide();
+    obj.find(".grounding_time_row").hide();
   });
   submit.click(function () {
     var undercarriage_time = obj.find('.undercarriage_time').val();

@@ -234,7 +234,7 @@
       var expect_price_unit = $('.expect_price_unit').val();
 
       if (!goods_name) { return $.toptip('请选择货品', 'warning'); }
-      // if (!goods_specs) { return $.toptip('请选择规格', 'warning'); }
+      if (!goods_specs) { return $.toptip('请选择规格', 'warning'); }
       if (!need_number) { return $.toptip('请输入需求量', 'warning'); }
       if (!need_unit) { return $.toptip('请输入单位', 'warning'); }
 

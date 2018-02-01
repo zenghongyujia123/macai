@@ -49,7 +49,7 @@
           <p>是否现货</p>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input get_is_cash_goods goods_name" disabled="disabled" placeholder="请选择是否现货">
+          <input class="weui-input get_is_cash_goods" disabled="disabled" placeholder="请选择是否现货">
         </div>
         <div class="weui-cell__ft">
         </div>
@@ -59,10 +59,10 @@
           <p>请输入批发价</p>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input expect_price" placeholder="请输入批发价">
+          <input class="weui-input price" placeholder="请输入批发价">
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input expect_price_unit" id="picker-price-unit" value="元/斤">
+          <input class="weui-input price_unit" id="picker-price-unit" value="元/斤">
         </div>
         <div class="weui-cell__ft">
         </div>
@@ -72,7 +72,7 @@
           <p>发货地址</p>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input expect_address" id="sender-city-picker" placeholder="请选择发货地址"></input>
+          <input class="weui-input send_address" id="sender-city-picker" placeholder="请选择发货地址"></input>
         </div>
         <div class="weui-cell__ft">
         </div>
@@ -82,7 +82,7 @@
           <p>货品描述</p>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input goods_name" placeholder="请选择采购货品">
+          <input class="weui-input remark" placeholder="请选择采购货品">
         </div>
         <div class="weui-cell__ft">
         </div>
@@ -94,7 +94,7 @@
           <p>服务方式</p>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input duration" id="picker-purchases-duration" placeholder="请选择服务方式"></input>
+          <input class="weui-input provide_services" readonly="readonly" id="picker-purchases-duration" placeholder="请选择服务方式"></input>
         </div>
         <div class="weui-cell__ft">
         </div>
@@ -207,16 +207,16 @@
       });
     });
 
-    var is_cash_goods = null;
-    var undercarriage_time = null;
-    var grounding_time = null;
+    var val_is_cash_goods = null;
+    var val_undercarriage_time = null;
+    var val_grounding_time = null;
     $('.get_is_cash_goods_row').click(function () {
       $("#goods-choose").popup();
       get_is_cash_goods(function (result) {
-        is_cash_goods = result.is_cash_goods;
-        undercarriage_time = result.undercarriage_time;
-        grounding_time = result.grounding_time;
-        $('.get_is_cash_goods').val(undercarriage_time + (is_cash_goods ? '现货' : '预售'));
+        val_is_cash_goods = result.is_cash_goods;
+        val_undercarriage_time = result.undercarriage_time;
+        val_grounding_time = result.grounding_time;
+        $('.get_is_cash_goods').val([val_undercarriage_time, (val_is_cash_goods ? '现货' : '预售')].join(' '));
         $.closePopup();
       });
     });
@@ -226,9 +226,9 @@
       var goods_category = $('.goods_category').val();
       var goods_brand = $('.goods_brand').val();
       var goods_specs = $('.goods_specs').val();
-      var is_cash_goods = $('.is_cash_goods').val();
-      var undercarriage_time = $('.undercarriage_time').val();
-      var grounding_time = $('.grounding_time').val();
+      var is_cash_goods = val_is_cash_goods;
+      var undercarriage_time = val_undercarriage_time;
+      var grounding_time = val_grounding_time;
       var price = $('.price').val();
       var price_unit = $('.price_unit').val();
       var min_count = $('.min_count').val();
@@ -239,43 +239,50 @@
       var provide_services = $('.provide_services').val();
       var mobile_phone = $('.mobile_phone').val();
 
-      if (!goods_name) { return $.toptip('请选择货品', 'warning'); }
-      // if (!goods_specs) { return $.toptip('请选择规格', 'warning'); }
-      if (!need_number) { return $.toptip('请输入需求量', 'warning'); }
-      if (!need_unit) { return $.toptip('请输入单位', 'warning'); }
 
-      if (!expect_price) { return $.toptip('请输入期望价格', 'warning'); }
-      if (!expect_price_unit) { return $.toptip('请输入期望价格单位', 'warning'); }
-      if (!expect_address) { return $.toptip('请输选择期望货源地', 'warning'); }
-      if (!remark) { return $.toptip('请输入补充说明', 'warning'); }
-      if (!duration) { return $.toptip('请输入采购市场', 'warning'); }
-      if (!receive_address) { return $.toptip('请选择收货地址', 'warning'); }
-      if (!mobile_phone) { return $.toptip('请输入联系电话', 'warning'); }
+      if (!goods_name) {
+        return $.toptip('请选择货品', 'warning');
+      }
+      if (!goods_specs) {
+        return $.toptip('请选择规格', 'warning');
+      }
+      if (is_cash_goods === null) {
+        return $.toptip('请输入是否现货', 'warning');
+      }
+      if (!undercarriage_time) {
+        return $.toptip('请输入下架时间', 'warning');
+      }
+      if (!price) {
+        return $.toptip('请输入批发价格', 'warning');
+      }
+      if (!send_address) {
+        return $.toptip('请输入发货地址', 'warning');
+      }
+      if (!provide_services) {
+        return $.toptip('请输入服务方式', 'warning');
+      }
+
       // photos
       var data = {
         goods_name: goods_name,
         goods_category: goods_name.split(' ')[0],
         goods_brand: goods_name.split(' ')[1],
         goods_specs: goods_specs,
-        need_number: need_number,
-        need_unit: need_unit,
-        expect_price: expect_price,
-        expect_price_unit: expect_price_unit,
-        expect_address: expect_address,
-        expect_province: expect_address.split(' ')[0],
-        expect_city: expect_address.split(' ')[1],
-        expect_district: expect_address.split(' ')[2],
-        remark: remark,
-        duration: duration,
-        receive_province: receive_address.split(' ')[0],
-        receive_city: receive_address.split(' ')[1],
-        receive_district: receive_address.split(' ')[2],
-        receive_address: receive_address,
-        mobile_phone: mobile_phone,
+        is_cash_goods: is_cash_goods,
+        undercarriage_time: undercarriage_time,
+        grounding_time: grounding_time,
+        price: price,
+        price_unit: price_unit,
+        min_count: min_count,
+        send_province: send_address.split(' ')[0],
+        send_city: send_address.split(' ')[1],
+        send_district: send_address.split(' ')[2],
+        send_address: send_address,
+        provide_services: provide_services,
         photos: []
       }
-      return;
       console.log(data);
+
       $.showLoading();
       $.ajax({
         url: '/api_wechat/purchases/create_purchases',
