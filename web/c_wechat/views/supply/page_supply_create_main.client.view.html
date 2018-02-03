@@ -285,7 +285,7 @@
 
       $.showLoading();
       $.ajax({
-        url: '/api_wechat/purchases/create_purchases',
+        url: '/api_wechat/supply/create_supply',
         data: data,
         method: 'post',
         success: function (data) {
@@ -295,7 +295,7 @@
             return $.toptip(data.err.message, 'warning');
           }
           $.toast("操作成功");
-          window.location = '/page_wechat/page_purchases_list'
+          window.location = '/page_wechat/page_supply_list'
         }
       });
     });
