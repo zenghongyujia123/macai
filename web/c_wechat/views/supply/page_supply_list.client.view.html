@@ -19,7 +19,7 @@
   <script src="../libs/jquery/dist/jquery.js"></script>
 
   <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
-  <script src="../c_wechat/controllers/page_signin.client.controller.js"></script>
+  <script src="../c_wechat/controllers/page_supply_list.client.controller.js"></script>
   <meta name="baidu-site-verification" content="4hPH3hudxx" />
 
 
@@ -31,10 +31,10 @@
 <body>
   <div class="weui-tab page-supply-list">
     <div class="weui-navbar">
-      <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
+      <a id="nav1" class="weui-navbar__item weui-bar__item--on" href="#tab1">
         采购大厅
       </a>
-      <a class="weui-navbar__item" href="#tab2">
+      <a id="nav2" class="weui-navbar__item" href="#tab2">
         我的供应
       </a>
       <a class="weui-navbar__item" href="/page_wechat/page_market_list">
@@ -57,7 +57,7 @@
             </div>
           </div>
         </div>
-        <a href="/page_wechat/page_purchases_detail" class="weui-media-box weui-media-box_appmsg supply-list-item">
+        <!-- <a href="/page_wechat/page_purchases_detail" class="weui-media-box weui-media-box_appmsg supply-list-item">
           <div class="weui-media-box__bd">
             <div class="item-bottom">
               <div class="title1">八月桂
@@ -165,7 +165,7 @@
 
 
           </div>
-        </a>
+        </a> -->
         <a href="/page_wechat/page_purchases_detail" class="weui-media-box weui-media-box_appmsg supply-list-item">
           <div class="weui-media-box__bd">
             <div class="item-bottom">
@@ -187,6 +187,10 @@
 
           </div>
         </a>
+        <div class="weui-loadmore">
+          <i class="weui-loading"></i>
+          <span class="weui-loadmore__tips">正在加载</span>
+        </div>
       </div>
 
 
@@ -198,7 +202,7 @@
           <div class="weui-cell__ft">
           </div>
         </a>
-        <a href="/page_wechat/page_supply_detail" class="weui-media-box weui-media-box_appmsg supply-list-item">
+        <!-- <a href="/page_wechat/page_supply_detail" class="weui-media-box weui-media-box_appmsg supply-list-item">
           <div class="weui-media-box__hd">
             <img class="weui-media-box__thumb" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516813447292&di=5f4eaade66c430dd3a958c2cfac95425&imgtype=0&src=http%3A%2F%2Fpic32.photophoto.cn%2F20140821%2F0006019010973602_b.jpg">
           </div>
@@ -281,9 +285,11 @@
 
 
           </div>
-        </a>
-
-
+        </a> -->
+        <div class="weui-loadmore">
+          <i class="weui-loading"></i>
+          <span class="weui-loadmore__tips">正在加载</span>
+        </div>
       </div>
       <div id="tab3" class="weui-tab__bd-item">
         sda
@@ -314,18 +320,18 @@
 </body>
 <script>
   $(function () {
-    var mySwiper = new Swiper('.swiper-container', {
-      autoplay: 5000,//可选选项，自动滑动
-    })
-    $("#my-supply-status").picker({
-      title: "选择状态",
-      cols: [
-        {
-          textAlign: 'center',
-          values: ["销售中", "已下架", "被驳回"]
-        }
-      ]
-    });
+    // var mySwiper = new Swiper('.swiper-container', {
+    //   autoplay: 5000,//可选选项，自动滑动
+    // })
+    // $("#my-supply-status").picker({
+    //   title: "选择状态",
+    //   cols: [
+    //     {
+    //       textAlign: 'center',
+    //       values: ["销售中", "已下架", "被驳回"]
+    //     }
+    //   ]
+    // });
     // get_choose_categorys(function () {
 
     // })
