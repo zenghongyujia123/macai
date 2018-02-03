@@ -21,7 +21,7 @@ exports.page_home = function (req, res, next) {
 exports.page_signin = function (req, res, next) {
   // var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_list.client.view.html');
   var openid = '';
-  userLogic.getByOpenId(openid , function (err, user) {
+  userLogic.getByOpenId(openid, function (err, user) {
     var filepath = path.join(__dirname, '../../web/c_wechat/views/page_signin.client.view.html');
     return res.render(filepath, { user: user || '' });
   });
@@ -64,7 +64,7 @@ exports.page_purchases_my_list = function (req, res, next) {
 exports.page_purchases_detail = function (req, res, next) {
   var purchases = req.purchases || {};
   var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_detail.client.view.html');
-  goodsLogic.increasePurchasesBrowseCount(purchases, function () {
+  goodsLogic.increase_purchases_browse_count(purchases, function () {
     return res.render(filepath, { purchases: req.purchases });
   });
 };

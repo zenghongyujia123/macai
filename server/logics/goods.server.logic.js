@@ -73,7 +73,7 @@ exports.my_purchases_list = function (user, info, callback) {
     return callback(null, list);
   });
 }
-exports.get_purchases_by_id = function (user, purchases_id, callback) {
+exports.get_purchases_by_id = function (purchases_id, callback) {
   Purchases.findOne({ _id: purchases_id }).populate('user').exec(function (err, purchases) {
     if (err) {
       return callback({ err: sysErr.database_query_error });
@@ -81,7 +81,7 @@ exports.get_purchases_by_id = function (user, purchases_id, callback) {
     return callback(null, purchases);
   });
 }
-exports.increase_purchases_browse_count = function (user, purchases, callback) {
+exports.increase_purchases_browse_count = function (purchases, callback) {
   Purchases.update({ _id: purchases }, { $inc: { browse_count: 1 } }, function (err, result) {
     if (err) {
       console.error(err);
