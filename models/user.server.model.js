@@ -31,6 +31,9 @@ module.exports = function (appDb) {
       type: String,
       trim: true
     },
+    goal: {
+      type: String
+    },
     identity: {
       type: String,
     },

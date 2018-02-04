@@ -82,8 +82,11 @@ exports.page_supply_my_list = function (req, res, next) {
   return res.render(filepath, {});
 };
 exports.page_supply_detail = function (req, res, next) {
-  var filepath = path.join(__dirname, '../../web/c_wechat/views/supply/page_supply_detail.client.view.html');
-  return res.render(filepath, {});
+  goodsLogic.increase_supply_browse_count(req.supply, function () {
+    var filepath = path.join(__dirname, '../../web/c_wechat/views/supply/page_supply_detail.client.view.html');
+    return res.render(filepath, { supply: req.supply });
+    // return res.render(filepath, { purchases: req.purchases });
+  });
 };
 
 exports.page_market_list = function (req, res, next) {

@@ -95,6 +95,9 @@ module.exports = function (appDb) {
     duration: {
       type: String
     },
+    frequency: {
+      type: String
+    },
     receive_province: {
       type: String
     },
@@ -171,6 +174,7 @@ module.exports = function (appDb) {
     price_unit: {
       type: String
     },
+    //起批量
     min_count: {
       type: Number
     },

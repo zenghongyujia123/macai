@@ -35,28 +35,43 @@
       </div>
     </div>
     <div class="detail-content">
-      <div class="name">香水柠檬苗</div>
-      <div class="address">广西壮族自治区长沙市</div>
-      <div class="price">12.00
-        <span class="price-unit">元／颗</span>
-        <span class="price-min">1颗起批</span>
+      <div class="name">
+        <%= (supply.goods_name||'-') %>
+      </div>
+      <div class="address">
+        <%= (supply.send_address||'-') %>
+      </div>
+      <div class="price">
+        <%= (supply.price||'-') %>
+          <span class="price-unit">
+            <%= (supply.price_unit||'-') %>
+          </span>
+          <span class="price-min">
+            <%= ((supply.min_count+supply.price_unit.split('/')[1])||'-') %>起批
+          </span>
       </div>
     </div>
     <div class="detail-content">
-      <span class="service-tip">协助找车</span>
-      <span class="service-tip">基地直供</span>
-      <span class="service-tip">提供样品</span>
+      <% for(var i =0;i<supply.provide_services.length;i++){ %>
+        <span class="service-tip">
+          <i class="weui-icon-info-circle"></i>
+          <%= (supply.provide_services[i]||'-') %>
+        </span>
+
+        <%  } %>
     </div>
     <div class="detail-content">
-      <span class="service-tip">实名认证</span>
-      <span class="service-tip">企业认证</span>
-      <span class="service-tip">实地认证</span>
+      <span class="auth-tip orange">实名认证</span>
+      <span class="auth-tip blue">企业认证</span>
+      <span class="auth-tip green">实地认证</span>
     </div>
     <div class="detail-content">
       <div class="center-title">货品规格</div>
       <div class="weui-flex">
         <div class="weui-flex__item">品种名</div>
-        <div class="weui-flex__item">香水柠檬</div>
+        <div class="weui-flex__item">
+          <%= (supply.goods_brand||'-') %>
+        </div>
         <div class="weui-flex__item">地径</div>
         <div class="weui-flex__item">2公分以下</div>
       </div>
@@ -68,7 +83,9 @@
       </div>
       <div class="weui-flex">
         <div class="weui-flex__item">分类</div>
-        <div class="weui-flex__item">成品树</div>
+        <div class="weui-flex__item">
+          <%= (supply.goods_category||'-') %>
+        </div>
         <div class="weui-flex__item"></div>
         <div class="weui-flex__item"></div>
       </div>

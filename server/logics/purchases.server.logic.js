@@ -24,7 +24,7 @@ exports.list = function (user, info, callback) {
       return callback({ err: sysErr.database_query_error });
     }
 
-    Purchases.find(query).sort({ create_time: -1 }).limit(10).exec(function (err, results) {
+    Purchases.find(query).sort({ create_time: -1 }).limit(10).populate('user.role').exec(function (err, results) {
       if (err) {
         return callback({ err: sysErr.database_query_error });
       }

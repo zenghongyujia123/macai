@@ -1,9 +1,31 @@
+.weui-tab__bd-item {
+  background-color: #eee;
+}
+.page-supply-list {
+  background-color: #eee;
+}
 .page-supply-list .swiper-container {
   height: 200px;
   width: 100%;
 }
+.page-supply-list .purchases-list-item {
+  margin-bottom: 10px;
+  background-color: white;
+}
 .page-supply-list .purchases-list-item .title1 {
   font-size: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.page-supply-list .purchases-list-item .title1 .price {
+  color: #ff6000;
+  font-size: 20px;
+}
+.page-supply-list .purchases-list-item .title1 .price .price-unit {
+  color: #ff6000;
+  font-size: 11px;
 }
 .page-supply-list .purchases-list-item .title2 {
   font-size: 12px;
@@ -14,13 +36,17 @@
   border-radius: 2px;
   padding: 0px 2px;
 }
+.page-supply-list .purchases-list-item .tag.green {
+  color: white;
+  background-color: #04BE02;
+}
 .page-supply-list .purchases-list-item .tag.blue {
   color: #418eff;
   border: 0.5px solid #418eff;
 }
 .page-supply-list .purchases-list-item .tag.orange {
-  color: #ff7977;
-  border: 0.5px solid #ff7977;
+  color: #ff6000;
+  border: 0.5px solid #ff6000;
 }
 .page-supply-list .purchases-list-item .item-bottom {
   display: flex;

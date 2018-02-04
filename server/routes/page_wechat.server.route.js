@@ -19,7 +19,7 @@ module.exports = function (app) {
   app.route('/page_wechat/page_supply_create_main').get(index.page_supply_create_main);
   app.route('/page_wechat/page_supply_list').get(index.page_supply_list);
   app.route('/page_wechat/page_supply_my_list').get(index.page_supply_my_list);
-  app.route('/page_wechat/page_supply_detail').get(index.page_supply_detail);
+  app.route('/page_wechat/page_supply_detail').get(goodsFilter.requireSupply, index.page_supply_detail);
 
   app.route('/page_wechat/page_market_list').get(index.page_market_list);
 

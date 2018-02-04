@@ -59,10 +59,20 @@
           <p>请输入批发价</p>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input price" placeholder="请输入批发价">
+          <input class="weui-input price" type="number" placeholder="请输入批发价">
         </div>
         <div class="weui-cell__bd">
           <input class="weui-input price_unit" id="picker-price-unit" value="元/斤">
+        </div>
+        <div class="weui-cell__ft">
+        </div>
+      </div>
+      <div class="weui-cell weui-cell_access" href="javascript:;">
+        <div class="weui-cell__bd">
+          <p>请输入起批量</p>
+        </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input min_count" type="number" placeholder="请输入起批量">
         </div>
         <div class="weui-cell__ft">
         </div>
@@ -254,6 +264,9 @@
       }
       if (!price) {
         return $.toptip('请输入批发价格', 'warning');
+      }
+      if (!min_count) {
+        return $.toptip('请输入起批量', 'warning');
       }
       if (!send_address) {
         return $.toptip('请输入发货地址', 'warning');

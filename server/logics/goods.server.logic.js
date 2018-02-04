@@ -26,6 +26,7 @@ exports.create_purchases = function (user, info, callback) {
     expect_district: info.expect_district || '',
     remark: info.remark || '',
     duration: info.duration || '',
+    frequency: info.frequency || '',
     receive_province: info.receive_province || '',
     receive_city: info.receive_city || '',
     receive_district: info.receive_district || '',
@@ -101,7 +102,7 @@ exports.purchases_list = function (user, info, callback) {
     query._id = { $ne: last_item._id };
   }
 
-  Purchases.find(query).limit(10).sort({ create_time: -1 }).exec(function (err, list) {
+  Purchases.find(query).limit(10).sort({ create_time: -1 }).populate('user').exec(function (err, list) {
     if (err || !list) {
       return callback({ err: sysErr.database_query_error });
     }
@@ -128,7 +129,7 @@ exports.create_supply = function (user, info, callback) {
     send_city: info.send_city,
     send_district: info.send_district,
     send_address: info.send_address,
-    provide_services: info.provide_services,
+    provide_services: info.provide_services.split(','),
     photos: info.photos,
   });
   supply.save(function (err, result) {
@@ -171,7 +172,7 @@ exports.my_supply_list = function (user, info, callback) {
     return callback(null, list);
   });
 }
-exports.increase_supply_browse_count = function (user, supply, callback) {
+exports.increase_supply_browse_count = function (supply, callback) {
   Supply.update({ _id: supply._id }, { $inc: { browse_count: 1 } }, function (err, result) {
     if (err) {
       console.error(err);
@@ -198,7 +199,7 @@ exports.supply_list = function (user, info, callback) {
     return callback(null, list);
   });
 }
-exports.get_supply_by_id = function (user, id, callback) {
+exports.get_supply_by_id = function (id, callback) {
   Supply.findOne({ _id: id }).populate('user').exec(function (err, supply) {
     if (err) {
       return callback({ err: sysErr.database_query_error });

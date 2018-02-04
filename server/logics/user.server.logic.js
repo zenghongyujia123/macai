@@ -39,7 +39,7 @@ exports.signin = function (userInfo, callback) {
     }
 
     if (!user) {
-      user = new User({ username: userInfo.username, role: userInfo.role });
+      user = new User({ username: userInfo.username, role: userInfo.role.split(' ')[1], goal: userInfo.role.split(' ')[0] });
     }
     user.openid = userInfo.openid;
     User.update({ openid: userInfo.openid, username: { $ne: userInfo.username } }, { $set: { openid: null } }, function (err, result) {

@@ -53,7 +53,7 @@ $(function () {
           '         <span class="price-unit">元／斤</span>' +
           '       </div>' +
           '       <div class="stop">' +
-          '         停止采购' +
+          '         下架' +
           '       </div>' +
           '     </div>' +
           '   </div>' +
@@ -130,7 +130,7 @@ $(function () {
       for (var i = 0; i < data.length; i++) {
         var item = data[i];
         var obj = $(
-          '<a href="/page_wechat/page_supply_detail" class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
+          '<a href="/page_wechat/page_supply_detail?supply_id=' + item._id + '" class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
           '  <div class="weui-media-box__hd">' +
           '    <img class="weui-media-box__thumb" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516813447292&di=5f4eaade66c430dd3a958c2cfac95425&imgtype=0&src=http%3A%2F%2Fpic32.photophoto.cn%2F20140821%2F0006019010973602_b.jpg">' +
           '  </div>' +

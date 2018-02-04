@@ -42,23 +42,22 @@ $(function () {
       for (var i = 0; i < data.length; i++) {
         var item = data[i];
         var obj = $(
-          '<a href="/page_wechat/page_supply_detail" class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
+          '<a href="/page_wechat/page_supply_detail?supply_id=' + item._id + '" class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
           '  <div class="weui-media-box__hd">' +
           '    <img class="weui-media-box__thumb" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516813447292&di=5f4eaade66c430dd3a958c2cfac95425&imgtype=0&src=http%3A%2F%2Fpic32.photophoto.cn%2F20140821%2F0006019010973602_b.jpg">' +
           '  </div>' +
           '  <div class="weui-media-box__bd">' +
           '    <div class="title1">' + item.goods_name +
           '    </div>' +
-          '    <div class="title2">' + item.send_address + ' 张先生</div>' +
-          '    <span class="tag blue">实地认证</span>' +
-          '    <span class="tag orange">企业</span>' +
+          '    <div class="title2">' + item.send_address + '</div>' +
+          '    <div class="title2">' + (new Date(item.create_time).getMonth() + 1) + '月' + new Date(item.create_time).getDate() + '日刷新' + ' </div>' +
           '    <div class="item-bottom">' +
           '      <div class="price">' + item.price +
           '        <span class="price-unit">' + item.price_unit + '</span>' +
           '      </div>' +
-          '      <div class="time">' +
-          '        ' + (new Date(item.create_time).getMonth() + 1) + '月' + new Date(item.create_time).getDate() + '日' +
-          '      </div>' +
+          '     <div class="stop">' +
+          '         停止采购' +
+          '       </div>' +
           '    </div>' +
           '  </div>' +
           '</a>');
@@ -137,14 +136,14 @@ $(function () {
           ' <a href="/page_wechat/page_purchases_detail?purchases_id=' + item._id + '"' + ' class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
           '   <div class="weui-media-box__bd">' +
           '     <div class="title1">' + item.goods_name +
-          '     </div>' +
-          '     <div class="title2">品种：' + item.goods_brand + '</div>' +
-          '     <div class="title2">浏览次数：111次</div>' +
-          '     <div class="item-bottom">' +
-          '       <div class="price">12.00' +
-          '         <span class="price-unit">元／斤</span>' +
+          '       <div class="price">' + item.need_number +
+          '         <span class="price-unit">' + item.need_unit + '</span>' +
           '       </div>' +
           '     </div>' +
+          '     <div class="title2">品种：' + item.goods_brand + '</div>' +
+          '     <div class="title2">所在地：' + item.expect_province + item.expect_province + item.expect_city + '</div>' +
+          '     <div><span class="tag green">' + item.user.role + '</span></div>' +
+          '     <span class="tag orange">' + item.frequency + '</span>' +
           '   </div>' +
           ' </a>');
         obj.insertBefore(tab1.laodmore);

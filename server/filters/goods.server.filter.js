@@ -21,7 +21,7 @@ exports.requireSupply = function (req, res, next) {
   var supply_id = req.body.supply_id || req.query.supply_id || '';
   // userLogic.getById(cookie.user_id, function (err, user) {
   goodsLogic.get_supply_by_id(supply_id, function (err, supply) {
-    if (err || !purchases) {
+    if (err || !supply) {
       return res.send({ err: { type: 'supply_not_exist', message: '供应不存在' } });
     }
     req.supply = supply;

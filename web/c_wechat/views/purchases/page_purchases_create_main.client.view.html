@@ -122,7 +122,7 @@
       </div>
     </div>
     <div class="weui-cells" style="margin-bottom:20px;">
-      <a class="weui-cell weui-cell_access" href="javascript:;">
+      <div class="weui-cell weui-cell_access" href="javascript:;">
         <div class="weui-cell__bd">
           <p>采购时长</p>
         </div>
@@ -131,8 +131,18 @@
         </div>
         <div class="weui-cell__ft">
         </div>
-      </a>
-      <a class="weui-cell weui-cell_access" href="javascript:;">
+      </div>
+      <div class="weui-cell weui-cell_access" href="javascript:;">
+        <div class="weui-cell__bd">
+          <p>采购频率</p>
+        </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input frequency" id="picker-purchases-frequency" placeholder="请选择采购频率"></input>
+        </div>
+        <div class="weui-cell__ft">
+        </div>
+      </div>
+      <div class="weui-cell weui-cell_access" href="javascript:;">
         <div class="weui-cell__bd">
           <p>收货地址</p>
         </div>
@@ -141,15 +151,15 @@
         </div>
         <div class="weui-cell__ft">
         </div>
-      </a>
-      <a class="weui-cell weui-cell_access" href="javascript:;">
+      </div>
+      <div class="weui-cell weui-cell_access" href="javascript:;">
         <div class="weui-cell__bd">
           <p>联系电话</p>
         </div>
         <div class="weui-cell__bd">
           <input class="weui-input mobile_phone" placeholder="请输入手机号"></input>
         </div>
-      </a>
+      </div>
     </div>
     <a style="margin:20px;" href="javascript:;" class="weui-btn weui-btn_primary submit">确认发布</a>
   </div>
@@ -193,6 +203,16 @@
         }
       ]
     });
+    $("#picker-purchases-frequency").picker({
+      title: "采购频率",
+      cols: [
+        {
+          textAlign: 'center',
+          values: ['每日', '每周', '每月']
+        }
+      ]
+    });
+
     $("#sender-city-picker").cityPicker({
       title: "期望货源地"
     });
@@ -232,6 +252,7 @@
       var mobile_phone = $('.mobile_phone').val();
       var expect_price = $('.expect_price').val();
       var expect_price_unit = $('.expect_price_unit').val();
+      var frequency = $('.frequency').val();
 
       if (!goods_name) { return $.toptip('请选择货品', 'warning'); }
       if (!goods_specs) { return $.toptip('请选择规格', 'warning'); }
@@ -254,6 +275,7 @@
         need_number: need_number,
         need_unit: need_unit,
         expect_price: expect_price,
+        frequency: frequency,
         expect_price_unit: expect_price_unit,
         expect_address: expect_address,
         expect_province: expect_address.split(' ')[0],
