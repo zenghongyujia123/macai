@@ -1,0 +1,12 @@
+body {
+  background-color: #eee;
+}
+body .page-my-main .m-header .weui-media-box__title {
+  color: white;
+}
+body .page-my-main .m-header p {
+  color: white;
+}
+body .page-my-main .m-header .weui-media-box__thumb {
+  border-radius: 90px;
+}

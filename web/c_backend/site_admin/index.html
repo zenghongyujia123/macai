@@ -41,14 +41,44 @@
   <section layout="row" flex>
     <md-sidenav class="md-sidenav-left" md-component-id="left" md-whiteframe="3">
       <md-toolbar class="md-theme-indigo">
-        <h1 class="md-toolbar-tools">Openport 后台管理</h1>
+        <h1 class="md-toolbar-tools">卖菜帮 后台管理</h1>
       </md-toolbar>
       <md-content>
 
       </md-content>
-      <md-list-item class="md-primary md-3-line" ng-click="goNav('product_list')">
+      <md-list-item class="md-primary md-3-line" ng-click="goNav('market_supply_list')">
         <div class="md-list-item-text md-primary" layout="column">
-          <p>测试列表</p>
+          <p>行情-供应商</p>
+        </div>
+      </md-list-item>
+      <md-list-item class="md-primary md-3-line" ng-click="goNav('market_purchases_list')">
+        <div class="md-list-item-text md-primary" layout="column">
+          <p>行情-采购商</p>
+        </div>
+      </md-list-item>
+      <md-list-item class="md-primary md-3-line" ng-click="goNav('market_day_info_list')">
+        <div class="md-list-item-text md-primary" layout="column">
+          <p>行情-每日价格</p>
+        </div>
+      </md-list-item>
+      <md-list-item class="md-primary md-3-line" ng-click="goNav('purchases_list')">
+        <div class="md-list-item-text md-primary" layout="column">
+          <p>采购列表</p>
+        </div>
+      </md-list-item>
+      <md-list-item class="md-primary md-3-line" ng-click="goNav('supply_list')">
+        <div class="md-list-item-text md-primary" layout="column">
+          <p>供应列表</p>
+        </div>
+      </md-list-item>
+      <md-list-item class="md-primary md-3-line" ng-click="goNav('user_list')">
+        <div class="md-list-item-text md-primary" layout="column">
+          <p>用户列表</p>
+        </div>
+      </md-list-item>
+      <md-list-item class="md-primary md-3-line" ng-click="goNav('auth_list')">
+        <div class="md-list-item-text md-primary" layout="column">
+          <p>用户认证列表</p>
         </div>
       </md-list-item>
       <div id="qiniu-upload-test-container" style="visibility:hidden;">

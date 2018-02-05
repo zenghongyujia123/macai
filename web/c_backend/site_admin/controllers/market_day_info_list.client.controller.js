@@ -3,7 +3,7 @@
  */
 'use strict';
 
-cSite.controller('MarketListController', [
+cSite.controller('MarketDayInfoListController', [
   '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav',
   function ($rootScope, $scope, $state, $stateParams, $mdSidenav) {
 

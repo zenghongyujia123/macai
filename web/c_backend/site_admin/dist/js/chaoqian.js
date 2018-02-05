@@ -52,15 +52,46 @@ cSite.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, 
       templateUrl: '/c_backend/site_admin/templates/supply_detail.client.view.html',
       controller: 'SupplyDetailController'
     })
-    .state('market_list', {
-      url: '/market_list',
-      templateUrl: '/c_backend/site_admin/templates/market_list.client.view.html',
-      controller: 'MarketListController'
+    .state('market_supply_list', {
+      url: '/market_supply_list',
+      templateUrl: '/c_backend/site_admin/templates/market_supply_list.client.view.html',
+      controller: 'MarketSupplyListController'
     })
-    .state('market_detail', {
-      url: '/market_detail',
-      templateUrl: '/c_backend/site_admin/templates/market_detail.client.view.html',
-      controller: 'MarketDetailController'
+    .state('market_supply_detail', {
+      url: '/market_supply_detail',
+      templateUrl: '/c_backend/site_admin/templates/market_supply_detail.client.view.html',
+      controller: 'MarketSupplyDetailController'
+    })
+
+    .state('market_purchases_list', {
+      url: '/market_purchases_list',
+      templateUrl: '/c_backend/site_admin/templates/market_purchases_list.client.view.html',
+      controller: 'MarketPurchasesListController'
+    })
+    .state('market_purchases_detail', {
+      url: '/market_purchases_detail',
+      templateUrl: '/c_backend/site_admin/templates/market_purchases_detail.client.view.html',
+      controller: 'MarketPurchasesDetailController'
+    })
+    .state('market_day_info_list', {
+      url: '/market_day_info_list',
+      templateUrl: '/c_backend/site_admin/templates/market_day_info_list.client.view.html',
+      controller: 'MarketDayInfoListController'
+    })
+    .state('market_day_info_detail', {
+      url: '/market_day_info_detail',
+      templateUrl: '/c_backend/site_admin/templates/market_day_info_detail.client.view.html',
+      controller: 'MarketDayInfoDetailController'
+    })
+    .state('auth_list', {
+      url: '/auth_list',
+      templateUrl: '/c_backend/site_admin/templates/auth_list.client.view.html',
+      controller: 'AuthListController'
+    })
+    .state('auth_detail', {
+      url: '/auth_detail',
+      templateUrl: '/c_backend/site_admin/templates/auth_detail.client.view.html',
+      controller: 'AuthDetailController'
     })
     .state('payment_list', {
       url: '/payment_list',
@@ -446,6 +477,28 @@ cSite.directive('dialogLoadingBox', ['$rootScope', 'GlobalEvent', 'CommonHelper'
  */
 'use strict';
 
+cSite.controller('AuthDetailController', [
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav) {
+
+  }]);
+
+/**
+ * Created by lance on 2016/11/17.
+ */
+'use strict';
+
+cSite.controller('AuthListController', [
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav) {
+
+  }]);
+
+/**
+ * Created by lance on 2016/11/17.
+ */
+'use strict';
+
 cSite.controller('HomeController', [
   '$rootScope', '$scope', '$state', '$stateParams',
   function ($rootScope, $scope, $state, $stateParams) {
@@ -480,7 +533,7 @@ cSite.controller('IndexController', [
  */
 'use strict';
 
-cSite.controller('MarketDetailController', [
+cSite.controller('MarketDayInfoDetailController', [
   '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav',
   function ($rootScope, $scope, $state, $stateParams, $mdSidenav) {
 
@@ -491,7 +544,51 @@ cSite.controller('MarketDetailController', [
  */
 'use strict';
 
-cSite.controller('MarketListController', [
+cSite.controller('MarketDayInfoListController', [
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav) {
+
+  }]);
+
+/**
+ * Created by lance on 2016/11/17.
+ */
+'use strict';
+
+cSite.controller('MarketPurchasesDetailController', [
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav) {
+
+  }]);
+
+/**
+ * Created by lance on 2016/11/17.
+ */
+'use strict';
+
+cSite.controller('MarketPurchasesListController', [
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav) {
+
+  }]);
+
+/**
+ * Created by lance on 2016/11/17.
+ */
+'use strict';
+
+cSite.controller('MarketSupplyDetailController', [
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav) {
+
+  }]);
+
+/**
+ * Created by lance on 2016/11/17.
+ */
+'use strict';
+
+cSite.controller('MarketSupplyListController', [
   '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav',
   function ($rootScope, $scope, $state, $stateParams, $mdSidenav) {
 
