@@ -23,6 +23,7 @@ module.exports = function (app) {
 
   app.route('/page_wechat/page_market_list').get(index.page_market_list);
   app.route('/page_wechat/page_my_main').get(index.page_my_main);
+  app.route('/page_wechat/page_my_auth').get(index.page_my_auth);
 
 
 };

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no,width=device-width" />
+
+  <title>实名认证</title>
+  <!-- <link rel="stylesheet" href="../libs/bootstrap/dist/css/bootstrap.min.css" /> -->
+  <link rel="stylesheet" href="../libs/font-awesome/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="../c_wechat/css/page_index.client.style.css" />
+  <link rel="stylesheet" href="../c_wechat/css/page_my_main.client.style.css" />
+  <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
+
+  <script src="../libs/jquery/dist/jquery.js"></script>
+  <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
+  <script src="../c_wechat/controllers/page_signin.client.controller.js"></script>
+  <meta name="baidu-site-verification" content="4hPH3hudxx" />
+</head>
+
+<body>
+  <div class="o-page page-my-main">
+    <div class="weui-cells weui-cells_form">
+      <div class="weui-cell">
+        <div class="weui-cell__hd">
+          <label class="weui-label">真实姓名</label>
+        </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input" type="text" placeholder="请输入您的真实姓名">
+        </div>
+      </div>
+      <div class="weui-cell">
+        <div class="weui-cell__hd">
+          <label class="weui-label">身份证号</label>
+        </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input" type="text" placeholder="请输入您对应的身份证号">
+        </div>
+      </div>
+    </div>
+    <div class="weui-cells weui-cells_form">
+
+      <div class="weui-cell">
+        <div class="weui-cell__bd">
+          <div class="weui-uploader">
+            <div class="weui-uploader__hd">
+              <p class="weui-uploader__title">身份证正面</p>
+              <div class="weui-uploader__info">0/1</div>
+            </div>
+            <div class="weui-uploader__bd">
+              <ul class="weui-uploader__files" id="uploaderFiles">
+
+              </ul>
+              <div class="weui-uploader__input-box">
+                <input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*" multiple="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="weui-cell">
+        <div class="weui-cell__bd">
+          <div class="weui-uploader">
+            <div class="weui-uploader__hd">
+              <p class="weui-uploader__title">身份证反面</p>
+              <div class="weui-uploader__info">0/1</div>
+            </div>
+            <div class="weui-uploader__bd">
+              <ul class="weui-uploader__files" id="uploaderFiles">
+
+              </ul>
+              <div class="weui-uploader__input-box">
+                <input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*" multiple="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="weui-cell">
+        <div class="weui-cell__bd">
+          <div class="weui-uploader">
+            <div class="weui-uploader__hd">
+              <p class="weui-uploader__title">手持身份证照片</p>
+              <div class="weui-uploader__info">0/1</div>
+            </div>
+            <div class="weui-uploader__bd">
+              <ul class="weui-uploader__files" id="uploaderFiles">
+
+              </ul>
+              <div class="weui-uploader__input-box">
+                <input id="uploaderInput" class="weui-uploader__input" type="file" accept="image/*" multiple="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
