@@ -94,6 +94,12 @@ exports.page_market_list = function (req, res, next) {
   return res.render(filepath, {});
 };
 
+exports.page_my_main = function (req, res, next) {
+  var filepath = path.join(__dirname, '../../web/c_wechat/views/my/page_my_main.client.view.html');
+  return res.render(filepath, {});
+};
+
+
 
 
 

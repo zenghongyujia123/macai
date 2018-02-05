@@ -56,7 +56,7 @@ $(function () {
           '        <span class="price-unit">' + item.price_unit + '</span>' +
           '      </div>' +
           '     <div class="stop">' +
-          '         停止采购' +
+          '         停止供应' +
           '       </div>' +
           '    </div>' +
           '  </div>' +

@@ -47,13 +47,13 @@ $(function () {
           '     <div class="title1">' + item.goods_name +
           '     </div>' +
           '     <div class="title2">品种：' + item.goods_brand + '</div>' +
-          '     <div class="title2">浏览次数：111次</div>' +
+          '     <div class="title2">浏览次数：' + (item.browse_count || 0) + '次</div>' +
           '     <div class="item-bottom">' +
-          '       <div class="price">12.00' +
-          '         <span class="price-unit">元／斤</span>' +
+          '       <div class="price">' + item.expect_price +
+          '         <span class="price-unit">' + item.expect_price_unit + '</span>' +
           '       </div>' +
           '       <div class="stop">' +
-          '         下架' +
+          '         停止采购' +
           '       </div>' +
           '     </div>' +
           '   </div>' +
