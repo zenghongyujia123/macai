@@ -18,7 +18,7 @@
   <script src="../libs/jquery/dist/jquery.js"></script>
 
   <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
-  <script src="../c_wechat/controllers/page_signin.client.controller.js"></script>
+  <script src="../c_wechat/controllers/page_market_list.client.controller.js"></script>
   <meta name="baidu-site-verification" content="4hPH3hudxx" />
 
 
@@ -30,11 +30,14 @@
 <body>
   <div class="weui-tab page-purchases-list">
     <div class="weui-navbar">
-      <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
-        批发商
+      <a id="nav1" class="weui-navbar__item weui-bar__item--on" href="#tab1">
+        采购商
       </a>
-      <a class="weui-navbar__item" href="#tab2">
-        种植户
+      <a id="nav2" class="weui-navbar__item" href="#tab2">
+        供应商
+      </a>
+      <a id="nav3" class="weui-navbar__item" href="#tab3">
+        每日行情
       </a>
     </div>
     <div class="weui-tab__bd">
@@ -110,8 +113,6 @@
           </div>
         </a>
       </div>
-
-
       <div id="tab2" class="weui-tab__bd-item">
         <a class="weui-cell weui-cell_access" href="javascript:;">
           <div class="weui-cell__bd">
@@ -171,6 +172,12 @@
             </div>
           </div>
         </a>
+      </div>
+      <div id="tab3" class="weui-tab__bd-item">
+        <div class="weui-loadmore">
+          <i class="weui-loading"></i>
+          <span class="weui-loadmore__tips">正在加载</span>
+        </div>
       </div>
     </div>
   </div>

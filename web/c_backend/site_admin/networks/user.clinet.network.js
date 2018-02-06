@@ -3,20 +3,20 @@ cSite.factory('UserNetwork',
   ['Http', 'CommonHelper',
     function (Http, CommonHelper) {
       return {
-        userList: function (scope, params) {
-          return Http.postRequestWithCheck(scope, '/user/userList', params);
+        user_list: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/user_list', params);
         },
-        getUserById: function (scope, params) {
-          return Http.postRequestWithCheck(scope, '/user/getUserById', params);
+        market_list: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/market_list', params);
         },
-        verifyVip: function (scope, params) {
-          return Http.postRequestWithCheck(scope, '/user/verifyVip', params);
+        market_supply_import: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/market_supply_import', params);
         },
-        updateVipInfo: function (scope, params) {
-          return Http.postRequestWithCheck(scope, '/user/updateVipInfo', params);
+        market_purchases_import: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/market_purchases_import', params);
         },
-        updateVipReportInfo: function (scope, params) {
-          return Http.postRequestWithCheck(scope, '/user/updateVipReportInfo', params);
-        }
+        market_day_info_import: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/market_day_info_import', params);
+        },
       };
     }]);
