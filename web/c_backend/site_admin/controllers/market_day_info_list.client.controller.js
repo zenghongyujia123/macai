@@ -23,7 +23,7 @@ cSite.controller('MarketDayInfoListController', [
       ],
       download_template: function () {
         var rows = [
-          ['批发市场', '品种', '价格', '日期'],
+          pageConfig.table_header,
           ['莫某批发市场', '白菜', '10-20元／斤', '2018-02-03']
         ];
         ExcelService.saveExcelFile('每日行情价格导入模版.xlsx', [{ data: rows, name: 'sheet1' }]);

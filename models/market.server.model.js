@@ -49,21 +49,19 @@ module.exports = function (appDb) {
       type: String,
       default: 'MarketSupply'
     },
+    name: {
+      type: String
+    },
     province: {
       type: String
     },
     city: {
       type: String
     },
-    market: {
-      type: String
-    },
-    name: {
-      type: String
-    },
     main_goods: {
       type: String
     },
+    //供应商商品上市时间
     time: {
       type: String
     },

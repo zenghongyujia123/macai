@@ -24,28 +24,29 @@ process.on('uncaughtException', function (err) {
 });
 
 
-if (process.env.NODE_ENV === 'development') {
-  app.listen(config.port);
-}
+// if (process.env.NODE_ENV === 'development') {
+//   app.listen(config.port);
+// }
+
 
 app.listen(config.port);
 // Sta
 // rt the app by listening on <port>
 
 
-var pinyin = require("pinyin");
+// var pinyin = require("pinyin");
 
-console.log(pinyin("中心"));    // [ [ 'zhōng' ], [ 'xīn' ] ]
-console.log(pinyin("中心", {
-  heteronym: true               // 启用多音字模式
-}));                            // [ [ 'zhōng', 'zhòng' ], [ 'xīn' ] ]
-console.log(pinyin("中心", {
-  heteronym: true,              // 启用多音字模式
-  segment: true                 // 启用分词，以解决多音字问题。
-}));                            // [ [ 'zhōng' ], [ 'xīn' ] ]
-console.log(pinyin("安慰", {
-  style: pinyin.STYLE_FIRST_LETTER // 设置拼音风格
-}));
+// console.log(pinyin("中心"));    // [ [ 'zhōng' ], [ 'xīn' ] ]
+// console.log(pinyin("中心", {
+//   heteronym: true               // 启用多音字模式
+// }));                            // [ [ 'zhōng', 'zhòng' ], [ 'xīn' ] ]
+// console.log(pinyin("中心", {
+//   heteronym: true,              // 启用多音字模式
+//   segment: true                 // 启用分词，以解决多音字问题。
+// }));                            // [ [ 'zhōng' ], [ 'xīn' ] ]
+// console.log(pinyin("安慰", {
+//   style: pinyin.STYLE_FIRST_LETTER // 设置拼音风格
+// }));
 exports = module.exports = app;
 console.log('========================Main Server=====================');
 console.log('Main Server!');

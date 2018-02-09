@@ -4,6 +4,8 @@
 var mongoose = require('./../../libraries/mongoose');
 var appDb = mongoose.appDb;
 var async = require('async');
+var Supply = appDb.model('Supply');
+var Purchases = appDb.model('Purchases');
 var MarketSupply = appDb.model('MarketSupply');
 var MarketPurchases = appDb.model('MarketPurchases');
 var MarketDayInfo = appDb.model('MarketDayInfo');
@@ -23,12 +25,17 @@ exports.market_list = function (user, info, callback) {
   if (info.model_string === 'MarketDayInfo') {
     model = MarketDayInfo;
   }
+  if (info.model_string === 'Purchases') {
+    model = Purchases;
+  }
+  if (info.model_string === 'Supply') {
+    model = Supply;
+  }
 
   info = info || {};
   info.next = info.next || 'next';
   info.last_item = info.last_item || {};
   var query = {};
-
 
   model.count({}, function (err, count) {
     if (err) {
@@ -64,28 +71,39 @@ exports.market_list = function (user, info, callback) {
         return callback(null, { list: results, count: count });
       });
     }
-
-
-
   });
 }
-
 exports.market_supply_import = function (user, infos, callback) {
   async.eachSeries(infos.list, function (info, eachCallback) {
-    new MarketSupply({
+    MarketSupply.findOne({
       province: info.province,
       city: info.city,
       market: info.market,
       name: info.name,
-      main_goods: info.main_goods,
-      time: info.time,
-      identity: info.identity,
-      phone: info.phone
-    }).save(function (err, result) {
+    }, function (err, marketSupply) {
       if (err) {
         console.error(new Date().toLocaleString(), err);
+        return eachCallback();
       }
-      return eachCallback();
+      if (!marketSupply) {
+        marketSupply = new MarketSupply({
+          province: info.province,
+          city: info.city,
+          market: info.market,
+          name: info.name,
+        });
+      }
+
+      marketSupply.main_goods = info.main_goods;
+      marketSupply.time = info.time;
+      marketSupply.identity = info.identity;
+      marketSupply.phone = info.phone;
+      marketSupply.save(function (err, result) {
+        if (err) {
+          console.error(new Date().toLocaleString(), err);
+        }
+        return eachCallback();
+      });
     });
   }, function () {
     return callback(null, { success: true });
@@ -94,20 +112,35 @@ exports.market_supply_import = function (user, infos, callback) {
 
 exports.market_purchases_import = function (user, infos, callback) {
   async.eachSeries(infos.list, function (info, eachCallback) {
-    new MarketPurchases({
+    MarketPurchases.findOne({
       province: info.province,
       city: info.city,
       market: info.market,
-      name: info.name,
-      main_goods: info.main_goods,
-      time: info.time,
-      identity: info.identity,
-      phone: info.phone
-    }).save(function (err, result) {
+      name: info.name
+    }, function (err, marketPurchases) {
       if (err) {
         console.error(new Date().toLocaleString(), err);
+        return eachCallback();
       }
-      return eachCallback();
+
+      if (!marketPurchases) {
+        marketPurchases = new MarketPurchases({
+          province: info.province,
+          city: info.city,
+          market: info.market,
+          name: info.name
+        });
+      }
+      marketPurchases.main_goods = info.main_goods;
+      marketPurchases.time = info.time;
+      marketPurchases.identity = info.identity;
+      marketPurchases.phone = info.phon;
+      marketPurchases.save(function (err, result) {
+        if (err) {
+          console.error(new Date().toLocaleString(), err);
+        }
+        return eachCallback();
+      });
     });
   }, function () {
     return callback(null, { success: true });
@@ -116,19 +149,50 @@ exports.market_purchases_import = function (user, infos, callback) {
 
 exports.market_day_info_import = function (user, infos, callback) {
   async.eachSeries(infos.list, function (info, eachCallback) {
-    new MarketDayInfo({
+    MarketDayInfo.findOne({
       market: info.market,
       main_goods: info.main_goods,
       price: info.price,
-      day: info.day
-    }).save(function (err, result) {
+      day: new Date(info.day)
+    }, function (err, marketDayInfo) {
       if (err) {
         console.error(new Date().toLocaleString(), err);
+        return eachCallback();
       }
-      return eachCallback();
+
+      if (marketDayInfo) {
+        return eachCallback();
+      }
+      marketDayInfo = new MarketDayInfo({
+        market: info.market,
+        main_goods: info.main_goods,
+        price: info.price,
+        day: info.day
+      });
+      marketDayInfo.save(function (err, result) {
+        if (err) {
+          console.error(new Date().toLocaleString(), err);
+        }
+        return eachCallback();
+      });
     });
   }, function () {
     return callback(null, { success: true });
   });
 }
+
+exports.supply_import = function (user, infos, callback) {
+  async.eachSeries(infos, function (info, eachCallback) {
+    Supply.findOne({
+      
+    });
+  });
+}
+
+exports.purchases_import = function (user, infos, callback) {
+
+}
+
+
+
 
