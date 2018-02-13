@@ -1,3 +1,4 @@
+
 /**
  * Created by zenghong on 2017/8/8.
  */
@@ -102,7 +103,9 @@ exports.market_supply_import = function (user, infos, callback) {
         if (err) {
           console.error(new Date().toLocaleString(), err);
         }
-        return eachCallback();
+        setTimeout(function () {
+          return eachCallback();
+        }, 500);
       });
     });
   }, function () {
@@ -139,7 +142,9 @@ exports.market_purchases_import = function (user, infos, callback) {
         if (err) {
           console.error(new Date().toLocaleString(), err);
         }
-        return eachCallback();
+        setTimeout(function () {
+          return eachCallback();
+        }, 500);
       });
     });
   }, function () {
@@ -173,7 +178,9 @@ exports.market_day_info_import = function (user, infos, callback) {
         if (err) {
           console.error(new Date().toLocaleString(), err);
         }
-        return eachCallback();
+        setTimeout(function () {
+          return eachCallback();
+        }, 500);
       });
     });
   }, function () {
@@ -184,7 +191,7 @@ exports.market_day_info_import = function (user, infos, callback) {
 exports.supply_import = function (user, infos, callback) {
   async.eachSeries(infos, function (info, eachCallback) {
     Supply.findOne({
-      
+
     });
   });
 }

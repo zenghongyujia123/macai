@@ -750,13 +750,18 @@ cSite.controller('MarketDayInfoListController', [
       ],
       download_template: function () {
         var rows = [
-          ['批发市场', '品种', '价格', '日期'],
+          pageConfig.table_header,
           ['莫某批发市场', '白菜', '10-20元／斤', '2018-02-03']
         ];
         ExcelService.saveExcelFile('每日行情价格导入模版.xlsx', [{ data: rows, name: 'sheet1' }]);
       },
       get_list: function (next) {
         next = next || 'next';
+        if (next === 'prev' && pageConfig.current_page === 2) {
+          next = 'next';
+          pageConfig.current_page = 0;
+          pageConfig.last_item = {};
+        }
         UserNetwork.market_list($scope, { next: next, last_item: pageConfig.last_item, model_string: 'MarketDayInfo' }).then(function (data) {
           console.log(data);
           if (data && !data.err) {
@@ -869,9 +874,120 @@ cSite.controller('MarketPurchasesDetailController', [
 'use strict';
 
 cSite.controller('MarketPurchasesListController', [
-  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav',
-  function ($rootScope, $scope, $state, $stateParams, $mdSidenav) {
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'UserNetwork', 'ExcelService',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, UserNetwork, ExcelService) {
+    var pageConfig = {
+      count: 0,
+      title: '采购商',
+      import_text: '导入采购商',
+      last_item: {},
+      current_page: 0,
+      prev_last_item: {},
+      list: [],
+      table_header: [
+        '采购商所在省',
+        '采购商所在城市',
+        '采购商所在市场',
+        '商户名称',
+        '主营品类',
+        '身份',
+        '联系电话',
+      ],
+      download_template: function () {
+        var rows = [
+          pageConfig.table_header,
+          ['上海', '上海', '上海江桥', '为名蔬菜商行', '土豆', '代销', '17775338594']
+        ];
+        ExcelService.saveExcelFile('每日行情采购商导入模版.xlsx', [{ data: rows, name: 'sheet1' }]);
+      },
+      get_list: function (next) {
+        next = next || 'next';
+        if (next === 'prev' && pageConfig.current_page === 2) {
+          next = 'next';
+          pageConfig.current_page = 0;
+          pageConfig.last_item = {};
+        }
+        UserNetwork.market_list($scope, { next: next, last_item: pageConfig.last_item, model_string: 'MarketPurchases' }).then(function (data) {
+          console.log(data);
+          if (data && !data.err) {
+            if (data.list.length > 0) {
+              pageConfig.count = data.count;
+              pageConfig.list = data.list || [];
+            }
+          }
 
+          if (data.list.length > 0) {
+            if (next === 'next') {
+              pageConfig.current_page++;
+              pageConfig.last_item = data.list[data.list.length - 1];
+            }
+            else {
+              pageConfig.current_page--;
+              pageConfig.last_item = data.list[0];
+            }
+          }
+        });
+      },
+      get_date: function (date) {
+        return moment(date).format('YYYY-MM-DD');
+      },
+      import: function (list) {
+        UserNetwork.market_purchases_import($scope, { list: list }).then(function (data) {
+          console.log(data);
+          if (data && !data.err) {
+            pageConfig.last_item = {};
+            pageConfig.get_list()
+          }
+        });
+      },
+      get_excel: function (element) {
+        var that = this;
+        var file = element.files[0];
+
+        ExcelService.readExcel(file, function (err, workbook) {
+          element.value = '';
+          if (err) {
+            return showAlert(err);
+          }
+
+          ExcelService.getExcelHeader(workbook, function (err, header) {
+            if (err) {
+              return showAlert(err);
+            }
+            var tableHeaderList = pageConfig.table_header;
+
+            if (!header || header.toString().indexOf(tableHeaderList.toString()) === -1) {
+              return showAlert(RootService.getGlobalLanguageTextByName('pleaseUseValidExcelTemplate'));
+            }
+
+            ExcelService.getExcelData(workbook, function (err, data) {
+              if (err) {
+                return showAlert(err);
+              }
+
+              var readList = [], row, existBarcodeList = [];
+
+              for (var i = 0, l = data.length; i < l; i++) {
+                row = data[i];
+                var newData = {};
+                newData.province = row[tableHeaderList[0]];
+                newData.city = row[tableHeaderList[1]];
+                newData.market = row[tableHeaderList[2]];
+                newData.name = row[tableHeaderList[3]];
+                newData.main_goods = row[tableHeaderList[4]];
+                newData.identity = row[tableHeaderList[5]];
+                newData.phone = row[tableHeaderList[6]];
+                readList.push(newData);
+              }
+              console.log(readList);
+              pageConfig.import(readList);
+            });
+          });
+        });
+      }
+    }
+    $scope.pageConfig = pageConfig;
+    pageConfig.get_list();
   }]);
 
 /**
@@ -891,9 +1007,120 @@ cSite.controller('MarketSupplyDetailController', [
 'use strict';
 
 cSite.controller('MarketSupplyListController', [
-  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav',
-  function ($rootScope, $scope, $state, $stateParams, $mdSidenav) {
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'UserNetwork', 'ExcelService',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, UserNetwork, ExcelService) {
+    var pageConfig = {
+      count: 0,
+      title: '行情-供应商',
+      import_text: '导入供应商',
+      last_item: {},
+      current_page: 0,
+      prev_last_item: {},
+      list: [],
+      table_header: [
+        '供应商名称',
+        '供应商所在省',
+        '供应商所在市',
+        '供应商主营品类',
+        '供应商商品上市时间',
+        '供应商身份',
+        '电话号码',
+      ],
+      download_template: function () {
+        var rows = [
+          pageConfig.table_header,
+          ['安徽大明蔬菜合作社', '安徽', '合肥', '土豆', '5-8月份', '合作社', '17775338594']
+        ];
+        ExcelService.saveExcelFile('每日行情供应商导入模版.xlsx', [{ data: rows, name: 'sheet1' }]);
+      },
+      get_list: function (next) {
+        next = next || 'next';
+        if (next === 'prev' && pageConfig.current_page === 2) {
+          next = 'next';
+          pageConfig.current_page = 0;
+          pageConfig.last_item = {};
+        }
+        UserNetwork.market_list($scope, { next: next, last_item: pageConfig.last_item, model_string: 'MarketSupply' }).then(function (data) {
+          console.log(data);
+          if (data && !data.err) {
+            if (data.list.length > 0) {
+              pageConfig.count = data.count;
+              pageConfig.list = data.list || [];
+            }
+          }
 
+          if (data.list.length > 0) {
+            if (next === 'next') {
+              pageConfig.current_page++;
+              pageConfig.last_item = data.list[data.list.length - 1];
+            }
+            else {
+              pageConfig.current_page--;
+              pageConfig.last_item = data.list[0];
+            }
+          }
+        });
+      },
+      get_date: function (date) {
+        return moment(date).format('YYYY-MM-DD');
+      },
+      import: function (list) {
+        UserNetwork.market_supply_import($scope, { list: list }).then(function (data) {
+          console.log(data);
+          if (data && !data.err) {
+            pageConfig.last_item = {};
+            pageConfig.get_list()
+          }
+        });
+      },
+      get_excel: function (element) {
+        var that = this;
+        var file = element.files[0];
+
+        ExcelService.readExcel(file, function (err, workbook) {
+          element.value = '';
+          if (err) {
+            return showAlert(err);
+          }
+
+          ExcelService.getExcelHeader(workbook, function (err, header) {
+            if (err) {
+              return showAlert(err);
+            }
+            var tableHeaderList = pageConfig.table_header;
+
+            if (!header || header.toString().indexOf(tableHeaderList.toString()) === -1) {
+              return showAlert(RootService.getGlobalLanguageTextByName('pleaseUseValidExcelTemplate'));
+            }
+
+            ExcelService.getExcelData(workbook, function (err, data) {
+              if (err) {
+                return showAlert(err);
+              }
+
+              var readList = [], row, existBarcodeList = [];
+
+              for (var i = 0, l = data.length; i < l; i++) {
+                row = data[i];
+                var newData = {};
+                newData.name = row[tableHeaderList[0]];
+                newData.province = row[tableHeaderList[1]];
+                newData.city = row[tableHeaderList[2]];
+                newData.main_goods = row[tableHeaderList[3]];
+                newData.time = row[tableHeaderList[4]];
+                newData.identity = row[tableHeaderList[5]];
+                newData.phone = row[tableHeaderList[6]];
+                readList.push(newData);
+              }
+              console.log(readList);
+              pageConfig.import(readList);
+            });
+          });
+        });
+      }
+    }
+    $scope.pageConfig = pageConfig;
+    pageConfig.get_list();
   }]);
 
 /**
@@ -935,9 +1162,138 @@ cSite.controller('PurchasesDetailController', [
 'use strict';
 
 cSite.controller('PurchasesListController', [
-  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav',
-  function ($rootScope, $scope, $state, $stateParams, $mdSidenav) {
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'UserNetwork',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, UserNetwork) {
+    var pageConfig = {
+      count: 0,
+      title: '采购信息列表',
+      import_text: '导入采购信息',
+      last_item: {},
+      current_page: 0,
+      prev_last_item: {},
+      list: [],
+      table_header: [
+        '采购货品类型',
+        '采购货品品类',
+        '采购货品品种',
+        '规格',
+        '需求量',
+        '需求量单位',
+        '期望价格',
+        '期望价格单位',
+        '期望货源省',
+        '期望货源市',
+        '补充说明',
+        '采购频率',
+        '采购时长',
+        '收货地址',
+        '收货地址',
+        '电话',
+      ],
+      download_template: function () {
+        var rows = [
+          pageConfig.table_header,
+          [
+            '蔬菜',
+            '大白菜',
+            '北京新三号',
+            '单颗重|4-6斤，株高|35-40cm',
+            '40000',
+            '斤',
+            '0.25',
+            '元/斤',
+            '河南',
+            '夏邑',
+            '货好',
+            '每周',
+            '7天',
+            '安徽',
+            '合肥',
+            '17775338594',
+          ]
+        ];
+        ExcelService.saveExcelFile('采购导入模版.xlsx', [{ data: rows, name: 'sheet1' }]);
+      },
+      get_list: function (next) {
+        next = next || 'next';
+        UserNetwork.market_list($scope, { next: next, last_item: pageConfig.last_item, model_string: 'Purchases' }).then(function (data) {
+          console.log(data);
+          if (data && !data.err) {
+            if (data.list.length > 0) {
+              pageConfig.count = data.count;
+              pageConfig.list = data.list || [];
+            }
+          }
 
+          if (data.list.length > 0) {
+            if (next === 'next') {
+              pageConfig.current_page++;
+              pageConfig.last_item = data.list[data.list.length - 1];
+            }
+            else {
+              pageConfig.current_page--;
+              pageConfig.last_item = data.list[0];
+            }
+          }
+        });
+      },
+      get_date: function (date) {
+        return moment(date).format('YYYY-MM-DD');
+      },
+      import: function (list) {
+        UserNetwork.market_purchases_import($scope, { list: list }).then(function (data) {
+          console.log(data);
+          if (data && !data.err) {
+            pageConfig.last_item = {};
+            pageConfig.get_list()
+          }
+        });
+      },
+      get_excel: function (element) {
+        var that = this;
+        var file = element.files[0];
+
+        ExcelService.readExcel(file, function (err, workbook) {
+          element.value = '';
+          if (err) {
+            return showAlert(err);
+          }
+
+          ExcelService.getExcelHeader(workbook, function (err, header) {
+            if (err) {
+              return showAlert(err);
+            }
+            var tableHeaderList = pageConfig.table_header;
+
+            if (!header || header.toString().indexOf(tableHeaderList.toString()) === -1) {
+              return showAlert(RootService.getGlobalLanguageTextByName('pleaseUseValidExcelTemplate'));
+            }
+
+            ExcelService.getExcelData(workbook, function (err, data) {
+              if (err) {
+                return showAlert(err);
+              }
+
+              var readList = [], row, existBarcodeList = [];
+
+              for (var i = 0, l = data.length; i < l; i++) {
+                row = data[i];
+                var newData = {};
+                newData.market = row[tableHeaderList[0]];
+                newData.main_goods = row[tableHeaderList[1]];
+                newData.price = row[tableHeaderList[2]];
+                newData.day = row[tableHeaderList[3]];
+                readList.push(newData);
+              }
+              console.log(readList);
+              pageConfig.import(readList);
+            });
+          });
+        });
+      }
+    }
+    $scope.pageConfig = pageConfig;
+    pageConfig.get_list();
   }]);
 
 /**
@@ -959,7 +1315,130 @@ cSite.controller('SupplyDetailController', [
 cSite.controller('SupplyListController', [
   '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav',
   function ($rootScope, $scope, $state, $stateParams, $mdSidenav) {
+    var pageConfig = {
+      count: 0,
+      title: '供应信息列表',
+      import_text: '导入供应信息',
+      last_item: {},
+      current_page: 0,
+      prev_last_item: {},
+      list: [],
+      table_header: [
+        '供应货品类型',
+        '供应货品品类',
+        '供应货品品种',
+        '规格',
+        '是否现货',
+        '下架时间',
+        '批发价',
+        '批发价单位',
+        '起批量',
+        '发货地址省',
+        '发货地址市',
+        '货品描述',
+        '服务方式',
+        '电话'
+      ],
+      download_template: function () {
+        var rows = [
+          pageConfig.table_header,
+          ['蔬菜',
+            '白菜',
+            '秋白菜',
+            '单颗重|一斤以下,株高|10～15cm',
+            '现货',
+            '2018/1/30',
+            '0.23',
+            '元/斤',
+            '23',
+            '四川',
+            '成都',
+            '货物说明',
+            '基地直供|产地代办',
+            '1333333333']
+        ];
+        ExcelService.saveExcelFile('供应导入模版.xlsx', [{ data: rows, name: 'sheet1' }]);
+      },
+      get_list: function (next) {
+        next = next || 'next';
+        UserNetwork.market_list($scope, { next: next, last_item: pageConfig.last_item, model_string: 'Supply' }).then(function (data) {
+          console.log(data);
+          if (data && !data.err) {
+            if (data.list.length > 0) {
+              pageConfig.count = data.count;
+              pageConfig.list = data.list || [];
+            }
+          }
 
+          if (data.list.length > 0) {
+            if (next === 'next') {
+              pageConfig.current_page++;
+              pageConfig.last_item = data.list[data.list.length - 1];
+            }
+            else {
+              pageConfig.current_page--;
+              pageConfig.last_item = data.list[0];
+            }
+          }
+        });
+      },
+      get_date: function (date) {
+        return moment(date).format('YYYY-MM-DD');
+      },
+      import: function (list) {
+        UserNetwork.market_purchases_import($scope, { list: list }).then(function (data) {
+          console.log(data);
+          if (data && !data.err) {
+            pageConfig.last_item = {};
+            pageConfig.get_list()
+          }
+        });
+      },
+      get_excel: function (element) {
+        var that = this;
+        var file = element.files[0];
+
+        ExcelService.readExcel(file, function (err, workbook) {
+          element.value = '';
+          if (err) {
+            return showAlert(err);
+          }
+
+          ExcelService.getExcelHeader(workbook, function (err, header) {
+            if (err) {
+              return showAlert(err);
+            }
+            var tableHeaderList = pageConfig.table_header;
+
+            if (!header || header.toString().indexOf(tableHeaderList.toString()) === -1) {
+              return showAlert(RootService.getGlobalLanguageTextByName('pleaseUseValidExcelTemplate'));
+            }
+
+            ExcelService.getExcelData(workbook, function (err, data) {
+              if (err) {
+                return showAlert(err);
+              }
+
+              var readList = [], row, existBarcodeList = [];
+
+              for (var i = 0, l = data.length; i < l; i++) {
+                row = data[i];
+                var newData = {};
+                newData.market = row[tableHeaderList[0]];
+                newData.main_goods = row[tableHeaderList[1]];
+                newData.price = row[tableHeaderList[2]];
+                newData.day = row[tableHeaderList[3]];
+                readList.push(newData);
+              }
+              console.log(readList);
+              pageConfig.import(readList);
+            });
+          });
+        });
+      }
+    }
+    $scope.pageConfig = pageConfig;
+    pageConfig.get_list();
   }]);
 
 /**

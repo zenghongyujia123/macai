@@ -1,10 +1,12 @@
 <div class="page-body-view">
   <div class="page-operation-view" layout="row" layout-align="space-between center">
     <p class="title">{{pageConfig.title}}(总数：{{pageConfig.count}})</p>
-    <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.download_template()">下载模版</md-button>
-    <md-button class="md-primary md-raised md-hue-2 import">{{pageConfig.import_text}}
-      <input type="file" onchange="angular.element(this).scope().pageConfig.get_excel(this)">
-    </md-button>
+    <div>
+      <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.download_template()">下载模版</md-button>
+      <md-button class="md-primary md-raised md-hue-2 import">{{pageConfig.import_text}}
+        <input type="file" onchange="angular.element(this).scope().pageConfig.get_excel(this)">
+      </md-button>
+    </div>
   </div>
 
   <div class="list-header">

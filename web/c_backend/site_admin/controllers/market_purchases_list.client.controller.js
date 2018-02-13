@@ -4,8 +4,8 @@
 'use strict';
 
 cSite.controller('MarketPurchasesListController', [
-  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'UserNetwork',
-  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, UserNetwork) {
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'UserNetwork', 'ExcelService',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, UserNetwork, ExcelService) {
     var pageConfig = {
       count: 0,
       title: '采购商',
@@ -32,6 +32,11 @@ cSite.controller('MarketPurchasesListController', [
       },
       get_list: function (next) {
         next = next || 'next';
+        if (next === 'prev' && pageConfig.current_page === 2) {
+          next = 'next';
+          pageConfig.current_page = 0;
+          pageConfig.last_item = {};
+        }
         UserNetwork.market_list($scope, { next: next, last_item: pageConfig.last_item, model_string: 'MarketPurchases' }).then(function (data) {
           console.log(data);
           if (data && !data.err) {

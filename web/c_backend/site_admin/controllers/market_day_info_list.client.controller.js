@@ -30,6 +30,11 @@ cSite.controller('MarketDayInfoListController', [
       },
       get_list: function (next) {
         next = next || 'next';
+        if (next === 'prev' && pageConfig.current_page === 2) {
+          next = 'next';
+          pageConfig.current_page = 0;
+          pageConfig.last_item = {};
+        }
         UserNetwork.market_list($scope, { next: next, last_item: pageConfig.last_item, model_string: 'MarketDayInfo' }).then(function (data) {
           console.log(data);
           if (data && !data.err) {
