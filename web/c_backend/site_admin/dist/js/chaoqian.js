@@ -1313,8 +1313,8 @@ cSite.controller('SupplyDetailController', [
 'use strict';
 
 cSite.controller('SupplyListController', [
-  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav',
-  function ($rootScope, $scope, $state, $stateParams, $mdSidenav) {
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'UserNetwork',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, UserNetwork) {
     var pageConfig = {
       count: 0,
       title: '供应信息列表',
