@@ -78,6 +78,10 @@
       if (!username || !/^[1][3,4,5,7,8][0-9]{9}$/.test(username)) {
         return $.toptip('请输入正确的手机号', 'warning');
       }
+      //测试用12345
+      code = '12345';
+
+      return;
       $.ajax({
         url: '/api_wechat/send_verify_code',
         data: { username: username },
@@ -89,6 +93,8 @@
           }
           $.toast("发送成功 ");
           code = data.verify_code;
+
+
         }
       });
     });
