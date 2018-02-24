@@ -18,5 +18,11 @@ cSite.factory('UserNetwork',
         market_day_info_import: function (scope, params) {
           return Http.postRequestWithCheck(scope, '/api_backend/market_day_info_import', params);
         },
+        supply_import: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/supply_import', params);
+        },
+        purchases_import: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/purchases_import', params);
+        },
       };
     }]);

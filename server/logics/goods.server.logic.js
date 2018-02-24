@@ -13,6 +13,7 @@ exports.create_purchases = function (user, info, callback) {
   var purchases = new Purchases({
     user: user._id,
     goods_name: info.goods_name || '',
+    goods_class: info.goods_class || '',
     goods_category: info.goods_category || '',
     goods_brand: info.goods_brand || '',
     goods_specs: info.goods_specs || '',

@@ -4,6 +4,7 @@
 var path = require('path');
 var goodsLogic = require('../logics/goods');
 var purchasesLogic = require('../logics/purchases');
+var supplyLogic = require('../logics/supply');
 var marketLogic = require('../logics/market');
 var wechatLogic = require('../logics/wechat');
 var userLogic = require('../logics/user');
@@ -47,4 +48,21 @@ exports.market_day_info_import = function (req, res, next) {
   });
 }
 
+exports.supply_import = function (req, res, next) {
+  supplyLogic.import(req.user, req.body, function (err, results) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(results);
+  });
+}
+
+exports.purchases_import = function (req, res, next) {
+  purchasesLogic.import(req.user, req.body, function (err, results) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(results);
+  });
+}
 

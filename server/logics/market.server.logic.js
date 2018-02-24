@@ -190,15 +190,11 @@ exports.market_day_info_import = function (user, infos, callback) {
 
 exports.supply_import = function (user, infos, callback) {
   async.eachSeries(infos, function (info, eachCallback) {
-    Supply.findOne({
 
-    });
+
   });
 }
 
-exports.purchases_import = function (user, infos, callback) {
-
-}
 
 
 

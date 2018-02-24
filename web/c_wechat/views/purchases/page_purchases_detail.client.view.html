@@ -26,9 +26,11 @@
         <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517075726438&di=d74e6b85b5d75b7f54a6d3c141cf576f&imgtype=0&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2015-01-07%2F014622445.jpg">
         <div class="title-right">
           <div class="name">
-            <%= (purchases.username||'某先生') %>
+            <%= (purchases.username||'-') %>
           </div>
-          <div class="address">用户地址</div>
+          <div class="address">
+            <%= ((purchases.receive_province+purchases.receive_city)||'-') %>
+          </div>
           <div class="browser">
             <%= (purchases.browse_count||0) %>人浏览
           </div>
@@ -37,7 +39,7 @@
       <div class="body-row">
         <div class="body-row-left">采购货品</div>
         <div class="body-row-right">
-          <%= (purchases.goods_name||'-') %>
+          <%= ((purchases.goods_category + ' ' + purchases.goods_brand)||'-') %>
         </div>
       </div>
       <div class="body-row">

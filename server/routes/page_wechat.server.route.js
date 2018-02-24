@@ -7,8 +7,8 @@ var userFilter = require('../filters/user');
 var goodsFilter = require('../filters/goods');
 
 module.exports = function (app) {
-  app.route('/').get(index.page_purchases_list);
-  app.route('/page_wechat/page_home').get(userFilter.requireUser, index.page_home);
+  app.route('/').get(index.page_home);
+  app.route('/page_wechat/page_home').get(index.page_home);
   app.route('/page_wechat/page_signin').get(index.page_signin);
 
   app.route('/page_wechat/page_purchases_create_main').get(userFilter.requireUser, index.page_purchases_create_main);

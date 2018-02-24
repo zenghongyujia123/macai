@@ -10,17 +10,27 @@ var cookieLib = require('../../libraries/cookie');
 var agent = require('superagent').agent();
 
 exports.page_home = function (req, res, next) {
-  var cookie = cookieLib.getCookie(req);
-  var username = cookie.userName;
-  var user = req.user;
-  var filepath = path.join(__dirname, '../../web/c_wechat/views/page_home.client.view.html');
-  return res.render(filepath, {});
+  var page = req.query.page || 'page_purchases_list';
+  var filepath;
 
+  wechatLogic.getUserAccessToken(req.query.code, function (err, result) {
+    if (result.openid) {
+      cookieLib.setCookie(res, 'openid', result.openid);
+      cookieLib.setCookie(res, 'user_access_token', result.access_token);
+    }
+    if (page === 'page_purchases_list') {
+      return res.redirect('/page_wechat/page_purchases_list');
+    }
+    else {
+      return res.redirect('/page_wechat/page_supply_list');
+    }
+  });
 };
 
 exports.page_signin = function (req, res, next) {
   // var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_list.client.view.html');
-  var openid = '';
+  var cookie = cookieLib.getCookie(req);
+  var openid = cookie.openid;
   userLogic.getByOpenId(openid, function (err, user) {
     var filepath = path.join(__dirname, '../../web/c_wechat/views/page_signin.client.view.html');
     return res.render(filepath, { user: user || '' });

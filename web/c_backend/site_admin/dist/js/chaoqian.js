@@ -269,6 +269,12 @@ cSite.factory('UserNetwork',
         market_day_info_import: function (scope, params) {
           return Http.postRequestWithCheck(scope, '/api_backend/market_day_info_import', params);
         },
+        supply_import: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/supply_import', params);
+        },
+        purchases_import: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/purchases_import', params);
+        },
       };
     }]);
 
@@ -1162,8 +1168,8 @@ cSite.controller('PurchasesDetailController', [
 'use strict';
 
 cSite.controller('PurchasesListController', [
-  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'UserNetwork',
-  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, UserNetwork) {
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'UserNetwork', 'ExcelService',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, UserNetwork, ExcelService) {
     var pageConfig = {
       count: 0,
       title: '采购信息列表',
@@ -1186,9 +1192,10 @@ cSite.controller('PurchasesListController', [
         '补充说明',
         '采购频率',
         '采购时长',
-        '收货地址',
-        '收货地址',
+        '收货地址省',
+        '收货地址市',
         '电话',
+        '角色'
       ],
       download_template: function () {
         var rows = [
@@ -1210,6 +1217,7 @@ cSite.controller('PurchasesListController', [
             '安徽',
             '合肥',
             '17775338594',
+            '批发商'
           ]
         ];
         ExcelService.saveExcelFile('采购导入模版.xlsx', [{ data: rows, name: 'sheet1' }]);
@@ -1241,7 +1249,7 @@ cSite.controller('PurchasesListController', [
         return moment(date).format('YYYY-MM-DD');
       },
       import: function (list) {
-        UserNetwork.market_purchases_import($scope, { list: list }).then(function (data) {
+        UserNetwork.purchases_import($scope, { list: list }).then(function (data) {
           console.log(data);
           if (data && !data.err) {
             pageConfig.last_item = {};
@@ -1279,10 +1287,23 @@ cSite.controller('PurchasesListController', [
               for (var i = 0, l = data.length; i < l; i++) {
                 row = data[i];
                 var newData = {};
-                newData.market = row[tableHeaderList[0]];
-                newData.main_goods = row[tableHeaderList[1]];
-                newData.price = row[tableHeaderList[2]];
-                newData.day = row[tableHeaderList[3]];
+                newData.goods_class = row[tableHeaderList[0]];
+                newData.goods_category = row[tableHeaderList[1]];
+                newData.goods_brand = row[tableHeaderList[2]];
+                newData.goods_specs = row[tableHeaderList[3]];
+                newData.need_number = row[tableHeaderList[4]];
+                newData.need_unit = row[tableHeaderList[5]];
+                newData.expect_price = row[tableHeaderList[6]];
+                newData.expect_price_unit = row[tableHeaderList[7]];
+                newData.expect_province = row[tableHeaderList[8]];
+                newData.expect_city = row[tableHeaderList[9]];
+                newData.market = row[tableHeaderList[10]];
+                newData.frequency = row[tableHeaderList[11]];
+                newData.duration = row[tableHeaderList[12]];
+                newData.receive_province = row[tableHeaderList[13]];
+                newData.receive_city = row[tableHeaderList[14]];
+                newData.mobile_phone = row[tableHeaderList[15]];
+                newData.role = row[tableHeaderList[16]];
                 readList.push(newData);
               }
               console.log(readList);

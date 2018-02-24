@@ -59,9 +59,15 @@ module.exports = function (appDb) {
     goods_name: {
       type: String
     },
+    //大类
+    goods_class: {
+      type: String
+    },
+    //品类
     goods_category: {
       type: String
     },
+    //品种
     goods_brand: {
       type: String
     },
@@ -114,6 +120,9 @@ module.exports = function (appDb) {
       type: String
     },
     remark: {
+      type: String
+    },
+    role: {
       type: String
     }
   });

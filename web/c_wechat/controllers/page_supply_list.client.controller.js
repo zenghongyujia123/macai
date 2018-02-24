@@ -135,14 +135,14 @@ $(function () {
         var obj = $(
           ' <a href="/page_wechat/page_purchases_detail?purchases_id=' + item._id + '"' + ' class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
           '   <div class="weui-media-box__bd">' +
-          '     <div class="title1">' + item.goods_name +
+          '     <div class="title1">' + item.goods_category + ' ' + item.goods_brand +
           '       <div class="price">' + item.need_number +
           '         <span class="price-unit">' + item.need_unit + '</span>' +
           '       </div>' +
           '     </div>' +
           '     <div class="title2">品种：' + item.goods_brand + '</div>' +
           '     <div class="title2">所在地：' + item.expect_province + item.expect_province + item.expect_city + '</div>' +
-          '     <div><span class="tag green">' + item.user.role + '</span></div>' +
+          '     <div><span class="tag green">' + ((item.user ? item.user.role : item.role) || '') + '</span></div>' +
           '     <span class="tag orange">' + item.frequency + '</span>' +
           '   </div>' +
           ' </a>');
