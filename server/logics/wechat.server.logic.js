@@ -8,7 +8,7 @@ var moment = require('moment');
 var access_token = '';
 var ticket = '';
 var appid = 'wx682b6bf0f5c1e84d';
-var sk = '1500a633040b1c3e719dc5cd2d39b9b0';
+var sk = '51de065319b6dac43fcaa21a81b41d74';
 
 var xml2js = require('xml2js');
 var parseString = xml2js.parseString;
