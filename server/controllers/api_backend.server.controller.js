@@ -12,6 +12,21 @@ var cookieLib = require('../../libraries/cookie');
 var smsLib = require('../../libraries/sms');
 var agent = require('superagent').agent();
 
+exports.signin = function (req, res, next) {
+  var users = ['13472423583'];
+  var passes = ['123456'];
+  var index = users.indexOf(req.body.username);
+  if (index === -1) {
+    return res.send({ err: { type: 'invalid_account' } });
+  }
+  if (passes[index] !== req.body.password) {
+    return res.send({ err: { type: 'invalid_password' } });
+  }
+
+  cookieLib.setCookie(res, 'back_username', req.body.username);
+  return res.send({ success: true });
+}
+
 exports.market_list = function (req, res, next) {
   marketLogic.market_list(req.user, req.body, function (err, results) {
     if (err) {
@@ -20,6 +35,24 @@ exports.market_list = function (req, res, next) {
     return res.send(results);
   });
 }
+exports.market_detail = function (req, res, next) {
+  marketLogic.market_detail(req.user, req.body, function (err, results) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(results);
+  });
+}
+
+exports.market_save_photos = function (req, res, next) {
+  marketLogic.market_save_photos(req.require_market, req.body, function (err, results) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(results);
+  });
+}
+
 
 exports.market_supply_import = function (req, res, next) {
   marketLogic.market_supply_import(req.user, req.body, function (err, results) {
@@ -65,4 +98,5 @@ exports.purchases_import = function (req, res, next) {
     return res.send(results);
   });
 }
+
 

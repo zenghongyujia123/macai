@@ -1,1 +1,77 @@
-<div>this is home</div>
+<div class="page-body-view">
+  <div class="page-operation-view" layout="row" layout-align="space-between center">
+    <p class="title">供应货品详情</p>
+    <div>
+      <md-button class="md-primary md-raised md-hue-2" id="qiniu-upload-test-button">上传图片</md-button>
+      <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.save_photos()">保存图片</md-button>
+    </div>
+  </div>
+  <div layout="row" layout-align="start start">
+    <div class="left" flex="">
+      <div class="list-header">
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> 供应货品类型</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.goods_class}}</div>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> 供应货品品类</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.goods_category}}</div>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> 供应货品品种</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.goods_brand}}</div>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> 规格</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.goods_specs}}</div>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> 是否现货</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.is_cash_goods}}</div>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> 下架时间</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.undercarriage_time}}</div>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> 批发价</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.price}}</div>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> 批发价单位</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.price_unit}}</div>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> 起批量</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.min_count}}</div>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> 发货地址省</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.send_province}}</div>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> 发货地址市</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.send_city}}</div>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> 货品描述</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.remark}}</div>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> 服务方式</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.provide_services_string}}</div>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> 电话</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.mobile_phone}}</div>
+        </div>
+      </div>
+    </div>
+    <div class="right" flex="">
+      <div ng-repeat="photo in pageConfig.detail.photos" style="position:relative;float:left;margin:20px;">
+        <img style=" width:200px;height:200px;" class="photo" ng-src="{{photo}}" />
+        <div ng-click="pageConfig.delete_photo(photo)" style="position:absolute;left:0px;height:30px;line-height:30px;width:100%;bottom:0px;background-color:red;color:white;text-align:center;">删除</div>
+      </div>
+    </div>
+  </div>
+</div>

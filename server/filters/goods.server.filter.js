@@ -3,6 +3,12 @@
 var cookieLib = require('../../libraries/cookie');
 var mongoose = require('./../../libraries/mongoose');
 var goodsLogic = require('../logics/goods');
+var appDb = mongoose.appDb;
+var Supply = appDb.model('Supply');
+var Purchases = appDb.model('Purchases');
+var MarketSupply = appDb.model('MarketSupply');
+var MarketPurchases = appDb.model('MarketPurchases');
+var MarketDayInfo = appDb.model('MarketDayInfo');
 exports.requirePurchases = function (req, res, next) {
   var cookie = cookieLib.getCookie(req);
   var purchases_id = req.body.purchases_id || req.query.purchases_id || '';
@@ -28,3 +34,34 @@ exports.requireSupply = function (req, res, next) {
     return next();
   });
 };
+
+
+exports.requireMarket = function (req, res, next) {
+  var info = req.body || {};
+  var model;
+  if (info.model_string === 'MarketSupply') {
+    model = MarketSupply;
+  }
+  if (info.model_string === 'MarketPurchases') {
+    model = MarketPurchases;
+  }
+  if (info.model_string === 'MarketDayInfo') {
+    model = MarketDayInfo;
+  }
+  if (info.model_string === 'Purchases') {
+    model = Purchases;
+  }
+  if (info.model_string === 'Supply') {
+    model = Supply;
+  }
+  model.findOne({ _id: info.detail_id }, function (err, require_market) {
+    if (err || !require_market) {
+      return res.send({ err: { type: 'not_exist', message: '数据不存在' } });
+    }
+    req.require_market = require_market;
+    return next();
+  });
+};
+
+
+

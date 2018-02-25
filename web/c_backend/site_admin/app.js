@@ -28,7 +28,7 @@ cSite.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, 
       controller: 'UserListController'
     })
     .state('user_detail', {
-      url: '/user_detail',
+      url: '/user_detail/:detail_id',
       templateUrl: '/c_backend/site_admin/templates/user_detail.client.view.html',
       controller: 'UserDetailController'
     })
@@ -38,7 +38,7 @@ cSite.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, 
       controller: 'PurchasesListController'
     })
     .state('purchases_detail', {
-      url: '/purchases_detail',
+      url: '/purchases_detail/:detail_id',
       templateUrl: '/c_backend/site_admin/templates/purchases_detail.client.view.html',
       controller: 'PurchasesDetailController'
     })
@@ -48,7 +48,7 @@ cSite.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, 
       controller: 'SupplyListController'
     })
     .state('supply_detail', {
-      url: '/supply_detail',
+      url: '/supply_detail/:detail_id',
       templateUrl: '/c_backend/site_admin/templates/supply_detail.client.view.html',
       controller: 'SupplyDetailController'
     })
@@ -58,7 +58,7 @@ cSite.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, 
       controller: 'MarketSupplyListController'
     })
     .state('market_supply_detail', {
-      url: '/market_supply_detail',
+      url: '/market_supply_detail/:detail_id',
       templateUrl: '/c_backend/site_admin/templates/market_supply_detail.client.view.html',
       controller: 'MarketSupplyDetailController'
     })
@@ -69,7 +69,7 @@ cSite.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, 
       controller: 'MarketPurchasesListController'
     })
     .state('market_purchases_detail', {
-      url: '/market_purchases_detail',
+      url: '/market_purchases_detail/:detail_id',
       templateUrl: '/c_backend/site_admin/templates/market_purchases_detail.client.view.html',
       controller: 'MarketPurchasesDetailController'
     })
@@ -79,7 +79,7 @@ cSite.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, 
       controller: 'MarketDayInfoListController'
     })
     .state('market_day_info_detail', {
-      url: '/market_day_info_detail',
+      url: '/market_day_info_detail/:detail_id',
       templateUrl: '/c_backend/site_admin/templates/market_day_info_detail.client.view.html',
       controller: 'MarketDayInfoDetailController'
     })
@@ -89,7 +89,7 @@ cSite.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, 
       controller: 'AuthListController'
     })
     .state('auth_detail', {
-      url: '/auth_detail',
+      url: '/auth_detail/:detail_id',
       templateUrl: '/c_backend/site_admin/templates/auth_detail.client.view.html',
       controller: 'AuthDetailController'
     })
@@ -99,7 +99,7 @@ cSite.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, 
       controller: 'PaymentListController'
     })
     .state('payment_detail', {
-      url: '/payment_detail',
+      url: '/payment_detail/:detail_id',
       templateUrl: '/c_backend/site_admin/templates/payment_detail.client.view.html',
       controller: 'PaymentDetailController'
     });

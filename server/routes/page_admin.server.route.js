@@ -7,4 +7,5 @@ var pageAdmin = require('../controllers/page_admin');
 
 module.exports = function (app) {
   app.route('/page_admin').get(pageAdmin.index);
+  app.route('/page_site').get(pageAdmin.site);
 };

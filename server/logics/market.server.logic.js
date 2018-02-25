@@ -1,4 +1,3 @@
-
 /**
  * Created by zenghong on 2017/8/8.
  */
@@ -14,6 +13,41 @@ var MarketDayInfo = appDb.model('MarketDayInfo');
 var sysErr = require('./../errors/system');
 
 var that = exports;
+
+exports.market_save_photos = function (market, info, callback) {
+  market.photos = info.photos;
+  market.save(function (err) {
+    if (err) {
+      return callback({ err: sysErr.database_save_error });
+    }
+    return callback(null, { success: true });
+  });
+}
+
+exports.market_detail = function (user, info, callback) {
+  if (info.model_string === 'MarketSupply') {
+    model = MarketSupply;
+  }
+  if (info.model_string === 'MarketPurchases') {
+    model = MarketPurchases;
+  }
+  if (info.model_string === 'MarketDayInfo') {
+    model = MarketDayInfo;
+  }
+  if (info.model_string === 'Purchases') {
+    model = Purchases;
+  }
+  if (info.model_string === 'Supply') {
+    model = Supply;
+  }
+
+  model.findOne({ _id: info.detail_id }, function (err, result) {
+    if (err) {
+      return callback({ err: sysErr.database_query_error });
+    }
+    return callback(null, result);
+  });
+}
 
 exports.market_list = function (user, info, callback) {
   var model = {};

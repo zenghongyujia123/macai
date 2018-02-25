@@ -1,1 +1,21 @@
-<div>this is home</div>
+<div class="page-body-view">
+  <div class="page-operation-view" layout="row" layout-align="space-between center">
+    <p class="title"></p>
+    <div>
+      <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.download_template()">下载模版</md-button>
+      <md-button class="md-primary md-raised md-hue-2 import">{{pageConfig.import_text}}
+        <input type="file" onchange="angular.element(this).scope().pageConfig.get_excel(this)">
+      </md-button>
+    </div>
+  </div>
+
+  <div class="list-header">
+    <div class="list-item" layout="row" layout-align="start center">
+      <div class="column-item left" flex="">
+
+      </div>
+      <div class="column-item right" flex="">
+      </div>
+    </div>
+  </div>
+</div>

@@ -28,7 +28,7 @@ cSite.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, 
       controller: 'UserListController'
     })
     .state('user_detail', {
-      url: '/user_detail',
+      url: '/user_detail/:detail_id',
       templateUrl: '/c_backend/site_admin/templates/user_detail.client.view.html',
       controller: 'UserDetailController'
     })
@@ -38,7 +38,7 @@ cSite.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, 
       controller: 'PurchasesListController'
     })
     .state('purchases_detail', {
-      url: '/purchases_detail',
+      url: '/purchases_detail/:detail_id',
       templateUrl: '/c_backend/site_admin/templates/purchases_detail.client.view.html',
       controller: 'PurchasesDetailController'
     })
@@ -48,7 +48,7 @@ cSite.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, 
       controller: 'SupplyListController'
     })
     .state('supply_detail', {
-      url: '/supply_detail',
+      url: '/supply_detail/:detail_id',
       templateUrl: '/c_backend/site_admin/templates/supply_detail.client.view.html',
       controller: 'SupplyDetailController'
     })
@@ -58,7 +58,7 @@ cSite.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, 
       controller: 'MarketSupplyListController'
     })
     .state('market_supply_detail', {
-      url: '/market_supply_detail',
+      url: '/market_supply_detail/:detail_id',
       templateUrl: '/c_backend/site_admin/templates/market_supply_detail.client.view.html',
       controller: 'MarketSupplyDetailController'
     })
@@ -69,7 +69,7 @@ cSite.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, 
       controller: 'MarketPurchasesListController'
     })
     .state('market_purchases_detail', {
-      url: '/market_purchases_detail',
+      url: '/market_purchases_detail/:detail_id',
       templateUrl: '/c_backend/site_admin/templates/market_purchases_detail.client.view.html',
       controller: 'MarketPurchasesDetailController'
     })
@@ -79,7 +79,7 @@ cSite.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, 
       controller: 'MarketDayInfoListController'
     })
     .state('market_day_info_detail', {
-      url: '/market_day_info_detail',
+      url: '/market_day_info_detail/:detail_id',
       templateUrl: '/c_backend/site_admin/templates/market_day_info_detail.client.view.html',
       controller: 'MarketDayInfoDetailController'
     })
@@ -89,7 +89,7 @@ cSite.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, 
       controller: 'AuthListController'
     })
     .state('auth_detail', {
-      url: '/auth_detail',
+      url: '/auth_detail/:detail_id',
       templateUrl: '/c_backend/site_admin/templates/auth_detail.client.view.html',
       controller: 'AuthDetailController'
     })
@@ -99,7 +99,7 @@ cSite.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, 
       controller: 'PaymentListController'
     })
     .state('payment_detail', {
-      url: '/payment_detail',
+      url: '/payment_detail/:detail_id',
       templateUrl: '/c_backend/site_admin/templates/payment_detail.client.view.html',
       controller: 'PaymentDetailController'
     });
@@ -259,6 +259,12 @@ cSite.factory('UserNetwork',
         },
         market_list: function (scope, params) {
           return Http.postRequestWithCheck(scope, '/api_backend/market_list', params);
+        },
+        market_detail: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/market_detail', params);
+        },
+        market_save_photos: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/market_save_photos', params);
         },
         market_supply_import: function (scope, params) {
           return Http.postRequestWithCheck(scope, '/api_backend/market_supply_import', params);
@@ -542,107 +548,107 @@ cSite.factory('ExcelService',
 'use strict';
 
 cSite.factory('QiniuService', [
-    function () {
-        function createUploader(btnId, callback) {
-            var Qiniu = new QiniuJsSDK();
-            var uploader = Qiniu.uploader({
-                runtimes: 'html5,flash,html4',      // 上传模式，依次退化
-                browse_button: btnId,         // 上传选择的点选按钮，必需
-                // 在初始化时，uptoken，uptoken_url，uptoken_func三个参数中必须有一个被设置
-                // 切如果提供了多个，其优先级为uptoken > uptoken_url > uptoken_func
-                // 其中uptoken是直接提供上传凭证，uptoken_url是提供了获取上传凭证的地址，如果需要定制获取uptoken的过程则可以设置uptoken_func
-                // uptoken : '<Your upload token>', // uptoken是上传凭证，由其他程序生成
-                uptoken_url: '/token/qiniu/uptoken',         // Ajax请求uptoken的Url，强烈建议设置（服务端提供）
-                // uptoken_func: function (data) {    // 在需要获取uptoken时，该方法会被调用
-                //     // do something
-                //     return uptoken;
-                // },
-                get_new_uptoken: false,             // 设置上传文件的时候是否每次都重新获取新的uptoken
-                // downtoken_url: '/downtoken',
-                // Ajax请求downToken的Url，私有空间时使用，JS-SDK将向该地址POST文件的key和domain，服务端返回的JSON必须包含url字段，url值为该文件的下载地址
-                // unique_names: true,              // 默认false，key为文件名。若开启该选项，JS-SDK会为每个文件自动生成key（文件名）
-                // save_key: true,                  // 默认false。若在服务端生成uptoken的上传策略中指定了sava_key，则开启，SDK在前端将不对key进行任何处理
-                domain: 'chaoqian',     // bucket域名，下载资源时用到，必需
-                container: 'qiniu-upload-test-container',             // 上传区域DOM ID，默认是browser_button的父元素
-                max_file_size: '100mb',             // 最大文件体积限制
-                max_retries: 3,                     // 上传失败最大重试次数
-                // dragdrop: true,                     // 开启可拖曳上传
-                drop_element: 'qiniu-upload-test-container',          // 拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
-                chunk_size: '4mb',                  // 分块上传时，每块的体积
-                auto_start: true,                   // 选择文件后自动上传，若关闭需要自己绑定事件触发上传
-                //x_vars : {
-                //    查看自定义变量
-                //    'time' : function(up,file) {
-                //        var time = (new Date()).getTime();
-                // do something with 'time'
-                //        return time;
-                //    },
-                //    'size' : function(up,file) {
-                //        var size = file.size;
-                // do something with 'size'
-                //        return size;
-                //    }
-                //},
-                init: {
-                    'FilesAdded': function (up, files) {
-                        plupload.each(files, function (file) {
-                            console.log(file);
-                            // 文件添加进队列后，处理相关的事情
-                        });
-                    },
-                    'BeforeUpload': function (up, file) {
-                        // 每个文件上传前，处理相关的事情
-                    },
-                    'UploadProgress': function (up, file) {
-                        // 每个文件上传时，处理相关的事情
-                    },
-                    'FileUploaded': function (up, file, info) {
-                        if (info.response) {
-                            console.log(btnId);
-                            callback(JSON.parse(info.response));
-                        }
-                        else {
-                            callback('upload error');
-                        }
-                        // 每个文件上传成功后，处理相关的事情
-                        // 其中info是文件上传成功后，服务端返回的json，形式如：
-                        // {
-                        //    "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
-                        //    "key": "gogopher.jpg"
-                        //  }
-                        // 查看简单反馈
-                        // var domain = up.getOption('domain');
-                        // var res = parseJSON(info);
-                        // var sourceLink = domain +"/"+ res.key; 获取上传成功后的文件的Url
-                    },
-                    'Error': function (up, err, errTip) {
-                        console.log(up);
-                        console.log(err);
-                        console.log(errTip);
-                        //上传出错时，处理相关的事情
-                    },
-                    'UploadComplete': function () {
-                        //队列文件处理完毕后，处理相关的事情
-                    },
-                    // 'Key': function(up, file) {
-                    //     // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
-                    //     // 该配置必须要在unique_names: false，save_key: false时才生效
-                    //     var key = "";
-                    //     // do something with key here
-                    //     return key
-                    // }
-                }
+  function () {
+    function createUploader(btnId, callback) {
+      var Qiniu = new QiniuJsSDK();
+      var uploader = Qiniu.uploader({
+        runtimes: 'html5,flash,html4',      // 上传模式，依次退化
+        browse_button: btnId,         // 上传选择的点选按钮，必需
+        // 在初始化时，uptoken，uptoken_url，uptoken_func三个参数中必须有一个被设置
+        // 切如果提供了多个，其优先级为uptoken > uptoken_url > uptoken_func
+        // 其中uptoken是直接提供上传凭证，uptoken_url是提供了获取上传凭证的地址，如果需要定制获取uptoken的过程则可以设置uptoken_func
+        // uptoken : '<Your upload token>', // uptoken是上传凭证，由其他程序生成
+        uptoken_url: '/api_token/qiniu/uptoken',         // Ajax请求uptoken的Url，强烈建议设置（服务端提供）
+        // uptoken_func: function (data) {    // 在需要获取uptoken时，该方法会被调用
+        //     // do something
+        //     return uptoken;
+        // },
+        get_new_uptoken: false,             // 设置上传文件的时候是否每次都重新获取新的uptoken
+        // downtoken_url: '/downtoken',
+        // Ajax请求downToken的Url，私有空间时使用，JS-SDK将向该地址POST文件的key和domain，服务端返回的JSON必须包含url字段，url值为该文件的下载地址
+        unique_names: true,              // 默认false，key为文件名。若开启该选项，JS-SDK会为每个文件自动生成key（文件名）
+        // save_key: true,                  // 默认false。若在服务端生成uptoken的上传策略中指定了sava_key，则开启，SDK在前端将不对key进行任何处理
+        domain: 'chaoqian',     // bucket域名，下载资源时用到，必需
+        container: 'qiniu-upload-test-container',             // 上传区域DOM ID，默认是browser_button的父元素
+        max_file_size: '100mb',             // 最大文件体积限制
+        max_retries: 3,                     // 上传失败最大重试次数
+        // dragdrop: true,                     // 开启可拖曳上传
+        drop_element: 'qiniu-upload-test-container',          // 拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
+        chunk_size: '4mb',                  // 分块上传时，每块的体积
+        auto_start: true,                   // 选择文件后自动上传，若关闭需要自己绑定事件触发上传
+        //x_vars : {
+        //    查看自定义变量
+        //    'time' : function(up,file) {
+        //        var time = (new Date()).getTime();
+        // do something with 'time'
+        //        return time;
+        //    },
+        //    'size' : function(up,file) {
+        //        var size = file.size;
+        // do something with 'size'
+        //        return size;
+        //    }
+        //},
+        init: {
+          'FilesAdded': function (up, files) {
+            plupload.each(files, function (file) {
+              console.log(file);
+              // 文件添加进队列后，处理相关的事情
             });
-
-        }
-        return {
-            createUploader: createUploader,
-            getQiniuImageSrc: function (key) {
-                return 'http://ouv4j9a7a.bkt.clouddn.com/' + key;
+          },
+          'BeforeUpload': function (up, file) {
+            // 每个文件上传前，处理相关的事情
+          },
+          'UploadProgress': function (up, file) {
+            // 每个文件上传时，处理相关的事情
+          },
+          'FileUploaded': function (up, file, info) {
+            if (info.response) {
+              console.log(btnId);
+              callback(JSON.parse(info.response));
             }
+            else {
+              callback('upload error');
+            }
+            // 每个文件上传成功后，处理相关的事情
+            // 其中info是文件上传成功后，服务端返回的json，形式如：
+            // {
+            //    "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
+            //    "key": "gogopher.jpg"
+            //  }
+            // 查看简单反馈
+            // var domain = up.getOption('domain');
+            // var res = parseJSON(info);
+            // var sourceLink = domain +"/"+ res.key; 获取上传成功后的文件的Url
+          },
+          'Error': function (up, err, errTip) {
+            console.log(up);
+            console.log(err);
+            console.log(errTip);
+            //上传出错时，处理相关的事情
+          },
+          'UploadComplete': function () {
+            //队列文件处理完毕后，处理相关的事情
+          },
+          // 'Key': function(up, file) {
+          //     // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
+          //     // 该配置必须要在unique_names: false，save_key: false时才生效
+          //     var key = "";
+          //     // do something with key here
+          //     return key
+          // }
         }
+      });
 
-    }]);
+    }
+    return {
+      createUploader: createUploader,
+      getQiniuImageSrc: function (key) {
+        return 'http://p3tm0tvs2.bkt.clouddn.com/' + key;
+      }
+    }
+
+  }]);
 
 'use strict';
 
@@ -1157,9 +1163,47 @@ cSite.controller('PaymentListController', [
 'use strict';
 
 cSite.controller('PurchasesDetailController', [
-  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav',
-  function ($rootScope, $scope, $state, $stateParams, $mdSidenav) {
-   
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', '$timeout', 'UserNetwork', 'QiniuService', 'CommonHelper',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, $timeout, UserNetwork, QiniuService, CommonHelper) {
+    var photos = [];
+    var qiniu = QiniuService.createUploader('qiniu-upload-test-button', function (info) {
+      $timeout(function () {
+        $scope.pageConfig.detail.photos = $scope.pageConfig.detail.photos || [];
+        $scope.pageConfig.detail.photos.push(QiniuService.getQiniuImageSrc(info.key))
+      });
+      console.log('upload successs : ---- ', info);
+    });
+    var pageConfig = {
+      detail_id: $stateParams.detail_id,
+      detail: {},
+      save_photos: function () {
+        UserNetwork.market_save_photos($scope, { model_string: 'Purchases', detail_id: pageConfig.detail_id, photos: pageConfig.detail.photos }).then(function (data) {
+          // UserNetwork.market_save_photos($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id, photos: photos }).then(function (data) {
+          if (!data.err) {
+            CommonHelper.showConfirm($scope, null, '操作成功', function () {
+              $state.go('purchases_detail', null, { reload: true });
+            }, null, null, event);
+          }
+          console.log(data);
+        });
+      },
+      delete_photo: function (photo) {
+        var index = pageConfig.detail.photos.indexOf(photo);
+        if (index !== -1) {
+          pageConfig.detail.photos.splice(index, 1);
+        }
+      },
+      get_detail: function () {
+        UserNetwork.market_detail($scope, { model_string: 'Purchases', detail_id: pageConfig.detail_id }).then(function (data) {
+          console.log(data);
+          if (!data.err) {
+            pageConfig.detail = data || {};
+          }
+        });
+      }
+    };
+    $scope.pageConfig = pageConfig;
+    pageConfig.get_detail();
   }]);
 
 /**
@@ -1221,6 +1265,9 @@ cSite.controller('PurchasesListController', [
           ]
         ];
         ExcelService.saveExcelFile('采购导入模版.xlsx', [{ data: rows, name: 'sheet1' }]);
+      },
+      go_detail: function (item) {
+        $state.go('purchases_detail', { detail_id: item._id });
       },
       get_list: function (next) {
         next = next || 'next';
@@ -1323,9 +1370,47 @@ cSite.controller('PurchasesListController', [
 'use strict';
 
 cSite.controller('SupplyDetailController', [
-  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav',
-  function ($rootScope, $scope, $state, $stateParams, $mdSidenav) {
-
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', '$timeout', 'UserNetwork', 'QiniuService', 'CommonHelper',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, $timeout, UserNetwork, QiniuService, CommonHelper) {
+    var photos = [];
+    var qiniu = QiniuService.createUploader('qiniu-upload-test-button', function (info) {
+      $timeout(function () {
+        $scope.pageConfig.detail.photos = $scope.pageConfig.detail.photos || [];
+        $scope.pageConfig.detail.photos.push(QiniuService.getQiniuImageSrc(info.key))
+      });
+      console.log('upload successs : ---- ', info);
+    });
+    var pageConfig = {
+      detail_id: $stateParams.detail_id,
+      detail: {},
+      save_photos: function () {
+        UserNetwork.market_save_photos($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id, photos: pageConfig.detail.photos }).then(function (data) {
+          // UserNetwork.market_save_photos($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id, photos: photos }).then(function (data) {
+          if (!data.err) {
+            CommonHelper.showConfirm($scope, null, '操作成功', function () {
+              $state.go('supply_detail', null, { reload: true });
+            }, null, null, event);
+          }
+          console.log(data);
+        });
+      },
+      delete_photo: function (photo) {
+        var index = pageConfig.detail.photos.indexOf(photo);
+        if (index !== -1) {
+          pageConfig.detail.photos.splice(index, 1);
+        }
+      },
+      get_detail: function () {
+        UserNetwork.market_detail($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id }).then(function (data) {
+          console.log(data);
+          if (!data.err) {
+            pageConfig.detail = data || {};
+          }
+        });
+      }
+    };
+    $scope.pageConfig = pageConfig;
+    pageConfig.get_detail();
   }]);
 
 /**
@@ -1334,8 +1419,8 @@ cSite.controller('SupplyDetailController', [
 'use strict';
 
 cSite.controller('SupplyListController', [
-  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'UserNetwork',
-  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, UserNetwork) {
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'UserNetwork', 'ExcelService',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, UserNetwork, ExcelService) {
     var pageConfig = {
       count: 0,
       title: '供应信息列表',
@@ -1358,7 +1443,9 @@ cSite.controller('SupplyListController', [
         '发货地址市',
         '货品描述',
         '服务方式',
-        '电话'
+        '电话',
+        '角色',
+        '角色名称'
       ],
       download_template: function () {
         var rows = [
@@ -1376,9 +1463,15 @@ cSite.controller('SupplyListController', [
             '成都',
             '货物说明',
             '基地直供|产地代办',
-            '1333333333']
+            '1333333333',
+            '种植户',
+            '角色名称'
+          ]
         ];
         ExcelService.saveExcelFile('供应导入模版.xlsx', [{ data: rows, name: 'sheet1' }]);
+      },
+      go_detail: function (item) {
+        $state.go('supply_detail', { detail_id: item._id });
       },
       get_list: function (next) {
         next = next || 'next';
@@ -1407,7 +1500,7 @@ cSite.controller('SupplyListController', [
         return moment(date).format('YYYY-MM-DD');
       },
       import: function (list) {
-        UserNetwork.market_purchases_import($scope, { list: list }).then(function (data) {
+        UserNetwork.supply_import($scope, { list: list }).then(function (data) {
           console.log(data);
           if (data && !data.err) {
             pageConfig.last_item = {};
@@ -1445,10 +1538,22 @@ cSite.controller('SupplyListController', [
               for (var i = 0, l = data.length; i < l; i++) {
                 row = data[i];
                 var newData = {};
-                newData.market = row[tableHeaderList[0]];
-                newData.main_goods = row[tableHeaderList[1]];
-                newData.price = row[tableHeaderList[2]];
-                newData.day = row[tableHeaderList[3]];
+                newData.goods_class = row[tableHeaderList[0]];
+                newData.goods_category = row[tableHeaderList[1]];
+                newData.goods_brand = row[tableHeaderList[2]];
+                newData.goods_specs = row[tableHeaderList[3]];
+                newData.is_cash_goods = row[tableHeaderList[4]];
+                newData.undercarriage_time = row[tableHeaderList[5]];
+                newData.price = row[tableHeaderList[6]];
+                newData.price_unit = row[tableHeaderList[7]];
+                newData.min_count = row[tableHeaderList[8]];
+                newData.send_province = row[tableHeaderList[9]];
+                newData.send_city = row[tableHeaderList[10]];
+                newData.remark = row[tableHeaderList[11]];
+                newData.provide_services_string = row[tableHeaderList[12]];
+                newData.mobile_phone = row[tableHeaderList[13]];
+                newData.role = row[tableHeaderList[14]];
+                newData.nickname = row[tableHeaderList[15]];
                 readList.push(newData);
               }
               console.log(readList);

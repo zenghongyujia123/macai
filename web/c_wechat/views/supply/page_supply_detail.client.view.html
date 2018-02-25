@@ -36,10 +36,10 @@
     </div>
     <div class="detail-content">
       <div class="name">
-        <%= (supply.goods_name||'-') %>
+        <%= ((supply.goods_class + supply.goods_category + supply.goods_brand) ||'-') %>
       </div>
       <div class="address">
-        <%= (supply.send_address||'-') %>
+        <%= (( supply.send_province + supply.send_city )||'-') %>
       </div>
       <div class="price">
         <%= (supply.price||'-') %>
@@ -57,7 +57,6 @@
           <i class="weui-icon-info-circle"></i>
           <%= (supply.provide_services[i]||'-') %>
         </span>
-
         <%  } %>
     </div>
     <div class="detail-content">

@@ -9,6 +9,12 @@ cSite.factory('UserNetwork',
         market_list: function (scope, params) {
           return Http.postRequestWithCheck(scope, '/api_backend/market_list', params);
         },
+        market_detail: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/market_detail', params);
+        },
+        market_save_photos: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/market_save_photos', params);
+        },
         market_supply_import: function (scope, params) {
           return Http.postRequestWithCheck(scope, '/api_backend/market_supply_import', params);
         },

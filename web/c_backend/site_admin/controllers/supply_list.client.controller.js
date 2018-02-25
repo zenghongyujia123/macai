@@ -4,8 +4,8 @@
 'use strict';
 
 cSite.controller('SupplyListController', [
-  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'UserNetwork',
-  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, UserNetwork) {
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'UserNetwork', 'ExcelService',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, UserNetwork, ExcelService) {
     var pageConfig = {
       count: 0,
       title: '供应信息列表',
@@ -28,7 +28,9 @@ cSite.controller('SupplyListController', [
         '发货地址市',
         '货品描述',
         '服务方式',
-        '电话'
+        '电话',
+        '角色',
+        '角色名称'
       ],
       download_template: function () {
         var rows = [
@@ -46,9 +48,15 @@ cSite.controller('SupplyListController', [
             '成都',
             '货物说明',
             '基地直供|产地代办',
-            '1333333333']
+            '1333333333',
+            '种植户',
+            '角色名称'
+          ]
         ];
         ExcelService.saveExcelFile('供应导入模版.xlsx', [{ data: rows, name: 'sheet1' }]);
+      },
+      go_detail: function (item) {
+        $state.go('supply_detail', { detail_id: item._id });
       },
       get_list: function (next) {
         next = next || 'next';
@@ -77,7 +85,7 @@ cSite.controller('SupplyListController', [
         return moment(date).format('YYYY-MM-DD');
       },
       import: function (list) {
-        UserNetwork.market_purchases_import($scope, { list: list }).then(function (data) {
+        UserNetwork.supply_import($scope, { list: list }).then(function (data) {
           console.log(data);
           if (data && !data.err) {
             pageConfig.last_item = {};
@@ -115,10 +123,22 @@ cSite.controller('SupplyListController', [
               for (var i = 0, l = data.length; i < l; i++) {
                 row = data[i];
                 var newData = {};
-                newData.market = row[tableHeaderList[0]];
-                newData.main_goods = row[tableHeaderList[1]];
-                newData.price = row[tableHeaderList[2]];
-                newData.day = row[tableHeaderList[3]];
+                newData.goods_class = row[tableHeaderList[0]];
+                newData.goods_category = row[tableHeaderList[1]];
+                newData.goods_brand = row[tableHeaderList[2]];
+                newData.goods_specs = row[tableHeaderList[3]];
+                newData.is_cash_goods = row[tableHeaderList[4]];
+                newData.undercarriage_time = row[tableHeaderList[5]];
+                newData.price = row[tableHeaderList[6]];
+                newData.price_unit = row[tableHeaderList[7]];
+                newData.min_count = row[tableHeaderList[8]];
+                newData.send_province = row[tableHeaderList[9]];
+                newData.send_city = row[tableHeaderList[10]];
+                newData.remark = row[tableHeaderList[11]];
+                newData.provide_services_string = row[tableHeaderList[12]];
+                newData.mobile_phone = row[tableHeaderList[13]];
+                newData.role = row[tableHeaderList[14]];
+                newData.nickname = row[tableHeaderList[15]];
                 readList.push(newData);
               }
               console.log(readList);

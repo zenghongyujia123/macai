@@ -135,9 +135,9 @@ $(function () {
           '    <img class="weui-media-box__thumb" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516813447292&di=5f4eaade66c430dd3a958c2cfac95425&imgtype=0&src=http%3A%2F%2Fpic32.photophoto.cn%2F20140821%2F0006019010973602_b.jpg">' +
           '  </div>' +
           '  <div class="weui-media-box__bd">' +
-          '    <div class="title1">' + item.goods_name +
+          '    <div class="title1">' + item.goods_class + item.goods_category + item.goods_brand +
           '    </div>' +
-          '    <div class="title2">' + item.send_address + ' 张先生</div>' +
+          '    <div class="title2">' + item.send_province + item.send_city + ' 张先生</div>' +
           '    <span class="tag blue">实地认证</span>' +
           '    <span class="tag orange">企业</span>' +
           '    <div class="item-bottom">' +

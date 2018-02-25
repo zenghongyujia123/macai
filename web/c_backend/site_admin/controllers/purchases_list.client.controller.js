@@ -58,6 +58,9 @@ cSite.controller('PurchasesListController', [
         ];
         ExcelService.saveExcelFile('采购导入模版.xlsx', [{ data: rows, name: 'sheet1' }]);
       },
+      go_detail: function (item) {
+        $state.go('purchases_detail', { detail_id: item._id });
+      },
       get_list: function (next) {
         next = next || 'next';
         UserNetwork.market_list($scope, { next: next, last_item: pageConfig.last_item, model_string: 'Purchases' }).then(function (data) {

@@ -1,0 +1,791 @@
+/**
+ * Created by louisha on 15/10/10.
+ */
+
+body {
+  color: #666666;
+  font-family: '微软雅黑', "华文细黑", "HanHei SC", "PingHei", "PingFang SC", "STHeitiSC-Light", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-size: 13px;
+}
+
+body input,
+body button,
+body textarea {
+  outline: none;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+}
+
+.page-back {
+  width: 18px;
+  height: 18px;
+  border: none;
+  padding: 0;
+  background: url("/supports/images/arrow_left_white.png") no-repeat center center;
+  vertical-align: middle;
+  margin-top: -4px;
+}
+
+.page-back:active {
+  background: url("/supports/images/arrow_left_white.png") no-repeat center center;
+}
+
+.title-span {
+  margin-left: 5px;
+}
+
+.amap-copyright,
+.amap-logo {
+  display: none;
+}
+
+.amap-info-window {
+  min-width: 100px;
+}
+
+.amap-info-window .amap-info-window-content {
+  width: 100%;
+  padding: 8px !important;
+  border-radius: 5px;
+  border: 1px solid #303030;
+  background: #4a4a4a;
+  font-size: 13px;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  word-break: break-all;
+}
+
+.amap-info-window .amap-info-window-bottom {
+  position: relative;
+  margin: 0 auto !important;
+  text-align: center;
+}
+
+.amap-info-window .amap-info-window-bottom img {
+  margin-top: -13px !important;
+}
+
+.amap-info-window .selected {
+  background: #4a4a4a;
+  color: #fff;
+}
+
+.row {
+  margin: 0;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #cccccc;
+  font-weight: 400;
+}
+
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+  color: #cccccc;
+  font-weight: 400;
+}
+
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: #cccccc;
+  font-weight: 400;
+}
+
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: #cccccc;
+  font-weight: 400;
+}
+
+.z-select-box {
+  position: relative;
+  cursor: pointer;
+  border: 1px solid #D7D7D7;
+  padding: 7px 33px 7px 15px;
+}
+
+.z-select-box .z-select-panel {
+  position: absolute;
+  top: 101%;
+  left: -1px;
+  right: -1px;
+  z-index: 10;
+  padding: 0;
+  background: #fff;
+  overflow: hidden;
+}
+
+.z-select-box .z-select-ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #D7D7D7;
+}
+
+.z-select-box .z-select-ul li {
+  width: 100%;
+  padding: 6px 15px;
+  cursor: pointer;
+}
+
+.z-select-box .z-select-ul li a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: #666666;
+  border-bottom: 1px solid #D7D7D7;
+}
+
+.z-select-box .z-select-ul li i {
+  float: right;
+  color: inherit;
+}
+
+.z-select-box .z-select-ul li:hover {
+  background: #33A2CF;
+  color: #ffffff;
+}
+
+.z-select-box.disabled {
+  cursor: default;
+  color: #5B6A7D;
+  background-color: #f2f2f2;
+}
+
+.z-page-top {
+  width: 100%;
+  padding: 60px 30px 0 30px;
+  height: 110px;
+  background-color: #FBFBFB;
+  overflow: hidden;
+  border-bottom: 1px solid #D7D7D7;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  z-index: 990;
+  background: -ms-linear-gradient(top, #ffffff, #FBFBFB);
+  /* IE 10 */
+  background: -moz-linear-gradient(top, #ffffff, #FBFBFB);
+  /*火狐*/
+  /*谷歌*/
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff), to(#FBFBFB));
+  /* Safari 4-5, Chrome 1-9*/
+  background: -webkit-linear-gradient(top, #ffffff, #FBFBFB);
+  /*Safari5.1 Chrome 10+*/
+  background: -o-linear-gradient(top, #ffffff, #FBFBFB);
+  /*Opera 11.10+*/
+}
+
+.z-page-top .title {
+  font-size: 18px;
+  color: #333333;
+}
+
+.z-page-top .title .page-back-icon {
+  border: none;
+  width: 18px;
+  height: 18px;
+  margin-top: -3px;
+  vertical-align: middle;
+  background: url('/supports/images/arrow_left_black.png') no-repeat center center;
+}
+
+.z-page-top .title .page-back-icon:active {
+  background: url("/supports/images/arrow_left_black_active.png") no-repeat center center;
+}
+
+.z-page-top .title .left {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.z-page-top .title .title-span {
+  line-height: 50px;
+  cursor: pointer;
+}
+
+.z-page-top .title div {
+  padding: 0;
+}
+
+.z-page-top .title .right {
+  text-align: right;
+}
+
+.z-panel {
+  background-color: #fff;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
+  padding: 0 20px 20px 20px;
+  min-height: 500px;
+}
+
+.z-panel .z-panel-header {
+  border-bottom: 1px solid #e0e0e0;
+  height: 65px !important;
+  padding: 0;
+}
+
+.z-panel .z-panel-header>div {
+  line-height: 65px;
+  height: 100%;
+  color: #333;
+  font-size: 18px;
+}
+
+.z-panel .z-panel-header>div:nth-child(1) {
+  padding-left: 0;
+}
+
+.z-panel .z-panel-header .z-header-button {
+  display: inline-block;
+  overflow: hidden;
+  float: right;
+  width: 70px;
+  height: 65px;
+  line-height: 65px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.z-panel .z-panel-header .z-header-button span {
+  margin-left: 5px;
+  font-size: 14px;
+  color: #00a8f7;
+}
+
+.z-panel .z-panel-header .z-header-button:hover span {
+  color: #0085c4;
+}
+
+.z-panel .row {
+  height: 40px;
+  line-height: 40px;
+  color: #808080;
+}
+
+.z-panel .row>* {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.z-panel .row .dark {
+  color: #333;
+}
+
+.z-panel .z-panel-body {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  mim-height: 500px;
+  max-height: 600px;
+}
+
+.z-panel .z-panel-body .z-panel-body-header {
+  position: absolute;
+  width: 100%;
+  height: 55px;
+  background: #fff;
+  border-bottom: 3px solid #e0e0e0;
+  line-height: 55px;
+  font-size: 15px;
+}
+
+.z-panel .z-panel-body .z-panel-body-content {
+  margin-top: 55px;
+  mim-height: 445px;
+  max-height: 545px;
+  overflow: auto;
+  font-size: 14px;
+}
+
+.z-panel .z-panel-body .z-panel-body-content .row {
+  border-bottom: 1px solid #e0e0e0;
+  height: 60px;
+  line-height: 60px;
+  cursor: pointer;
+}
+
+.z-panel .z-panel-body .z-panel-body-content .row:hover {
+  background: #fafafa;
+}
+
+.z-panel .z-panel-body .z-panel-body-content .row:hover .handle {
+  visibility: visible;
+}
+
+.z-panel .z-panel-body .z-panel-body-content .row .handle {
+  visibility: hidden;
+}
+
+.z-panel .z-panel-body .z-panel-body-content .row .handle span {
+  display: inline-block;
+  float: left;
+  overflow: hidden;
+  width: 20px;
+  height: 20px;
+}
+
+.z-panel .z-panel-body .z-panel-body-content .row .handle span.delete {
+  background: url('/supports/images/delete_dustbin.png') center center no-repeat;
+}
+
+.z-panel .z-panel-body .z-panel-body-content .row .handle span.delete:hover {
+  background: url('/supports/images/delete_dustbin_hover.png') center center no-repeat;
+}
+
+.z-panel .z-panel-body .load-more {
+  margin: 10px auto;
+  width: 100%;
+  height: 30px;
+  background: #fafafa;
+  color: #808080;
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.z-pop-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.new-index-view {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: url("/resource_image/mengniu/entrance/login_page_background.png") no-repeat center center;
+  background-size: cover;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.new-index-view .manage-login-form {
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  max-width: 500px;
+  max-height: 310px;
+}
+
+.new-index-view .manage-login-form .form-container {
+  padding: 40px;
+  height: 100%;
+  border: 1px solid #e4e4e4;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
+}
+
+.new-index-view .manage-login-form .form-container .input-div {
+  position: relative;
+  margin-bottom: 20px;
+  height: 50px;
+  font-size: 16px;
+}
+
+.new-index-view .manage-login-form .form-container .input-div input {
+  padding: 20px;
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 5px;
+}
+
+.new-index-view .manage-login-form .form-container .input-div .username-list {
+  position: absolute;
+  z-index: 10;
+  display: none;
+  margin-top: 5px;
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 3px;
+  background-color: #fff;
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.5);
+}
+
+.new-index-view .manage-login-form .form-container .input-div .username-list .list-item {
+  list-style: none;
+  padding: 0 12px;
+  height: 40px;
+  line-height: 40px;
+  cursor: pointer;
+}
+
+.new-index-view .manage-login-form .form-container .input-div .username-list .list-item:hover,
+.new-index-view .manage-login-form .form-container .input-div .username-list .list-item.select {
+  background-color: #f0f0f0;
+}
+
+.new-index-view .manage-login-form .form-container .submit button {
+  width: 100%;
+  background-color: #01a74a;
+  height: 50px;
+  line-height: 44px;
+  text-align: center;
+  color: #ffffff;
+  border: none;
+  font-size: 16px;
+  border-radius: 3px;
+}
+
+.new-index-view .manage-login-form .form-container .submit button:hover {
+  background-color: #34b96e;
+}
+
+.new-index-view .manage-login-form .form-container .submit button:active {
+  background-color: #34b96e;
+}
+
+.new-index-view .manage-login-form .error-tip {
+  margin: 3px 0 0 0;
+  width: 100%;
+  height: 25px;
+  line-height: 25px;
+  color: #ff6666;
+  word-break: break-all;
+}
+
+.new-index-header {
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+}
+
+.new-index-header.philippines .header-content .operation .page-entrance .price {
+  display: none;
+}
+
+.new-index-header.philippines .menus .list .price,
+.new-index-header.philippines .mengniu-app {
+  display: none;
+}
+
+.new-index-header.philippines .download-professional-app-china {
+  display: none;
+}
+
+.new-index-header.china .menus .list .mengniu-app {
+  display: none;
+}
+
+.new-index-header.china .download-professional-app-inter {
+  display: none;
+}
+
+.new-index-header.mengniu .header-mask {
+  opacity: 0.8;
+}
+
+.new-index-header.mengniu .download-professional-app-inter {
+  display: none;
+}
+
+.new-index-header.mengniu .menus .list .deliveryman-app {
+  display: none;
+}
+
+.new-index-header.mengniu .menus .list .mengniu-app {
+  display: block;
+}
+
+.new-index-header .header-mask {
+  position: absolute;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 9px 19px 0 rgba(94, 104, 119, 0.2);
+}
+
+.new-index-header .header-content {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  padding: 0 23px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.new-index-header .header-content .logo {
+  float: left;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.new-index-header .header-content .operation {
+  float: right;
+  font-size: 14px;
+}
+
+.new-index-header .header-content .operation .drop-select-box {
+  z-index: 1;
+  width: 100px;
+  float: right;
+  overflow: hidden;
+  padding: 20px 0;
+}
+
+.new-index-header .header-content .operation .drop-select-box .current {
+  padding: 0 12px;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  border: 1px solid #4CAF50;
+  border-radius: 2px;
+  color: #4CAF50;
+  background-position: 73px center;
+  background-repeat: no-repeat;
+  background-size: 8px 5px;
+  cursor: pointer;
+  background-image: url('/agilepops_entrance/images/new_index/select_arrow.png');
+}
+
+.new-index-header .header-content .operation .drop-select-box .current:hover {
+  border: 1px solid #2E7D32;
+  color: #2E7D32;
+}
+
+.new-index-header .header-content .operation .drop-select-box .list {
+  display: none;
+  margin-top: 10px;
+  border: 1px #eeeeee solid;
+  border-radius: 2px;
+  padding: 10px 0;
+  background-color: #fff;
+}
+
+.new-index-header .header-content .operation .drop-select-box .list .list-item {
+  list-style: none;
+  padding: 0 12px;
+  height: 40px;
+  line-height: 40px;
+  cursor: pointer;
+}
+
+.new-index-header .header-content .operation .drop-select-box .list .list-item:hover,
+.new-index-header .header-content .operation .drop-select-box .list .list-item.select {
+  background-color: #f0f0f0;
+}
+
+.new-index-header .header-content .operation .drop-select-box.language {
+  margin-right: 20px;
+}
+
+.new-index-header .header-content .operation .page-entrance {
+  float: right;
+  height: 80px;
+}
+
+.new-index-header .header-content .operation .page-entrance .entrance {
+  width: 80px;
+  float: right;
+  line-height: 80px;
+  cursor: pointer;
+}
+
+.new-index-header .header-content .operation .page-entrance .entrance p {
+  color: #000;
+  text-align: center;
+  height: 75px;
+  padding: 0;
+  margin: 0;
+}
+
+.new-index-header .header-content .operation .page-entrance .entrance:hover .tab-line {
+  visibility: visible;
+}
+
+.new-index-header .header-content .operation .page-entrance .entrance .tab-line {
+  visibility: hidden;
+  width: 64px;
+  height: 3px;
+  margin: 2px auto 0;
+  background-color: #2196F3;
+}
+
+.new-index-header .header-content .split-line {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 1px;
+  background-color: #E0E1D7;
+}
+
+.new-index-header .header-content .menus-button {
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  float: right;
+  background: url("/agilepops_entrance/images/new_index/menu_0.png") no-repeat;
+  margin-top: 13px;
+}
+
+.new-index-header .header-content .menus-button:active {
+  background: url("/agilepops_entrance/images/new_index/menu_1.png") no-repeat;
+}
+
+.new-index-header .header-content .menus {
+  position: fixed;
+  display: none;
+  width: 100%;
+  top: 65px;
+  left: 0;
+  border-top: 1px solid #D4D5D6;
+}
+
+.new-index-header .header-content .menus .list {
+  padding: 0;
+  margin: 0;
+  border-radius: 2px;
+  background-color: #fff;
+}
+
+.new-index-header .header-content .menus .list li {
+  border-bottom: 1px solid #E0E1D7;
+}
+
+.new-index-header .header-content .menus .list .list-item {
+  list-style: none;
+  text-align: center;
+  height: 60px;
+  line-height: 60px;
+  cursor: pointer;
+}
+
+.new-index-header .header-content .menus .list .list-item:hover,
+.new-index-header .header-content .menus .list .list-item.select {
+  background-color: #ebebeb;
+}
+
+.new-index-header .header-content .download-professional-app-inter {
+  float: right;
+  width: 97px;
+  height: 40px;
+  margin-top: 13px;
+  margin-right: 20px;
+  background: url("/agilepops_entrance/images/new_index/professional_download_app_en.png") no-repeat;
+  background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+}
+
+.new-index-header .header-content .download-professional-app-china {
+  float: right;
+  width: 97px;
+  height: 40px;
+  margin-top: 13px;
+  margin-right: 20px;
+  background: url("/agilepops_entrance/images/new_index/professional_download_app_cn.png") no-repeat;
+  background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+}
+
+.new-index-header .header-content .download-mengniu-app-china {
+  float: right;
+  cursor: pointer;
+  color: #01a74a;
+}
+
+@media (min-width: 1200px) {
+  .header-mask {
+    height: 80px;
+  }
+  .header-content {
+    height: 80px;
+  }
+  .header-content .logo,
+  .header-content .download-mengniu-app-china {
+    height: 80px;
+    line-height: 80px;
+  }
+  .header-content .menus-button {
+    display: none;
+  }
+  .header-content .download-professional-app-inter {
+    display: none;
+  }
+  .header-content .download-professional-app-china {
+    display: none;
+  }
+  .header-content .split-line {
+    top: 79px;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+  .header-mask {
+    height: 80px;
+  }
+  .header-content {
+    height: 80px;
+  }
+  .header-content .logo,
+  .header-content .download-mengniu-app-china {
+    height: 80px;
+    line-height: 80px;
+  }
+  .header-content .menus-button {
+    display: none;
+  }
+  .header-content .download-professional-app-inter {
+    display: none;
+  }
+  .header-content .download-professional-app-china {
+    display: none;
+  }
+  .header-content .split-line {
+    top: 79px;
+  }
+}
+
+@media (max-width: 992px) {
+  .header-mask {
+    height: 66px;
+  }
+  .header-content {
+    height: 66px;
+    padding: 0;
+  }
+  .header-content .logo,
+  .header-content .download-mengniu-app-china {
+    height: 66px;
+    line-height: 66px;
+  }
+  .header-content .menus-button {
+    display: block;
+  }
+  .header-content .download-professional-app-inter {
+    display: block;
+  }
+  .header-content .download-professional-app-china {
+    display: block;
+  }
+  .header-content .drop-select-box {
+    display: none;
+  }
+  .header-content .page-entrance {
+    display: none;
+  }
+  .header-content .split-line {
+    top: 65px;
+  }
+}

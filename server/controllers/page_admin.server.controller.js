@@ -9,3 +9,9 @@ exports.index = function (req, res, next) {
   console.log(filepath);
   return res.sendFile(filepath);
 };
+
+exports.site = function (req, res, next) {
+  var filepath = path.join(__dirname, '../../web/c_site/views/index.client.view.html');
+  console.log(filepath);
+  return res.sendFile(filepath);
+};

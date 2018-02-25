@@ -49,9 +49,12 @@ exports.import = function (user, infos, callback) {
 function create_supply(user, info, callback) {
   var supply = new Supply({
     unpassed_reason: info.unpassed_reason || '',
-    user: user._id,
-    mobile_phone: user.username,
+    // user: user._id,
+    role: info.role,
+    mobile_phone: info.mobile_phone,
+    nickname: info.nickname,
     goods_name: info.goods_name,
+    goods_class: info.goods_class,
     goods_category: info.goods_category,
     goods_brand: info.goods_brand,
     goods_specs: info.goods_specs,
@@ -65,7 +68,8 @@ function create_supply(user, info, callback) {
     send_city: info.send_city,
     send_district: info.send_district,
     send_address: info.send_address,
-    provide_services: info.provide_services.split(','),
+    provide_services: info.provide_services_string.split('|'),
+    provide_services_string: info.provide_services_string,
     photos: info.photos,
   });
   supply.save(function (err, result) {

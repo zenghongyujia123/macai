@@ -116,9 +116,9 @@ module.exports = function (appDb) {
     mobile_phone: {
       type: String
     },
-    photos: {
+    photos: [{
       type: String
-    },
+    }],
     remark: {
       type: String
     },
@@ -153,6 +153,9 @@ module.exports = function (appDb) {
     browse_count: {
       type: Number,
       default: 0
+    },
+    goods_class: {
+      type: String
     },
     goods_name: {
       type: String
@@ -200,13 +203,22 @@ module.exports = function (appDb) {
       type: String
     },
     provide_services: [{ type: String }],
+    provide_services_string: {
+      type: String
+    },
     mobile_phone: {
       type: String
     },
-    photos: {
+    photos: [{
+      type: String
+    }],
+    remark: {
       type: String
     },
-    remark: {
+    role: {
+      type: String
+    },
+    nickname: {
       type: String
     }
   });
