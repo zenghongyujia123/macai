@@ -74,6 +74,7 @@ module.exports = function (appDb) {
     goods_specs: {
       type: String
     },
+    goods_specs_list: [],
     need_number: {
       type: String
     },
@@ -169,6 +170,7 @@ module.exports = function (appDb) {
     goods_specs: {
       type: String
     },
+    goods_specs_list: [],
     is_cash_goods: {
       type: Boolean
     },

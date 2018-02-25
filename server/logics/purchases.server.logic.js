@@ -72,6 +72,41 @@ function create_purchases(user, info, callback) {
     photos: info.photos || [],
   });
 
+  var goods_specs_list = [];
+  if (info.goods_class) {
+    goods_specs_list.push({
+      key: '大品类',
+      value: info.goods_class
+    });
+  }
+  if (info.goods_category) {
+    goods_specs_list.push({
+      key: '小品类',
+      value: info.goods_category
+    });
+  }
+  if (info.goods_brand) {
+    goods_specs_list.push({
+      key: '品种',
+      value: info.goods_brand
+    });
+  }
+
+  if (info.goods_specs) {
+    info.goods_specs = info.goods_specs.replace('，', ',');
+    var spesces = info.goods_specs.split(',');
+    spesces.forEach(function (item) {
+      item = item.split('|');
+      if (item.length === 2) {
+        goods_specs_list.push({
+          key: item[0],
+          value: item[1],
+        })
+      }
+    })
+  }
+  purchases.goods_specs_list = goods_specs_list;
+
   if (user) {
     purchases.user = user._id;
   }
