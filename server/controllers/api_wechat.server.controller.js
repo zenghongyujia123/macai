@@ -206,6 +206,12 @@ exports.get_choose_brand = function (req, res, next) {
   return res.send(['苹果', '栗子', '桃子', '苹果',]);
 }
 
+exports.getUserJsApiTicket = function (req, res, next) {
+  wechatLogic.getUserJsApiTicket(req.body.url, function (err, data) {
+    return res.send(data);
+  });
+}
+
 
 
 

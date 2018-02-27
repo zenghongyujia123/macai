@@ -30,7 +30,7 @@ exports.page_home = function (req, res, next) {
 exports.page_signin = function (req, res, next) {
   // var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_list.client.view.html');
   var cookie = cookieLib.getCookie(req);
-  var openid = cookie.openid;
+  var openid = cookie.openid || '';
   userLogic.getByOpenId(openid, function (err, user) {
     var filepath = path.join(__dirname, '../../web/c_wechat/views/page_signin.client.view.html');
     return res.render(filepath, { user: user || '' });
