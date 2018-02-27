@@ -64,6 +64,7 @@ function create_supply(user, info, callback) {
     price: info.price,
     price_unit: info.price_unit,
     min_count: info.min_count,
+    remark: info.remark,
     send_province: info.send_province,
     send_city: info.send_city,
     send_district: info.send_district,

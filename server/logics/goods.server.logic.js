@@ -158,6 +158,7 @@ exports.create_supply = function (user, info, callback) {
     goods_specs: info.goods_specs,
     is_cash_goods: info.is_cash_goods,
     undercarriage_time: info.undercarriage_time,
+    remark: info.remark,
     grounding_time: info.grounding_time,
     price: info.price,
     price_unit: info.price_unit,
