@@ -12,6 +12,7 @@ var userLogic = require('../logics/user');
 var cookieLib = require('../../libraries/cookie');
 var smsLib = require('../../libraries/sms');
 var agent = require('superagent').agent();
+var async = require('async');
 
 exports.send_verify_code = function (req, res, next) {
   var username = req.body.username || '';
