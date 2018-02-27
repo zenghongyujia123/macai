@@ -41,6 +41,7 @@ exports.signin = function (req, res, next) {
 }
 exports.create_purchases = function (req, res, next) {
   var info = req.body || {};
+  info.photos = info.photos || [];
   async.auto({
     getImages: function (autoCallback) {
       if (!info.wechat_server_ids && info.wechat_server_ids.length === 0) {
