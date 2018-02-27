@@ -50,7 +50,7 @@ exports.create_purchases = function (req, res, next) {
       async.eachSeries(info.wechat_server_ids, function (server_id, eachCallback) {
         wechatLogic.downloadImageFromWechatToQiniu(server_id, function (err, imageResult) {
           if (!err) {
-            info.photos.push(imageResult.key);
+            info.photos.push('http://p3tm0tvs2.bkt.clouddn.com/' + imageResult.key);
           }
           console.log(imageResult);
           return eachCallback();
