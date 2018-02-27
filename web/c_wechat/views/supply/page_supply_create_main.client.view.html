@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no,width=device-width" />
-  <title>供应货品详情</title>
+  <title>发布供应货品</title>
   <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
   <link rel="stylesheet" href="../libs/Swiper/dist/css/swiper.min.css" />
   <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
@@ -15,6 +15,7 @@
   <script type="text/javascript" src="../libs/Swiper/dist/js/swiper.min.js"></script>
   <script src="../libs/jquery/dist/jquery.js"></script>
 
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
   <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
   <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/city-picker.min.js"></script>
   <script src="../c_wechat/controllers/page_common.client.controller.js"></script>
@@ -284,6 +285,7 @@
         send_district: send_address.split(' ')[2],
         send_address: send_address,
         provide_services: provide_services,
+        wechat_server_ids: wechat_server_ids,
         photos: []
       }
       console.log(data);
@@ -304,6 +306,29 @@
         }
       });
     });
+
+    $('.camera').click(function () {
+      takeCamera(function (localIds) {
+        localIds.forEach(function (localId) {
+          appendImage(localId);
+        });
+      })
+    });
+    var photoContainer = $('#uploaderFiles');
+    function appendImage(localId) {
+      uploadImage(localId, function (res) {
+        wechat_server_ids.push(res.serverId)
+        var imageItem = $(
+          '<li class="weui-uploader__file"><img style="width:100%;height:100%;" src="' + localId + '" /></li>'
+        );
+        photoContainer.append(imageItem);
+      })
+    }
+
+    getUserJsApiTicket(window.location.href, function (data) {
+
+    });
+
   });
 
 

@@ -111,12 +111,37 @@ exports.purchases_list = function (req, res, next) {
   })
 }
 exports.create_supply = function (req, res, next) {
-  goodsLogic.create_supply(req.user, req.body, function (err, result) {
+  var info = req.body || {};
+  info.photos = info.photos || [];
+  async.auto({
+    getImages: function (autoCallback) {
+      if (!info.wechat_server_ids && info.wechat_server_ids.length === 0) {
+        return autoCallback();
+      }
+      async.eachSeries(info.wechat_server_ids, function (server_id, eachCallback) {
+        wechatLogic.downloadImageFromWechatToQiniu(server_id, function (err, imageResult) {
+          if (!err) {
+            info.photos.push('http://p3tm0tvs2.bkt.clouddn.com/' + imageResult.key);
+          }
+          console.log(imageResult);
+          return eachCallback();
+        });
+
+      }, function (err) {
+        return autoCallback();
+      });
+    },
+    create: ['getImages', function (autoCallback, autoReault) {
+      goodsLogic.create_supply(req.user, info, function (err, result) {
+        return autoCallback(err, result)
+      });
+    }]
+  }, function (err, result) {
     if (err) {
       return res.send(err);
     }
-    return res.send(result);
-  })
+    return res.send(result.create);
+  });
 }
 exports.update_supply_status = function (req, res, next) {
   goodsLogic.update_supply_status(req.user, req.supply, req.body.status, function (err, result) {

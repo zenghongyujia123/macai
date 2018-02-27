@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no,width=device-width" />
-  <title>采购货品详情</title>
+  <title>发布采购货品</title>
   <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
   <link rel="stylesheet" href="../libs/Swiper/dist/css/swiper.min.css" />
   <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
@@ -314,17 +314,6 @@
         var imageItem = $(
           '<li class="weui-uploader__file"><img style="width:100%;height:100%;" src="' + localId + '" /></li>'
         );
-        // imageItem.find('.item-delete').click(function () {
-        //   var id = this.id;
-        //   var index = wechatServerIds.indexOf(id);
-        //   if (index >= 0) {
-        //     wechatServerIds.splice(index, 1);
-        //     $(this).parent().remove();
-        //     realPicCount.text(wechatServerIds.length);
-        //   }
-        // });
-
-        // realPicCount.text(wechatServerIds.length);
         photoContainer.append(imageItem);
       })
     }
