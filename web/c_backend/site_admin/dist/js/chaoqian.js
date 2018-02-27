@@ -1344,7 +1344,7 @@ cSite.controller('PurchasesListController', [
                 newData.expect_price_unit = row[tableHeaderList[7]];
                 newData.expect_province = row[tableHeaderList[8]];
                 newData.expect_city = row[tableHeaderList[9]];
-                newData.market = row[tableHeaderList[10]];
+                newData.remark = row[tableHeaderList[10]];
                 newData.frequency = row[tableHeaderList[11]];
                 newData.duration = row[tableHeaderList[12]];
                 newData.receive_province = row[tableHeaderList[13]];
