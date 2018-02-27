@@ -39,11 +39,31 @@ exports.signin = function (req, res, next) {
   });
 }
 exports.create_purchases = function (req, res, next) {
-  goodsLogic.create_purchases(req.user, req.body, function (err, result) {
+  var info = req.body || {};
+  async.auto({
+    getImages: function (autoCallback) {
+      if (!info.wechat_server_ids && info.wechat_server_ids.length === 0) {
+        return autoCallback();
+      }
+      async.eachSeries(info.wechat_server_ids, function (server_id, eachCallback) {
+        wechatLogic.downloadImageFromWechatToQiniu(server_id, function (err, imageResult) {
+
+        });
+
+      }, function (err) {
+        return autoCallback();
+      });
+    },
+    create: ['getImages', function (autoCallback, autoReault) {
+      goodsLogic.create_purchases(req.user, req.body, function (err, result) {
+        return autoCallback(err, result)
+      });
+    }]
+  }, function (err, result) {
     if (err) {
       return res.send(err);
     }
-    return res.send(result);
+    return res.send(result.create);
   });
 }
 exports.my_purchases_list = function (req, res, next) {

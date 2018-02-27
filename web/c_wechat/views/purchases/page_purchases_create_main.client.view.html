@@ -171,6 +171,8 @@
 </body>
 <script>
   $(function () {
+    var wechat_server_ids = [];
+
     $("#picker-requirement-unit").picker({
       title: "请选择您的称呼",
       cols: [
@@ -282,7 +284,8 @@
         receive_district: receive_address.split(' ')[2],
         receive_address: receive_address,
         mobile_phone: mobile_phone,
-        photos: []
+        photos: [],
+        wechat_server_ids: wechat_server_ids
       }
 
       console.log(data);
@@ -311,10 +314,9 @@
     });
 
     var photoContainer = $('#uploaderFiles');
-    var wechatServerIds = [];
     function appendImage(localId) {
       uploadImage(localId, function (res) {
-        wechatServerIds.push(res.serverId)
+        wechat_server_ids.push(res.serverId)
         var imageItem = $(
           '<li class="weui-uploader__file"><img style="width:100%;height:100%;" src="' + localId + '" /></li>'
         );
