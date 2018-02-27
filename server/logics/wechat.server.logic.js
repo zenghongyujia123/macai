@@ -44,24 +44,31 @@ exports.getUserAccessToken = function (code, callback) {
       result = JSON.parse(result.text);
       // access_token = result.access_token;
       console.log('user_access_token : ', result.access_token);
+      if (result.access_token) {
+        that.getUserInfo(result.access_token, result.openid, function (err, wechat_info) {
+          result.wechat_info = wechat_info;
+          callback(err, result);
+        });
+      }
+      else {
+        callback(err, result);
+      }
+    });
+}
+
+exports.getUserInfo = function (user_access_token, openid, callback) {
+  agent.get('https://api.weixin.qq.com/sns/userinfo?access_token=' + user_access_token + '&openid=' + openid + '&lang=zh_CN')
+    .end(function (err, result) {
+      console.log(' getUserInfo err-----');
+      console.log(err);
+      console.log('getUserInfo  result-----');
+      console.error(new Date());
+      console.error(result.text);
+      result = JSON.parse(result.text);
+      // access_token = result.access_token;
       callback(err, result);
     });
 }
-// exports.getUserAccessToken = function (code, callback) {
-//   agent.get('https://api.weixin.qq.com/sns/oauth2/access_token?appid=' + appid + '&secret=' + sk + '&code=' + code + '&grant_type=authorization_code ')
-//     .end(function (err, result) {
-//       console.log(' code err-----');
-//       console.log(err);
-//       console.log('code  result-----');
-//       console.log(result.text);
-//       result = JSON.parse(result.text);
-//       // access_token = result.access_token;
-//       console.log('user_access_token : ', access_token);
-//       callback(err, result);
-//     });
-// }
-
-
 
 exports.getUserJsApiTicketFromWechat = function () {
   agent.get('https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token=' + access_token + '&type=jsapi')

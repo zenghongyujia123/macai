@@ -17,6 +17,9 @@ exports.page_home = function (req, res, next) {
     if (result.openid) {
       cookieLib.setCookie(res, 'openid', result.openid);
       cookieLib.setCookie(res, 'user_access_token', result.access_token);
+      if (result.wechat_info) {
+        cookieLib.setCookie(res, 'wechat_info', result.wechat_info);
+      }
     }
     if (page === 'page_purchases_list') {
       return res.redirect('/page_wechat/page_purchases_list');
