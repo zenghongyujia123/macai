@@ -31,6 +31,7 @@ exports.signin = function (req, res, next) {
   var openid = cookie.openid || '';
   var role = req.body.role || '';
   var username = req.body.username;
+  console.log('cookie.wechat_info', cookie.wechat_info);
   var wechat_info = JSON.parse(cookie.wechat_info || '{}');
   userLogic.signin({ openid: openid, username: username, role: role, wechat_info: wechat_info }, function (err, user) {
     if (err) {
