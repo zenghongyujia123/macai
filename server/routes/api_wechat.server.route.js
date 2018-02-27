@@ -21,7 +21,7 @@ module.exports = function (app) {
   app.route('/api_wechat/purchases/increase_purchases_browse_count').post(userFilter.requirePostUser, ctr.increase_purchases_browse_count)
   app.route('/api_wechat/purchases/purchases_list').post(ctr.purchases_list)
 
-  app.route('/api_wechat/supply/supply_list').post(userFilter.requirePostUser, ctr.supply_list)
+  // app.route('/api_wechat/supply/supply_list').post(userFilter.requirePostUser, ctr.supply_list)
   app.route('/api_wechat/supply/create_supply').post(userFilter.requirePostUser, ctr.create_supply)
   app.route('/api_wechat/supply/update_supply_status').post(userFilter.requirePostUser, ctr.update_supply_status)
   app.route('/api_wechat/supply/my_supply_list').post(userFilter.requirePostUser, ctr.my_supply_list)
