@@ -111,6 +111,7 @@ $(function () {
         },
         method: 'post',
         success: function (data) {
+          alert(data);
           console.log(data);
           if (!data || data.err) {
             return $.toptip(data.err.message, 'warning');
