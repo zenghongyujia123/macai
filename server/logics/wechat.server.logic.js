@@ -153,7 +153,7 @@ exports.downloadImageFromWechatToQiniu = function (serverId, callback) {
   var fileUrl = 'http://file.api.weixin.qq.com/cgi-bin/media/get?access_token=' + access_token + '&media_id=' + serverId;
   console.log('fileUrl ' + fileUrl);
 
-  var qiniuUrlPath = cryptoLib.toBase64(fileUrl).replace(/\+/g, '-').replace(/\//g, '_') + '/to/' + cryptoLib.toBase64('maicai:@' + serverId).replace(/\+/g, '-').replace(/\//g, '_');
+  var qiniuUrlPath = cryptoLib.toBase64(fileUrl).replace(/\+/g, '-').replace(/\//g, '_') + '/to/' + cryptoLib.toBase64('maicai:' + 'http://p3tm0tvs2.bkt.clouddn.com/' + serverId).replace(/\+/g, '-').replace(/\//g, '_');
   var sigingStr = '/fetch/' + qiniuUrlPath + '\n';
   var signBinary = crypto.createHmac('sha1', qiniu_s_key).update(sigingStr).digest();
   var base64Str = signBinary.toString('base64').replace(/\+/g, '-').replace(/\//g, '_');

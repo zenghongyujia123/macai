@@ -48,6 +48,9 @@ exports.create_purchases = function (req, res, next) {
       }
       async.eachSeries(info.wechat_server_ids, function (server_id, eachCallback) {
         wechatLogic.downloadImageFromWechatToQiniu(server_id, function (err, imageResult) {
+          if (!err) {
+            info.photos.push(imageResult.key);
+          }
           console.log(imageResult);
           return eachCallback();
         });
@@ -57,7 +60,7 @@ exports.create_purchases = function (req, res, next) {
       });
     },
     create: ['getImages', function (autoCallback, autoReault) {
-      goodsLogic.create_purchases(req.user, req.body, function (err, result) {
+      goodsLogic.create_purchases(req.user, info, function (err, result) {
         return autoCallback(err, result)
       });
     }]
