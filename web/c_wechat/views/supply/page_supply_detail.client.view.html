@@ -41,7 +41,7 @@
     </div>
     <div class="detail-content">
       <div class="name">
-        <%= ((supply.goods_class + supply.goods_category + supply.goods_brand) ||'-') %>
+        <%= (((supply.goods_class||'') + supply.goods_category + supply.goods_brand) ||'-') %>
       </div>
       <div class="address">
         <%= (( supply.send_province + supply.send_city )||'-') %>
@@ -73,31 +73,31 @@
       <div class="center-title">货品规格</div>
 
       <% for(var i =0;i<supply.goods_specs_list.length;i++){ %>
-          <% if(i%2===0){ %>
+        <% if(i%2===0){ %>
           <div class="weui-flex">
-          <%  } %>
-            
-          <div class="weui-flex__item">
-            <%= (supply.goods_specs_list[i].key||'-') %>
-          </div>
-          <div class="weui-flex__item">
-            <%= (supply.goods_specs_list[i].value||'-') %>
-          </div>
-          <% if((i+1)%2===0){ %>
-          </div>
-                <%  } %>
+            <%  } %>
 
-                <% if((i+1)%2!==0&&i===supply.goods_specs_list.length-1){ %>
-          <div class="weui-flex__item">
+              <div class="weui-flex__item">
+                <%= (supply.goods_specs_list[i].key||'-') %>
+              </div>
+              <div class="weui-flex__item">
+                <%= (supply.goods_specs_list[i].value||'-') %>
+              </div>
+              <% if((i+1)%2===0){ %>
           </div>
-          <div class="weui-flex__item">
-            </div>
-                   
-                </div>
-                      <%  } %>
           <%  } %>
 
-      <!-- <div class="weui-flex">
+            <% if((i+1)%2!==0&&i===supply.goods_specs_list.length-1){ %>
+              <div class="weui-flex__item">
+              </div>
+              <div class="weui-flex__item">
+              </div>
+
+    </div>
+    <%  } %>
+      <%  } %>
+
+        <!-- <div class="weui-flex">
 
         <div class="weui-flex__item">品种名</div>
         <div class="weui-flex__item">
@@ -120,22 +120,22 @@
         <div class="weui-flex__item"></div>
         <div class="weui-flex__item"></div>
       </div> -->
-    </div>
-    <div class="detail-content">
-      <div class="center-title">图文详情</div>
-      <div class="center-content">
-        <p>
-          <%= supply.remark %>
-            <!-- 香水柠檬为台湾培育品种，其果型修长，大而无核，最大的特色是果皮味道是清甜的，完全没有其他柠檬的苦涩味道，可以直接切片泡水，因其汁水香气浓郁，故有“香水柠檬”，因其无核所以也叫“无核柠檬。香水柠檬一年四季花果不断，几乎周年不断收果，所以也称“台湾四季香水柠檬”。香水柠檬不单是夏季冷食圣品，更是养颜美容、瘦身之佳品
+  </div>
+  <div class="detail-content">
+    <div class="center-title">图文详情</div>
+    <div class="center-content">
+      <p>
+        <%= supply.remark %>
+          <!-- 香水柠檬为台湾培育品种，其果型修长，大而无核，最大的特色是果皮味道是清甜的，完全没有其他柠檬的苦涩味道，可以直接切片泡水，因其汁水香气浓郁，故有“香水柠檬”，因其无核所以也叫“无核柠檬。香水柠檬一年四季花果不断，几乎周年不断收果，所以也称“台湾四季香水柠檬”。香水柠檬不单是夏季冷食圣品，更是养颜美容、瘦身之佳品
             本店价格默认为1年苗嫁接苗裸根苗发货！杯苗及其他年限的苗价格另议！谢谢 -->
-        </p>
-      </div>
-      <% for(var i =0;i<supply.photos.length;i++){ %>
-        <div class="center-img">
-          <img src="<%= supply.photos[i] %>">
-        </div>
-        <%  } %>
+      </p>
     </div>
+    <% for(var i =0;i<supply.photos.length;i++){ %>
+      <div class="center-img">
+        <img src="<%= supply.photos[i] %>">
+      </div>
+      <%  } %>
+  </div>
   </div>
   </div>
 </body>
