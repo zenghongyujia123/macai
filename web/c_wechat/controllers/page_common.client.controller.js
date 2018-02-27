@@ -134,7 +134,7 @@ function getSpecsPage(data, callback) {
     }));
   }
   submit.click(function () {
-    callback(result.join(' '));
+    callback(result.join(','));
   });
   container.append(submit);
 }
