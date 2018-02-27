@@ -137,7 +137,7 @@ $(function () {
           '  <div class="weui-media-box__bd">' +
           '    <div class="title1">' + (item.goods_class || '') + item.goods_category + item.goods_brand +
           '    </div>' +
-          '    <div class="title2">' + item.send_province + item.send_city + ' 张先生</div>' +
+          '    <div class="title2">' + item.send_province + item.send_city + ' ' + (item.nickname || '-') + '</div>' +
           '    <span class="tag blue">实地认证</span>' +
           '    <span class="tag orange">企业</span>' +
           '    <div class="item-bottom">' +
