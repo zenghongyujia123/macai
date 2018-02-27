@@ -42,10 +42,13 @@ exports.signin = function (userInfo, callback) {
       user = new User({ username: userInfo.username, role: userInfo.role.split(' ')[1], goal: userInfo.role.split(' ')[0] });
     }
     user.openid = userInfo.openid;
-    User.update({ openid: userInfo.openid, username: { $ne: userInfo.username } }, { $set: { openid: null } }, function (err, result) {
+    User.update({ openid: userInfo.openid, username: { $ne: userInfo.username } }, { $set: { openid: null, wechat_info: {} } }, function (err, result) {
       if (err) {
         console.error(err);
         return callback({ err: sysErr.database_save_error });
+      }
+      if (userInfo.wechat_info) {
+        user.wechat_info = userInfo.wechat_info;
       }
       user.save(function (err, savedUser) {
         if (err) {
