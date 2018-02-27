@@ -156,8 +156,8 @@ function getSpecsItemObj(data, callback) {
     );
     rowObj.children().click(function () {
       $(this).addClass('select').siblings().removeClass('select');
-      callback($(this).text());
-    });;
+      callback([data.title, $(this).text()].join('|'));
+    });
     item.append(rowObj);
     return item;
   }
