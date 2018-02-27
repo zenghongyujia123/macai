@@ -148,7 +148,7 @@ exports.downloadImageFromWechatToQiniu = function (serverId, callback) {
 
   var url = 'http://iovip.qbox.me/fetch/' + qiniuUrlPath;
 
-  superagent.post(url)
+  agent.post(url)
     .set('Content-Type', 'application/x-www-form-urlencoded')
     .set('Authorization', 'QBox ' + accessToken)
     .send()
