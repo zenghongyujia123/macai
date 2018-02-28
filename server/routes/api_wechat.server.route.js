@@ -13,7 +13,7 @@ module.exports = function (app) {
   app.route('/api_wechat/get_choose_brand').post(ctr.get_choose_brand);
   app.route('/api_wechat/get_choose_specs').post(ctr.get_choose_specs);
 
-  app.route('/api_wechat/purchases/create_purchases').post(userFilter.requireUser, ctr.create_purchases);
+  app.route('/api_wechat/purchases/create_purchases').post(userFilter.requirePostUser, ctr.create_purchases);
   app.route('/api_wechat/purchases/my_purchases_list').post(userFilter.requirePostUser, ctr.my_purchases_list);
   app.route('/api_wechat/purchases/purchases_by_id').post(userFilter.requirePostUser, ctr.purchases_by_id)
   app.route('/api_wechat/purchases/supply_by_id').post(userFilter.requirePostUser, ctr.supply_by_id)

@@ -23,10 +23,14 @@
   <div class="weui-tab page-purchases-detail">
     <div class="purchases-detail-content">
       <div class="title-row">
-        <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517075726438&di=d74e6b85b5d75b7f54a6d3c141cf576f&imgtype=0&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2015-01-07%2F014622445.jpg">
+          <% if(user.wechat_info){ %>
+            <img src="<%= user.wechat_info.headimgurl %>">    
+          <%  }else{ %>
+            <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517075726438&di=d74e6b85b5d75b7f54a6d3c141cf576f&imgtype=0&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2015-01-07%2F014622445.jpg">
+            <%  } %>
         <div class="title-right">
           <div class="name">
-            <%= (purchases.username||'-') %>
+            <%= (user.wechat_info?user.wechat_info.nickname:'-') %>
           </div>
           <div class="address">
             <%= ((purchases.receive_province+purchases.receive_city)||'-') %>

@@ -78,7 +78,7 @@ exports.page_purchases_detail = function (req, res, next) {
   var purchases = req.purchases || {};
   var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_detail.client.view.html');
   goodsLogic.increase_purchases_browse_count(purchases, function () {
-    return res.render(filepath, { purchases: req.purchases });
+    return res.render(filepath, { purchases: req.purchases, user: purchases.user || {}});
   });
 };
 
