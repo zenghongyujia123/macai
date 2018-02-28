@@ -266,12 +266,28 @@ exports.getUserJsApiTicket = function (req, res, next) {
 }
 
 exports.update_personal_auth_info = function (req, res, next) {
-  userLogic.update_personal_auth_info(req.user, req.body, function (err, result) {
-    if (err) {
-      return res.send(err);
+  var info = req.body;
+  wechatLogic.downloadImageFromWechatToQiniu(info.personal_auth_id_front_photo, function (err, imageResult) {
+    if (!err) {
+      info.personal_auth_id_front_photo = 'http://p3tm0tvs2.bkt.clouddn.com/' + imageResult.key;
     }
-    return res.send(result);
-  })
+    wechatLogic.downloadImageFromWechatToQiniu(info.personal_auth_id_back_photo, function (err, imageResult) {
+      if (!err) {
+        info.personal_auth_id_back_photo = 'http://p3tm0tvs2.bkt.clouddn.com/' + imageResult.key;
+      }
+      wechatLogic.downloadImageFromWechatToQiniu(info.personal_auth_id_real_photo, function (err, imageResult) {
+        if (!err) {
+          info.personal_auth_id_real_photo = 'http://p3tm0tvs2.bkt.clouddn.com/' + imageResult.key;
+        }
+        userLogic.update_personal_auth_info(req.user, info, function (err, result) {
+          if (err) {
+            return res.send(err);
+          }
+          return res.send(result);
+        })
+      });
+    });
+  });
 }
 
 

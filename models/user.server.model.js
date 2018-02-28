@@ -55,7 +55,8 @@ module.exports = function (appDb) {
     },
     personal_auth_stauts: {
       type: String,
-      enum: ['unauth', 'authing', 'authed']
+      enum: ['unauth', 'authing', 'authed'],
+      default: 'unauth'
     },
     personal_auth_by_user: {
       type: String
