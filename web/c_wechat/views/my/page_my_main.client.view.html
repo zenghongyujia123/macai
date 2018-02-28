@@ -29,7 +29,7 @@
           </div>
           <div class="weui-media-box__bd">
             <h4 class="weui-media-box__title">
-              <%= user.wechat_info.nickname %>
+              <%= (user.wechat_info.nickname) +(user.vip_user?'VIP':'') %>
             </h4>
             <p class="weui-media-box__desc">
               <%= user.role %>
