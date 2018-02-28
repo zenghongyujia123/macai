@@ -1,5 +1,6 @@
 $(function () {
   var info = {
+    personal_auth_stauts: 'authing',
     personal_auth_id_front_photo: '',
     personal_auth_id_back_photo: '',
     personal_auth_id_real_photo: '',
@@ -45,7 +46,7 @@ $(function () {
     if (!info.personal_auth_real_name) {
       return $.toast("请输入真实姓名", "text");
     }
-    if (!info.personal_auth_real_name) {
+    if (!info.personal_auth_id_number) {
       return $.toast("请输入身份证号", "text");
     }
     $.ajax({
