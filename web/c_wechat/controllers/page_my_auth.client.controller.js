@@ -48,7 +48,6 @@ $(function () {
     if (!info.personal_auth_real_name) {
       return $.toast("请输入身份证号", "text");
     }
-    return;
     $.ajax({
       url: '/api_wechat/auth/update_personal_auth_info',
       method: 'post',
