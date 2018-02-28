@@ -3,6 +3,7 @@
  */
 
 var ctr = require('../controllers/api_wechat');
+var payCtr = require('../controllers/api_wechat_pay');
 var userFilter = require('../filters/user');
 var goodsFilter = require('../filters/goods');
 
@@ -36,4 +37,7 @@ module.exports = function (app) {
   // app.route('/api_wechat/updateUserSetting').post(ctr.updateUserSetting);
   // app.route('/api_wechat/getUserSetting').post(ctr.getUserSetting);
   app.route('/api_wechat/auth/update_personal_auth_info').post(userFilter.requirePostUser, ctr.update_personal_auth_info);
+  app.route('/api_wechat_pay/payment/get_pre_pay_id').post(userFilter.requirePostUser, payCtr.get_pre_pay_id);
+  app.route('/api_wechat_pay/payment/get_pre_pay_info').post(userFilter.requirePostUser, payCtr.get_pre_pay_info);
+  app.route('/api_wechat_pay/payment/vip_pay_notify_url').post(payCtr.vip_pay_notify_url);
 };
