@@ -29,7 +29,7 @@ process.on('uncaughtException', function (err) {
 // }
 
 
-app.listen(config.port);
+app.listen(config.port, '0.0.0.0');
 // Sta
 // rt the app by listening on <port>
 
