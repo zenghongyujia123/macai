@@ -265,6 +265,15 @@ exports.getUserJsApiTicket = function (req, res, next) {
   });
 }
 
+exports.update_personal_auth_info = function (req, res, next) {
+  userLogic.update_personal_auth_info(req.user, req.body, function (err, result) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(result);
+  })
+}
+
 
 
 

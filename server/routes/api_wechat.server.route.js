@@ -35,4 +35,5 @@ module.exports = function (app) {
   // app.route('/api_wechat/downloadPhoto').get(ctr.downloadPhoto);
   // app.route('/api_wechat/updateUserSetting').post(ctr.updateUserSetting);
   // app.route('/api_wechat/getUserSetting').post(ctr.getUserSetting);
+  app.route('/api_wechat/auth/update_personal_auth_info').post(userFilter.requirePostUser, ctr.update_personal_auth_info);
 };

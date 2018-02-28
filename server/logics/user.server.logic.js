@@ -101,3 +101,21 @@ exports.list = function (user, info, callback) {
   });
 }
 
+exports.update_personal_auth_info = function (user, info, callback) {
+  if (info.personal_auth_stauts === 'authing') {
+    user.personal_auth_stauts = 'authing';
+    user.personal_auth_id_front_photo = info.personal_auth_id_front_photo;
+    user.personal_auth_id_back_photo = info.personal_auth_id_back_photo;
+    user.personal_auth_id_real_photo = info.personal_auth_id_real_photo;
+    user.personal_auth_real_name = info.personal_auth_real_name;
+    user.personal_auth_id_number = info.personal_auth_id_number;
+  }
+
+  user.save(function (err) {
+    if (err) {
+      return callback({ err: sysErr.database_save_error });
+    }
+    return callback(null, { success: true });
+  });
+}
+
