@@ -26,7 +26,7 @@ exports.get_pre_pay_id = function (req, res, next) {
 }
 
 exports.get_pre_pay_info = function (req, res, next) {
-  return res.send(wechatLogic.get_pre_pay_id(req.body.prepay_id));
+  return res.send(wechatLogic.get_pre_pay_info(req.body.prepay_id));
 }
 
 exports.vip_pay_notify_url = function (req, res, next) {
