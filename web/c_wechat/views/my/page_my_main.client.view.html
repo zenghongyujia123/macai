@@ -28,8 +28,12 @@
             <img class="weui-media-box__thumb" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1517075726438&di=d74e6b85b5d75b7f54a6d3c141cf576f&imgtype=0&src=http%3A%2F%2Fwww.qqzhi.com%2Fuploadpic%2F2015-01-07%2F014622445.jpg">
           </div>
           <div class="weui-media-box__bd">
-            <h4 class="weui-media-box__title">张三</h4>
-            <p class="weui-media-box__desc">批发商</p>
+            <h4 class="weui-media-box__title">
+              <%= user.wechat_info.nickname %>
+            </h4>
+            <p class="weui-media-box__desc">
+              <%= user.role %>
+            </p>
           </div>
         </a>
       </div>
