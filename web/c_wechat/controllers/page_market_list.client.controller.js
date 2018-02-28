@@ -58,6 +58,17 @@ $(function () {
           '  </div>' +
           '</a>'
         );
+        obj.click(function () {
+          $.confirm({
+            title: '提示',
+            text: '你还不是vip,成为vip获取更多服务',
+            onOK: function () {
+              //点击确认
+            },
+            onCancel: function () {
+            }
+          });
+        });
         obj.insertBefore(tab1.laodmore);
       }
     },
