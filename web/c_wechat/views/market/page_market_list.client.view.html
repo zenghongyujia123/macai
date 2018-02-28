@@ -14,8 +14,8 @@
 
   <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
   <script type="text/javascript" src="../libs/Swiper/dist/js/swiper.min.js"></script>
-  <script src="../c_libs/minirefresh.min.js"></script>
   <script src="../libs/jquery/dist/jquery.js"></script>
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 
   <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
   <script src="../c_wechat/controllers/page_market_list.client.controller.js"></script>
@@ -201,6 +201,9 @@
           values: ["采购中", "已停止", "被驳回"]
         }
       ]
+    });
+
+    getUserJsApiTicket(window.location.href, function (data) {
     });
   })
 
