@@ -47,9 +47,15 @@ module.exports = function (appDb) {
     vip_user_time: {
       type: Date
     },
-
-    personal_auth: {
-      type: Boolean
+    personal_auth_real_name: {
+      type: String
+    },
+    personal_auth_id_number: {
+      type: String
+    },
+    personal_auth_stauts: {
+      type: String,
+      enum: ['unauth', 'authing', 'authed']
     },
     personal_auth_by_user: {
       type: String
