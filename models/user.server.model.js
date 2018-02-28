@@ -47,6 +47,9 @@ module.exports = function (appDb) {
     vip_user_time: {
       type: Date
     },
+    vip_pay_info: {
+      type: Schema.Types.Mixed
+    },
     personal_auth_real_name: {
       type: String
     },

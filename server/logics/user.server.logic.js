@@ -119,3 +119,26 @@ exports.update_personal_auth_info = function (user, info, callback) {
   });
 }
 
+exports.updateUserVipInfos = function (info, callback) {
+  User.findOne({ openid: info.openid }, function (err, user) {
+    if (err) {
+      console.error(err);
+      return callback();
+    }
+
+    if (!user) {
+      return callback();
+    }
+    user.vip_pay_info = info;
+    user.vip_user = true;
+    user.vip_user_time = new Date();
+    user.save(function (err) {
+      if (err) {
+        console.error(err)
+      }
+      return callback();
+    });
+
+  });
+}
+

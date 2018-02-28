@@ -8,6 +8,9 @@ var agent = require('superagent').agent();
 var moment = require('moment');
 var access_token = '';
 var ticket = '';
+var userLogic = require('./user.server.logic');
+
+
 var appid = 'wx682b6bf0f5c1e84d';
 var sk = '51de065319b6dac43fcaa21a81b41d74';
 var pay_sk = 'sdwewwwwdddddssss345444432wwwsss';
@@ -315,10 +318,10 @@ exports.vip_pay_notify_url = function (req, callback) {
     trade_type: req.body.xml.trade_type[0],
     transaction_id: req.body.xml.transaction_id[0]
   }
-  // if (info && info.result_code == 'SUCCESS') {
-  //   userLogic.updateVipPayedByOpenid(req.body.xml.openid[0], info, function () {
-  //   });
-  // }
+  if (info.result_code == 'SUCCESS' && info.openid) {
+    userLogic.updateUserVipInfos(info, function (err, result) {
+    });
+  }
 
   console.log('vip_pay_notify_url', info);
   var json = {
