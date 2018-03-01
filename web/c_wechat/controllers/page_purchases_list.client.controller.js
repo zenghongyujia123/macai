@@ -131,25 +131,26 @@ $(function () {
         var item = data[i];
         var obj = $(
           '<a href="/page_wechat/page_supply_detail?supply_id=' + item._id + '" class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
-          '  <div class="weui-media-box__hd">' +
-          '    <img class="weui-media-box__thumb" src="' + item.photos[0] + '">' +
-          '  </div>' +
-          '  <div class="weui-media-box__bd">' +
-          '    <div class="title1">' + (item.goods_class || '') + item.goods_category + item.goods_brand +
-          '    </div>' +
-          '    <div class="title2">' + item.send_province + item.send_city + ' ' + (item.nickname || '-') + '</div>' +
-          '    <span class="tag blue">实地认证</span>' +
-          '    <span class="tag orange">企业</span>' +
-          '    <div class="item-bottom">' +
-          '      <div class="price">' + item.price +
-          '        <span class="price-unit">' + item.price_unit + '</span>' +
-          '      </div>' +
-          '      <div class="time">' +
-          '        ' + (new Date(item.create_time).getMonth() + 1) + '月' + new Date(item.create_time).getDate() + '日' +
-          '      </div>' +
-          '    </div>' +
-          '  </div>' +
-          '</a>'
+            '  <div class="weui-media-box__hd">' +
+            '    <img class="weui-media-box__thumb" src="' + item.photos[0] + '">' +
+            '  </div>' +
+            '  <div class="weui-media-box__bd">' +
+            '    <div class="title1">' + (item.goods_class || '') + item.goods_category + item.goods_brand +
+            '    </div>' +
+            '    <div class="title2">' + item.send_province + item.send_city + ' ' + (item.nickname || '-') + '</div>' +
+            (item.user && item.user.vip_user) ? '<span class="tag orange">vip用户</span>' : '' +
+            '    <span class="tag blue">实地认证</span>' +
+            '    <span class="tag orange">企业</span>' +
+            '    <div class="item-bottom">' +
+            '      <div class="price">' + item.price +
+            '        <span class="price-unit">' + item.price_unit + '</span>' +
+            '      </div>' +
+            '      <div class="time">' +
+            '        ' + (new Date(item.create_time).getMonth() + 1) + '月' + new Date(item.create_time).getDate() + '日' +
+            '      </div>' +
+            '    </div>' +
+            '  </div>' +
+            '</a>'
         );
         obj.insertBefore(tab1.laodmore);
       }
