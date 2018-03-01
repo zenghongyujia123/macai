@@ -117,8 +117,11 @@ exports.page_my_auth = function (req, res, next) {
   if (req.user.personal_auth_stauts === 'unauth') {
     filepath = path.join(__dirname, '../../web/c_wechat/views/my/page_my_auth.client.view.html');
   }
-  else {
+  else if (req.user.personal_auth_stauts === 'authing') {
     filepath = path.join(__dirname, '../../web/c_wechat/views/my/page_my_auth_2.client.view.html');
+  }
+  else {
+    filepath = path.join(__dirname, '../../web/c_wechat/views/my/page_my_auth_3.client.view.html');
   }
 
   return res.render(filepath, { user: req.user });
