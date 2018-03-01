@@ -1,6 +1,7 @@
 .page-supply-detail {
   background-color: #eee;
   height: 100%;
+  overflow: auto;
 }
 .page-supply-detail .swiper-container {
   height: 200px;
