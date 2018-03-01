@@ -266,7 +266,7 @@ exports.supply_list = function (user, info, callback) {
     query._id = { $ne: last_item._id };
   }
 
-  Supply.find(query).limit(10).sort({ create_time: -1 }).exec(function (err, list) {
+  Supply.find(query).populate('user').limit(10).sort({ create_time: -1 }).exec(function (err, list) {
     if (err || !list) {
       return callback({ err: sysErr.database_query_error });
     }
