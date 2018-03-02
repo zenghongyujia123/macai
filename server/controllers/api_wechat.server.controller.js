@@ -183,28 +183,64 @@ exports.get_choose_categorys = function (req, res, next) {
       goods_category: '蔬菜',
       goods_name_list: [
         {
-          first_pinyin: 'A',
-          items: ['sss', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
-        },
-        {
           first_pinyin: 'B',
-          items: ['香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
+          items: ['八月瓜', '菠萝', '菠萝蜜', '百香果']
         },
         {
           first_pinyin: 'C',
-          items: ['香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
+          items: ['草莓', '橙子']
         },
         {
           first_pinyin: 'D',
-          items: ['香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
+          items: ['吊瓜', '蛋黄果']
         },
         {
-          first_pinyin: 'E',
-          items: ['香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
+          first_pinyin: 'G',
+          items: ['甘蔗', '橄榄', '姑娘果']
         },
         {
-          first_pinyin: 'F',
-          items: ['香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
+          first_pinyin: 'H',
+          items: ['哈密瓜', '火龙果', '黑莓', '黄桃']
+        },
+        {
+          first_pinyin: 'L',
+          items: ['荔枝', '龙眼', '榴莲', '蓝莓']
+        },
+        {
+          first_pinyin: 'M',
+          items: ['芒果', '木瓜', '猕猴桃', '毛桃']
+        },
+        {
+          first_pinyin: 'N',
+          items: ['牛油果', '柠檬', '牛奶果', '诺丽果']
+        },
+        {
+          first_pinyin: 'P',
+          items: ['葡萄', '苹果', '蟠桃', '枇杷']
+        },
+        {
+          first_pinyin: 'Q',
+          items: ['青梅']
+        },
+        {
+          first_pinyin: 'R',
+          items: ['人心果', '人参果']
+        },
+        {
+          first_pinyin: 'N',
+          items: ['牛油果', '柠檬', '牛奶果', '诺丽果']
+        },
+        {
+          first_pinyin: 'W',
+          items: ['无花果', '乌梅']
+        },
+        {
+          first_pinyin: 'X',
+          items: ['西瓜', '香蕉']
+        },
+        {
+          first_pinyin: 'Y',
+          items: ['椰子', '杨桃', '柚子']
         },
       ]
     },
