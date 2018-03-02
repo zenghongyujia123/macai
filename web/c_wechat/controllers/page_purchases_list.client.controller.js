@@ -117,6 +117,7 @@ $(function () {
           }
           tab1.append_my_list(data);
           if (data.length > 0) {
+            alert(data[data.length - 1].create_time);
             tab1.last_item = data[data.length - 1];
           }
           if (data.length < 10) {
