@@ -38,23 +38,13 @@ $(function () {
       for (var i = 0; i < data.length; i++) {
         var item = data[i];
         var obj = $(
-          '<a class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
-          '  <div class="weui-media-box__hd">' +
-          '    <img class="weui-media-box__thumb" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516813447292&di=5f4eaade66c430dd3a958c2cfac95425&imgtype=0&src=http%3A%2F%2Fpic32.photophoto.cn%2F20140821%2F0006019010973602_b.jpg">' +
-          '  </div>' +
+          '  <a class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
           '  <div class="weui-media-box__bd">' +
-          '    <div class="title1">' + item.goods_name +
+          '    <div class="title1">' + item.name +
           '    </div>' +
-          '    <div class="title2">' + item.send_address + ' 张先生</div>' +
-          '    <span class="tag blue">实地认证</span>' +
-          '    <span class="tag orange">企业</span>' +
+          '    <div class="title2">' + item.main_goods + '</div>' +
+          '    <div class="title2">' + item.province + item.city + '</div>' +
           '    <div class="item-bottom">' +
-          '      <div class="price">' + item.price +
-          '        <span class="price-unit">' + item.price_unit + '</span>' +
-          '      </div>' +
-          '      <div class="time">' +
-          '        ' + (new Date(item.create_time).getMonth() + 1) + '月' + new Date(item.create_time).getDate() + '日' +
-          '      </div>' +
           '    </div>' +
           '  </div>' +
           '</a>'
@@ -149,22 +139,16 @@ $(function () {
       for (var i = 0; i < data.length; i++) {
         var item = data[i];
         var obj = $(
-          ' <a href="/page_wechat/page_purchases_detail?purchases_id=' + item._id + '"' + ' class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
-          '   <div class="weui-media-box__bd">' +
-          '     <div class="title1">' + item.goods_name +
-          '     </div>' +
-          '     <div class="title2">品种：' + item.goods_brand + '</div>' +
-          '     <div class="title2">浏览次数：' + (item.browse_count || 0) + '次</div>' +
-          '     <div class="item-bottom">' +
-          '       <div class="price">' + item.expect_price +
-          '         <span class="price-unit">' + item.expect_price_unit + '</span>' +
-          '       </div>' +
-          '       <div class="stop">' +
-          '         停止采购' +
-          '       </div>' +
-          '     </div>' +
-          '   </div>' +
-          ' </a>');
+          '  <a class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
+          '  <div class="weui-media-box__bd">' +
+          '    <div class="title1">' + item.name +
+          '    </div>' +
+          '    <div class="title2">' + item.main_goods + '</div>' +
+          '    <div class="title2">' + item.province + item.city + '</div>' +
+          '    <div class="item-bottom">' +
+          '    </div>' +
+          '  </div>' +
+          '</a>');
         obj.insertBefore(tab2.laodmore);
       }
     },
