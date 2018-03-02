@@ -140,7 +140,7 @@ $(function () {
           '    <div class="title1">' + (item.goods_class || '') + item.goods_category + item.goods_brand +
           '    </div>' +
           '    <div class="title2">' + item.send_province + item.send_city + ' ' + (item.nickname || '-') + '</div>' +
-          ((item.user && item.user.personal_auth_stauts === 'authed') ? '<span class="tag blue">认证用户</span>' : '<span class="tag">浦东</span>') +
+          ((item.user && item.user.personal_auth_stauts === 'authed') ? '<span class="tag blue">认证用户</span>' : '<span class="tag">普通用户</span>') +
           ((item.user && item.user.vip_user) ? '<span class="tag orange">vip用户</span>' : '') +
           // '    <span class="tag orange">企业</span>' +
           '    <div class="item-bottom">' +
