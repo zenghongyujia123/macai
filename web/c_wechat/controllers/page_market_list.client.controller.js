@@ -41,9 +41,8 @@ $(function () {
           '  <a class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
           '  <div class="weui-media-box__bd">' +
           '    <div class="title1">' + item.name + '</div>' +
-          '    <div class="title2">' + item.market + '</div>' +
-          '    <div class="title2">' + item.main_goods + '</div>' +
-          '    <div class="title2">' + item.province + item.city + '</div>' +
+          '    <div class="title2">市场：' + item.province + item.city + item.market + '</div>' +
+          '    <div class="title2">品类：' + item.main_goods + '</div>' +
           '    <div class="item-bottom">' +
           '    </div>' +
           '  </div>' +
