@@ -248,10 +248,6 @@ exports.get_choose_categorys = function (req, res, next) {
       goods_category: '蔬菜',
       goods_name_list: [
         {
-          first_pinyin: 'A',
-          items: ['香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
-        },
-        {
           first_pinyin: 'B',
           items: ['包谷菌', '白灵菇', '白菌', '白菜', '菠菜']
         },
