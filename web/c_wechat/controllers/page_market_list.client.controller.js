@@ -19,6 +19,7 @@ $(function () {
         },
         method: 'post',
         success: function (data) {
+          alert(JSON.stringify(data));
           console.log(data);
           if (!data || data.err) {
             return $.toptip(data.err.message, 'warning');
@@ -186,9 +187,6 @@ $(function () {
     tab2.my_list();
   });
 
-
-
-
   var tab3 = {
     nav: $('#nav3'),
     container: $('#tab3'),
@@ -278,5 +276,6 @@ $(function () {
     });
     tab3.my_list();
   });
+
 });
 
