@@ -175,13 +175,13 @@ $(function () {
   };
 
   tab1.nav.click(function () {
-    if (tab2.is_init) {
+    if (tab1.is_init) {
       return;
     }
     tab1.is_init = true;
     tab1.init();
     tab1.container.infinite().on("infinite", function () {
-      if (tab2.loading) return;
+      if (tab1.loading) return;
       tab1.loading = true;
       tab1.my_list(function (last) {
         tab1.loading = false;
