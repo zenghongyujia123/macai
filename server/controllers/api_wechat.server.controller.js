@@ -180,7 +180,7 @@ exports.supply_list = function (req, res, next) {
 exports.get_choose_categorys = function (req, res, next) {
   return res.send([
     {
-      goods_category: '蔬菜',
+      goods_category: '水果',
       goods_name_list: [
         {
           first_pinyin: 'B',
@@ -245,7 +245,7 @@ exports.get_choose_categorys = function (req, res, next) {
       ]
     },
     {
-      goods_category: '水果',
+      goods_category: '蔬菜',
       goods_name_list: [
         {
           first_pinyin: 'A',
@@ -253,23 +253,67 @@ exports.get_choose_categorys = function (req, res, next) {
         },
         {
           first_pinyin: 'B',
-          items: ['ssddd', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
+          items: ['包谷菌', '白灵菇', '白菌', '白菜', '菠菜']
         },
         {
           first_pinyin: 'C',
-          items: ['香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
+          items: ['茶树菇', '葱仔', '慈菇', '菜苔']
         },
         {
           first_pinyin: 'D',
-          items: ['香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
+          items: ['地皮菜', '刀豆', '豆角', '冬瓜', '豆瓣菜']
         },
         {
           first_pinyin: 'E',
-          items: ['香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
+          items: ['鹅蛋菌', '儿菜']
         },
         {
           first_pinyin: 'F',
-          items: ['香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉', '香蕉',]
+          items: ['凤尾菇', '发菜']
+        },
+        {
+          first_pinyin: 'G',
+          items: ['干巴菌', '贡菜']
+        },
+        {
+          first_pinyin: 'H',
+          items: ['海鲜菇', '黄金菇', '红薯叶', '葫芦', '黄花菜', '花菜', '胡萝卜', '红薯', '黄心菜']
+        },
+        {
+          first_pinyin: 'J',
+          items: ['鸡腿菇', '金针菇', '韭黄', '韭菜', '荠菜']
+        },
+        {
+          first_pinyin: 'K',
+          items: ['苦瓜', '空心菜']
+        },
+        {
+          first_pinyin: 'L',
+          items: ['灵芝菇', '鹿茸菇', '龙须菜', '辣椒', '莲藕', '萝卜', '凉薯', '萝卜菜']
+        },
+        {
+          first_pinyin: 'M',
+          items: ['木耳', '蘑菇', '迷迭香', '毛豆', '魔芋', '木薯', '木耳菜']
+        },
+        {
+          first_pinyin: 'N',
+          items: ['牛肝菌']
+        },
+        {
+          first_pinyin: 'P',
+          items: ['平菇', '盘菜']
+        },
+        {
+          first_pinyin: 'Q',
+          items: ['茄子', '秋葵', '芹菜']
+        },
+        {
+          first_pinyin: 'S',
+          items: ['松茸', '山野菜', '四季豆', '生姜', '蒜苔', '丝瓜', '山药']
+        },
+        {
+          first_pinyin: 'T',
+          items: ['土豆', '甜菜', '茼蒿']
         },
       ]
     }
