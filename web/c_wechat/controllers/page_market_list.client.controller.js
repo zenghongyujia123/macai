@@ -19,10 +19,10 @@ $(function () {
         },
         method: 'post',
         success: function (data) {
-          alert(JSON.stringify(data));
           console.log(data);
           if (!data || data.err) {
-            return $.toptip(data.err.message, 'warning');
+            $.toptip(data.err.message, 'warning')
+            return callback();
           }
           tab1.append_my_list(data.list);
           if (data.list.length > 0) {
@@ -32,6 +32,7 @@ $(function () {
             tab1.container.destroyInfinite();
             tab1.laodmore.remove();
           }
+          return callback();
         }
       });
     },
@@ -120,7 +121,8 @@ $(function () {
             if (data.err.type === 'user_not_exist') {
               window.location = '/page_wechat/page_signin';
             }
-            return $.toptip(data.err.message, 'warning');
+            $.toptip(data.err.message, 'warning')
+            return callback();
           }
           tab2.append_my_list(data.list);
           if (data.list.length > 0) {
@@ -130,8 +132,7 @@ $(function () {
             tab2.container.destroyInfinite();
             tab2.laodmore.remove();
           }
-
-
+          return callback();
         }
       });
     },
@@ -207,7 +208,8 @@ $(function () {
             if (data.err.type === 'user_not_exist') {
               window.location = '/page_wechat/page_signin';
             }
-            return $.toptip(data.err.message, 'warning');
+            $.toptip(data.err.message, 'warning');
+            return callback();
           }
           tab3.append_my_list(data.list);
           if (data.list.length > 0) {
