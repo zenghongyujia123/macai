@@ -12,8 +12,9 @@ $(function () {
     is_init: false,
     my_list: function (callback) {
       $.ajax({
-        url: '/api_wechat/supply/supply_list',
+        url: '/api_backend/market_list',
         data: {
+          model_string: 'MarketPurchases',
           last_item: tab1.last_item
         },
         method: 'post',
@@ -117,8 +118,9 @@ $(function () {
     is_init: false,
     my_list: function (callback) {
       $.ajax({
-        url: '/api_wechat/purchases/my_purchases_list',
+        url: '/api_backend/market_list',
         data: {
+          model_string: 'MarketSupply',
           last_item: tab2.last_item
         },
         method: 'post',
