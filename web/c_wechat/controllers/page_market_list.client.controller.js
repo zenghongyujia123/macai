@@ -19,6 +19,7 @@ $(function () {
         },
         method: 'post',
         success: function (data) {
+          alert(JSON.stringify(data));
           console.log(data);
           if (!data || data.err) {
             return $.toptip(data.err.message, 'warning');
