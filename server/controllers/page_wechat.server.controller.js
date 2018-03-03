@@ -5,6 +5,7 @@ var path = require('path');
 var userLogic = require('../logics/user');
 var goodsLogic = require('../logics/goods');
 var wechatLogic = require('../logics/wechat');
+var marketLogic = require('../logics/market');
 var moment = require('moment');
 var cookieLib = require('../../libraries/cookie');
 var agent = require('superagent').agent();
@@ -21,12 +22,16 @@ exports.page_home = function (req, res, next) {
         cookieLib.setCookie(res, 'wechat_info', JSON.stringify(result.wechat_info));
       }
     }
+
+    var url;
+
     if (page === 'page_purchases_list') {
-      return res.redirect('/page_wechat/page_purchases_list');
+      url = '/page_wechat/page_purchases_list';
     }
     else {
-      return res.redirect('/page_wechat/page_supply_list');
+      url = '/page_wechat/page_supply_list';
     }
+    return res.redirect(url);
   });
 };
 
@@ -44,8 +49,10 @@ exports.page_purchases_create_main = function (req, res, next) {
   return res.render(filepath, {});
 };
 exports.page_purchases_list = function (req, res, next) {
-  var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_list.client.view.html');
-  return res.render(filepath, {});
+  marketLogic.market_get_banner({ model_string: 'Purchases' }, function (err, result) {
+    var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_list.client.view.html');
+    return res.render(filepath, { banners: result.banners });
+  });
 };
 exports.page_purchases_my_list = function (req, res, next) {
   var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_my_list.client.view.html');
@@ -64,8 +71,10 @@ exports.page_supply_create_main = function (req, res, next) {
   return res.render(filepath, {});
 };
 exports.page_supply_list = function (req, res, next) {
-  var filepath = path.join(__dirname, '../../web/c_wechat/views/supply/page_supply_list.client.view.html');
-  return res.render(filepath, {});
+  marketLogic.market_get_banner({ model_string: 'Supply' }, function (err, result) {
+    var filepath = path.join(__dirname, '../../web/c_wechat/views/supply/page_supply_list.client.view.html');
+    return res.render(filepath, { banners: result.banners });
+  });
 };
 exports.page_supply_my_list = function (req, res, next) {
   var filepath = path.join(__dirname, '../../web/c_wechat/views/supply/page_supply_my_list.client.view.html');

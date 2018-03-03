@@ -49,6 +49,24 @@ exports.market_make_banner = function (user, info, callback) {
   })
 }
 
+exports.market_get_banner = function (info, callback) {
+  var model = getModel(info.model_string);
+  model.find({ is_banner: true }, function (err, results) {
+    if (err) {
+      return callback({ err: sysErr.database_save_error });
+    }
+    var banners = [];
+
+    results.filter(function (item) {
+      return !!item.photos[0];
+    }).map(function (item) {
+      return item.photos[0];
+    })
+    console.log('banners : ', results);
+    return callback(null, { banners: results });
+  })
+}
+
 exports.market_save_photos = function (market, info, callback) {
   market.photos = info.photos;
   market.save(function (err) {
