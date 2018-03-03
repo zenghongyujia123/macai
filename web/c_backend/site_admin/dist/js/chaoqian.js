@@ -1581,6 +1581,9 @@ cSite.controller('UserDetailController', [
     var pageConfig = {
       detail_id: $stateParams.detail_id,
       detail: {},
+      get_date: function (date) {
+        return moment(date).format('YYYY-MM-DD');
+      },
       update_personal_auth_info: function () {
         UserNetwork.update_personal_auth_info($scope, { personal_auth_stauts: 'authed', user_id: pageConfig.detail_id }).then(function (data) {
           console.log(data);

@@ -39,12 +39,16 @@
           <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.vip_user}}</div>
         </div>
         <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> vip充值时间</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.get_date( pageConfig.detail.vip_user_time)}}</div>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
           <div class="column-item" flex=""> 个人认证状态</div>
           <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.personal_auth_stauts}}</div>
         </div>
         <div class="list-item" layout="row" layout-align="start center">
           <div class="column-item" flex="">个人认证时间</div>
-          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.personal_auth_time}}</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.get_date(pageConfig.detail.personal_auth_time)}}</div>
         </div>
         <div class="list-item" layout="row" layout-align="start center">
           <div class="column-item" flex="">个人认证真实姓名</div>
