@@ -16,4 +16,7 @@ module.exports = function (app) {
   app.route('/api_backend/market_day_info_import').post(ctr.market_day_info_import);
   app.route('/api_backend/purchases_import').post(ctr.purchases_import);
   app.route('/api_backend/supply_import').post(ctr.supply_import);
+  app.route('/api_backend/update_personal_auth_info').post(userFilter.requireByUserId, ctr.update_personal_auth_info);
+
+
 };

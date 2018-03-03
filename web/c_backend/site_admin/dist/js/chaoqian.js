@@ -281,6 +281,9 @@ cSite.factory('UserNetwork',
         purchases_import: function (scope, params) {
           return Http.postRequestWithCheck(scope, '/api_backend/purchases_import', params);
         },
+        update_personal_auth_info: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/update_personal_auth_info', params);
+        }
       };
     }]);
 
@@ -1573,11 +1576,21 @@ cSite.controller('SupplyListController', [
 'use strict';
 
 cSite.controller('UserDetailController', [
-  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'UserNetwork',
-  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, UserNetwork) {
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'UserNetwork', 'CommonHelper',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, UserNetwork, CommonHelper) {
     var pageConfig = {
       detail_id: $stateParams.detail_id,
       detail: {},
+      update_personal_auth_info: function () {
+        UserNetwork.update_personal_auth_info($scope, { personal_auth_stauts: 'authed', user_id: pageConfig.detail_id }).then(function (data) {
+          console.log(data);
+          if (!data.err) {
+            CommonHelper.showConfirm($scope, null, '操作成功', function () {
+              $state.go('user_detail', null, { reload: true });
+            }, null, null, event);
+          }
+        });
+      },
       get_detail: function () {
         UserNetwork.market_detail($scope, { model_string: 'User', detail_id: pageConfig.detail_id }).then(function (data) {
           console.log(data);

@@ -2,7 +2,7 @@
   <div class="page-operation-view" layout="row" layout-align="space-between center">
     <p class="title">用户详情</p>
     <div>
-      <md-button class="md-primary md-raised md-hue-2" ng-disabled="{{pageConfig.detail.personal_auth_stauts==='authed'}}">认证通过</md-button>
+      <md-button class="md-primary md-raised md-hue-2" ng-disabled="{{pageConfig.detail.personal_auth_stauts==='authed'}}" ng-click="pageConfig.update_personal_auth_info()">认证通过</md-button>
     </div>
   </div>
   <div layout="row" layout-align="start start">

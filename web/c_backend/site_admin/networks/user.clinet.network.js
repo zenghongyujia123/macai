@@ -30,5 +30,8 @@ cSite.factory('UserNetwork',
         purchases_import: function (scope, params) {
           return Http.postRequestWithCheck(scope, '/api_backend/purchases_import', params);
         },
+        update_personal_auth_info: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/update_personal_auth_info', params);
+        }
       };
     }]);

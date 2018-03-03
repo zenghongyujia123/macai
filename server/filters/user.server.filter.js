@@ -33,3 +33,21 @@ exports.requirePostUser = function (req, res, next) {
     return next();
   });
 };
+
+exports.requireByUserId = function (req, res, next) {
+  var cookie = cookieLib.getCookie(req);
+  var userid = req.body.user_id || req.query.user_id || '';
+  // userLogic.getById(cookie.user_id, function (err, user) {
+  userLogic.getById(userid, function (err, user) {
+    if (err) {
+      return res.send(err);
+    }
+
+    if (!user) {
+      return res.send({ err: { type: 'user_not_exist', message: '用户不存在' } });
+
+    }
+    req.requireByUserId = user;
+    return next();
+  });
+};

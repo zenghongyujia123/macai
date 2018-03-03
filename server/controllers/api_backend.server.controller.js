@@ -99,4 +99,12 @@ exports.purchases_import = function (req, res, next) {
   });
 }
 
+exports.update_personal_auth_info = function (req, res, next) {
+  userLogic.update_personal_auth_info(req.requireByUserId, req.body, function (err, results) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(results);
+  });
+}
 

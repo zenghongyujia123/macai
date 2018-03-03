@@ -111,6 +111,11 @@ exports.update_personal_auth_info = function (user, info, callback) {
     user.personal_auth_id_number = info.personal_auth_id_number;
   }
 
+  if (info.personal_auth_stauts === 'authed') {
+    user.personal_auth_stauts = 'authed';
+    user.personal_auth_time = new Date();
+  }
+
   user.save(function (err) {
     if (err) {
       return callback({ err: sysErr.database_save_error });
