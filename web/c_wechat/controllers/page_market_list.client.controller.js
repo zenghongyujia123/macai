@@ -1,7 +1,9 @@
 $(function () {
-  var mySwiper = new Swiper('.swiper-container', {
-    autoplay: 5000,//可选选项，自动滑动
-  });
+  // var vip_user = 
+
+  // var mySwiper = new Swiper('.swiper-container', {
+  //   autoplay: 5000,//可选选项，自动滑动
+  // });
 
   var tab1 = {
     nav: $('#nav1'),

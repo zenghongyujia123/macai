@@ -46,7 +46,7 @@ exports.create_purchases = function (req, res, next) {
   info.photos = info.photos || [];
   async.auto({
     getImages: function (autoCallback) {
-      if (!info.wechat_server_ids && info.wechat_server_ids.length === 0) {
+      if (!info.wechat_server_ids || info.wechat_server_ids.length === 0) {
         return autoCallback();
       }
       async.eachSeries(info.wechat_server_ids, function (server_id, eachCallback) {
