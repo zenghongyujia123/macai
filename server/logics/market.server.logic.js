@@ -5,6 +5,7 @@ var mongoose = require('./../../libraries/mongoose');
 var appDb = mongoose.appDb;
 var async = require('async');
 var Supply = appDb.model('Supply');
+var User = appDb.model('User');
 var Purchases = appDb.model('Purchases');
 var MarketSupply = appDb.model('MarketSupply');
 var MarketPurchases = appDb.model('MarketPurchases');
@@ -65,6 +66,9 @@ exports.market_list = function (user, info, callback) {
   }
   if (info.model_string === 'Supply') {
     model = Supply;
+  }
+  if (info.model_string === 'User') {
+    model = User;
   }
 
   info = info || {};

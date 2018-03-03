@@ -1,1 +1,45 @@
-<div>this is home</div>
+<div class="page-body-view">
+  <div class="page-operation-view" layout="row" layout-align="space-between center">
+    <p class="title">{{pageConfig.title}}(总数：{{pageConfig.count}})</p>
+    <div>
+      <!-- <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.download_template()">下载模版</md-button> -->
+      <!-- <md-button class="md-primary md-raised md-hue-2 import">{{pageConfig.import_text}}
+        <input type="file" onchange="angular.element(this).scope().pageConfig.get_excel(this)">
+      </md-button> -->
+    </div>
+  </div>
+
+  <div class="list-header">
+    <div class="list-item" layout="row" layout-align="start center">
+      <div class="column-item" flex="">头像</div>
+      <div class="column-item" flex="">用户名</div>
+      <div class="column-item" flex="">昵称</div>
+      <div class="column-item" flex="">角色</div>
+      <div class="column-item" flex="">买／卖</div>
+      <div class="column-item" flex="">身份</div>
+      <div class="column-item" flex="">vip状态</div>
+      <div class="column-item" flex="">认证状态</div>
+    </div>
+  </div>
+  <div class="list-body">
+    <div class="list-item" layout="row" layout-align="start center" ng-repeat=" item in pageConfig.list">
+      <div class="column-item" flex="" layout="row" layout-align="start start">{{item.username}}</div>
+      <div class="column-item" flex="" layout="row" layout-align="start start">{{item.username}}</div>
+      <div class="column-item" flex="" layout="row" layout-align="start start">{{item.wechat_info.nickname}}</div>
+      <div class="column-item" flex="" layout="row" layout-align="start start">{{item.role}}</div>
+      <div class="column-item" flex="" layout="row" layout-align="start start">{{item.goal}}</div>
+      <div class="column-item" flex="" layout="row" layout-align="start start">{{item.identity}}</div>
+      <div class="column-item" flex="" layout="row" layout-align="start start">{{item.vip_user}}</div>
+      <div class="column-item" flex="" layout="row" layout-align="start start">{{item.personal_auth_stauts}}</div>
+    </div>
+    <div class="list-item" layout="row" layout-align="start center">
+      <md-button class="md-primary" ng-click="pageConfig.get_list('prev')">上一页
+      </md-button>
+      <md-button class="md-primary">
+        {{pageConfig.current_page}}
+      </md-button>
+      <md-button class="md-primary" ng-click="pageConfig.get_list('next')">下一页
+      </md-button>
+    </div>
+  </div>
+</div>
