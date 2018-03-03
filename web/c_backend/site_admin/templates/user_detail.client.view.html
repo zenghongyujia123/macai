@@ -62,17 +62,22 @@
     </div>
     <div class="right" flex="">
       <div style="position:relative;float:left;margin:20px;">
-        <img style=" width:200px;height:200px;" class="photo" ng-src="{{pageConfig.detail.personal_auth_id_front_photo}}" />
+        <img style=" width:200px;height:200px;" class="photo" ng-src="{{pageConfig.detail.personal_auth_id_front_photo}}" ng-click="showPhotos(pageConfig.detail.personal_auth_id_front_photo)"
+        />
         <div style="position:absolute;left:0px;height:30px;line-height:30px;width:100%;bottom:0px;background-color:green;color:white;text-align:center;">身份证正面</div>
       </div>
       <div style="position:relative;float:left;margin:20px;">
-        <img style=" width:200px;height:200px;" class="photo" ng-src="{{pageConfig.detail.personal_auth_id_back_photo}}" />
+        <img style=" width:200px;height:200px;" class="photo" ng-src="{{pageConfig.detail.personal_auth_id_back_photo}}" ng-click="showPhotos(pageConfig.detail.personal_auth_id_back_photo)"
+        />
         <div style="position:absolute;left:0px;height:30px;line-height:30px;width:100%;bottom:0px;background-color:green;color:white;text-align:center;">身份证背面</div>
       </div>
       <div style="position:relative;float:left;margin:20px;">
-        <img style=" width:200px;height:200px;" class="photo" ng-src="{{pageConfig.detail.personal_auth_id_real_photo}}" />
+        <img style=" width:200px;height:200px;" class="photo" ng-src="{{pageConfig.detail.personal_auth_id_real_photo}}" ng-click="showPhotos(pageConfig.detail.personal_auth_id_real_photo)"
+        />
         <div style="position:absolute;left:0px;height:30px;line-height:30px;width:100%;bottom:0px;background-color:green;color:white;text-align:center;">人证照片</div>
       </div>
     </div>
+  </div>
+  <div m-photo-scan photos="photoConfig.curPhotoList" show="photoConfig.showPhotoScan" start-index="tenderConfig.imgIndex">
   </div>
 </div>

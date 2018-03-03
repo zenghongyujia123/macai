@@ -33,4 +33,17 @@ cSite.controller('UserDetailController', [
     };
     $scope.pageConfig = pageConfig;
     pageConfig.get_detail();
+
+    $scope.photoConfig = {
+      curPhotoList: [],
+      showPhotoScan: false,
+      imgIndex: 0
+    };
+
+    $scope.showPhotos = function (path) {
+      $scope.photoConfig.curPhotoList = [{
+        url: path
+      }];
+      $scope.photoConfig.showPhotoScan = true;
+    };
   }]);
