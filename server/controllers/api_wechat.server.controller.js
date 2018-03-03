@@ -403,8 +403,8 @@ exports.get_choose_brand = function (req, res, next) {
 
   }
 
-  return
-  res.send(dic[req.body.category]);
+  
+  return res.send(dic[req.body.category]);
 }
 
 exports.getUserJsApiTicket = function (req, res, next) {
