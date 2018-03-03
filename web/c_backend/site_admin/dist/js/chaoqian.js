@@ -283,7 +283,10 @@ cSite.factory('UserNetwork',
         },
         update_personal_auth_info: function (scope, params) {
           return Http.postRequestWithCheck(scope, '/api_backend/update_personal_auth_info', params);
-        }
+        },
+        market_make_banner: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/market_make_banner', params);
+        },
       };
     }]);
 
@@ -1190,6 +1193,16 @@ cSite.controller('PurchasesDetailController', [
           console.log(data);
         });
       },
+      market_make_banner: function () {
+        UserNetwork.market_make_banner($scope, { is_banner: pageConfig.detail.is_banner ? false : true, model_string: 'Purchases', detail_id: pageConfig.detail_id }).then(function (data) {
+          if (!data.err) {
+            CommonHelper.showConfirm($scope, null, '操作成功', function () {
+              $state.go('purchases_detail', null, { reload: true });
+            }, null, null, event);
+          }
+          console.log(data);
+        });
+      },
       delete_photo: function (photo) {
         var index = pageConfig.detail.photos.indexOf(photo);
         if (index !== -1) {
@@ -1402,6 +1415,16 @@ cSite.controller('SupplyDetailController', [
         if (index !== -1) {
           pageConfig.detail.photos.splice(index, 1);
         }
+      },
+      market_make_banner: function () {
+        UserNetwork.market_make_banner($scope, { is_banner: pageConfig.detail.is_banner ? false : true, model_string: 'Supply', detail_id: pageConfig.detail_id }).then(function (data) {
+          if (!data.err) {
+            CommonHelper.showConfirm($scope, null, '操作成功', function () {
+              $state.go('supply_detail', null, { reload: true });
+            }, null, null, event);
+          }
+          console.log(data);
+        });
       },
       get_detail: function () {
         UserNetwork.market_detail($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id }).then(function (data) {

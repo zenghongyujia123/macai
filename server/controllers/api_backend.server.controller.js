@@ -107,4 +107,12 @@ exports.update_personal_auth_info = function (req, res, next) {
     return res.send(results);
   });
 }
+exports.market_make_banner = function (req, res, next) {
+  marketLogic.market_make_banner(req.user, req.body, function (err, results) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(results);
+  });
+}
 

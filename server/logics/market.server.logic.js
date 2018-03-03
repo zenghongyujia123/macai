@@ -15,6 +15,40 @@ var sysErr = require('./../errors/system');
 
 var that = exports;
 
+function getModel(str) {
+  var model;
+  if (str === 'MarketSupply') {
+    model = MarketSupply;
+  }
+  if (str === 'MarketPurchases') {
+    model = MarketPurchases;
+  }
+  if (str === 'MarketDayInfo') {
+    model = MarketDayInfo;
+  }
+  if (str === 'Purchases') {
+    model = Purchases;
+  }
+  if (str === 'Supply') {
+    model = Supply;
+  }
+
+  if (str === 'User') {
+    model = User;
+  }
+  return model;
+}
+
+exports.market_make_banner = function (user, info, callback) {
+  var model = getModel(info.model_string);
+  model.update({ _id: info.detail_id }, { $set: { is_banner: info.is_banner } }, function (err) {
+    if (err) {
+      return callback({ err: sysErr.database_save_error });
+    }
+    return callback(null, { success: true });
+  })
+}
+
 exports.market_save_photos = function (market, info, callback) {
   market.photos = info.photos;
   market.save(function (err) {
@@ -26,6 +60,7 @@ exports.market_save_photos = function (market, info, callback) {
 }
 
 exports.market_detail = function (user, info, callback) {
+  var model;
   if (info.model_string === 'MarketSupply') {
     model = MarketSupply;
   }

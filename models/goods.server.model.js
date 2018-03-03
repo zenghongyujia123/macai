@@ -46,6 +46,10 @@ module.exports = function (appDb) {
       type: String,
       default: 'Purchases'
     },
+    is_banner: {
+      type: Boolean,
+      default: false
+    },
     status: {
       type: String,
       enum: ['progress', 'stop', 'passed', 'unpassed'],
@@ -144,6 +148,10 @@ module.exports = function (appDb) {
     object: {
       type: String,
       default: 'Supply'
+    },
+    is_banner: {
+      type: Boolean,
+      default: false
     },
     status: {
       type: String,
