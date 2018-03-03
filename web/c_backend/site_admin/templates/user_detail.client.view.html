@@ -1,9 +1,8 @@
 <div class="page-body-view">
   <div class="page-operation-view" layout="row" layout-align="space-between center">
-    <p class="title">供应货品详情</p>
+    <p class="title">用户详情</p>
     <div>
-      <md-button class="md-primary md-raised md-hue-2" id="qiniu-upload-test-button">上传图片</md-button>
-      <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.save_photos()">保存图片</md-button>
+      <md-button class="md-primary md-raised md-hue-2">认证通过</md-button>
     </div>
   </div>
   <div layout="row" layout-align="start start">
@@ -40,15 +39,35 @@
           <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.vip_user}}</div>
         </div>
         <div class="list-item" layout="row" layout-align="start center">
-          <div class="column-item" flex=""> 认证状态</div>
+          <div class="column-item" flex=""> 个人认证状态</div>
           <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.personal_auth_stauts}}</div>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex="">个人认证时间</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.personal_auth_time}}</div>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex="">个人认证真实姓名</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.personal_auth_real_name}}</div>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex="">个人认证身份证号</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.personal_auth_id_number}}</div>
         </div>
       </div>
     </div>
     <div class="right" flex="">
-      <div ng-repeat="photo in pageConfig.detail.photos" style="position:relative;float:left;margin:20px;">
-        <img style=" width:200px;height:200px;" class="photo" ng-src="{{photo}}" />
-        <div ng-click="pageConfig.delete_photo(photo)" style="position:absolute;left:0px;height:30px;line-height:30px;width:100%;bottom:0px;background-color:red;color:white;text-align:center;">删除</div>
+      <div style="position:relative;float:left;margin:20px;">
+        <img style=" width:200px;height:200px;" class="photo" ng-src="{{pageConfig.detail.personal_auth_id_front_photo}}" />
+        <div style="position:absolute;left:0px;height:30px;line-height:30px;width:100%;bottom:0px;background-color:green;color:white;text-align:center;">身份证正面</div>
+      </div>
+      <div style="position:relative;float:left;margin:20px;">
+        <img style=" width:200px;height:200px;" class="photo" ng-src="{{pageConfig.detail.personal_auth_id_back_photo}}" />
+        <div style="position:absolute;left:0px;height:30px;line-height:30px;width:100%;bottom:0px;background-color:green;color:white;text-align:center;">身份证背面</div>
+      </div>
+      <div style="position:relative;float:left;margin:20px;">
+        <img style=" width:200px;height:200px;" class="photo" ng-src="{{pageConfig.detail.personal_auth_id_real_photo}}" />
+        <div style="position:absolute;left:0px;height:30px;line-height:30px;width:100%;bottom:0px;background-color:green;color:white;text-align:center;">人证照片</div>
       </div>
     </div>
   </div>
