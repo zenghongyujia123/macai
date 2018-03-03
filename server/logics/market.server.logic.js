@@ -42,6 +42,10 @@ exports.market_detail = function (user, info, callback) {
     model = Supply;
   }
 
+  if (info.model_string === 'User') {
+    model = User;
+  }
+
   model.findOne({ _id: info.detail_id }, function (err, result) {
     if (err) {
       return callback({ err: sysErr.database_query_error });

@@ -1,20 +1,54 @@
 <div class="page-body-view">
   <div class="page-operation-view" layout="row" layout-align="space-between center">
-    <p class="title"></p>
+    <p class="title">供应货品详情</p>
     <div>
-      <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.download_template()">下载模版</md-button>
-      <md-button class="md-primary md-raised md-hue-2 import">{{pageConfig.import_text}}
-        <input type="file" onchange="angular.element(this).scope().pageConfig.get_excel(this)">
-      </md-button>
+      <md-button class="md-primary md-raised md-hue-2" id="qiniu-upload-test-button">上传图片</md-button>
+      <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.save_photos()">保存图片</md-button>
     </div>
   </div>
-
-  <div class="list-header">
-    <div class="list-item" layout="row" layout-align="start center">
-      <div class="column-item left" flex="">
-
+  <div layout="row" layout-align="start start">
+    <div class="left" flex="">
+      <div class="list-header">
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> 头像</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">
+            <img style="margin:5px 0px;border-radius:90px;" ng-src="{{item.wechat_info.headimgurl}}" />
+          </div>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> 用户名</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.username}}</div>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> 昵称</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.wechat_info.nickname}}</div>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> 角色</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.role}}</div>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> 买／卖</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.goal}}</div>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> 身份</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.identity}}</div>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> vip状态</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.vip_user}}</div>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> 认证状态</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.personal_auth_stauts}}</div>
+        </div>
       </div>
-      <div class="column-item right" flex="">
+    </div>
+    <div class="right" flex="">
+      <div ng-repeat="photo in pageConfig.detail.photos" style="position:relative;float:left;margin:20px;">
+        <img style=" width:200px;height:200px;" class="photo" ng-src="{{photo}}" />
+        <div ng-click="pageConfig.delete_photo(photo)" style="position:absolute;left:0px;height:30px;line-height:30px;width:100%;bottom:0px;background-color:red;color:white;text-align:center;">删除</div>
       </div>
     </div>
   </div>
