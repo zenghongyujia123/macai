@@ -103,7 +103,7 @@ cSite.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, 
       templateUrl: '/c_backend/site_admin/templates/payment_detail.client.view.html',
       controller: 'PaymentDetailController'
     });
-  $urlRouterProvider.otherwise('/home');
+  $urlRouterProvider.otherwise('/user_list');
 }]);
 
 
