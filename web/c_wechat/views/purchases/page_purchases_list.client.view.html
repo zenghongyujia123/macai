@@ -43,9 +43,9 @@
         <div class="swiper-container">
           <div class="swiper-wrapper">
             <% for(var i = 0;i<banners.length;i++){ %>
-              <div class="swiper-slide">
-                <img style="width:100%" src="<%= banners[i] %>" />
-              </div>
+              <a class="swiper-slide">
+                <img style="width:100%" src="<%= banners[i].photos[0] %>" />
+              </a>
               <% } %>
                 <!-- <div class="swiper-slide">
                   <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516814838684&di=d9fea51c2e8a8bf459d530a73b86073b&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F39%2F05%2F96N58PICsWH_1024.jpg">

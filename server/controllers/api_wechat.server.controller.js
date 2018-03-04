@@ -110,7 +110,7 @@ exports.purchases_list = function (req, res, next) {
       return res.send(err);
     }
     return res.send(result);
-  })
+  });
 }
 exports.create_supply = function (req, res, next) {
   var info = req.body || {};

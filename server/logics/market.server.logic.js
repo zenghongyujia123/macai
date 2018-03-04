@@ -59,9 +59,7 @@ exports.market_get_banner = function (info, callback) {
 
     results = results.filter(function (item) {
       return !!item.photos[0];
-    }).map(function (item) {
-      return item.photos[0];
-    })
+    });
     return callback(null, { banners: results });
   })
 }
