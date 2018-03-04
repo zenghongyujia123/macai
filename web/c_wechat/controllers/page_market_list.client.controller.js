@@ -57,7 +57,9 @@ $(function () {
             title: '提示',
             text: '你还不是vip,成为vip获取更多服务',
             onOK: function () {
-              onBridgeReady()
+              get_pre_pay_id(function () {
+
+              })
             },
             onCancel: function () {
             }
@@ -138,6 +140,19 @@ $(function () {
           '    </div>' +
           '  </div>' +
           '</a>');
+        obj.click(function () {
+          $.confirm({
+            title: '提示',
+            text: '你还不是vip,成为vip获取更多服务',
+            onOK: function () {
+              get_pre_pay_id(function () {
+
+              })
+            },
+            onCancel: function () {
+            }
+          });
+        });
         obj.insertBefore(tab2.laodmore);
       }
     },
