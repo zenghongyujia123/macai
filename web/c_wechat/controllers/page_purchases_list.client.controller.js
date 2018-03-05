@@ -103,32 +103,6 @@ $(function () {
     goods_category: '',
     loading: false,
     is_init: false,
-    init_loadmore: function () {
-      if (tab1.is_init) {
-        return;
-      }
-      tab1.is_init = true;
-
-      if (tab1.laodmore.remove) {
-        tab1.container.destroyInfinite();
-        tab1.laodmore.remove();
-      }
-
-      tab1.clear_list();
-
-      tab1.laodmore = $(
-        '<div class="weui-loadmore">' +
-        '  <i class="weui-loading"></i>' +
-        '  <span class="weui-loadmore__tips">正在加载</span>' +
-        '</div>  '
-      );
-      tab1.container.append(tab1.laodmore);
-      tab1.container.infinite().on("infinite", function () {
-        tab1.my_list(function (last) {
-        });
-      });
-      tab1.my_list(function () { })
-    },
     clear_list: function () {
       tab1.find('.purchases-list-item').remove();
     },
@@ -191,7 +165,27 @@ $(function () {
       }
     },
     init: function () {
-      tab1.init_loadmore();
+      if (tab1.is_init) {
+        return;
+      }
+      tab1.is_init = true;
+      if (tab1.laodmore.remove) {
+        tab1.container.destroyInfinite();
+        tab1.laodmore.remove();
+      }
+      tab1.clear_list();
+      tab1.laodmore = $(
+        '<div class="weui-loadmore">' +
+        '  <i class="weui-loading"></i>' +
+        '  <span class="weui-loadmore__tips">正在加载</span>' +
+        '</div>  '
+      );
+      tab1.container.append(tab1.laodmore);
+      tab1.container.infinite().on("infinite", function () {
+        tab1.my_list(function (last) {
+        });
+      });
+      tab1.my_list(function () { });
       // tab1.my_list(function () { });
     }
   };
