@@ -104,7 +104,7 @@ $(function () {
     loading: false,
     is_init: false,
     clear_list: function () {
-      tab1.find('.purchases-list-item').remove();
+      tab1.container.find('.purchases-list-item').remove();
     },
     my_list: function (callback) {
       if (tab1.loading) return;
