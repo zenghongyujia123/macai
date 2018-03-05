@@ -8,6 +8,7 @@ var supplyLogic = require('../logics/supply');
 var marketLogic = require('../logics/market');
 var wechatLogic = require('../logics/wechat');
 var userLogic = require('../logics/user');
+var bannerLogic = require('../logics/banner');
 var cookieLib = require('../../libraries/cookie');
 var smsLib = require('../../libraries/sms');
 var agent = require('superagent').agent();
@@ -114,5 +115,14 @@ exports.market_make_banner = function (req, res, next) {
     }
     return res.send(results);
   });
+}
+
+exports.create_banner = function (req, res, next) {
+  bannerLogic.create_banner(req.user, req.body, function (err, results) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(results);
+  })
 }
 
