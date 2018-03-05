@@ -99,11 +99,7 @@
     $('.c-filter-btn').click(function () {
       $("#goods-choose").popup();
       get_choose_categorys(function (category) {
-        $('.get_choose_categorys').val(category);
-        get_choose_brand(category, function (brand) {
-          $('.get_choose_categorys').val([category, brand].join(' '));
-          $.closePopup();
-        });
+        $.closePopup();
       });
     });
   })
