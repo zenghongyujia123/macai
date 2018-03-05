@@ -108,6 +108,10 @@ $(function () {
         return;
       }
 
+      if (tab1.laodmore.remove) {
+        tab1.laodmore.remove();
+      }
+
       tab1.laodmore = $(
         '<div class="weui-loadmore">' +
         '  <i class="weui-loading"></i>' +
