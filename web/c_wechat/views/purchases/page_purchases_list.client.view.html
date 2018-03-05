@@ -86,11 +86,26 @@
     </div>
     <a href="javascript:void(0);" class="weui-btn weui-btn_primary c-filter-btn">筛选</a>
     <a href="/page_wechat/page_purchases_create_main" class="weui-btn weui-btn_primary c-create-btn">发采购</a>
-
+  </div>
+  <div id="goods-choose" class="weui-popup__container">
+    <div class="weui-popup__overlay"></div>
+    <div class="weui-popup__modal goods-choose-container">
+    </div>
   </div>
 </body>
 <script>
-
+  $(function () {
+    $('.c-filter-btn').click(function () {
+      $("#goods-choose").popup();
+      get_choose_categorys(function (category) {
+        $('.get_choose_categorys').val(category);
+        get_choose_brand(category, function (brand) {
+          $('.get_choose_categorys').val([category, brand].join(' '));
+          $.closePopup();
+        });
+      });
+    });
+  })
 </script>
 
 </html>

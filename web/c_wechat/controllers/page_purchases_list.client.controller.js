@@ -95,7 +95,6 @@ $(function () {
     tab2.my_list();
   });
 
-
   var tab1 = {
     nav: $('#nav1'),
     container: $('#tab1'),
@@ -158,20 +157,6 @@ $(function () {
       }
     },
     init: function () {
-      // $("#my-purchases-status").select({
-      //   title: "选择状态",
-      //   items: ["采购中", "已停止", "被驳回"]
-      // });
-
-      // $("#my-purchases-status").picker({
-      //   title: "选择状态",
-      //   cols: [
-      //     {
-      //       textAlign: 'center',
-      //       values: ["采购中", "已停止", "被驳回"]
-      //     }
-      //   ]
-      // });
     }
   };
 
