@@ -282,15 +282,5 @@ $(function () {
     });
     tab3.my_list();
   });
-
-  $('.c-filter-btn').click(function () {
-    $("#goods-choose").popup();
-    get_choose_categorys(function (category) {
-      tab1.goods_category = category;
-      tab1.my_list();
-      tab1.last_item = {};
-      $.closePopup();
-    });
-  });
 });
 
