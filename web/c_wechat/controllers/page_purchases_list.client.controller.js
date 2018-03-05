@@ -130,7 +130,7 @@ $(function () {
       tab1.my_list(function () { })
     },
     clear_list: function () {
-      $('.purchases-list-item').remove();
+      tab1.find('.purchases-list-item').remove();
     },
     my_list: function (callback) {
       if (tab1.loading) return;
