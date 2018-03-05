@@ -109,6 +109,7 @@ $(function () {
       }
 
       if (tab1.laodmore.remove) {
+        tab1.container.destroyInfinite();
         tab1.laodmore.remove();
       }
 
@@ -129,7 +130,6 @@ $(function () {
           tab1.loading = false;
         });
       });
-      // tab1.my_list(function () { });
     },
     clear_list: function () {
       $('.purchases-list-item').remove();
