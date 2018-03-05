@@ -107,6 +107,7 @@ $(function () {
       if (tab1.is_init) {
         return;
       }
+      tab1.is_init = true;
 
       if (tab1.laodmore.remove) {
         tab1.container.destroyInfinite();
@@ -122,14 +123,8 @@ $(function () {
         '</div>  '
       );
       tab1.container.append(tab1.laodmore);
-
-
-      tab1.is_init = true;
       tab1.container.infinite().on("infinite", function () {
-        if (tab1.loading) return;
-        tab1.loading = true;
         tab1.my_list(function (last) {
-          tab1.loading = false;
         });
       });
       tab1.my_list(function () { })
@@ -138,6 +133,8 @@ $(function () {
       $('.purchases-list-item').remove();
     },
     my_list: function (callback) {
+      if (tab1.loading) return;
+      tab1.loading = true;
       $.ajax({
         url: '/api_wechat/supply/supply_list',
         data: {
@@ -146,6 +143,7 @@ $(function () {
         },
         method: 'post',
         success: function (data) {
+          tab1.loading = false;
           console.log(data);
           if (!data || data.err) {
             $.toptip(data.err.message, 'warning');
