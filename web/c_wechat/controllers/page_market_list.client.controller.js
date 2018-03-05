@@ -12,12 +12,14 @@ $(function () {
     last_item: {},
     loading: false,
     is_init: false,
+    goods_category: '',
     my_list: function (callback) {
       $.ajax({
         url: '/api_backend/market_list',
         data: {
           model_string: 'MarketPurchases',
-          last_item: tab1.last_item
+          last_item: tab1.last_item,
+          goods_category: tab1.goods_category
         },
         method: 'post',
         success: function (data) {
@@ -281,5 +283,14 @@ $(function () {
     tab3.my_list();
   });
 
+  $('.c-filter-btn').click(function () {
+    $("#goods-choose").popup();
+    get_choose_categorys(function (category) {
+      tab1.goods_category = category;
+      tab1.my_list();
+      tab1.last_item = {};
+      $.closePopup();
+    });
+  });
 });
 

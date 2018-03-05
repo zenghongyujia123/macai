@@ -130,6 +130,10 @@ exports.market_list = function (user, info, callback) {
   info.last_item = info.last_item || {};
   var query = {};
 
+  if (info.goods_category) {
+    query.goods_category = info.goods_category;
+  }
+
   model.count({}, function (err, count) {
     if (err) {
       return callback({ err: sysErr.database_query_error });
