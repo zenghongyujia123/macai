@@ -113,6 +113,8 @@ $(function () {
         tab1.laodmore.remove();
       }
 
+      tab1.clear_list();
+
       tab1.laodmore = $(
         '<div class="weui-loadmore">' +
         '  <i class="weui-loading"></i>' +
@@ -207,7 +209,6 @@ $(function () {
       tab1.is_init = false;
       tab1.goods_category = category;
       tab1.last_item = {};
-      tab1.clear_list();
       tab1.init();
       $.closePopup();
     });
