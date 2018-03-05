@@ -62,20 +62,20 @@ $(function () {
       }
     },
     init: function () {
-      $("#my-purchases-status").select({
-        title: "选择状态",
-        items: ["采购中", "已停止", "被驳回"]
-      });
+      // $("#my-purchases-status").select({
+      //   title: "选择状态",
+      //   items: ["采购中", "已停止", "被驳回"]
+      // });
 
-      $("#my-purchases-status").picker({
-        title: "选择状态",
-        cols: [
-          {
-            textAlign: 'center',
-            values: ["采购中", "已停止", "被驳回"]
-          }
-        ]
-      });
+      // $("#my-purchases-status").picker({
+      //   title: "选择状态",
+      //   cols: [
+      //     {
+      //       textAlign: 'center',
+      //       values: ["采购中", "已停止", "被驳回"]
+      //     }
+      //   ]
+      // });
     }
   };
 
@@ -103,6 +103,33 @@ $(function () {
     goods_category: '',
     loading: false,
     is_init: false,
+    init_loadmore: function () {
+      if (tab1.is_init) {
+        return;
+      }
+
+      tab1.laodmore = $(
+        '<div class="weui-loadmore">' +
+        '  <i class="weui-loading"></i>' +
+        '  <span class="weui-loadmore__tips">正在加载</span>' +
+        '</div>  '
+      );
+      tab1.container.append(tab1.laodmore);
+
+
+      tab1.is_init = true;
+      tab1.container.infinite().on("infinite", function () {
+        if (tab1.loading) return;
+        tab1.loading = true;
+        tab1.my_list(function (last) {
+          tab1.loading = false;
+        });
+      });
+      tab1.my_list(function () { });
+    },
+    clear_list: function () {
+      $('.purchases-list-item').remove();
+    },
     my_list: function (callback) {
       $.ajax({
         url: '/api_wechat/supply/supply_list',
@@ -159,23 +186,13 @@ $(function () {
       }
     },
     init: function () {
+      tab1.init_loadmore();
+      tab1.my_list(function () { });
     }
   };
 
   tab1.nav.click(function () {
-    if (tab1.is_init) {
-      return;
-    }
-    tab1.is_init = true;
     tab1.init();
-    tab1.container.infinite().on("infinite", function () {
-      if (tab1.loading) return;
-      tab1.loading = true;
-      tab1.my_list(function (last) {
-        tab1.loading = false;
-      });
-    });
-    tab1.my_list(function () { });
   });
 
   tab1.nav.click();
@@ -183,11 +200,15 @@ $(function () {
   $('.c-filter-btn').click(function () {
     $("#goods-choose").popup();
     get_choose_categorys(function (category) {
+      tab1.is_init = false;
       tab1.goods_category = category;
-      tab1.my_list();
       tab1.last_item = {};
+      tab1.clear_list();
+      tab1.init();
       $.closePopup();
     });
   });
+
+
 });
 
