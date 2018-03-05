@@ -132,6 +132,7 @@ $(function () {
           tab1.loading = false;
         });
       });
+      tab1.my_list(function () { })
     },
     clear_list: function () {
       $('.purchases-list-item').remove();
@@ -193,7 +194,7 @@ $(function () {
     },
     init: function () {
       tab1.init_loadmore();
-      tab1.my_list(function () { });
+      // tab1.my_list(function () { });
     }
   };
 
