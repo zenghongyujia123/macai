@@ -51,7 +51,6 @@ exports.page_purchases_create_main = function (req, res, next) {
 exports.page_purchases_list = function (req, res, next) {
   marketLogic.market_get_banner({ model_string: 'Supply' }, function (err, result) {
     var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_list.client.view.html');
-    console.log('banners : ', result.banners);
     return res.render(filepath, { banners: result.banners });
   });
 };
