@@ -36,5 +36,8 @@ cSite.factory('UserNetwork',
         market_make_banner: function (scope, params) {
           return Http.postRequestWithCheck(scope, '/api_backend/market_make_banner', params);
         },
+        create_banner: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/create_banner', params);
+        }
       };
     }]);

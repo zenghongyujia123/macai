@@ -5,6 +5,7 @@ var mongoose = require('./../../libraries/mongoose');
 var appDb = mongoose.appDb;
 var async = require('async');
 var Supply = appDb.model('Supply');
+var Banner = appDb.model('Banner');
 var User = appDb.model('User');
 var Purchases = appDb.model('Purchases');
 var MarketSupply = appDb.model('MarketSupply');
@@ -35,6 +36,9 @@ function getModel(str) {
 
   if (str === 'User') {
     model = User;
+  }
+  if (str === 'Banner') {
+    model = Banner;
   }
   return model;
 }
@@ -75,27 +79,7 @@ exports.market_save_photos = function (market, info, callback) {
 }
 
 exports.market_detail = function (user, info, callback) {
-  var model;
-  if (info.model_string === 'MarketSupply') {
-    model = MarketSupply;
-  }
-  if (info.model_string === 'MarketPurchases') {
-    model = MarketPurchases;
-  }
-  if (info.model_string === 'MarketDayInfo') {
-    model = MarketDayInfo;
-  }
-  if (info.model_string === 'Purchases') {
-    model = Purchases;
-  }
-  if (info.model_string === 'Supply') {
-    model = Supply;
-  }
-
-  if (info.model_string === 'User') {
-    model = User;
-  }
-
+  var model = getModel(info.model_string);
   model.findOne({ _id: info.detail_id }, function (err, result) {
     if (err) {
       return callback({ err: sysErr.database_query_error });

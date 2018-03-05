@@ -93,6 +93,18 @@ cSite.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, 
       templateUrl: '/c_backend/site_admin/templates/auth_detail.client.view.html',
       controller: 'AuthDetailController'
     })
+
+    .state('banner_list', {
+      url: '/banner_list',
+      templateUrl: '/c_backend/site_admin/templates/banner_list.client.view.html',
+      controller: 'BannerListController'
+    })
+    .state('banner_detail', {
+      url: '/banner_detail/:detail_id',
+      templateUrl: '/c_backend/site_admin/templates/banner_detail.client.view.html',
+      controller: 'BannerDetailController'
+    })
+
     .state('payment_list', {
       url: '/payment_list',
       templateUrl: '/c_backend/site_admin/templates/payment_list.client.view.html',

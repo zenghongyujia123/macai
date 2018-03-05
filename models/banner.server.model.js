@@ -21,6 +21,11 @@ module.exports = function (appDb) {
     type: {
       type: String
     },
+    status: {
+      type: String,
+      enum: ['start', 'stop'],
+      default: 'start'
+    },
     photos: [{ type: String }]
   });
 
