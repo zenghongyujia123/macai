@@ -125,7 +125,7 @@ function onBridgeReady(info, callback) {
     "signType": "MD5",         //微信签名方式：     
     "paySign": info.paySign //微信签名 
   };
-  alert(JSON.stringify(payinfo));
+  // alert(JSON.stringify(payinfo));
   WeixinJSBridge.invoke(
     'getBrandWCPayRequest', payinfo,
     function (res) {
