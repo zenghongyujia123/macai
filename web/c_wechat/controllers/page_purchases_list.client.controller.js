@@ -34,7 +34,8 @@ $(function () {
             tab2.container.destroyInfinite();
             tab2.laodmore.remove();
           }
-          return callback();
+          if (callback)
+            return callback();
         }
       });
     },
@@ -76,20 +77,7 @@ $(function () {
       }
     },
     init: function () {
-      // $("#my-purchases-status").select({
-      //   title: "选择状态",
-      //   items: ["采购中", "已停止", "被驳回"]
-      // });
 
-      // $("#my-purchases-status").picker({
-      //   title: "选择状态",
-      //   cols: [
-      //     {
-      //       textAlign: 'center',
-      //       values: ["采购中", "已停止", "被驳回"]
-      //     }
-      //   ]
-      // });
     }
   };
 
