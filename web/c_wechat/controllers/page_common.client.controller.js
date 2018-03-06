@@ -245,7 +245,7 @@ function get_price(callback) {
   container.children().remove();
 }
 
-function refreshGoods(detail_id, model_string) {
+function refreshGoods(detail_id, model_string, callback) {
   $.ajax({
     url: '/api_backend/market_refresh_time',
     method: 'post',
@@ -257,8 +257,7 @@ function refreshGoods(detail_id, model_string) {
       if (!data || data.err) {
         return $.toptip(data.err.message, 'warning');
       }
-      $.toast("操作成功");
-      window.location = window.location;
+      return callback(data);
     }
   });
 }

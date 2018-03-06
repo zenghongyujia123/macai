@@ -41,7 +41,9 @@ $(function () {
     bind_event: function (obj, detail_id) {
       obj.find('.refresh').click(function (e) {
         stopBubble(e);
-        refreshGoods(detail_id, 'Purchases');
+        refreshGoods(detail_id, 'Purchases', function () {
+          $.toast("操作成功");
+        });
         return false;
       });
       obj.click(function () {
