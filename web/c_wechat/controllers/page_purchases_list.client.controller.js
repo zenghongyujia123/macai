@@ -54,6 +54,7 @@ $(function () {
           '     </div>' +
           '     <div class="title2">品种：' + item.goods_brand + '</div>' +
           '     <div class="title2">浏览次数：' + (item.browse_count || 0) + '次</div>' +
+          '     <div class="title2">最后刷新：' + (new Date(item.create_time).getMonth() + 1) + '月' + new Date(item.create_time).getDate() + '日</div>' +
           '     <div class="item-bottom">' +
           '       <div class="price">' + item.expect_price +
           '         <span class="price-unit">' + item.expect_price_unit + '</span>' +
