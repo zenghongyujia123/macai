@@ -142,6 +142,7 @@ $(function () {
           '     </div>' +
           '     <div class="title2">品种：' + item.goods_brand + '</div>' +
           '     <div class="title2">所在地：' + item.expect_province + item.expect_province + item.expect_city + '</div>' +
+          '     <div class="title2">最后刷新' + (new Date(item.create_time).getMonth() + 1) + '月' + new Date(item.create_time).getDate() + '日' + '</div>' +
           '     <div><span class="tag green">' + ((item.user ? item.user.role : item.role) || '') + '</span></div>' +
           '     <span class="tag orange">' + item.frequency + '</span>' +
           '   </div>' +
