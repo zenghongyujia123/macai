@@ -10,13 +10,6 @@ $(function () {
     last_item: {},
     loading: false,
     is_init: false,
-    bind_event: function (obj, detail_id) {
-      obj.find('.refresh').click(function (e) {
-        stopBubble(e);
-        refreshGoods(detail_id, 'Purchases');
-        return false;
-      });
-    },
     my_list: function (callback) {
       $.ajax({
         url: '/api_wechat/purchases/my_purchases_list',
@@ -45,11 +38,21 @@ $(function () {
         }
       });
     },
+    bind_event: function (obj, detail_id) {
+      obj.find('.refresh').click(function (e) {
+        stopBubble(e);
+        refreshGoods(detail_id, 'Purchases');
+        return false;
+      });
+      obj.click(function () {
+        window.location = '/page_wechat/page_purchases_detail?purchases_id=' + item._id;
+      });
+    },
     append_my_list: function (data) {
       for (var i = 0; i < data.length; i++) {
         var item = data[i];
         var obj = $(
-          ' <a href="/page_wechat/page_purchases_detail?purchases_id=' + item._id + '"' + ' class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
+          ' <div class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
           '   <div class="weui-media-box__bd">' +
           '     <div class="title1">' + item.goods_name +
           '     </div>' +
@@ -65,7 +68,7 @@ $(function () {
           '       </div>' +
           '     </div>' +
           '   </div>' +
-          ' </a>');
+          ' </div');
         tab2.bind_event(obj, item._id);
         obj.insertBefore(tab2.laodmore);
       }
