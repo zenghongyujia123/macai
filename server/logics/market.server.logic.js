@@ -88,11 +88,7 @@ exports.market_get_top = function (info, callback) {
     if (err) {
       return callback({ err: sysErr.database_save_error });
     }
-    var tops = [];
 
-    results = results.filter(function (item) {
-      return !!item.photos[0];
-    });
     return callback(null, { tops: results });
   })
 }
