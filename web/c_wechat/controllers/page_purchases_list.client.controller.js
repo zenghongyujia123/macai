@@ -47,15 +47,12 @@ $(function () {
         });
         return false;
       });
-      obj.click(function () {
-        window.location = '/page_wechat/page_purchases_detail?purchases_id=' + item._id;
-      });
     },
     append_my_list: function (data) {
       for (var i = 0; i < data.length; i++) {
         var item = data[i];
         var obj = $(
-          ' <div class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
+          ' <div href="/page_wechat/page_purchases_detail?purchases_id=' + item._id + '" class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
           '   <div class="weui-media-box__bd">' +
           '     <div class="title1">' + item.goods_name +
           '     </div>' +
