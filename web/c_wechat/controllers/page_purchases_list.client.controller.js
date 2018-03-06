@@ -14,6 +14,7 @@ $(function () {
       obj.find('.refresh').click(function (e) {
         stopBubble(e);
         refreshGoods(detail_id, 'Purchases');
+        return false;
       });
     },
     my_list: function (callback) {
