@@ -93,6 +93,18 @@ cSite.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, 
       templateUrl: '/c_backend/site_admin/templates/auth_detail.client.view.html',
       controller: 'AuthDetailController'
     })
+
+    .state('banner_list', {
+      url: '/banner_list',
+      templateUrl: '/c_backend/site_admin/templates/banner_list.client.view.html',
+      controller: 'BannerListController'
+    })
+    .state('banner_detail', {
+      url: '/banner_detail/:detail_id',
+      templateUrl: '/c_backend/site_admin/templates/banner_detail.client.view.html',
+      controller: 'BannerDetailController'
+    })
+
     .state('payment_list', {
       url: '/payment_list',
       templateUrl: '/c_backend/site_admin/templates/payment_list.client.view.html',
@@ -287,6 +299,12 @@ cSite.factory('UserNetwork',
         market_make_banner: function (scope, params) {
           return Http.postRequestWithCheck(scope, '/api_backend/market_make_banner', params);
         },
+        market_update_status: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/market_update_status', params);
+        },
+        create_banner: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/create_banner', params);
+        }
       };
     }]);
 
@@ -816,6 +834,121 @@ cSite.controller('AuthListController', [
  */
 'use strict';
 
+cSite.controller('BannerDetailController', [
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', '$timeout', 'UserNetwork', 'QiniuService', 'CommonHelper',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, $timeout, UserNetwork, QiniuService, CommonHelper) {
+    var photos = [];
+    var qiniu = QiniuService.createUploader('qiniu-upload-test-button', function (info) {
+      $timeout(function () {
+        $scope.pageConfig.detail.photos = $scope.pageConfig.detail.photos || [];
+        $scope.pageConfig.detail.photos.push(QiniuService.getQiniuImageSrc(info.key))
+      });
+      console.log('upload successs : ---- ', info);
+    });
+    var pageConfig = {
+      detail_id: $stateParams.detail_id,
+      detail: {},
+      save_photos: function () {
+        UserNetwork.market_save_photos($scope, { model_string: 'Purchases', detail_id: pageConfig.detail_id, photos: pageConfig.detail.photos }).then(function (data) {
+          // UserNetwork.market_save_photos($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id, photos: photos }).then(function (data) {
+          if (!data.err) {
+            CommonHelper.showConfirm($scope, null, '操作成功', function () {
+              $state.go('purchases_detail', null, { reload: true });
+            }, null, null, event);
+          }
+          console.log(data);
+        });
+      },
+      market_make_banner: function () {
+        UserNetwork.market_make_banner($scope, { is_banner: pageConfig.detail.is_banner ? false : true, model_string: 'Purchases', detail_id: pageConfig.detail_id }).then(function (data) {
+          if (!data.err) {
+            CommonHelper.showConfirm($scope, null, '操作成功', function () {
+              $state.go('purchases_detail', null, { reload: true });
+            }, null, null, event);
+          }
+          console.log(data);
+        });
+      },
+      delete_photo: function (photo) {
+        var index = pageConfig.detail.photos.indexOf(photo);
+        if (index !== -1) {
+          pageConfig.detail.photos.splice(index, 1);
+        }
+      },
+      get_detail: function () {
+        UserNetwork.market_detail($scope, { model_string: 'Purchases', detail_id: pageConfig.detail_id }).then(function (data) {
+          console.log(data);
+          if (!data.err) {
+            pageConfig.detail = data || {};
+          }
+        });
+      }
+    };
+    $scope.pageConfig = pageConfig;
+    pageConfig.get_detail();
+  }]);
+
+/**
+ * Created by lance on 2016/11/17.
+ */
+'use strict';
+
+cSite.controller('BannerListController', [
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'UserNetwork', 'ExcelService',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, UserNetwork, ExcelService) {
+    var pageConfig = {
+      count: 0,
+      title: '广告列表',
+      import_text: '新建广告',
+      last_item: {},
+      current_page: 0,
+      prev_last_item: {},
+      list: [],
+      table_header: [
+        '标题'
+      ],
+      create_new: function () {
+        $state.go('banner_detail', { detail_id: '' });
+      },
+      go_detail: function (item) {
+        $state.go('banner_detail', { detail_id: item._id });
+      },
+      get_list: function (next) {
+        next = next || 'next';
+        UserNetwork.market_list($scope, { next: next, last_item: pageConfig.last_item, model_string: 'Banner' }).then(function (data) {
+          console.log(data);
+          if (data && !data.err) {
+            if (data.list.length > 0) {
+              pageConfig.count = data.count;
+              pageConfig.list = data.list || [];
+            }
+          }
+
+          if (data.list.length > 0) {
+            if (next === 'next') {
+              pageConfig.current_page++;
+              pageConfig.last_item = data.list[data.list.length - 1];
+            }
+            else {
+              pageConfig.current_page--;
+              pageConfig.last_item = data.list[0];
+            }
+          }
+        });
+      },
+      get_date: function (date) {
+        return moment(date).format('YYYY-MM-DD');
+      }
+    }
+    $scope.pageConfig = pageConfig;
+    pageConfig.get_list();
+  }]);
+
+/**
+ * Created by lance on 2016/11/17.
+ */
+'use strict';
+
 cSite.controller('HomeController', [
   '$rootScope', '$scope', '$state', '$stateParams',
   function ($rootScope, $scope, $state, $stateParams) {
@@ -1295,6 +1428,17 @@ cSite.controller('PurchasesDetailController', [
     var pageConfig = {
       detail_id: $stateParams.detail_id,
       detail: {},
+      market_update_status: function (status) {
+        UserNetwork.market_save_photos($scope, { model_string: 'Purchases', detail_id: pageConfig.detail_id, status: status }).then(function (data) {
+          // UserNetwork.market_save_photos($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id, photos: photos }).then(function (data) {
+          if (!data.err) {
+            CommonHelper.showConfirm($scope, null, '操作成功', function () {
+              $state.go('purchases_detail', null, { reload: true });
+            }, null, null, event);
+          }
+          console.log(data);
+        });
+      },
       save_photos: function () {
         UserNetwork.market_save_photos($scope, { model_string: 'Purchases', detail_id: pageConfig.detail_id, photos: pageConfig.detail.photos }).then(function (data) {
           // UserNetwork.market_save_photos($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id, photos: photos }).then(function (data) {
@@ -1512,6 +1656,17 @@ cSite.controller('SupplyDetailController', [
     var pageConfig = {
       detail_id: $stateParams.detail_id,
       detail: {},
+      market_update_status: function (status) {
+        UserNetwork.market_save_photos($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id, status: status }).then(function (data) {
+          // UserNetwork.market_save_photos($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id, photos: photos }).then(function (data) {
+          if (!data.err) {
+            CommonHelper.showConfirm($scope, null, '操作成功', function () {
+              $state.go('supply_detail', null, { reload: true });
+            }, null, null, event);
+          }
+          console.log(data);
+        });
+      },
       save_photos: function () {
         UserNetwork.market_save_photos($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id, photos: pageConfig.detail.photos }).then(function (data) {
           // UserNetwork.market_save_photos($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id, photos: photos }).then(function (data) {

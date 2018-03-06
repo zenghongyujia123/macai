@@ -5,6 +5,8 @@
       <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.market_make_banner()">{{pageConfig.detail.is_banner?'取消设为首页广告':'设为首页广告'}}</md-button>
       <md-button class="md-primary md-raised md-hue-2" id="qiniu-upload-test-button">上传图片</md-button>
       <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.save_photos()">保存图片</md-button>
+      <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.market_update_status('delete')">删除</md-button>
+      <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.market_update_status('unpassed')">驳回</md-button>
     </div>
   </div>
   <div layout="row" layout-align="start start">

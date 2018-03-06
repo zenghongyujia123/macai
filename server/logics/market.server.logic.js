@@ -43,6 +43,35 @@ function getModel(str) {
   return model;
 }
 
+exports.market_refresh_time = function (user, info, callback) {
+  var model = getModel(info.model_string);
+  model.udpate({ _id: info.detail_id }, { $set: { create_time: new Date() } }, function (err, result) {
+    if (err) {
+      return callback({ err: sysErr.database_save_error });
+    }
+    return callback(null, { success: true });
+  });
+}
+
+exports.market_update_status = function (user, info, callback) {
+  var model = getModel(info.model_string);
+  var set = {};
+  if (info.status === 'delete') {
+    set.deleted_status = true;
+  }
+
+  if (['stop', 'passed', 'unpassed'].indexOf(info.status) >= 0) {
+    set.status = info.status;
+  }
+
+  model.udpate({ _id: info.detail_id }, { $set: set }, function (err, result) {
+    if (err) {
+      return callback({ err: sysErr.database_save_error });
+    }
+    return callback(null, { success: true });
+  })
+}
+
 exports.market_make_banner = function (user, info, callback) {
   var model = getModel(info.model_string);
   model.update({ _id: info.detail_id }, { $set: { is_banner: info.is_banner } }, function (err) {
@@ -89,36 +118,20 @@ exports.market_detail = function (user, info, callback) {
 }
 
 exports.market_list = function (user, info, callback) {
-  var model = {};
-  if (info.model_string === 'MarketSupply') {
-    model = MarketSupply;
-  }
-  if (info.model_string === 'MarketPurchases') {
-    model = MarketPurchases;
-  }
-  if (info.model_string === 'MarketDayInfo') {
-    model = MarketDayInfo;
-  }
-  if (info.model_string === 'Purchases') {
-    model = Purchases;
-  }
-  if (info.model_string === 'Supply') {
-    model = Supply;
-  }
-  if (info.model_string === 'User') {
-    model = User;
-  }
+  var model = getModel(info.model_string);
 
   info = info || {};
   info.next = info.next || 'next';
   info.last_item = info.last_item || {};
-  var query = {};
+  var query = {
+    deleted_status: { $ne: true }
+  };
 
   if (info.goods_category) {
     query.goods_category = info.goods_category;
   }
 
-  model.count({}, function (err, count) {
+  model.count(query, function (err, count) {
     if (err) {
       return callback({ err: sysErr.database_query_error });
     }

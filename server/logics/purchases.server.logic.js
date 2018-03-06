@@ -13,7 +13,9 @@ var that = exports;
 exports.list = function (user, info, callback) {
   info = info || {};
   info.last_item = info.last_item || {};
-  var query = {};
+  var query = {
+    deleted_status: { $ne: true }
+  };
 
   if (info.last_item.create_time) {
     query.create_time = { $lte: new Date(info.last_item.create_time) }

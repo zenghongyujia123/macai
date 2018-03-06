@@ -32,6 +32,10 @@ module.exports = function (appDb) {
     },
     first_pinyin: {
       type: String
+    },
+    deleted_status: {
+      type: Boolean,
+      default: false
     }
   });
 
@@ -52,8 +56,8 @@ module.exports = function (appDb) {
     },
     status: {
       type: String,
-      enum: ['progress', 'stop', 'passed', 'unpassed'],
-      default: 'progress'
+      enum: ['stop', 'passed', 'unpassed'],
+      default: 'passed'
     },
     unpassed_reason: {
       type: String
@@ -135,6 +139,10 @@ module.exports = function (appDb) {
     },
     role: {
       type: String
+    },
+    deleted_status: {
+      type: Boolean,
+      default: false
     }
   });
 
@@ -155,8 +163,8 @@ module.exports = function (appDb) {
     },
     status: {
       type: String,
-      enum: ['progress', 'stop', 'passed', 'unpassed'],
-      default: 'progress'
+      enum: ['stop', 'passed', 'unpassed'],
+      default: 'passed'
     },
     unpassed_reason: {
       type: String
@@ -236,6 +244,10 @@ module.exports = function (appDb) {
     },
     nickname: {
       type: String
+    },
+    deleted_status: {
+      type: Boolean,
+      default: false
     }
   });
 

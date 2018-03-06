@@ -126,3 +126,25 @@ exports.create_banner = function (req, res, next) {
   })
 }
 
+
+exports.market_update_status = function (req, res, next) {
+  marketLogic.market_update_status(req.user, req.body, function (err, results) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(results);
+  })
+}
+
+
+exports.market_refresh_time = function (req, res, next) {
+  marketLogic.market_refresh_time(req.user, req.body, function (err, results) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(results);
+  })
+}
+
+
+
