@@ -54,6 +54,10 @@ module.exports = function (appDb) {
       type: Boolean,
       default: false
     },
+    is_top: {
+      type: Boolean,
+      default: false
+    },
     status: {
       type: String,
       enum: ['stop', 'passed', 'unpassed'],
@@ -158,6 +162,10 @@ module.exports = function (appDb) {
       default: 'Supply'
     },
     is_banner: {
+      type: Boolean,
+      default: false
+    },
+    is_top: {
       type: Boolean,
       default: false
     },

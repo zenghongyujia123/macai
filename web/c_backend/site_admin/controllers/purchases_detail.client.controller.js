@@ -39,8 +39,8 @@ cSite.controller('PurchasesDetailController', [
           console.log(data);
         });
       },
-      market_make_banner: function () {
-        UserNetwork.market_make_banner($scope, { is_banner: pageConfig.detail.is_banner ? false : true, model_string: 'Purchases', detail_id: pageConfig.detail_id }).then(function (data) {
+      market_make_top: function () {
+        UserNetwork.market_make_top($scope, { is_top: pageConfig.detail.is_top ? false : true, model_string: 'Purchases', detail_id: pageConfig.detail_id }).then(function (data) {
           if (!data.err) {
             CommonHelper.showConfirm($scope, null, '操作成功', function () {
               $state.go('purchases_detail', null, { reload: true });

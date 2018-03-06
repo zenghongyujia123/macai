@@ -72,9 +72,9 @@ exports.market_update_status = function (user, info, callback) {
   })
 }
 
-exports.market_make_banner = function (user, info, callback) {
+exports.market_make_top = function (user, info, callback) {
   var model = getModel(info.model_string);
-  model.update({ _id: info.detail_id }, { $set: { is_banner: info.is_banner } }, function (err) {
+  model.update({ _id: info.detail_id }, { $set: { is_top: info.is_top } }, function (err) {
     if (err) {
       return callback({ err: sysErr.database_save_error });
     }
@@ -82,18 +82,18 @@ exports.market_make_banner = function (user, info, callback) {
   })
 }
 
-exports.market_get_banner = function (info, callback) {
+exports.market_get_top = function (info, callback) {
   var model = getModel(info.model_string);
-  model.find({ is_banner: true }, function (err, results) {
+  model.find({ is_top: true }, function (err, results) {
     if (err) {
       return callback({ err: sysErr.database_save_error });
     }
-    var banners = [];
+    var tops = [];
 
     results = results.filter(function (item) {
       return !!item.photos[0];
     });
-    return callback(null, { banners: results });
+    return callback(null, { tops: results });
   })
 }
 

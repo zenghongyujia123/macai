@@ -2,7 +2,7 @@
   <div class="page-operation-view" layout="row" layout-align="space-between center">
     <p class="title">供应货品详情</p>
     <div>
-      <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.market_make_banner()">{{pageConfig.detail.is_banner?'取消设为首页广告':'设为首页广告'}}</md-button>
+      <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.market_make_top()">{{pageConfig.detail.is_top?'取消置顶':'置顶'}}</md-button>
       <md-button class="md-primary md-raised md-hue-2" id="qiniu-upload-test-button">上传图片</md-button>
       <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.save_photos()">保存图片</md-button>
       <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.market_update_status('delete')">删除</md-button>
