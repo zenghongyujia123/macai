@@ -10,6 +10,11 @@ $(function () {
     last_item: {},
     loading: false,
     is_init: false,
+    bind_event: function (obj, detail_id) {
+      obj.find('.refresh').click(function () {
+        refreshGoods(detail_id, 'Purchases');
+      });
+    },
     my_list: function (callback) {
       $.ajax({
         url: '/api_wechat/purchases/my_purchases_list',
@@ -52,12 +57,13 @@ $(function () {
           '       <div class="price">' + item.expect_price +
           '         <span class="price-unit">' + item.expect_price_unit + '</span>' +
           '       </div>' +
-          '       <div class="stop">' +
-          '         停止采购' +
+          '       <div class="refresh">' +
+          '         刷新采购' +
           '       </div>' +
           '     </div>' +
           '   </div>' +
           ' </a>');
+        tab2.bind_event(obj, item._id);
         obj.insertBefore(tab2.laodmore);
       }
     },
@@ -147,15 +153,14 @@ $(function () {
           '    <div class="title1">' + (item.goods_class || '') + item.goods_category + item.goods_brand +
           '    </div>' +
           '    <div class="title2">' + item.send_province + item.send_city + ' ' + (item.nickname || '-') + '</div>' +
-          ((item.user && item.user.personal_auth_stauts === 'authed') ? '<span class="tag blue">认证用户</span>' : '<span class="tag">普通用户</span>') +
+          ((item.user && item.user.personal_auth_stauts === 'authed') ? '<span class="tag blue">实名认证</span>' : '<span class="tag">普通用户</span>') +
           ((item.user && item.user.vip_user) ? '<span class="tag orange">vip用户</span>' : '') +
-          // '    <span class="tag orange">企业</span>' +
           '    <div class="item-bottom">' +
           '      <div class="price">' + item.price +
           '        <span class="price-unit">' + item.price_unit + '</span>' +
           '      </div>' +
           '      <div class="time">' +
-          '        最后刷新时间：' + (new Date(item.create_time).getMonth() + 1) + '月' + new Date(item.create_time).getDate() + '日' +
+          '        最后刷新：' + (new Date(item.create_time).getMonth() + 1) + '月' + new Date(item.create_time).getDate() + '日' +
           '      </div>' +
           '    </div>' +
           '  </div>' +

@@ -245,5 +245,24 @@ function get_price(callback) {
   container.children().remove();
 }
 
+function refreshGoods(detail_id, model_string) {
+  $.ajax({
+    url: '/api_backend/market_refresh_time',
+    method: 'post',
+    data: {
+      detail_id: detail_id,
+      model_string: model_string
+    },
+    success: function (data) {
+      if (!data || data.err) {
+        return $.toptip(data.err.message, 'warning');
+      }
+      $.toast("操作成功");
+      window.location = window.location;
+    }
+  });
+}
+
+
 
 

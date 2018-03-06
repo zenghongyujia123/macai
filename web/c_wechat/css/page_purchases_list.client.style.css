@@ -44,7 +44,8 @@
   font-size: 12px;
   color: #999;
 }
-.page-purchases-list .purchases-list-item .item-bottom .stop {
+.page-purchases-list .purchases-list-item .item-bottom .stop,
+.page-purchases-list .purchases-list-item .item-bottom .refresh {
   font-size: 12px;
   padding: 5px;
   border: 1px solid #e5e5e5;
