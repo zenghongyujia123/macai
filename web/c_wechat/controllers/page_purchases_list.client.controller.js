@@ -53,7 +53,7 @@ $(function () {
       for (var i = 0; i < data.length; i++) {
         var item = data[i];
         var obj = $(
-          ' <div href="/page_wechat/page_purchases_detail?purchases_id=' + item._id + '" class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
+          ' <a href="/page_wechat/page_purchases_detail?purchases_id=' + item._id + '" class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
           '   <div class="weui-media-box__bd">' +
           '     <div class="title1">' + item.goods_name +
           '     </div>' +
@@ -69,7 +69,7 @@ $(function () {
           '       </div>' +
           '     </div>' +
           '   </div>' +
-          ' </div');
+          ' </a');
         tab2.bind_event(obj, item._id);
         obj.insertBefore(tab2.laodmore);
       }
