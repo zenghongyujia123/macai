@@ -263,6 +263,16 @@ function refreshGoods(detail_id, model_string) {
   });
 }
 
+function stopBubble(e) {
+  if (e.preventDefault) {
+    e.preventDefault();
+  }
+  if (e.stopPropagation) {
+    e.stopPropagation();
+  }
+  return;
+}
+
 
 
 

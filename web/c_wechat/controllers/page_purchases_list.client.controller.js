@@ -11,7 +11,8 @@ $(function () {
     loading: false,
     is_init: false,
     bind_event: function (obj, detail_id) {
-      obj.find('.refresh').click(function () {
+      obj.find('.refresh').click(function (e) {
+        stopBubble(e);
         refreshGoods(detail_id, 'Purchases');
       });
     },
