@@ -49,10 +49,8 @@ exports.page_purchases_create_main = function (req, res, next) {
   return res.render(filepath, {});
 };
 exports.page_purchases_list = function (req, res, next) {
-  marketLogic.market_get_top({ model_string: 'Supply' }, function (err, result) {
-    var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_list.client.view.html');
-    return res.render(filepath, { tops: result.tops });
-  });
+  var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_list.client.view.html');
+  return res.render(filepath);
 };
 exports.page_purchases_my_list = function (req, res, next) {
   var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_my_list.client.view.html');
@@ -71,10 +69,8 @@ exports.page_supply_create_main = function (req, res, next) {
   return res.render(filepath, {});
 };
 exports.page_supply_list = function (req, res, next) {
-  marketLogic.market_get_top({ model_string: 'Purchases' }, function (err, result) {
-    var filepath = path.join(__dirname, '../../web/c_wechat/views/supply/page_supply_list.client.view.html');
-    return res.render(filepath, { tops: result.tops });
-  });
+  var filepath = path.join(__dirname, '../../web/c_wechat/views/supply/page_supply_list.client.view.html');
+  return res.render(filepath);
 };
 exports.page_supply_my_list = function (req, res, next) {
   var filepath = path.join(__dirname, '../../web/c_wechat/views/supply/page_supply_my_list.client.view.html');

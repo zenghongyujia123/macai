@@ -89,7 +89,7 @@ exports.market_get_top = function (info, callback) {
       return callback({ err: sysErr.database_save_error });
     }
 
-    return callback(null, { tops: results });
+    return callback(null, results);
   })
 }
 
