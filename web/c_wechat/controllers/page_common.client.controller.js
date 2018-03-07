@@ -1,7 +1,9 @@
 function get_choose_citys(callback) {
   $.ajax({
     url: '/api_backend/market_get_city',
-    data: {},
+    data: {
+      model_string: 'MarketPurchases'
+    },
     method: 'post',
     success: function (data) {
       getCitysPage(data, callback);
