@@ -64,7 +64,7 @@ exports.market_update_status = function (user, info, callback) {
     set.status = info.status;
   }
 
-  model.udpate({ _id: info.detail_id }, { $set: set }, function (err, result) {
+  model.update({ _id: info.detail_id }, { $set: set }, function (err, result) {
     if (err) {
       return callback({ err: sysErr.database_save_error });
     }
