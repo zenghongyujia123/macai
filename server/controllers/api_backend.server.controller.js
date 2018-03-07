@@ -116,6 +116,14 @@ exports.market_make_top = function (req, res, next) {
     return res.send(results);
   });
 }
+exports.market_get_top = function (req, res, next) {
+  marketLogic.market_get_top(req.user, req.body, function (err, results) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(results);
+  });
+}
 
 exports.create_banner = function (req, res, next) {
   bannerLogic.create_banner(req.user, req.body, function (err, results) {

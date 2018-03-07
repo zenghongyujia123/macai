@@ -106,6 +106,27 @@ $(function () {
     clear_list: function () {
       tab1.container.find('.purchases-list-item').remove();
     },
+    my_top_list: function (callback) {
+      if (tab1.loading) return;
+      tab1.loading = true;
+      $.ajax({
+        url: '/api_backend/market_get_top',
+        data: {
+          model_string: 'Supply'
+        },
+        method: 'post',
+        success: function (data) {
+          tab1.loading = false;
+          console.log(data);
+          if (!data || data.err) {
+            $.toptip(data.err.message, 'warning');
+            return callback();
+          }
+          tab1.append_my_list(data);
+          return callback();
+        }
+      });
+    },
     my_list: function (callback) {
       if (tab1.loading) return;
       tab1.loading = true;
@@ -141,7 +162,7 @@ $(function () {
         var obj = $(
           '<a href="/page_wechat/page_supply_detail?supply_id=' + item._id + '" class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
           '  <div class="weui-media-box__hd">' +
-          '    <img class="weui-media-box__thumb" src="' + (item.photos[0]||'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=4266570088,1527054841&fm=200&gp=0.jpg') + '">' +
+          '    <img class="weui-media-box__thumb" src="' + (item.photos[0] || 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=4266570088,1527054841&fm=200&gp=0.jpg') + '">' +
           '  </div>' +
           '  <div class="weui-media-box__bd">' +
           '    <div class="title1">' + (item.goods_class || '') + item.goods_category + item.goods_brand +
@@ -184,7 +205,9 @@ $(function () {
         tab1.my_list(function (last) {
         });
       });
-      tab1.my_list(function () { });
+      tab1.my_top_list(function () {
+        tab1.my_list(function () { });
+      });
       // tab1.my_list(function () { });
     }
   };

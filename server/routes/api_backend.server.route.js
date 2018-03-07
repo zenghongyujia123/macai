@@ -18,6 +18,7 @@ module.exports = function (app) {
   app.route('/api_backend/supply_import').post(ctr.supply_import);
   app.route('/api_backend/update_personal_auth_info').post(userFilter.requireByUserId, ctr.update_personal_auth_info);
   app.route('/api_backend/market_make_top').post(ctr.market_make_top);
+  app.route('/api_backend/market_get_top').post(ctr.market_get_top);
   app.route('/api_backend/market_update_status').post(ctr.market_update_status);
   app.route('/api_backend/market_refresh_time').post(ctr.market_refresh_time);
   app.route('/api_backend/create_banner').post(ctr.create_banner);
