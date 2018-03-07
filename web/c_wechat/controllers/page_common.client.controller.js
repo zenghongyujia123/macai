@@ -31,7 +31,7 @@ function getCitysPage(data, callback) {
   left.children(0).click();
 }
 
-function getProvinceObj(item) {
+function getProvinceObj(item, right, callback) {
   var province = $('<div class="weui-flex__item">' +
     '<div class="item">' + item.province + '</div>' +
     '</div>');
