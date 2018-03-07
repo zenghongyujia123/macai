@@ -19,6 +19,7 @@
   <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 
   <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
+
   <script src="../c_wechat/controllers/page_common.client.controller.js"></script>
   <script src="../c_wechat/controllers/page_wechat.client.controller.js"></script>
   <script src="../c_wechat/controllers/page_market_list.client.controller.js"></script>
@@ -113,7 +114,7 @@
         get_choose_markets(city, function (data) {
           markets = [];
           data.forEach(function (market) {
-            markets.push({ title: market.name });
+            markets.push(market.name);
           });
         })
         $.closePopup();
