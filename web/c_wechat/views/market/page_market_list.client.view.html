@@ -117,7 +117,15 @@
             markets.push(market.name);
           });
 
-          $("#markets-choose-input").picker('setValue', markets);
+          $("#markets-choose-input").picker({
+            title: "请选择您的手机",
+            cols: [
+              {
+                textAlign: 'center',
+                values: markets
+              }
+            ]
+          });
 
         })
         $.closePopup();
