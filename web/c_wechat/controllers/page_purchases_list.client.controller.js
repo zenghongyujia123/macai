@@ -166,7 +166,7 @@ $(function () {
             '  </div>' +
             '  <div class="weui-media-box__bd">' +
             '    <div class="title1">' + (item.goods_class || '') + item.goods_category + item.goods_brand +
-            +item.is_top ? '<span class="tag orange">置顶</span>' : '' +
+            (item.is_top ? '<span class="tag orange">置顶</span>' : '' )+
             '    </div>' +
             '    <div class="title2">' + item.send_province + item.send_city + ' ' + (item.nickname || '-') + '</div>' +
             ((item.user && item.user.personal_auth_stauts === 'authed') ? '<span class="tag blue">实名认证</span>' : '<span class="tag">普通用户</span>') +
