@@ -56,12 +56,12 @@
           <div class="weui-cell__ft">
           </div>
         </a>
-        <a class="weui-cell weui-cell_access" href="javascript:;">
+        <a class="weui-cell weui-cell_access markets-choose-input-container" href="javascript:;">
           <div class="weui-cell__bd">
             所在批发市场
           </div>
           <div class="weui-cell__bd">
-            <input id="my-purchases-status" class="weui-input" placeholder="批发市场" disabled="disabled">
+            <input id="markets-choose-input" class="weui-input" placeholder="批发市场" disabled="disabled">
           </div>
           <div class="weui-cell__ft">
           </div>
@@ -114,6 +114,48 @@
         $('#citys-choose-input').val(city);
         $.closePopup();
       })
+    });
+
+    $(".markets-choose-input-container").select({
+      title: "选择市场",
+      items: [
+        {
+          title: "iPhone 3GS",
+          value: "001",
+        },
+        {
+          title: "iPhone 5",
+          value: "002",
+        },
+        {
+          title: "iPhone 5S",
+          value: "003",
+        },
+        {
+          title: "iPhone 6",
+          value: "004",
+        },
+        {
+          title: "iPhone 6S",
+          value: "005",
+        },
+        {
+          title: "iPhone 6P",
+          value: "006",
+        },
+        {
+          title: "iPhone 6SP",
+          value: "007",
+        },
+        {
+          title: "iPhone SE",
+          value: "008",
+        },
+        {
+          title: "iPhone 7",
+          value: "009"
+        }
+      ]
     });
     // $("#my-purchases-status").picker({
     //   title: "选择状态",
