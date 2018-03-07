@@ -82,7 +82,7 @@ exports.market_make_top = function (user, info, callback) {
   })
 }
 
-exports.market_get_top = function (info, callback) {
+exports.market_get_top = function (user, info, callback) {
   var model = getModel(info.model_string);
   model.find({ is_top: true }, function (err, results) {
     if (err) {
