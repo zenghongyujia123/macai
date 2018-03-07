@@ -117,7 +117,7 @@
             markets.push(market.name);
           });
           $("#markets-choose-input").select('update', {
-            items: market
+            items: markets
           });
         })
 
@@ -132,7 +132,7 @@
 
     $("#markets-choose-input").select({
       title: "选择职业",
-      items: market
+      items: markets
     });
     getUserJsApiTicket(window.location.href, function (data) {
     });
