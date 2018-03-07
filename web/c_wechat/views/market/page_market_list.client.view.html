@@ -52,7 +52,7 @@
           </div>
 
           <div class="weui-cell__bd citys-choose-input-row">
-            <input id="citys-choose-input" class="weui-input" placeholder="城市" disabled="disabled">
+            <input style="display:hidden" id="citys-choose-input" class="weui-input" placeholder="城市" disabled="disabled">
           </div>
           <div class="weui-cell__ft">
           </div>
@@ -116,43 +116,24 @@
           data.forEach(function (market) {
             markets.push(market.name);
           });
-          $("#markets-choose-input").picker({
-            title: "请选择您的手机",
-            cols: [
-              {
-                textAlign: 'center',
-                values: markets
-              }
-            ]
+          $("#markets-choose-input").select('update', {
+            items: ["法官", "医生", "猎人", "学生", "记者", "其他"]
           });
-
         })
 
 
         $.closePopup();
       })
     });
-    // $("#markets-choose-input").picker({
-    //   title: "请选择您的手机",
-    //   cols: [
-    //     {
-    //       textAlign: 'center',
-    //       values: []
-    //     }
-    //   ]
-    // });
 
+    $('.markets-choose-input-row').click(function () {
+      $("#markets-choose-input").select('open');
+    });
 
-    // $("#my-purchases-status").picker({
-    //   title: "选择状态",
-    //   cols: [
-    //     {
-    //       textAlign: 'center',
-    //       values: ["采购中", "已停止", "被驳回"]
-    //     }
-    //   ]
-    // });
-
+    $("#markets-choose-input").select({
+      title: "选择职业",
+      items: ["法官", "医生", "猎人", "学生", "记者", "其他"]
+    });
     getUserJsApiTicket(window.location.href, function (data) {
     });
   })
