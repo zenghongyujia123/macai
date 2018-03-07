@@ -116,30 +116,31 @@
           data.forEach(function (market) {
             markets.push(market.name);
           });
-
           $("#markets-choose-input").picker({
             title: "请选择您的手机",
             cols: [
               {
                 textAlign: 'center',
-                values: markets
+                values: ['iPhone 4', 'iPhone 4S', 'iPhone 5', 'iPhone 5S', 'iPhone 6', 'iPhone 6 Plus', 'iPad 2', 'iPad Retina', 'iPad Air', 'iPad mini', 'iPad mini 2', 'iPad mini 3']
               }
             ]
           });
 
         })
+
+
         $.closePopup();
       })
     });
-    $("#markets-choose-input").picker({
-      title: "请选择您的手机",
-      cols: [
-        {
-          textAlign: 'center',
-          values: []
-        }
-      ]
-    });
+    // $("#markets-choose-input").picker({
+    //   title: "请选择您的手机",
+    //   cols: [
+    //     {
+    //       textAlign: 'center',
+    //       values: []
+    //     }
+    //   ]
+    // });
 
 
     // $("#my-purchases-status").picker({
