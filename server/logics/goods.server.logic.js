@@ -131,6 +131,8 @@ exports.purchases_list = function (user, info, callback) {
   var last_item = info.last_item || {};
 
   var query = {
+    deleted_status: { $ne: true },
+    is_top: { $ne: true }
   };
   var create_time = info.last_create_time || '';
 
@@ -258,6 +260,8 @@ exports.supply_list = function (user, info, callback) {
   var last_item = info.last_item || {};
 
   var query = {
+    deleted_status: { $ne: true },
+    is_top: { $ne: true }
   };
   var create_time = info.last_create_time || '';
 
