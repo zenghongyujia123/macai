@@ -49,7 +49,7 @@
           </div>
 
           <div class="weui-cell__bd">
-            <input id="my-purchases-status" class="weui-input" placeholder="城市" readonly="readonly">
+            <input id="citys-choose-input" class="weui-input" placeholder="城市" readonly="readonly">
           </div>
           <div class="weui-cell__ft">
           </div>
@@ -93,27 +93,35 @@
       </div>
     </div>
   </div>
+  <div id="citys-choose" class="weui-popup__container">
+    <div class="weui-popup__overlay"></div>
+    <div class="weui-popup__modal citys-choose-container">
+    </div>
+  </div>
 </body>
 <script>
   $(function () {
-    var mySwiper = new Swiper('.swiper-container', {
-      autoplay: 5000,//可选选项，自动滑动
-    });
-
     $("#my-purchases-status").select({
       title: "选择状态",
       items: ["采购中", "已停止", "被驳回"]
     });
 
-    $("#my-purchases-status").picker({
-      title: "选择状态",
-      cols: [
-        {
-          textAlign: 'center',
-          values: ["采购中", "已停止", "被驳回"]
-        }
-      ]
+    $('#citys-choose-input').click(function () {
+      $("#citys-choose").popup();
+      get_choose_citys(function (city) {
+        $('#citys-choose-input').val(city);
+        $.closePopup();
+      })
     });
+    // $("#my-purchases-status").picker({
+    //   title: "选择状态",
+    //   cols: [
+    //     {
+    //       textAlign: 'center',
+    //       values: ["采购中", "已停止", "被驳回"]
+    //     }
+    //   ]
+    // });
 
     getUserJsApiTicket(window.location.href, function (data) {
     });

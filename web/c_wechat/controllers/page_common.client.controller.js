@@ -1,3 +1,70 @@
+function get_choose_citys(callback) {
+  $.ajax({
+    url: '/api_backend/market_get_city',
+    data: {},
+    method: 'post',
+    success: function (data) {
+      getCitysPage(data, callback);
+      console.log(data);
+    }
+  });
+}
+
+function getCitysPage(data, callback) {
+  var container = $('.weui-popup__modal')
+  container.removeClass()
+    .addClass('citys-choose-container')
+    .addClass('weui-popup__modal');
+  container
+    .children()
+    .remove();
+  var left = $('<div class="left"></div>');
+  var right = $('<div class="right"></div>');
+  var list = [];
+  for (var i = 0; i < data.length; i++) {
+    left.append(getProvinceObj(data[i], right, callback));
+  }
+  container.append(left);
+  container.append(right);
+  left.children(0).click();
+}
+
+function getProvinceObj(item) {
+  var province = $('<div class="weui-flex__item">' +
+    '<div class="item">' + item.province + '</div>' +
+    '</div>');
+
+  province.click(function () {
+    $(this).addClass('select');
+    $(this).siblings().removeClass('select');
+    right.children().remove();
+    for (var i = 0; i < item.citys.length; i++) {
+      getCityObj(item, right, callback)
+    }
+  });
+  return province;
+}
+
+function getCityObj(item, right, callback) {
+  var itemObj = $(' <div class="weui-flex__item"></div>');
+  var rowIndex = item.citys.length / 3;
+
+  for (var i = 0; i < rowIndex; i++) {
+    var rowObj = $(
+      ' <div class="weui-flex">' +
+      '   <div class="weui-flex__item item">' + (item.citys[i * 3 + 0] || '') + '</div>' +
+      '   <div class="weui-flex__item item">' + (item.citys[i * 3 + 1] || '') + '</div>' +
+      '   <div class="weui-flex__item item">' + (item.citys[i * 3 + 2] || '') + '</div>' +
+      ' </div>'
+    );
+    rowObj.children().click(function () {
+      callback($(this).text());
+    });;
+    itemObj.append(rowObj);
+  }
+  right.append(itemObj);
+}
+
 function get_choose_categorys(callback) {
   $.ajax({
     url: '/api_wechat/get_choose_categorys',
