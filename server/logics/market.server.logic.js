@@ -289,8 +289,16 @@ exports.market_get_city = function (user, info, callback) {
   model.aggregate([
     {
       $group: {
-        _id: '$city',
-        name: { $first: '$city' }
+        _id: { province: '$province', city: '$city' },
+        province: { $first: '$province' },
+        city: { $first: '$city' }
+      }
+    },
+    {
+      $group: {
+        _id: '$_id.province',
+        province: '$province',
+        city: { $push: '$city' }
       }
     }
   ]).exec(function (err, results) {

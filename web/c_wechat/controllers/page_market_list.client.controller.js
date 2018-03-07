@@ -87,7 +87,7 @@ $(function () {
         tab1.loading = false;
       });
     });
-    tab1.my_list();
+    tab1.my_list(function () { });
   });
 
   tab1.nav.click();
