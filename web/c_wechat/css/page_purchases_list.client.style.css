@@ -4,6 +4,10 @@
 }
 .page-purchases-list .purchases-list-item .title1 {
   font-size: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
 }
 .page-purchases-list .purchases-list-item .title2 {
   font-size: 12px;
