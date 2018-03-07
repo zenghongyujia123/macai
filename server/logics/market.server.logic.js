@@ -284,6 +284,48 @@ exports.supply_import = function (user, infos, callback) {
   });
 }
 
+exports.market_get_city = function (user, info, callback) {
+  var model = getModel(info.model_string);
+  model.aggregate([
+    {
+      $group: {
+        _id: '$city',
+        name: { $first: '$city' }
+      }
+    }
+  ]).exec(function (err, results) {
+    if (err) {
+      console.error(new Date().toLocaleString(), err);
+      return callback({ err: sysErr.database_query_error });
+    }
+    return callback(null, results);
+  });
+}
+
+exports.market_get_market = function (user, info, callback) {
+  var model = getModel(info.model_string);
+  model.aggregate([
+    {
+      $match: {
+        city: info.city
+      }
+    },
+    {
+      $group: {
+        _id: '$market',
+        name: { $first: '$market' }
+      }
+    }
+  ]).exec(function (err, results) {
+    if (err) {
+      console.error(new Date().toLocaleString(), err);
+      return callback({ err: sysErr.database_query_error });
+    }
+    return callback(null, results);
+  });
+}
+
+
 
 
 

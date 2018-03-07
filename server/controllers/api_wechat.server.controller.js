@@ -14,7 +14,6 @@ var smsLib = require('../../libraries/sms');
 var agent = require('superagent').agent();
 var async = require('async');
 
-
 exports.send_verify_code = function (req, res, next) {
   var username = req.body.username || '';
   if (!username) {
@@ -113,6 +112,9 @@ exports.purchases_list = function (req, res, next) {
     return res.send(result);
   });
 }
+
+
+
 exports.create_supply = function (req, res, next) {
   var info = req.body || {};
   info.photos = info.photos || [];

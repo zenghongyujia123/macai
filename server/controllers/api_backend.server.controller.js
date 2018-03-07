@@ -155,4 +155,26 @@ exports.market_refresh_time = function (req, res, next) {
 }
 
 
+exports.market_get_city = function (req, res, next) {
+  marketLogic.market_get_city(req.user, req.body, function (err, results) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(results);
+  })
+}
+
+exports.market_get_market = function (req, res, next) {
+  marketLogic.market_get_market(req.user, req.body, function (err, results) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(results);
+  })
+}
+
+
+
+
+
 
