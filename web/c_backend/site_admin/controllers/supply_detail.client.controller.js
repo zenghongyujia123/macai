@@ -22,7 +22,7 @@ cSite.controller('SupplyDetailController', [
           // UserNetwork.market_save_photos($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id, photos: photos }).then(function (data) {
           if (!data.err) {
             CommonHelper.showConfirm($scope, null, '操作成功', function () {
-              $state.go('supply_detail', null, { reload: true });
+              $state.go('supply_list');
             }, null, null, event);
           }
           console.log(data);
