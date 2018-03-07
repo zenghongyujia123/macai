@@ -105,8 +105,6 @@
 <script>
   $(function () {
     var markets = [];
-
-
     $('.citys-choose-input-row').click(function () {
       $("#citys-choose").popup();
       get_choose_citys(function (city) {
@@ -120,8 +118,6 @@
             items: markets
           });
         })
-
-
         $.closePopup();
       })
     });
