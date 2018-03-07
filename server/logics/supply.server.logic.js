@@ -14,7 +14,8 @@ exports.list = function (user, info, callback) {
   info = info || {};
   info.last_item = info.last_item || {};
   var query = {
-    deleted_status: { $ne: true }
+    deleted_status: { $ne: true },
+    is_top: { $ne: true }
   };
 
   if (info.last_item.create_time) {
