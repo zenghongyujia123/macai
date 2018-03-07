@@ -50,7 +50,7 @@
             所在城市
           </div>
 
-          <div class="weui-cell__bd">
+          <div class="weui-cell__bd citys-choose-input-row">
             <input id="citys-choose-input" class="weui-input" placeholder="城市" disabled="disabled">
           </div>
           <div class="weui-cell__ft">
@@ -108,7 +108,7 @@
       items: ["采购中", "已停止", "被驳回"]
     });
 
-    $('#citys-choose-input').click(function () {
+    $('.citys-choose-input-row').click(function () {
       $("#citys-choose").popup();
       get_choose_citys(function (city) {
         $('#citys-choose-input').val(city);
