@@ -298,7 +298,7 @@ exports.market_get_city = function (user, info, callback) {
       $group: {
         _id: '$_id.province',
         province: '$province',
-        city: { $push: '$city' }
+        citys: { $push: '$city' }
       }
     }
   ]).exec(function (err, results) {
