@@ -56,11 +56,11 @@
           <div class="weui-cell__ft">
           </div>
         </a>
-        <a class="weui-cell weui-cell_access markets-choose-input-container" href="javascript:;">
+        <a class="weui-cell weui-cell_access" href="javascript:;">
           <div class="weui-cell__bd">
             所在批发市场
           </div>
-          <div class="weui-cell__bd">
+          <div class="weui-cell__bd markets-choose-input-row">
             <input id="markets-choose-input" class="weui-input" placeholder="批发市场" disabled="disabled">
           </div>
           <div class="weui-cell__ft">
@@ -103,59 +103,26 @@
 </body>
 <script>
   $(function () {
-    $("#my-purchases-status").select({
-      title: "选择状态",
-      items: ["采购中", "已停止", "被驳回"]
-    });
+    var markets = [];
+
 
     $('.citys-choose-input-row').click(function () {
       $("#citys-choose").popup();
       get_choose_citys(function (city) {
         $('#citys-choose-input').val(city);
+        get_choose_markets(city, function (data) {
+          markets = [];
+          data.forEach(function (market) {
+            markets.push({ title: market.name });
+          });
+        })
         $.closePopup();
       })
     });
 
-    $(".markets-choose-input-container").select({
+    $(".markets-choose-input").select({
       title: "选择市场",
-      items: [
-        {
-          title: "iPhone 3GS",
-          value: "001",
-        },
-        {
-          title: "iPhone 5",
-          value: "002",
-        },
-        {
-          title: "iPhone 5S",
-          value: "003",
-        },
-        {
-          title: "iPhone 6",
-          value: "004",
-        },
-        {
-          title: "iPhone 6S",
-          value: "005",
-        },
-        {
-          title: "iPhone 6P",
-          value: "006",
-        },
-        {
-          title: "iPhone 6SP",
-          value: "007",
-        },
-        {
-          title: "iPhone SE",
-          value: "008",
-        },
-        {
-          title: "iPhone 7",
-          value: "009"
-        }
-      ]
+      items: markets
     });
     // $("#my-purchases-status").picker({
     //   title: "选择状态",

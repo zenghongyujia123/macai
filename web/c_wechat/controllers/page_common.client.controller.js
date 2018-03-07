@@ -1,3 +1,18 @@
+function get_choose_markets(city, callback) {
+  $.ajax({
+    url: '/api_backend/market_get_market',
+    data: {
+      city: city,
+      model_string: 'MarketPurchases'
+    },
+    method: 'post',
+    success: function (data) {
+      return callback(data);
+      console.log(data);
+    }
+  });
+}
+
 function get_choose_citys(callback) {
   $.ajax({
     url: '/api_backend/market_get_city',
