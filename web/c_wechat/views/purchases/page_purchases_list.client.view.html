@@ -49,31 +49,6 @@
             </div>
           </div>
         </div>
-        <% for(var i = 0;i<tops.length;i++){ %>
-          <a href="/page_wechat/page_supply_detail?supply_id=' + item._id + '" class="weui-media-box weui-media-box_appmsg purchases-list-item">
-            <div class="weui-media-box__hd">
-              <img class="weui-media-box__thumb" src="' + (tops[i].photos[0]||'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=4266570088,1527054841&fm=200&gp=0.jpg') + '">
-            </div>
-            <div class="weui-media-box__bd">
-              <div class="title1">
-                <%= ((tops[i].goods_class || '') + tops[i].goods_category + tops[i].goods_bran) %>
-              </div>
-              <div class="title2">
-                <%= (tops[i].send_province + tops[i].send_city + ' ' + (tops[i].nickname || '-'))  %>
-              </div>
-              <%= ((tops[i].user && tops[i].user.personal_auth_stauts === 'authed') ? '<span class="tag blue">实名认证</span>' : '<span class="tag">普通用户</span>')  %>
-                <%= ((tops[i].user && tops[i].user.vip_user) ? '<span class="tag orange">vip用户</span>' : '') %>
-
-                  <div class="item-bottom">
-                    <div class="price"> tops[i].price
-                      <span class="price-unit">tops[i].price_unit</span>
-                    </div>
-                    <div class="time">
-                      <%= ('最后刷新：' + (new Date(tops[i].create_time).getMonth() + 1) + '月' + new Date(tops[i].create_time).getDate() + '日') %>
-                    </div>
-                  </div>
-            </div>
-            </ <% } %>
       </div>
       <div id="tab2" class="weui-tab__bd-item">
         <div class="weui-loadmore">
