@@ -126,6 +126,9 @@ exports.market_list = function (user, info, callback) {
   if (info.goods_category) {
     query.goods_category = info.goods_category;
   }
+  if (info.market) {
+    query.market = info.market;
+  }
 
   model.count(query, function (err, count) {
     if (err) {
