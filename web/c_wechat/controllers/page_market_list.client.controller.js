@@ -27,7 +27,7 @@ $(function () {
     onClose: function () {
       tab1.market = $("#markets-choose-input").val();
       tab1.clear_list();
-      tab1.my_list();
+      tab1.my_list(function () { });
     }
   });
   getUserJsApiTicket(window.location.href, function (data) {
