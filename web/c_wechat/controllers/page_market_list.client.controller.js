@@ -89,8 +89,10 @@ $(function () {
           '  <div class="weui-media-box__bd">' +
           '    <div class="title1">' + item.name + '</div>' +
           '    <div class="title2">市场：' + item.province + item.city + item.market + '</div>' +
-          '    <div class="title2">品类：' + item.main_goods + '</div>' +
+          // '    <div class="title2"></div>' +
           '    <div class="item-bottom">' +
+          '      <div class="price">品类：' + item.main_goods + '</div>' +
+          '      <div class="stop">联系商家</div>' +
           '    </div>' +
           '  </div>' +
           '</a>'
