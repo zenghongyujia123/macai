@@ -130,6 +130,10 @@ exports.market_list = function (user, info, callback) {
     query.market = info.market;
   }
 
+  if (info.city) {
+    query.city = info.city;
+  }
+
   model.count(query, function (err, count) {
     if (err) {
       return callback({ err: sysErr.database_query_error });

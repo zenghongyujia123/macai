@@ -13,6 +13,7 @@ $(function () {
           items: markets
         });
       })
+      $("#markets-choose-input").val();
       $.closePopup();
     })
   });
