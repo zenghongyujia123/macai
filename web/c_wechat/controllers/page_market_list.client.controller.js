@@ -42,6 +42,9 @@ $(function () {
       tab1.container.find('.purchases-list-item').remove();
     },
     my_list: function (callback) {
+      if (tab1.loading)
+        return;
+      tab1.loading = true;
       $.ajax({
         url: '/api_backend/market_list',
         data: {
@@ -51,6 +54,7 @@ $(function () {
         },
         method: 'post',
         success: function (data) {
+          tab1.loading = false;
           console.log(data);
           if (!data || data.err) {
             $.toptip(data.err.message, 'warning')
