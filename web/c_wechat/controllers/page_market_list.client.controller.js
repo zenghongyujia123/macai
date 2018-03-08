@@ -44,6 +44,7 @@ $(function () {
     market: '',
     goods_category: '',
     clear_list: function () {
+      tab1.last_item = {};
       tab1.container.find('.purchases-list-item').remove();
     },
     my_list: function (callback) {
