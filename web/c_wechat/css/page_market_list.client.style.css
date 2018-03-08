@@ -61,3 +61,6 @@
   color: #999;
   border-radius: 2px;
 }
+.weui-select-modal .weui-cells {
+  min-height: 16rem;
+}
