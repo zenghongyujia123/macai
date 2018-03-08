@@ -1,5 +1,4 @@
 $(function () {
-  var is_vip = '<%= user.vip_user %>';
   var markets = [];
   $('.citys-choose-input-row').click(function () {
     $("#citys-choose").popup();
