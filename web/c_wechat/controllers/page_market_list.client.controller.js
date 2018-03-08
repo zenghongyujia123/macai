@@ -99,6 +99,7 @@ $(function () {
           '</a>'
         );
         obj.click(function () {
+          alert(is_vip);
           if (is_vip === 'true') {
 
           }
