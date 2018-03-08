@@ -13,7 +13,7 @@ $(function () {
           items: markets
         });
       })
-      $("#markets-choose-input").val();
+      $("#markets-choose-input").val('');
       $.closePopup();
     })
   });
