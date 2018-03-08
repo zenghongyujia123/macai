@@ -23,7 +23,12 @@ $(function () {
 
   $("#markets-choose-input").select({
     title: "选择市场",
-    items: markets
+    items: markets,
+    onChange: function () {
+      tab1.market = $("#markets-choose-input").val();
+      tab1.clear_list();
+      tab1.my_list();
+    }
   });
   getUserJsApiTicket(window.location.href, function (data) {
   });
@@ -50,7 +55,9 @@ $(function () {
         data: {
           model_string: 'MarketPurchases',
           last_item: tab1.last_item,
-          goods_category: tab1.goods_category
+          goods_category: tab1.goods_category,
+          city: tab1.city,
+          market: tab1.market
         },
         method: 'post',
         success: function (data) {
