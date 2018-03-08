@@ -1,4 +1,5 @@
 $(function () {
+  var is_vip = '<%= user.vip_user %>';
   var markets = [];
   $('.citys-choose-input-row').click(function () {
     $("#citys-choose").popup();
@@ -98,17 +99,22 @@ $(function () {
           '</a>'
         );
         obj.click(function () {
-          $.confirm({
-            title: '提示',
-            text: '你还不是vip,成为vip获取更多服务',
-            onOK: function () {
-              get_pre_pay_id(function () {
+          if (is_vip === 'true') {
 
-              })
-            },
-            onCancel: function () {
-            }
-          });
+          }
+          else {
+            $.confirm({
+              title: '提示',
+              text: '你还不是vip,成为vip获取更多服务',
+              onOK: function () {
+                get_pre_pay_id(function () {
+
+                })
+              },
+              onCancel: function () {
+              }
+            });
+          }
         });
         obj.insertBefore(tab1.laodmore);
       }
@@ -201,17 +207,22 @@ $(function () {
           '   </div>' +
           ' </a>');
         obj.click(function () {
-          $.confirm({
-            title: '提示',
-            text: '你还不是vip,成为vip获取更多服务',
-            onOK: function () {
-              get_pre_pay_id(function () {
+          if (is_vip === 'true') {
 
-              })
-            },
-            onCancel: function () {
-            }
-          });
+          }
+          else {
+            $.confirm({
+              title: '提示',
+              text: '你还不是vip,成为vip获取更多服务',
+              onOK: function () {
+                get_pre_pay_id(function () {
+
+                })
+              },
+              onCancel: function () {
+              }
+            });
+          }
         });
         obj.insertBefore(tab3.laodmore);
       }
