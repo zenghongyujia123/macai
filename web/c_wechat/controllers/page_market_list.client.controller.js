@@ -119,6 +119,8 @@ $(function () {
         tab1.my_list(function () {
         });
       });
+      tab1.my_list(function () {
+      });
     }
   };
 
