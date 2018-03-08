@@ -202,6 +202,7 @@ $(function () {
           '     <div class="item-bottom">' +
           '       <div class="price">' + item.price +
           '       </div>' +
+          '       <div class="stop orange">了解详情</div>' +
           '     </div>' +
           '   </div>' +
           ' </a>');
