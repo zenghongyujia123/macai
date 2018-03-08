@@ -26,6 +26,7 @@ $(function () {
     items: markets,
     onClose: function () {
       tab1.market = $("#markets-choose-input").val();
+      tab1.is_init = false;
       tab1.init();
     }
   });
