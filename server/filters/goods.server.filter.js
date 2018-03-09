@@ -5,6 +5,7 @@ var mongoose = require('./../../libraries/mongoose');
 var goodsLogic = require('../logics/goods');
 var appDb = mongoose.appDb;
 var Supply = appDb.model('Supply');
+var Banner = appDb.model('Banner');
 var Purchases = appDb.model('Purchases');
 var MarketSupply = appDb.model('MarketSupply');
 var MarketPurchases = appDb.model('MarketPurchases');
@@ -37,7 +38,11 @@ exports.requireSupply = function (req, res, next) {
 
 
 exports.requireMarket = function (req, res, next) {
-  var info = req.body || {};
+  var info;
+  if (req.body.model_string)
+    info = req.body;
+  if (req.query.model_string)
+    info = req.query;
   var model;
   if (info.model_string === 'MarketSupply') {
     model = MarketSupply;
@@ -53,6 +58,9 @@ exports.requireMarket = function (req, res, next) {
   }
   if (info.model_string === 'Supply') {
     model = Supply;
+  }
+  if (info.model_string === 'Banner') {
+    model = Banner;
   }
   model.findOne({ _id: info.detail_id }, function (err, require_market) {
     if (err || !require_market) {

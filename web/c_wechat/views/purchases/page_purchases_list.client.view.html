@@ -45,9 +45,9 @@
         <div class="swiper-container">
           <div class="swiper-wrapper">
             <% for(var i = 0;i<banners.length;i++){ %>
-              <div class="swiper-slide">
+              <a class="swiper-slide" href="/page_wechat/page_banner_detail?model_string=Banner&detail_id=<%= banners[i]._id %>">
                 <img style="width:100%" src="<%= banners[i].photos[0] %>">
-              </div>
+              </a>
               <% } %>
           </div>
         </div>
