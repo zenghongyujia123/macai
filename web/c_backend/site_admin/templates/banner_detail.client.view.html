@@ -3,7 +3,7 @@
     <p class="title">广告详情</p>
     <div>
       <md-button class="md-primary md-raised md-hue-2" id="qiniu-upload-test-button">上传图片</md-button>
-      <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.save_photos()">保存图片</md-button>
+      <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.create_banner()">保存</md-button>
     </div>
   </div>
   <div layout="row" layout-align="start start">
@@ -11,7 +11,7 @@
       <div class="list-header">
         <div class="list-item" layout="row" layout-align="start center">
           <div class="column-item" flex=""> 广告名称</div>
-          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.name}}</div>
+          <input class="column-item" flex="" layout="row" layout-align="start start" ng-model="pageConfig.detail.name"></input>
         </div>
       </div>
     </div>

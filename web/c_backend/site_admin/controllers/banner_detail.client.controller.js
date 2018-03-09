@@ -17,27 +17,6 @@ cSite.controller('BannerDetailController', [
     var pageConfig = {
       detail_id: $stateParams.detail_id,
       detail: {},
-      save_photos: function () {
-        UserNetwork.market_save_photos($scope, { model_string: 'Purchases', detail_id: pageConfig.detail_id, photos: pageConfig.detail.photos }).then(function (data) {
-          // UserNetwork.market_save_photos($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id, photos: photos }).then(function (data) {
-          if (!data.err) {
-            CommonHelper.showConfirm($scope, null, '操作成功', function () {
-              $state.go('purchases_detail', null, { reload: true });
-            }, null, null, event);
-          }
-          console.log(data);
-        });
-      },
-      market_make_top: function () {
-        UserNetwork.market_make_top($scope, { is_top: pageConfig.detail.is_top ? false : true, model_string: 'Purchases', detail_id: pageConfig.detail_id }).then(function (data) {
-          if (!data.err) {
-            CommonHelper.showConfirm($scope, null, '操作成功', function () {
-              $state.go('purchases_detail', null, { reload: true });
-            }, null, null, event);
-          }
-          console.log(data);
-        });
-      },
       delete_photo: function (photo) {
         var index = pageConfig.detail.photos.indexOf(photo);
         if (index !== -1) {
@@ -45,10 +24,28 @@ cSite.controller('BannerDetailController', [
         }
       },
       get_detail: function () {
-        UserNetwork.market_detail($scope, { model_string: 'Purchases', detail_id: pageConfig.detail_id }).then(function (data) {
+        if (!pageConfig.detail_id) {
+          return;
+        }
+        UserNetwork.market_detail($scope, { model_string: 'Banner', detail_id: pageConfig.detail_id }).then(function (data) {
           console.log(data);
           if (!data.err) {
             pageConfig.detail = data || {};
+          }
+        });
+      },
+      create_banner: function () {
+        pageConfig.detail.photos = pageConfig.detail.photos || [];
+        if (pageConfig.detail.photos.length < 2) {
+          return CommonHelper.showConfirm($scope, null, '广告最少2张图片', function () {
+          }, null, null, event);
+        }
+        UserNetwork.create_banner($scope, pageConfig.detail).then(function (data) {
+          console.log(data);
+          if (!data.err) {
+            CommonHelper.showConfirm($scope, null, '操作成功', function () {
+              $state.go('banner_detail', null, { reload: true });
+            }, null, null, event);
           }
         });
       }

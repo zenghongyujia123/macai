@@ -10,19 +10,23 @@ var sysErr = require('./../errors/system');
 var async = require('async');
 var that = exports;
 
-function create_banner(user, info, callback) {
-  var banner = new Banner({
-    name: info.name,
-    type: info.type,
-    photos: info.photos
-  });
-
-  banner.save(function (err, result) {
-    if (err || !result) {
-      return callback({ err: sysErr.database_save_error });
-    }
-    return callback(null, result);
-  });
+exports.create_banner = function (user, info, callback) {
+  if (info._id) {
+    Banner.update({ _id: info._id }, { $set: info }, function (err, result) {
+      if (err) {
+        return callback({ err: sysErr.database_save_error });
+      }
+      return callback(null, result);
+    })
+  }
+  else {
+    new Banner(info).save(function (err, result) {
+      if (err || !result) {
+        return callback({ err: sysErr.database_save_error });
+      }
+      return callback(null, result);
+    });
+  }
 }
 
 
