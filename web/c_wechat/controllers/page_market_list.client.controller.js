@@ -92,7 +92,7 @@ $(function () {
           // '    <div class="title2"></div>' +
           '    <div class="item-bottom">' +
           '      <div class="price">品类：' + item.main_goods + '</div>' +
-          '      <div class="stop green">联系采购</div>' +
+          '      <div class="stop green">联系方式</div>' +
           '    </div>' +
           '  </div>' +
           '</a>'
