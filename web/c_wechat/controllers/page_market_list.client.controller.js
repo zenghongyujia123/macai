@@ -183,6 +183,9 @@ $(function () {
       tab3.container.find('.purchases-list-item').remove();
     },
     my_list: function (callback) {
+      if (tab3.loading)
+        return;
+      tab3.loading = true;
       $.ajax({
         url: '/api_backend/market_day_info_list',
         data: {
@@ -191,6 +194,7 @@ $(function () {
         },
         method: 'post',
         success: function (data) {
+          tab3.loading = false;
           console.log(data);
           if (!data || data.err) {
             if (data.err.type === 'user_not_exist') {
@@ -264,19 +268,28 @@ $(function () {
       }
     },
     init: function () {
-      tab3.clear_list();
       if (tab3.is_init) {
         return;
       }
       tab3.is_init = true;
+      if (tab3.laodmore.remove) {
+        tab3.container.destroyInfinite();
+        tab3.laodmore.remove();
+      }
+      tab3.clear_list();
+      tab3.laodmore = $(
+        '<div class="weui-loadmore">' +
+        '  <i class="weui-loading"></i>' +
+        '  <span class="weui-loadmore__tips">正在加载</span>' +
+        '</div>  '
+      );
+      tab3.container.append(tab1.laodmore);
       tab3.container.infinite().on("infinite", function () {
-        if (tab3.loading) return;
-        tab3.loading = true;
-        tab3.my_list(function (last) {
-          tab3.loading = false;
+        tab3.my_list(function () {
         });
       });
-      tab3.my_list();
+      tab3.my_list(function () {
+      });
     }
   };
 
