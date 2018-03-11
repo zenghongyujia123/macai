@@ -255,9 +255,9 @@ $(function () {
       }
     },
     bind_event: function (obj, item) {
-      return window.location.href = '/page_market_detail?market=' + item.market;
 
       obj.click(function () {
+        return window.location.href = '/page_market_detail?market=' + item.market;
         if (is_vip === 'true') {
           window.location.href = '/page_market_detail?market=' + item.market;
         }
