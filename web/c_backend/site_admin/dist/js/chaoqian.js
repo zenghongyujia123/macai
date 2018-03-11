@@ -1006,13 +1006,14 @@ cSite.controller('MarketDayInfoListController', [
       table_header: [
         '批发市场',
         '品种',
-        '价格',
+        '今日价格',
+        '昨日价格',
         '日期'
       ],
       download_template: function () {
         var rows = [
           pageConfig.table_header,
-          ['莫某批发市场', '白菜', '10-20元／斤', '2018-02-03']
+          ['莫某批发市场', '白菜', '11-12元／斤', '10-20元／斤', '2018-02-03']
         ];
         ExcelService.saveExcelFile('每日行情价格导入模版.xlsx', [{ data: rows, name: 'sheet1' }]);
       },
@@ -1102,6 +1103,7 @@ cSite.controller('MarketDayInfoListController', [
                 var newData = {};
                 newData.market = row[tableHeaderList[0]];
                 newData.main_goods = row[tableHeaderList[1]];
+                newData.last_day_price = row[tableHeaderList[2]];
                 newData.price = row[tableHeaderList[2]];
                 newData.day = row[tableHeaderList[3]];
                 readList.push(newData);

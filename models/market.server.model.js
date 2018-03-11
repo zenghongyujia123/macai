@@ -91,6 +91,9 @@ module.exports = function (appDb) {
     main_goods: {
       type: String
     },
+    last_day_price: {
+      type: String
+    },
     price: {
       type: String
     },

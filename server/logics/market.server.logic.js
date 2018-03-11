@@ -187,7 +187,7 @@ exports.market_day_info_list = function (user, info, callback) {
 
   MarketDayInfo.aggregate([
     {
-      $match:query
+      $match: query
     },
     {
       $group: {
@@ -302,6 +302,7 @@ exports.market_day_info_import = function (user, infos, callback) {
       }
       marketDayInfo = new MarketDayInfo({
         market: info.market,
+        last_day_price: info.last_day_price,
         main_goods: info.main_goods,
         price: info.price,
         day: info.day

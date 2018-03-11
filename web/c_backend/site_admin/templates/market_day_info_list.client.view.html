@@ -13,7 +13,8 @@
     <div class="list-item" layout="row" layout-align="start center">
       <div class="column-item" flex="">批发市场</div>
       <div class="column-item" flex="">品种</div>
-      <div class="column-item" flex="">价格</div>
+      <div class="column-item" flex="">昨日价格</div>
+      <div class="column-item" flex="">今日价格</div>
       <div class="column-item" flex="">日期</div>
     </div>
   </div>
@@ -24,6 +25,9 @@
       </div>
       <div class="column-item" flex="" layout="row" layout-align="start start">
         {{item.main_goods}}
+      </div>
+      <div class="column-item" flex="" layout="row" layout-align="start start">
+        {{item.last_day_price}}
       </div>
       <div class="column-item" flex="" layout="row" layout-align="start start">
         {{item.price}}
