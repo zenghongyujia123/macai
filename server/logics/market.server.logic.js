@@ -187,6 +187,9 @@ exports.market_day_info_list = function (user, info, callback) {
 
   MarketDayInfo.aggregate([
     {
+      $match:query
+    },
+    {
       $group: {
         _id: '$market',
         market: { $first: '$market' },
