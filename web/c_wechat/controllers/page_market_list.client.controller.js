@@ -192,19 +192,27 @@ $(function () {
     append_my_list: function (data) {
       for (var i = 0; i < data.length; i++) {
         var item = data[i];
-        var obj = $(
+
+        var str =
           ' <a class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
           '   <div class="weui-media-box__bd">' +
           '     <div class="title1">' + item.market +
           '     </div>' +
-          '     <div class="title2">品种：' + item.main_goods + '</div>' +
-          '     <div class="item-bottom">' +
-          '       <div class="price">' + item.price +
-          '       </div>' +
-          '       <div class="stop orange">了解详情</div>' +
+          // '     <div class="title2">' + item.main_goods + '</div>';
+          item.list.forEach(function (o) {
+            str += '     <div class="item-bottom">' +
+              '       <div>品种：' + o.main_goods + '</div>' +
+              '       <div class="price">' + o.price + '</div>' +
+              '     </div>';
+          });
+        str += '     <div class="item-bottom">' +
+          '       <div>品种：' + item.price + '</div>' +
+          '       <div class="price">了解详情</div>' +
           '     </div>' +
           '   </div>' +
-          ' </a>');
+          ' </a>'
+        var obj = $(
+        );
         obj.click(function () {
           if (is_vip === 'true') {
 
