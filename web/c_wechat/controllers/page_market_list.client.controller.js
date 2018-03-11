@@ -4,7 +4,7 @@ $(function () {
     $("#citys-choose").popup();
     get_choose_citys(function (city) {
       $('#citys-choose-input').val(city);
-      get_choose_markets(city, function (data) {
+      get_choose_markets(city, 'MarketPurchases', function (data) {
         markets = [];
         data.forEach(function (market) {
           markets.push(market.name);
@@ -26,7 +26,7 @@ $(function () {
     $("#price-markets-choose-input").select('open');
   });
 
-  get_choose_markets('', function (data) {
+  get_choose_markets('', 'MarketDayInfo', function (data) {
     var markets = [];
     data.forEach(function (market) {
       markets.push(market.name);

@@ -1,9 +1,9 @@
-function get_choose_markets(city, callback) {
+function get_choose_markets(city, model_string,callback) {
   $.ajax({
     url: '/api_backend/market_get_market',
     data: {
       city: city,
-      model_string: 'MarketPurchases'
+      model_string: model_string
     },
     method: 'post',
     success: function (data) {
