@@ -250,7 +250,7 @@ $(function () {
         );
         obj.click(function () {
           if (is_vip === 'true') {
-
+            $("#brands-detail-container").popup();
           }
           else {
             $.confirm({
