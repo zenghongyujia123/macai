@@ -4,21 +4,7 @@ $(function () {
     $("#price-markets-choose-input").select('open');
   });
 
-  get_choose_markets(market_for_search, 'MarketDayInfo', function (data) {
-    var markets = [];
-    data.forEach(function (market) {
-      markets.push(market.name);
-    });
-    $("#price-markets-choose-input").select({
-      title: "选择市场",
-      items: markets,
-      onClose: function () {
-        tab3.market = $("#price-markets-choose-input").val();
-        tab3.is_init = false;
-        tab3.init();
-      }
-    });
-  })
+
 
   getUserJsApiTicket(window.location.href, function (data) {
   });
@@ -148,8 +134,12 @@ $(function () {
     }
   };
 
-  tab3.nav.click(function () {
-    tab3.init();
-  });
+  // tab3.nav.click(function () {
+  //   tab3.init();
+  // });
+
+  tab3.market = market_for_search;
+  tab3.is_init = false;
+  tab3.init();
 });
 
