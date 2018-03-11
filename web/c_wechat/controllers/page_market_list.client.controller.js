@@ -22,6 +22,26 @@ $(function () {
     $("#markets-choose-input").select('open');
   });
 
+  $('.price-markets-choose-input-row').click(function () {
+    $("#price-markets-choose-input").select('open');
+  });
+
+  get_choose_markets('', function (data) {
+    var markets = [];
+    data.forEach(function (market) {
+      markets.push(market.name);
+    });
+    $("#price-markets-choose-input").select({
+      title: "选择市场",
+      items: markets,
+      onClose: function () {
+        tab3.market = $("#price-markets-choose-input").val();
+        tab3.is_init = false;
+        tab3.init();
+      }
+    });
+  })
+
   $("#markets-choose-input").select({
     title: "选择市场",
     items: markets,

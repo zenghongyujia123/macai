@@ -356,11 +356,13 @@ exports.market_get_city = function (user, info, callback) {
 
 exports.market_get_market = function (user, info, callback) {
   var model = getModel(info.model_string);
+  var query = {};
+  if (info.city) {
+    query.city = info.city;
+  }
   model.aggregate([
     {
-      $match: {
-        city: info.city
-      }
+      $match: query
     },
     {
       $group: {
