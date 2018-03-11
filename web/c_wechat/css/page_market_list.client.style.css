@@ -85,7 +85,8 @@
   border: 0.5px solid #ff7977;
 }
 .page-market-list .purchases-list-item .item-bottom.has-bottom-border {
-  line-height: 30px;
+  font-size: 13px;
+  line-height: 40px;
   border-bottom: 0.5px solid #e5e5e5;
 }
 .page-market-list .purchases-list-item .item-bottom .today-price {
