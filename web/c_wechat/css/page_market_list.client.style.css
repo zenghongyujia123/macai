@@ -70,6 +70,7 @@
   border: 0.5px solid #ff7977;
 }
 .page-market-list .purchases-list-item .item-bottom.has-bottom-border {
+  line-height: 30px;
   border-bottom: 0.5px solid #ccc;
 }
 .page-market-list .purchases-list-item .item-bottom .today-price {
