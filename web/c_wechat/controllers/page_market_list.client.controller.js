@@ -200,18 +200,16 @@ $(function () {
           '     </div>' +
           // '     <div class="title2">' + item.main_goods + '</div>';
           item.list.forEach(function (o) {
-            str += '     <div class="item-bottom">' +
+            str += '<div class="item-bottom">' +
               '       <div>品种：' + o.main_goods + '</div>' +
               '       <div class="price">' + o.price + '</div>' +
               '     </div>';
           });
-        str += '     <div class="item-bottom">' +
-          '       <div>品种：' + item.price + '</div>' +
-          '       <div class="price">了解详情</div>' +
-          '     </div>' +
+        str += 
           '   </div>' +
           ' </a>'
         var obj = $(
+          str
         );
         obj.click(function () {
           if (is_vip === 'true') {
