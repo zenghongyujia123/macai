@@ -283,7 +283,7 @@ $(function () {
         '  <span class="weui-loadmore__tips">正在加载</span>' +
         '</div>  '
       );
-      tab3.container.append(tab1.laodmore);
+      tab3.container.append(tab3.laodmore);
       tab3.container.infinite().on("infinite", function () {
         tab3.my_list(function () {
         });
