@@ -181,9 +181,8 @@ exports.market_day_info_list = function (user, info, callback) {
   if (info.market) {
     query.market = info.market;
   }
-  if (info.last_item.create_time) {
-    query.create_time = { $lte: new Date(info.last_item.create_time) }
-    query._id = { $ne: info.last_item._id };
+  if (info.last_item.market) {
+    query.market = { $lte: info.last_item.market }
   }
 
   MarketDayInfo.aggregate([
@@ -191,10 +190,10 @@ exports.market_day_info_list = function (user, info, callback) {
       $group: {
         _id: '$market',
         market: { $first: '$market' },
-        brand: { $push: '$$ROOT' }
+        list: { $push: '$$ROOT' }
       }
     }
-  ]).sort({ create_time: -1 }).limit(10).exec(function (err, results) {
+  ]).sort({ market: -1 }).limit(10).exec(function (err, results) {
     if (err) {
       console.error(new Date().toLocaleString(), err);
       return callback({ err: sysErr.database_query_error });
