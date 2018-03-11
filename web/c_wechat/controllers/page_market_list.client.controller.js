@@ -270,7 +270,7 @@ $(function () {
       }
     },
     go_detail: function (market) {
-      window.location = '/page_market_detail?market=' + item.market;
+      window.location.href = '/page_market_detail?market=' + item.market;
     },
     init: function () {
       if (tab3.is_init) {
