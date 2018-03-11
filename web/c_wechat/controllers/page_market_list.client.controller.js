@@ -206,9 +206,9 @@ $(function () {
         // '     <div class="title2">' + item.main_goods + '</div>';
         item.list.forEach(function (o) {
           str += '<div class="item-bottom">' +
-            '       <div>' + o.main_goods + '</div>' +
-            '       <div>' + o.last_day_price + '</div>' +
-            '       <div class="price">' + o.price + '</div>' +
+            '       <div class="brand">' + o.main_goods + '</div>' +
+            '       <div class="last-day-price">' + o.last_day_price + '</div>' +
+            '       <div class="today-price">' + o.price + '</div>' +
             '     </div>';
         });
         str +=
