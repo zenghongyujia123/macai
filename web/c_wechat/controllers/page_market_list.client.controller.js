@@ -178,6 +178,10 @@ $(function () {
     loading: false,
     is_init: false,
     market: '',
+    clear_list: function () {
+      tab3.last_item = {};
+      tab3.container.find('.purchases-list-item').remove();
+    },
     my_list: function (callback) {
       $.ajax({
         url: '/api_backend/market_day_info_list',
@@ -259,24 +263,24 @@ $(function () {
       }
     },
     init: function () {
-
+      tab3.clear_list();
+      if (tab3.is_init) {
+        return;
+      }
+      tab3.is_init = true;
+      tab3.container.infinite().on("infinite", function () {
+        if (tab3.loading) return;
+        tab3.loading = true;
+        tab3.my_list(function (last) {
+          tab3.loading = false;
+        });
+      });
+      tab3.my_list();
     }
   };
 
   tab3.nav.click(function () {
-    if (tab3.is_init) {
-      return;
-    }
-    tab3.is_init = true;
     tab3.init();
-    tab3.container.infinite().on("infinite", function () {
-      if (tab3.loading) return;
-      tab3.loading = true;
-      tab3.my_list(function (last) {
-        tab3.loading = false;
-      });
-    });
-    tab3.my_list();
   });
 });
 
