@@ -8,6 +8,7 @@ var goodsFilter = require('../filters/goods');
 
 module.exports = function (app) {
   app.route('/api_backend/market_list').post(ctr.market_list);
+  app.route('/api_backend/market_day_info_list').post(ctr.market_day_info_list);
   app.route('/api_backend/market_detail').post(ctr.market_detail);
   app.route('/api_backend/market_save_photos').post(goodsFilter.requireMarket, ctr.market_save_photos);
   app.route('/api_backend/signin').post(ctr.signin);

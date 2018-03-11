@@ -36,6 +36,15 @@ exports.market_list = function (req, res, next) {
     return res.send(results);
   });
 }
+
+exports.market_day_info_list = function (req, res, next) {
+  marketLogic.market_day_info_list(req.user, req.body, function (err, results) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(results);
+  });
+}
 exports.market_detail = function (req, res, next) {
   marketLogic.market_detail(req.user, req.body, function (err, results) {
     if (err) {

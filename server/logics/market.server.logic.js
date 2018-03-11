@@ -170,6 +170,40 @@ exports.market_list = function (user, info, callback) {
     }
   });
 }
+
+exports.market_day_info_list = function (user, info, callback) {
+  info = info || {};
+  info.next = info.next || 'next';
+  info.last_item = info.last_item || {};
+  var query = {
+    deleted_status: { $ne: true }
+  };
+  if (info.market) {
+    query.market = info.market;
+  }
+  if (info.last_item.create_time) {
+    query.create_time = { $lte: new Date(info.last_item.create_time) }
+    query._id = { $ne: info.last_item._id };
+  }
+
+  MarketDayInfo.aggregate([
+    {
+      $group: {
+        _id: '$market',
+        market: { $first: '$market' },
+        brand: { $push: '$$ROOT' }
+      }
+    }
+  ]).sort({ create_time: -1 }).limit(10).exec(function (err, results) {
+    if (err) {
+      console.error(new Date().toLocaleString(), err);
+      return callback({ err: sysErr.database_query_error });
+    }
+    return callback(null, results);
+  });
+}
+
+
 exports.market_supply_import = function (user, infos, callback) {
   async.eachSeries(infos.list, function (info, eachCallback) {
     MarketSupply.findOne({

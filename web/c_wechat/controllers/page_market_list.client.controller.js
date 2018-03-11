@@ -160,9 +160,8 @@ $(function () {
     market: '',
     my_list: function (callback) {
       $.ajax({
-        url: '/api_backend/market_list',
+        url: '/api_backend/market_day_info_list',
         data: {
-          model_string: 'MarketDayInfo',
           last_item: tab3.last_item
         },
         method: 'post',
@@ -175,11 +174,11 @@ $(function () {
             $.toptip(data.err.message, 'warning');
             return callback();
           }
-          tab3.append_my_list(data.list);
-          if (data.list.length > 0) {
-            tab3.last_item = data.list[data.list.length - 1];
+          tab3.append_my_list(data);
+          if (data.length > 0) {
+            tab3.last_item = data[data.length - 1];
           }
-          if (data.list.length < 10) {
+          if (data.length < 10) {
             tab3.container.destroyInfinite();
             tab3.laodmore.remove();
           }
