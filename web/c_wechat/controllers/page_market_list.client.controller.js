@@ -225,8 +225,10 @@ $(function () {
         var str =
           ' <a class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
           '   <div class="weui-media-box__bd">' +
-          '     <div class="title1">' + item.market +
-          '     </div>' +
+          '     <div class="title-market">' +
+          '     <div>' + item.market + '</div>'
+        '     <div class="phone">' + item.market + '</div>'
+        '     </div>' +
           '     <div class="item-bottom has-bottom-border">' +
           '       <div>品类</div>' +
           '       <div>昨日价格</div>' +
