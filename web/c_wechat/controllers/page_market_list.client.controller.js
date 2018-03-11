@@ -197,14 +197,20 @@ $(function () {
           ' <a class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
           '   <div class="weui-media-box__bd">' +
           '     <div class="title1">' + item.market +
-          '     </div>';
-          // '     <div class="title2">' + item.main_goods + '</div>';
-          item.list.forEach(function (o) {
-            str += '<div class="item-bottom">' +
-              '       <div>品种：' + o.main_goods + '</div>' +
-              '       <div class="price">' + o.price + '</div>' +
-              '     </div>';
-          });
+          '     </div>' +
+          '     <div class="item-bottom">' +
+          '       <div>' + 品类 + '</div>' +
+          '       <div class="price">' + 今日价格 + '</div>' +
+          '     </div>'
+
+          ;
+        // '     <div class="title2">' + item.main_goods + '</div>';
+        item.list.forEach(function (o) {
+          str += '<div class="item-bottom">' +
+            '       <div>' + o.main_goods + '</div>' +
+            '       <div class="price">' + o.price + '</div>' +
+            '     </div>';
+        });
         str +=
           '   </div>' +
           ' </a>';
