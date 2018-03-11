@@ -235,13 +235,13 @@ $(function () {
           '       <div>今日价格</div> ' +
           '     </div>';
         // '     <div class="title2">' + item.main_goods + '</div>';
-        // item.list.forEach(function (o) {
-        //   str += '<div class="item-bottom has-bottom-border">' +
-        //     '       <div class="brand">' + o.main_goods + '</div>' +
-        //     '       <div class="last-day-price">' + o.last_day_price + '</div>' +
-        //     '       <div class="today-price">' + o.price + '</div>' +
-        //     '     </div>';
-        // });
+        item.list.forEach(function (o) {
+          str += '<div class="item-bottom has-bottom-border">' +
+            '       <div class="brand">' + o.main_goods + '</div>' +
+            '       <div class="last-day-price">' + o.last_day_price + '</div>' +
+            '       <div class="today-price">' + o.price + '</div>' +
+            '     </div>';
+        });
         str +=
           '   </div>' +
           ' </a>';

@@ -1,0 +1,112 @@
+.page-market-list {
+  .market-tip {
+    line-height: 30px;
+    color: #ff7977;
+    padding-left: 15px;
+    font-size: 12px;
+  }
+  .swiper-container {
+    height: 200px;
+    width: 100%;
+  }
+  .weui-navbar {
+    background-color: white;
+    .weui-navbar__item {
+      background-color: white; // color: white;
+      &.weui-bar__item--on {
+        color: #04BE02;
+        border-bottom: 2px solid #04BE02;
+      }
+      &:after {
+        border-right: 0px;
+      }
+    }
+  }
+  .purchases-list-item {
+    .title1 {
+      font-size: 16px;
+    }
+    .title2 {
+      font-size: 12px;
+      color: #999;
+    }
+    .title-market {
+      font-size: 16px;
+      height: 50px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      .phone {
+        font-size: 13px;
+        border-radius: 3px;
+        padding: 3px 5px;
+        color: #04BE02;
+        border: 0.5px solid #04BE02;
+      }
+    }
+    .tag {
+      font-size: 10px;
+      border-radius: 2px;
+      padding: 0px 2px;
+      &.blue {
+        color: #418eff;
+        border: 0.5px solid #418eff;
+      }
+      &.orange {
+        color: #ff7977;
+        border: 0.5px solid #ff7977;
+      }
+    }
+    .item-bottom {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: baseline;
+      .price {
+        color: #ff6000;
+        font-size: 12px;
+        margin-right: 5px;
+        .price-unit {
+          color: #ff6000;
+          font-size: 11px;
+        }
+      }
+      .time {
+        font-size: 12px;
+        color: #999;
+      }
+      .stop {
+        font-size: 12px;
+        padding: 0px 5px;
+        border: 1px solid #e5e5e5;
+        color: #999;
+        border-radius: 2px;
+        &.green {
+          color: #04BE02;
+          border: 0.5px solid #04BE02;
+        }
+        &.orange {
+          color: #ff7977;
+          border: 0.5px solid #ff7977;
+        }
+      }
+      &.has-bottom-border {
+        font-size: 13px;
+        line-height: 40px;
+        border-bottom: 0.5px solid #e5e5e5;
+      }
+      .brand {}
+      .today-price {
+        color: #ff6000;
+      }
+      .last-day-price {
+        color: #999;
+      }
+    }
+  }
+}
+
+.weui-select-modal .weui-cells {
+  min-height: 16rem;
+}

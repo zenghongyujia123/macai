@@ -1,0 +1,106 @@
+.page-market-list .market-tip {
+  line-height: 30px;
+  color: #ff7977;
+  padding-left: 15px;
+  font-size: 12px;
+}
+.page-market-list .swiper-container {
+  height: 200px;
+  width: 100%;
+}
+.page-market-list .weui-navbar {
+  background-color: white;
+}
+.page-market-list .weui-navbar .weui-navbar__item {
+  background-color: white;
+}
+.page-market-list .weui-navbar .weui-navbar__item.weui-bar__item--on {
+  color: #04BE02;
+  border-bottom: 2px solid #04BE02;
+}
+.page-market-list .weui-navbar .weui-navbar__item:after {
+  border-right: 0px;
+}
+.page-market-list .purchases-list-item .title1 {
+  font-size: 16px;
+}
+.page-market-list .purchases-list-item .title2 {
+  font-size: 12px;
+  color: #999;
+}
+.page-market-list .purchases-list-item .title-market {
+  font-size: 16px;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.page-market-list .purchases-list-item .title-market .phone {
+  font-size: 13px;
+  border-radius: 3px;
+  padding: 3px 5px;
+  color: #04BE02;
+  border: 0.5px solid #04BE02;
+}
+.page-market-list .purchases-list-item .tag {
+  font-size: 10px;
+  border-radius: 2px;
+  padding: 0px 2px;
+}
+.page-market-list .purchases-list-item .tag.blue {
+  color: #418eff;
+  border: 0.5px solid #418eff;
+}
+.page-market-list .purchases-list-item .tag.orange {
+  color: #ff7977;
+  border: 0.5px solid #ff7977;
+}
+.page-market-list .purchases-list-item .item-bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.page-market-list .purchases-list-item .item-bottom .price {
+  color: #ff6000;
+  font-size: 12px;
+  margin-right: 5px;
+}
+.page-market-list .purchases-list-item .item-bottom .price .price-unit {
+  color: #ff6000;
+  font-size: 11px;
+}
+.page-market-list .purchases-list-item .item-bottom .time {
+  font-size: 12px;
+  color: #999;
+}
+.page-market-list .purchases-list-item .item-bottom .stop {
+  font-size: 12px;
+  padding: 0px 5px;
+  border: 1px solid #e5e5e5;
+  color: #999;
+  border-radius: 2px;
+}
+.page-market-list .purchases-list-item .item-bottom .stop.green {
+  color: #04BE02;
+  border: 0.5px solid #04BE02;
+}
+.page-market-list .purchases-list-item .item-bottom .stop.orange {
+  color: #ff7977;
+  border: 0.5px solid #ff7977;
+}
+.page-market-list .purchases-list-item .item-bottom.has-bottom-border {
+  font-size: 13px;
+  line-height: 40px;
+  border-bottom: 0.5px solid #e5e5e5;
+}
+.page-market-list .purchases-list-item .item-bottom .today-price {
+  color: #ff6000;
+}
+.page-market-list .purchases-list-item .item-bottom .last-day-price {
+  color: #999;
+}
+.weui-select-modal .weui-cells {
+  min-height: 16rem;
+}
