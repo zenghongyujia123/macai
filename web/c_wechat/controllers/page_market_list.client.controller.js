@@ -248,31 +248,31 @@ $(function () {
         var obj = $(
           str
         );
-        obj.click(function () {
-          return tab3.go_detail(item.market);
 
-          if (is_vip === 'true') {
-            tab3.go_detail(item.market);
-          }
-          else {
-            $.confirm({
-              title: '提示',
-              text: '你还不是vip,成为vip获取更多服务',
-              onOK: function () {
-                get_pre_pay_id(function () {
+        bind_event(obj, item)
 
-                })
-              },
-              onCancel: function () {
-              }
-            });
-          }
-        });
         obj.insertBefore(tab3.laodmore);
       }
     },
-    go_detail: function (market) {
-      window.location.href = '/page_market_detail?market=' + item.market;
+    bind_event: function (obj, item) {
+      obj.click(function () {
+        if (is_vip === 'true') {
+          window.location.href = '/page_market_detail?market=' + item.market;
+        }
+        else {
+          $.confirm({
+            title: '提示',
+            text: '你还不是vip,成为vip获取更多服务',
+            onOK: function () {
+              get_pre_pay_id(function () {
+
+              })
+            },
+            onCancel: function () {
+            }
+          });
+        }
+      });
     },
     init: function () {
       if (tab3.is_init) {
