@@ -177,7 +177,7 @@ $(function () {
           '        <span class="price-unit">' + item.price_unit + '</span>' +
           '      </div>' +
           '      <div class="time">' +
-          '        最后刷新：' + (new Date(item.create_time).getMonth() + 1) + '月' + new Date(item.create_time).getDate() + '日' +
+          '        最后刷新：' + m_get_date_diff(new Date(item.create_time)) +
           '      </div>' +
           '    </div>' +
           '  </div>' +
