@@ -71,7 +71,7 @@
 }
 .page-market-list .purchases-list-item .item-bottom.has-bottom-border {
   line-height: 30px;
-  border-bottom: 0.5px solid #ccc;
+  border-bottom: 0.5px solid #e5e5e5;
 }
 .page-market-list .purchases-list-item .item-bottom .today-price {
   color: #ff6000;
