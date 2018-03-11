@@ -199,11 +199,9 @@ $(function () {
           '     <div class="title1">' + item.market +
           '     </div>' +
           '     <div class="item-bottom">' +
-          '       <div>' + 品类 + '</div>' +
-          '       <div class="price">' + 今日价格 + '</div>' +
-          '     </div>'
-
-          ;
+          '       <div>品类</div>' +
+          '       <div class="price">今日价格</div> ' +
+          '     </div>';
         // '     <div class="title2">' + item.main_goods + '</div>';
         item.list.forEach(function (o) {
           str += '<div class="item-bottom">' +
