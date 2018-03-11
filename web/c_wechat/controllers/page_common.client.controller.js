@@ -1,4 +1,4 @@
-function get_choose_markets(city, model_string,callback) {
+function get_choose_markets(city, model_string, callback) {
   $.ajax({
     url: '/api_backend/market_get_market',
     data: {
@@ -56,7 +56,7 @@ function getProvinceObj(item, right, callback) {
     $(this).siblings().removeClass('select');
     right.children().remove();
     for (var i = 0; i < item.citys.length; i++) {
-      getCityObj(item, right, callback)
+      right.append(getCityObj(item, right, callback));
     }
   });
   return province;
@@ -79,7 +79,7 @@ function getCityObj(item, right, callback) {
     });;
     itemObj.append(rowObj);
   }
-  right.append(itemObj);
+  return itemObj;
 }
 
 function get_choose_categorys(callback) {
