@@ -249,7 +249,7 @@ $(function () {
           str
         );
 
-        bind_event(obj, item)
+        tab3.bind_event(obj, item)
 
         obj.insertBefore(tab3.laodmore);
       }
