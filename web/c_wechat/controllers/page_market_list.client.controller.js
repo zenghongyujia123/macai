@@ -198,7 +198,7 @@ $(function () {
           '   <div class="weui-media-box__bd">' +
           '     <div class="title1">' + item.market +
           '     </div>' +
-          '     <div class="item-bottom">' +
+          '     <div class="item-bottom has-bottom-border">' +
           '       <div>品类</div>' +
           '       <div>昨日价格</div>' +
           '       <div>今日价格</div> ' +

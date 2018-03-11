@@ -70,10 +70,10 @@
   border: 0.5px solid #ff7977;
 }
 .page-market-list .purchases-list-item .item-bottom .today-price {
-  color: #999;
+  color: #ff6000;
 }
 .page-market-list .purchases-list-item .item-bottom .last-day-price {
-  color: #ff6000;
+  color: #999;
 }
 .weui-select-modal .weui-cells {
   min-height: 16rem;
