@@ -227,7 +227,7 @@ $(function () {
           '   <div class="weui-media-box__bd">' +
           '     <div class="title-market">' +
           '     <div>' + item.market + '</div>' +
-          '     <div class="phone">' + item.market + '</div>' +
+          '     <div class="phone">联系方式</div>' +
           '     </div>' +
           '     <div class="item-bottom has-bottom-border">' +
           '       <div>品类</div>' +
