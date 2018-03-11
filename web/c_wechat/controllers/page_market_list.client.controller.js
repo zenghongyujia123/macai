@@ -227,13 +227,13 @@ $(function () {
           '   <div class="weui-media-box__bd">' +
           '     <div class="title-market">' +
           '     <div>' + item.market + '</div>' +
-          '     <div class="phone">联系方式</div>' +
-          '     </div>' +
-          '     <div class="item-bottom has-bottom-border">' +
-          '       <div>品类</div>' +
-          '       <div>昨日价格</div>' +
-          '       <div>今日价格</div> ' +
+          '     <div class="phone">查看详情</div>' +
           '     </div>';
+        // '     <div class="item-bottom has-bottom-border">' +
+        // '       <div>品类</div>' +
+        // '       <div>昨日价格</div>' +
+        // '       <div>今日价格</div> ' +
+        // '     </div>';
         // '     <div class="title2">' + item.main_goods + '</div>';
         // item.list.forEach(function (o) {
         //   str += '<div class="item-bottom has-bottom-border">' +
