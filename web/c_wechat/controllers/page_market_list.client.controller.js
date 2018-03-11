@@ -186,7 +186,8 @@ $(function () {
       $.ajax({
         url: '/api_backend/market_day_info_list',
         data: {
-          last_item: tab3.last_item
+          last_item: tab3.last_item,
+          market: tab3.market
         },
         method: 'post',
         success: function (data) {
