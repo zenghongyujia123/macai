@@ -1103,9 +1103,9 @@ cSite.controller('MarketDayInfoListController', [
                 var newData = {};
                 newData.market = row[tableHeaderList[0]];
                 newData.main_goods = row[tableHeaderList[1]];
-                newData.last_day_price = row[tableHeaderList[2]];
                 newData.price = row[tableHeaderList[2]];
-                newData.day = row[tableHeaderList[3]];
+                newData.last_day_price = row[tableHeaderList[3]];
+                newData.day = row[tableHeaderList[4]];
                 readList.push(newData);
               }
               console.log(readList);
