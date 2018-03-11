@@ -91,6 +91,11 @@ exports.page_market_list = function (req, res, next) {
   return res.render(filepath, { user: req.user || {} });
 };
 
+exports.page_vip_agree = function (req, res, next) {
+  var filepath = path.join(__dirname, '../../web/c_wechat/views/vip/page_vip_agree.client.view.html');
+  return res.render(filepath, { user: req.user || {} });
+};
+
 exports.page_market_detail = function (req, res, next) {
   var filepath = path.join(__dirname, '../../web/c_wechat/views/market/page_market_detail.client.view.html');
   return res.render(filepath, { user: req.user || {}, market: req.query.market });
