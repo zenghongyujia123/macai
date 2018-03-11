@@ -26,7 +26,7 @@ $(function () {
     $("#price-markets-choose-input").select('open');
   });
 
-  get_choose_markets('', 'MarketDayInfo', function (data) {
+  get_choose_markets(market, 'MarketDayInfo', function (data) {
     var markets = [];
     data.forEach(function (market) {
       markets.push(market.name);

@@ -250,7 +250,7 @@ $(function () {
         );
         obj.click(function () {
           if (is_vip === 'true') {
-            $("#brands-detail-container").popup();
+            tab3.go_detail(item.market);
           }
           else {
             $.confirm({
@@ -268,6 +268,9 @@ $(function () {
         });
         obj.insertBefore(tab3.laodmore);
       }
+    },
+    go_detail: function (market) {
+      window.location = '/page_market_detail?market=' + item.market;
     },
     init: function () {
       if (tab3.is_init) {
