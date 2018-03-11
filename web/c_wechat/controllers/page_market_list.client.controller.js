@@ -197,7 +197,7 @@ $(function () {
           ' <a class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
           '   <div class="weui-media-box__bd">' +
           '     <div class="title1">' + item.market +
-          '     </div>' +
+          '     </div>';
           // '     <div class="title2">' + item.main_goods + '</div>';
           item.list.forEach(function (o) {
             str += '<div class="item-bottom">' +
@@ -205,9 +205,9 @@ $(function () {
               '       <div class="price">' + o.price + '</div>' +
               '     </div>';
           });
-        str += 
+        str +=
           '   </div>' +
-          ' </a>'
+          ' </a>';
         var obj = $(
           str
         );
