@@ -249,6 +249,8 @@ $(function () {
           str
         );
         obj.click(function () {
+          return tab3.go_detail(item.market);
+
           if (is_vip === 'true') {
             tab3.go_detail(item.market);
           }
