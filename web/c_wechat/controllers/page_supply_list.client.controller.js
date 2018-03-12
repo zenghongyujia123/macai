@@ -38,6 +38,16 @@ $(function () {
         }
       });
     },
+    bind_event: function (obj, detail_id) {
+      obj.find('.refresh').click(function (e) {
+        stopBubble(e);
+        refreshGoods(detail_id, 'Supply', function () {
+          obj.find('.refresh-time').text('最后刷新：' + m_get_date_diff(new Date()));
+          $.toast("操作成功");
+        });
+        return false;
+      });
+    },
     append_my_list: function (data) {
       for (var i = 0; i < data.length; i++) {
         var item = data[i];
@@ -50,13 +60,13 @@ $(function () {
           '    <div class="title1">' + item.goods_name +
           '    </div>' +
           '    <div class="title2">' + item.send_address + '</div>' +
-          '    <div class="title2">' + (new Date(item.create_time).getMonth() + 1) + '月' + new Date(item.create_time).getDate() + '日刷新' + ' </div>' +
+          '    <div class="title2 refresh-time">' + m_get_date_diff(new Date(item.create_time)) + '刷新' + ' </div>' +
           '    <div class="item-bottom">' +
           '      <div class="price">' + item.price +
           '        <span class="price-unit">' + item.price_unit + '</span>' +
           '      </div>' +
-          '     <div class="stop">' +
-          '         停止供应' +
+          '     <div class="stop refresh">' +
+          '         刷新供应' +
           '       </div>' +
           '    </div>' +
           '  </div>' +
