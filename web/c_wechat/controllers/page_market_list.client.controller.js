@@ -76,7 +76,7 @@ $(function () {
         return;
       tab1.loading = true;
       $.ajax({
-        url: '/api_backend/market_get_market',
+        url: '/api_backend/market_purchases_list',
         data: {
           model_string: 'MarketPurchases',
           last_item: tab1.last_item,
@@ -134,7 +134,7 @@ $(function () {
         var obj = $(
           '  <a class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
           '  <div class="weui-media-box__bd">' +
-          '    <div class="title1">' + item.name + '</div>' +
+          '    <div class="title1">' + item.market + '</div>' +
           // '    <div class="title2">市场：' + item.province + item.city + item.market + '</div>' +
           // '    <div class="title2"></div>' +
           '    <div class="item-bottom">' +
