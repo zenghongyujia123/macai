@@ -42,8 +42,8 @@ $(function () {
             $.toptip(data.err.message, 'warning');
             return callback();
           }
-          tab3.append_my_list(data.list);
           if (data.length > 0) {
+            tab3.append_my_list(data[0].list);
             tab3.last_item = data[data.length - 1];
           }
           if (data.length < 10) {
