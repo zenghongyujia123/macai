@@ -43,7 +43,7 @@ $(function () {
       obj.find('.refresh').click(function (e) {
         stopBubble(e);
         refreshGoods(detail_id, 'Purchases', function () {
-          obj.find('.refresh-time').text('最后刷新：' + m_get_date_diff(new Date(item.create_time)));
+          obj.find('.refresh-time').text('最后刷新：' + m_get_date_diff(new Date()));
           $.toast("操作成功");
         });
         return false;
@@ -60,16 +60,16 @@ $(function () {
           '     <div class="title2">品种：' + item.goods_brand + '</div>' +
           '     <div class="title2">浏览次数：' + (item.browse_count || 0) + '次</div>' +
           '     <div class="title2 refresh-time">最后刷新：' + m_get_date_diff(new Date(item.create_time)) + '</div>' +
-            '     <div class="item-bottom">' +
-            '       <div class="price">' + item.expect_price +
-            '         <span class="price-unit">' + item.expect_price_unit + '</span>' +
-            '       </div>' +
-            '       <div class="refresh">' +
-            '         刷新采购' +
-            '       </div>' +
-            '     </div>' +
-            '   </div>' +
-            ' </a');
+          '     <div class="item-bottom">' +
+          '       <div class="price">' + item.expect_price +
+          '         <span class="price-unit">' + item.expect_price_unit + '</span>' +
+          '       </div>' +
+          '       <div class="refresh">' +
+          '         刷新采购' +
+          '       </div>' +
+          '     </div>' +
+          '   </div>' +
+          ' </a');
         tab2.bind_event(obj, item._id);
         obj.insertBefore(tab2.laodmore);
       }

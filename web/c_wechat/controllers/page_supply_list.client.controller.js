@@ -71,6 +71,7 @@ $(function () {
           '    </div>' +
           '  </div>' +
           '</a>');
+        tab2.bind_event(obj, item._id);
         obj.insertBefore(tab2.laodmore);
       }
     },
