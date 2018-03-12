@@ -76,7 +76,7 @@ $(function () {
         return;
       tab1.loading = true;
       $.ajax({
-        url: '/api_backend/market_get_market',
+        url: '/market_get_market',
         data: {
           model_string: 'MarketPurchases',
           last_item: tab1.last_item,
