@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no,width=device-width" />
-  <title>行情大厅</title>
+  <title>批发市场详情</title>
   <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
   <link rel="stylesheet" href="../libs/Swiper/dist/css/swiper.min.css" />
   <link rel="stylesheet" href="../libs/font-awesome/css/font-awesome.min.css" />
@@ -34,54 +34,13 @@
 <body>
   <div class="weui-tab page-market-list">
     <div class="weui-navbar">
-      <a id="nav1" class="weui-navbar__item weui-bar__item--on" href="#tab1">
-        采购商
-      </a>
-      <!-- <a id="nav2" class="weui-navbar__item" href="#tab2">
-        供应商
-      </a> -->
-      <a id="nav3" class="weui-navbar__item" href="#tab3">
-        每日行情
+      <a id="nav3" class="weui-navbar__item  weui-bar__item--on" href="#tab3">
+        <%= market %>
       </a>
     </div>
     <div class="weui-tab__bd">
-      <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
-        <div class="market-tip">想成为采购商让全国种植户看到，请联系客服。</div>
-        <a class="weui-cell weui-cell_access" href="javascript:;">
-          <div class="weui-cell__bd">
-            所在城市
-          </div>
+      <div id="tab3" class="weui-tab__bd-item weui-tab__bd-item--active">
 
-          <div class="weui-cell__bd citys-choose-input-row">
-            <input style="display:hidden" id="citys-choose-input" class="weui-input" placeholder="城市" disabled="disabled">
-          </div>
-          <div class="weui-cell__ft">
-          </div>
-        </a>
-        <a class="weui-cell weui-cell_access" href="javascript:;">
-          <div class="weui-cell__bd">
-            所在批发市场
-          </div>
-          <div class="weui-cell__bd markets-choose-input-row">
-            <input id="markets-choose-input" disabled="disabled" class="weui-input" placeholder="批发市场">
-          </div>
-          <div class="weui-cell__ft">
-          </div>
-        </a>
-      </div>
-
-      <div id="tab3" class="weui-tab__bd-item">
-        <div class="market-tip">如要发布市场行情，请联系客服。</div>
-        <a class="weui-cell weui-cell_access" href="javascript:;">
-          <div class="weui-cell__bd">
-            所在批发市场
-          </div>
-          <div class="weui-cell__bd price-markets-choose-input-row">
-            <input id="price-markets-choose-input" disabled="disabled" class="weui-input" placeholder="批发市场">
-          </div>
-          <div class="weui-cell__ft">
-          </div>
-        </a>
       </div>
     </div>
   </div>
@@ -92,7 +51,7 @@
   </div>
 </body>
 <script>
-  var is_vip = '<%= user.vip_user %>';
+  var market_for_search = '<%= market %>';
 </script>
 
 </html>
