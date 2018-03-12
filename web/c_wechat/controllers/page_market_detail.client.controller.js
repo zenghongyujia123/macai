@@ -102,6 +102,10 @@ $(function () {
           }
         });
         obj.insertBefore(tab3.laodmore);
+
+
+        var btn = $('<a  href="tel:0551-65669265" style="margin:10px;"  class="weui-btn weui-btn_primary">联系电话</a>')
+        btn.insertBefore(tab3.laodmore);
       }
     },
     init: function () {
