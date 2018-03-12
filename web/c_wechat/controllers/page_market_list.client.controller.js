@@ -92,11 +92,11 @@ $(function () {
             $.toptip(data.err.message, 'warning')
             return callback();
           }
-          tab1.append_my_list(data.list);
-          if (data.list.length > 0) {
-            tab1.last_item = data.list[data.list.length - 1];
+          tab1.append_my_list(data);
+          if (data.length > 0) {
+            tab1.last_item = data[data.length - 1];
           }
-          if (data.list.length < 10) {
+          if (data.length < 10) {
             tab1.container.destroyInfinite();
             tab1.laodmore.remove();
           }
