@@ -169,7 +169,7 @@ $(function () {
           '<span>' + (item.goods_class || '') + item.goods_category + item.goods_brand + '</span>' +
           (item.is_top ? '<span class="tag orange">置顶</span>' : '') +
           '    </div>' +
-          '    <div class="title2">' + item.send_province + item.send_city + ' ' + (item.nickname || '-') + '</div>' +
+          '    <div class="title2">' + item.send_province + item.send_city + ' ' + (item.nickname || '-') + ' 浏览量：' + (item.browse_count || 0) + '</div>' +
           ((item.user && item.user.personal_auth_stauts === 'authed') ? '<span class="tag blue">实名认证</span>' : '<span class="tag">普通用户</span>') +
           ((item.user && item.user.vip_user) ? '<span class="tag orange">vip用户</span>' : '') +
           '    <div class="item-bottom">' +

@@ -118,6 +118,8 @@ $(function () {
           '</a>'
         );
         obj.click(function () {
+          // return window.location.href = '/page_market_detail?market=' + item.market;
+
           if (is_vip === 'true') {
 
           }
@@ -126,9 +128,10 @@ $(function () {
               title: '提示',
               text: '你还不是vip,成为vip获取更多服务',
               onOK: function () {
-                get_pre_pay_id(function () {
+                window.location = '/page_vip_agree';
+                // get_pre_pay_id(function () {
 
-                })
+                // })
               },
               onCancel: function () {
               }
@@ -257,6 +260,8 @@ $(function () {
     bind_event: function (obj, item) {
 
       obj.click(function () {
+        return window.location.href = '/page_market_detail?market=' + item.market;
+
         if (is_vip === 'true') {
           window.location.href = '/page_market_detail?market=' + item.market;
         }
@@ -265,9 +270,10 @@ $(function () {
             title: '提示',
             text: '你还不是vip,成为vip获取更多服务',
             onOK: function () {
-              get_pre_pay_id(function () {
+              window.location = '/page_vip_agree';
+              // get_pre_pay_id(function () {
 
-              })
+              // })
             },
             onCancel: function () {
             }
