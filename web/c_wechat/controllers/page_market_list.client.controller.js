@@ -134,7 +134,9 @@ $(function () {
         var obj = $(
           '  <a class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
           '  <div class="weui-media-box__bd">' +
-          '    <div class="title1">' + item.market + '</div>' +
+          '     <div>' + item.market + '</div>' +
+          '     <div class="phone">查看商户</div>' +
+          // '    <div class="title1">' + item.market + '</div>' +
           // '    <div class="title2">市场：' + item.province + item.city + item.market + '</div>' +
           // '    <div class="title2"></div>' +
           '    <div class="item-bottom">' +
