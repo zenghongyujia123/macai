@@ -62,7 +62,7 @@ $(function () {
         var item = data[i];
 
         var str =
-          '<a class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
+          '<a href="tel:0551-65669265" class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
           '  <div class="weui-media-box__bd">' +
           // '     <div class="title-market">' +
           // '     <div>' + item.market + '</div>' +
