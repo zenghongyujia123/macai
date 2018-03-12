@@ -4,19 +4,16 @@ $(function () {
     $("#citys-choose").popup();
     get_choose_citys(function (city) {
       $('#citys-choose-input').val(city);
-      tab1.city = city;
-      tab1.is_init = false;
-      tab1.init();
-      // get_choose_markets(city, 'MarketPurchases', function (data) {
-      //   markets = [];
-      //   data.forEach(function (market) {
-      //     markets.push(market.name);
-      //   });
-      //   $("#markets-choose-input").select('update', {
-      //     items: markets
-      //   });
-      // })
-      // $("#markets-choose-input").val('');
+      get_choose_markets(city, 'MarketPurchases', function (data) {
+        markets = [];
+        data.forEach(function (market) {
+          markets.push(market.name);
+        });
+        $("#markets-choose-input").select('update', {
+          items: markets
+        });
+      })
+      $("#markets-choose-input").val('');
       $.closePopup();
     })
   });
@@ -76,7 +73,7 @@ $(function () {
         return;
       tab1.loading = true;
       $.ajax({
-        url: '/api_backend/market_get_market',
+        url: '/api_backend/market_list',
         data: {
           model_string: 'MarketPurchases',
           last_item: tab1.last_item,

@@ -24,6 +24,8 @@ module.exports = function (app) {
   app.route('/page_market_list').get(userFilter.requireUser, index.page_market_list);
   // app.route('/page_market_detail').get(index.page_market_detail);
   app.route('/page_market_detail').get(userFilter.requireUser, index.page_market_detail);
+  app.route('/page_market_purchases_list').get(userFilter.requireUser, index.page_market_purchases_list);
+
   app.route('/page_vip_agree').get(userFilter.requireUser, index.page_vip_agree);
 
   // app.route('/page_market_list').get(index.page_market_list);
