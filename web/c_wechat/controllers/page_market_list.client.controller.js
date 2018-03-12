@@ -132,20 +132,20 @@ $(function () {
       for (var i = 0; i < data.length; i++) {
         var item = data[i];
         var obj = $(
-          '  <a class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
+          '<a class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
           '  <div class="weui-media-box__bd">' +
           '     <div class="title-market">' +
           '     <div>' + item.market + '</div>' +
           '     <div class="phone">查看详情</div>' +
-          '     </div>'+
+          '     </div>' +
           // '    <div class="title1">' + item.market + '</div>' +
           // '    <div class="title2">市场：' + item.province + item.city + item.market + '</div>' +
           // '    <div class="title2"></div>' +
-          '    <div class="item-bottom">' +
+          // '    <div class="item-bottom">' +
           // '      <div class="price">品类：' + item.main_goods + '</div>' +
-          '      <div class="price"></div>' +
-          '      <div class="stop green">查看商户</div>' +
-          '    </div>' +
+          // '      <div class="price"></div>' +
+          // '      <div class="stop green">查看商户</div>' +
+          // '    </div>' +
           '  </div>' +
           '</a>'
         );
