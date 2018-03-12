@@ -7,16 +7,6 @@ $(function () {
       tab1.city = city;
       tab1.is_init = false;
       tab1.init();
-      // get_choose_markets(city, 'MarketPurchases', function (data) {
-      //   markets = [];
-      //   data.forEach(function (market) {
-      //     markets.push(market.name);
-      //   });
-      //   $("#markets-choose-input").select('update', {
-      //     items: markets
-      //   });
-      // })
-      // $("#markets-choose-input").val('');
       $.closePopup();
     })
   });
@@ -107,8 +97,6 @@ $(function () {
     bind_event: function (obj, item) {
       obj.click(function () {
         return window.location = '/page_market_purchases_list?market=' + item.market;
-        // return window.location.href = '/page_market_detail?market=' + item.market;
-
         if (is_vip === 'true') {
 
         }
@@ -138,14 +126,6 @@ $(function () {
           '     <div>' + item.market + '</div>' +
           '     <div class="phone">查看详情</div>' +
           '     </div>' +
-          // '    <div class="title1">' + item.market + '</div>' +
-          // '    <div class="title2">市场：' + item.province + item.city + item.market + '</div>' +
-          // '    <div class="title2"></div>' +
-          // '    <div class="item-bottom">' +
-          // '      <div class="price">品类：' + item.main_goods + '</div>' +
-          // '      <div class="price"></div>' +
-          // '      <div class="stop green">查看商户</div>' +
-          // '    </div>' +
           '  </div>' +
           '</a>'
         );

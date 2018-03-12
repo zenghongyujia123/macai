@@ -74,7 +74,7 @@ $(function () {
           '    <div class="item-bottom">' +
           '      <div class="price">主营品类：' + item.main_goods + '</div>' +
           '      <div class="price"></div>' +
-          '      <div class="stop green">联系方式</div>' +
+          '      <a href="tel:0551-65669265" class="stop green">联系方式</a>' +
           '    </div>' +
           '  </div>' +
           '</a>';
