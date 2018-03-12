@@ -42,7 +42,7 @@ $(function () {
             $.toptip(data.err.message, 'warning');
             return callback();
           }
-          tab3.append_my_list(data);
+          tab3.append_my_list(data.list);
           if (data.length > 0) {
             tab3.last_item = data[data.length - 1];
           }
