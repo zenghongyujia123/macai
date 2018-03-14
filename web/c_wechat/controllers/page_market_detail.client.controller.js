@@ -4,7 +4,7 @@ $(function () {
     $("#price-markets-choose-input").select('open');
   });
 
-
+  var a = '';
 
   getUserJsApiTicket(window.location.href, function (data) {
   });
