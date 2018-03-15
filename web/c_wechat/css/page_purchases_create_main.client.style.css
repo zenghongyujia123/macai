@@ -56,6 +56,10 @@
 .goods-choose-container .right .weui-flex__item .weui-flex:last-child {
   border-bottom: 1px solid #e5e5e5;
 }
+.specs-choose-container {
+  -webkit-overflow-scrolling: touch;
+  overflow-y: auto;
+}
 .specs-choose-container .specs-container .specs-title {
   padding: 10px;
 }
