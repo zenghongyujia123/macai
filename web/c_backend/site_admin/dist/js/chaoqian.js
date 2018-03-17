@@ -1155,11 +1155,12 @@ cSite.controller('MarketPurchasesListController', [
         '主营品类',
         '身份',
         '联系电话',
+        '每日销量',
       ],
       download_template: function () {
         var rows = [
           pageConfig.table_header,
-          ['上海', '上海', '上海江桥', '为名蔬菜商行', '土豆', '代销', '17775338594']
+          ['上海', '上海', '上海江桥', '为名蔬菜商行', '土豆', '代销', '17775338594', '200吨']
         ];
         ExcelService.saveExcelFile('每日行情采购商导入模版.xlsx', [{ data: rows, name: 'sheet1' }]);
       },
@@ -1240,6 +1241,7 @@ cSite.controller('MarketPurchasesListController', [
                 newData.main_goods = row[tableHeaderList[4]];
                 newData.identity = row[tableHeaderList[5]];
                 newData.phone = row[tableHeaderList[6]];
+                newData.day_sales = row[tableHeaderList[7]];
                 readList.push(newData);
               }
               console.log(readList);

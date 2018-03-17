@@ -289,7 +289,7 @@ exports.market_purchases_import = function (user, infos, callback) {
       province: info.province,
       city: info.city,
       market: info.market,
-      name: info.name
+      name: info.name,
     }, function (err, marketPurchases) {
       if (err) {
         console.error(new Date().toLocaleString(), err);
@@ -304,6 +304,7 @@ exports.market_purchases_import = function (user, infos, callback) {
           name: info.name
         });
       }
+      marketPurchases.day_sales = info.day_sales || '';
       marketPurchases.main_goods = info.main_goods;
       marketPurchases.time = info.time;
       marketPurchases.identity = info.identity;

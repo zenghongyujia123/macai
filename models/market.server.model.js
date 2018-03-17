@@ -30,6 +30,9 @@ module.exports = function (appDb) {
     main_goods: {
       type: String
     },
+    day_sales: {
+      type: String
+    },
     identity: {
       type: String
     },
