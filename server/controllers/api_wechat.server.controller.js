@@ -264,6 +264,206 @@ exports.get_choose_categorys = function (req, res, next) {
     { goods_category: '水果', first_pinyin: 'Y', item: '油桃' },
     { goods_category: '水果', first_pinyin: 'Y', item: '樱桃' },
     { goods_category: '水果', first_pinyin: 'Y', item: '柚子' },
+    { goods_category: '蔬菜', first_pinyin: 'B', item: '包谷菌' },
+    { goods_category: '蔬菜', first_pinyin: 'B', item: '白灵菇' },
+    { goods_category: '蔬菜', first_pinyin: 'B', item: '白菌' },
+    { goods_category: '蔬菜', first_pinyin: 'B', item: '白葱菌' },
+    { goods_category: '蔬菜', first_pinyin: 'B', item: '冰草' },
+    { goods_category: '蔬菜', first_pinyin: 'B', item: '宝塔菜' },
+    { goods_category: '蔬菜', first_pinyin: 'B', item: '扁豆' },
+    { goods_category: '蔬菜', first_pinyin: 'B', item: '包菜' },
+    { goods_category: '蔬菜', first_pinyin: 'B', item: '板薯' },
+    { goods_category: '蔬菜', first_pinyin: 'B', item: '白菜' },
+    { goods_category: '蔬菜', first_pinyin: 'B', item: '菠菜' },
+    { goods_category: '蔬菜', first_pinyin: 'B', item: '白玉豆' },
+    { goods_category: '蔬菜', first_pinyin: 'C', item: '茶树菇' },
+    { goods_category: '蔬菜', first_pinyin: 'C', item: '刺芹' },
+    { goods_category: '蔬菜', first_pinyin: 'C', item: '莼菜' },
+    { goods_category: '蔬菜', first_pinyin: 'C', item: '葱仔' },
+    { goods_category: '蔬菜', first_pinyin: 'C', item: '刺老芽' },
+    { goods_category: '蔬菜', first_pinyin: 'C', item: '慈菇' },
+    { goods_category: '蔬菜', first_pinyin: 'C', item: '菜苔' },
+    { goods_category: '蔬菜', first_pinyin: 'C', item: '刺五加菜' },
+    { goods_category: '蔬菜', first_pinyin: 'D', item: '大球盖菇' },
+    { goods_category: '蔬菜', first_pinyin: 'D', item: '地莲花' },
+    { goods_category: '蔬菜', first_pinyin: 'D', item: '地皮菜' },
+    { goods_category: '蔬菜', first_pinyin: 'D', item: '刁草' },
+    { goods_category: '蔬菜', first_pinyin: 'D', item: '刀豆' },
+    { goods_category: '蔬菜', first_pinyin: 'D', item: '豆角' },
+    { goods_category: '蔬菜', first_pinyin: 'D', item: '大蒜' },
+    { goods_category: '蔬菜', first_pinyin: 'D', item: '大葱' },
+    { goods_category: '蔬菜', first_pinyin: 'D', item: '豆芽' },
+    { goods_category: '蔬菜', first_pinyin: 'D', item: '冬瓜' },
+    { goods_category: '蔬菜', first_pinyin: 'D', item: '地蒲' },
+    { goods_category: '蔬菜', first_pinyin: 'D', item: '竹笋' },
+    { goods_category: '蔬菜', first_pinyin: 'D', item: '豆瓣菜' },
+    { goods_category: '蔬菜', first_pinyin: 'E', item: '鹅蛋菌' },
+    { goods_category: '蔬菜', first_pinyin: 'E', item: '儿菜' },
+    { goods_category: '蔬菜', first_pinyin: 'F', item: '凤尾菇' },
+    { goods_category: '蔬菜', first_pinyin: 'F', item: '发菜' },
+    { goods_category: '蔬菜', first_pinyin: 'F', item: '佛手瓜' },
+    { goods_category: '蔬菜', first_pinyin: 'G', item: '干巴菌' },
+    { goods_category: '蔬菜', first_pinyin: 'G', item: '贡菜' },
+    { goods_category: '蔬菜', first_pinyin: 'G', item: '葛根' },
+    { goods_category: '蔬菜', first_pinyin: 'H', item: '荷灵菇' },
+    { goods_category: '蔬菜', first_pinyin: 'H', item: '海鲜菇' },
+    { goods_category: '蔬菜', first_pinyin: 'H', item: '褐蘑' },
+    { goods_category: '蔬菜', first_pinyin: 'H', item: '红蘑菇' },
+    { goods_category: '蔬菜', first_pinyin: 'H', item: '黄金菇' },
+    { goods_category: '蔬菜', first_pinyin: 'H', item: '滑子菇' },
+    { goods_category: '蔬菜', first_pinyin: 'H', item: '黑虎掌菌' },
+    { goods_category: '蔬菜', first_pinyin: 'H', item: '虎奶菇' },
+    { goods_category: '蔬菜', first_pinyin: 'H', item: '红菇' },
+    { goods_category: '蔬菜', first_pinyin: 'H', item: '红薯叶' },
+    { goods_category: '蔬菜', first_pinyin: 'H', item: '葫芦' },
+    { goods_category: '蔬菜', first_pinyin: 'H', item: '黄花菜' },
+    { goods_category: '蔬菜', first_pinyin: 'H', item: '荷兰豆' },
+    { goods_category: '蔬菜', first_pinyin: 'H', item: '花椰菜' },
+    { goods_category: '蔬菜', first_pinyin: 'H', item: '黄瓜' },
+    { goods_category: '蔬菜', first_pinyin: 'H', item: '瓠瓜' },
+    { goods_category: '蔬菜', first_pinyin: 'H', item: '胡萝卜' },
+    { goods_category: '蔬菜', first_pinyin: 'H', item: '红薯' },
+    { goods_category: '蔬菜', first_pinyin: 'H', item: '黄心菜' },
+    { goods_category: '蔬菜', first_pinyin: 'J', item: '姬菇' },
+    { goods_category: '蔬菜', first_pinyin: 'J', item: '鸡腿菇' },
+    { goods_category: '蔬菜', first_pinyin: 'J', item: '鸡油菌' },
+    { goods_category: '蔬菜', first_pinyin: 'J', item: '鸡枞菌' },
+    { goods_category: '蔬菜', first_pinyin: 'J', item: '见手青' },
+    { goods_category: '蔬菜', first_pinyin: 'J', item: '姬松茸' },
+    { goods_category: '蔬菜', first_pinyin: 'J', item: '金针菇' },
+    { goods_category: '蔬菜', first_pinyin: 'J', item: '金花菜' },
+    { goods_category: '蔬菜', first_pinyin: 'J', item: '蕨菜' },
+    { goods_category: '蔬菜', first_pinyin: 'J', item: '救心菜' },
+    { goods_category: '蔬菜', first_pinyin: 'J', item: '韭黄' },
+    { goods_category: '蔬菜', first_pinyin: 'J', item: '红葱头' },
+    { goods_category: '蔬菜', first_pinyin: 'J', item: '藠头' },
+    { goods_category: '蔬菜', first_pinyin: 'J', item: '芥蓝' },
+    { goods_category: '蔬菜', first_pinyin: 'J', item: '金丝绞瓜' },
+    { goods_category: '蔬菜', first_pinyin: 'J', item: '茭白' },
+    { goods_category: '蔬菜', first_pinyin: 'J', item: '韭菜根' },
+    { goods_category: '蔬菜', first_pinyin: 'J', item: '韭菜' },
+    { goods_category: '蔬菜', first_pinyin: 'J', item: '荠菜' },
+    { goods_category: '蔬菜', first_pinyin: 'J', item: '芥菜' },
+    { goods_category: '蔬菜', first_pinyin: 'K', item: '苦菊' },
+    { goods_category: '蔬菜', first_pinyin: 'K', item: '苦瓜' },
+    { goods_category: '蔬菜', first_pinyin: 'K', item: '空心菜' },
+    { goods_category: '蔬菜', first_pinyin: 'K', item: '苦楮果' },
+    { goods_category: '蔬菜', first_pinyin: 'L', item: '灵芝菇' },
+    { goods_category: '蔬菜', first_pinyin: 'L', item: '鹿茸菇' },
+    { goods_category: '蔬菜', first_pinyin: 'L', item: '龙爪菇' },
+    { goods_category: '蔬菜', first_pinyin: 'L', item: '荔枝菌' },
+    { goods_category: '蔬菜', first_pinyin: 'L', item: '龙须菜' },
+    { goods_category: '蔬菜', first_pinyin: 'L', item: '辣根' },
+    { goods_category: '蔬菜', first_pinyin: 'L', item: '辣椒' },
+    { goods_category: '蔬菜', first_pinyin: 'L', item: '莲藕' },
+    { goods_category: '蔬菜', first_pinyin: 'L', item: '芦笋' },
+    { goods_category: '蔬菜', first_pinyin: 'L', item: '菱角' },
+    { goods_category: '蔬菜', first_pinyin: 'L', item: '萝卜' },
+    { goods_category: '蔬菜', first_pinyin: 'L', item: '凉薯' },
+    { goods_category: '蔬菜', first_pinyin: 'L', item: '萝卜菜' },
+    { goods_category: '蔬菜', first_pinyin: 'L', item: '藜蒿' },
+    { goods_category: '蔬菜', first_pinyin: 'L', item: '莲蓬' },
+    { goods_category: '蔬菜', first_pinyin: 'M', item: '毛尖蘑' },
+    { goods_category: '蔬菜', first_pinyin: 'M', item: '木耳' },
+    { goods_category: '蔬菜', first_pinyin: 'M', item: '蘑菇' },
+    { goods_category: '蔬菜', first_pinyin: 'M', item: '马兰头' },
+    { goods_category: '蔬菜', first_pinyin: 'M', item: '马齿笕' },
+    { goods_category: '蔬菜', first_pinyin: 'M', item: '迷迭香' },
+    { goods_category: '蔬菜', first_pinyin: 'M', item: '毛豆' },
+    { goods_category: '蔬菜', first_pinyin: 'M', item: '魔芋' },
+    { goods_category: '蔬菜', first_pinyin: 'M', item: '木薯' },
+    { goods_category: '蔬菜', first_pinyin: 'M', item: '木耳菜' },
+    { goods_category: '蔬菜', first_pinyin: 'M', item: '牡丹吊兰' },
+    { goods_category: '蔬菜', first_pinyin: 'N', item: '奶浆菌' },
+    { goods_category: '蔬菜', first_pinyin: 'N', item: '牛肝菌' },
+    { goods_category: '蔬菜', first_pinyin: 'N', item: '南瓜藤' },
+    { goods_category: '蔬菜', first_pinyin: 'N', item: '南瓜' },
+    { goods_category: '蔬菜', first_pinyin: 'P', item: '平菇' },
+    { goods_category: '蔬菜', first_pinyin: 'P', item: '苤蓝' },
+    { goods_category: '蔬菜', first_pinyin: 'P', item: '藕带' },
+    { goods_category: '蔬菜', first_pinyin: 'P', item: '盘菜' },
+    { goods_category: '蔬菜', first_pinyin: 'Q', item: '其他食用菌' },
+    { goods_category: '蔬菜', first_pinyin: 'Q', item: '青杠菌' },
+    { goods_category: '蔬菜', first_pinyin: 'Q', item: '青头菌' },
+    { goods_category: '蔬菜', first_pinyin: 'Q', item: '茄子' },
+    { goods_category: '蔬菜', first_pinyin: 'Q', item: '秋葵' },
+    { goods_category: '蔬菜', first_pinyin: 'Q', item: '芹菜' },
+    { goods_category: '蔬菜', first_pinyin: 'S', item: '松树菌' },
+    { goods_category: '蔬菜', first_pinyin: 'S', item: '珊瑚菌' },
+    { goods_category: '蔬菜', first_pinyin: 'S', item: '栗蘑' },
+    { goods_category: '蔬菜', first_pinyin: 'S', item: '松露' },
+    { goods_category: '蔬菜', first_pinyin: 'S', item: '松蘑' },
+    { goods_category: '蔬菜', first_pinyin: 'S', item: '松乳菇' },
+    { goods_category: '蔬菜', first_pinyin: 'S', item: '双孢菇' },
+    { goods_category: '蔬菜', first_pinyin: 'S', item: '松茸' },
+    { goods_category: '蔬菜', first_pinyin: 'S', item: '山野菜' },
+    { goods_category: '蔬菜', first_pinyin: 'S', item: '山苏菜' },
+    { goods_category: '蔬菜', first_pinyin: 'S', item: '珊瑚菜' },
+    { goods_category: '蔬菜', first_pinyin: 'S', item: '四季豆' },
+    { goods_category: '蔬菜', first_pinyin: 'S', item: '四棱豆' },
+    { goods_category: '蔬菜', first_pinyin: 'S', item: '蒜苗' },
+    { goods_category: '蔬菜', first_pinyin: 'S', item: '生姜' },
+    { goods_category: '蔬菜', first_pinyin: 'S', item: '蒜苔' },
+    { goods_category: '蔬菜', first_pinyin: 'S', item: '丝瓜' },
+    { goods_category: '蔬菜', first_pinyin: 'S', item: '水芹' },
+    { goods_category: '蔬菜', first_pinyin: 'S', item: '山药' },
+    { goods_category: '蔬菜', first_pinyin: 'S', item: '生菜' },
+    { goods_category: '蔬菜', first_pinyin: 'S', item: '丝瓜尖' },
+    { goods_category: '蔬菜', first_pinyin: 'T', item: '土豆' },
+    { goods_category: '蔬菜', first_pinyin: 'T', item: '甜菜' },
+    { goods_category: '蔬菜', first_pinyin: 'T', item: '茼蒿' },
+    { goods_category: '蔬菜', first_pinyin: 'W', item: '豌豆' },
+    { goods_category: '蔬菜', first_pinyin: 'W', item: '娃娃菜' },
+    { goods_category: '蔬菜', first_pinyin: 'W', item: '莴笋' },
+    { goods_category: '蔬菜', first_pinyin: 'X', item: '秀珍菇' },
+    { goods_category: '蔬菜', first_pinyin: 'X', item: '鲜草菇' },
+    { goods_category: '蔬菜', first_pinyin: 'X', item: '香菇' },
+    { goods_category: '蔬菜', first_pinyin: 'X', item: '杏鲍菇' },
+    { goods_category: '蔬菜', first_pinyin: 'X', item: '鲜百合' },
+    { goods_category: '蔬菜', first_pinyin: 'X', item: '香茅草' },
+    { goods_category: '蔬菜', first_pinyin: 'X', item: '象牙菜' },
+    { goods_category: '蔬菜', first_pinyin: 'X', item: '小葱' },
+    { goods_category: '蔬菜', first_pinyin: 'X', item: '西红柿' },
+    { goods_category: '蔬菜', first_pinyin: 'X', item: '香椿芽' },
+    { goods_category: '蔬菜', first_pinyin: 'X', item: '西兰花' },
+    { goods_category: '蔬菜', first_pinyin: 'X', item: '西葫芦' },
+    { goods_category: '蔬菜', first_pinyin: 'X', item: '鲜芡实' },
+    { goods_category: '蔬菜', first_pinyin: 'X', item: '小白菜' },
+    { goods_category: '蔬菜', first_pinyin: 'X', item: '苋菜' },
+    { goods_category: '蔬菜', first_pinyin: 'X', item: '香菜' },
+    { goods_category: '蔬菜', first_pinyin: 'X', item: '鲜玉米' },
+    { goods_category: '蔬菜', first_pinyin: 'Y', item: '元蘑' },
+    { goods_category: '蔬菜', first_pinyin: 'Y', item: '银盘蘑菇' },
+    { goods_category: '蔬菜', first_pinyin: 'Y', item: '羊肚菌' },
+    { goods_category: '蔬菜', first_pinyin: 'Y', item: '蛹虫草' },
+    { goods_category: '蔬菜', first_pinyin: 'Y', item: '榆黄蘑' },
+    { goods_category: '蔬菜', first_pinyin: 'Y', item: '银耳' },
+    { goods_category: '蔬菜', first_pinyin: 'Y', item: '鱼腥草' },
+    { goods_category: '蔬菜', first_pinyin: 'Y', item: '洋合笋' },
+    { goods_category: '蔬菜', first_pinyin: 'Y', item: '云参' },
+    { goods_category: '蔬菜', first_pinyin: 'Y', item: '野莲' },
+    { goods_category: '蔬菜', first_pinyin: 'Y', item: '夜兰花' },
+    { goods_category: '蔬菜', first_pinyin: 'Y', item: '洋葱' },
+    { goods_category: '蔬菜', first_pinyin: 'Y', item: '洋姜' },
+    { goods_category: '蔬菜', first_pinyin: 'Y', item: '芽苗菜' },
+    { goods_category: '蔬菜', first_pinyin: 'Y', item: '芋芽' },
+    { goods_category: '蔬菜', first_pinyin: 'Y', item: '芋头' },
+    { goods_category: '蔬菜', first_pinyin: 'Y', item: '油麦菜' },
+    { goods_category: '蔬菜', first_pinyin: 'Y', item: '油菜' },
+    { goods_category: '蔬菜', first_pinyin: 'Y', item: '野蒜' },
+    { goods_category: '蔬菜', first_pinyin: 'Z', item: '枞菌' },
+    { goods_category: '蔬菜', first_pinyin: 'Z', item: '竹菌' },
+    { goods_category: '蔬菜', first_pinyin: 'Z', item: '紫花菌' },
+    { goods_category: '蔬菜', first_pinyin: 'Z', item: '猪肚菇' },
+    { goods_category: '蔬菜', first_pinyin: 'Z', item: '枞树菌' },
+    { goods_category: '蔬菜', first_pinyin: 'Z', item: '榛蘑' },
+    { goods_category: '蔬菜', first_pinyin: 'Z', item: '竹荪' },
+    { goods_category: '蔬菜', first_pinyin: 'Z', item: '芝麻菜' },
+    { goods_category: '蔬菜', first_pinyin: 'Z', item: '紫背天葵' },
+    { goods_category: '蔬菜', first_pinyin: 'Z', item: '紫苏' },
+    { goods_category: '蔬菜', first_pinyin: 'Z', item: '芝麻叶' },
+    { goods_category: '蔬菜', first_pinyin: 'Z', item: '棕树苞' },
+    { goods_category: '蔬菜', first_pinyin: 'Z', item: '紫薯' },
   ]
 
 
@@ -2848,125 +3048,6 @@ exports.get_choose_brand = function (req, res, next) {
   });
 
   return res.send(dic[req.body.category]);
-
-  // var dic = {
-  //   '包谷菌': ['包谷菌', '其它品种'],
-  //   '白灵菇': ['白灵菇', '其它品种'],
-  //   '白菌': ['白菌', '其它品种'],
-  //   '白菜': ['白菜', '其它品种'],
-  //   '菠菜': ['菠菜', '其它品种'],
-  //   '茶树菇': ['茶树菇', '其它品种'],
-  //   '葱仔': ['葱仔', '其它品种'],
-  //   '慈菇': ['慈菇', '其它品种'],
-  //   '菜苔': ['菜苔', '其它品种'],
-  //   '地皮菜': ['地皮菜', '其它品种'],
-  //   '刀豆': ['刀豆', '其它品种'],
-  //   '豆角': ['豆角', '其它品种'],
-  //   '冬瓜': ['冬瓜', '其它品种'],
-  //   '豆瓣菜': ['豆瓣菜', '其它品种'],
-  //   '鹅蛋菌': ['鹅蛋菌', '其它品种'],
-  //   '儿菜': ['儿菜', '其它品种'],
-  //   '凤尾菇': ['凤尾菇', '其它品种'],
-  //   '发菜': ['发菜', '其它品种'],
-  //   '干巴菌': ['干巴菌', '其它品种'],
-  //   '贡菜': ['贡菜', '其它品种'],
-  //   '海鲜菇': ['海鲜菇', '其它品种'],
-  //   '黄金菇': ['黄金菇', '其它品种'],
-  //   '红薯叶': ['红薯叶', '其它品种'],
-  //   '葫芦': ['葫芦', '其它品种'],
-  //   '黄花菜': ['黄花菜', '其它品种'],
-  //   '花菜': ['花菜', '其它品种'],
-  //   '胡萝卜': ['胡萝卜', '其它品种'],
-  //   '红薯': ['红薯', '其它品种'],
-  //   '黄心菜': ['黄心菜', '其它品种'],
-  //   '鸡腿菇': ['鸡腿菇', '其它品种'],
-  //   '金针菇': ['金针菇', '其它品种'],
-  //   '韭黄': ['韭黄', '其它品种'],
-  //   '韭菜': ['韭菜', '其它品种'],
-  //   '荠菜': ['荠菜', '其它品种'],
-  //   '苦瓜': ['苦瓜', '其它品种'],
-  //   '空心菜': ['空心菜', '其它品种'],
-  //   '灵芝菇': ['灵芝菇', '其它品种'],
-  //   '鹿茸菇': ['鹿茸菇', '其它品种'],
-  //   '龙须菜': ['龙须菜', '其它品种'],
-  //   '辣椒': ['辣椒', '其它品种'],
-  //   '莲藕': ['莲藕', '其它品种'],
-  //   '萝卜': ['萝卜', '其它品种'],
-  //   '凉薯': ['凉薯', '其它品种'],
-  //   '萝卜菜': ['萝卜菜', '其它品种'],
-  //   '木耳': ['木耳', '其它品种'],
-  //   '蘑菇': ['蘑菇', '其它品种'],
-  //   '迷迭香': ['迷迭香', '其它品种'],
-  //   '毛豆': ['毛豆', '其它品种'],
-  //   '魔芋': ['魔芋', '其它品种'],
-  //   '木薯': ['木薯', '其它品种'],
-  //   '木耳菜': ['木耳菜', '其它品种'],
-  //   '牛肝菌': ['牛肝菌', '其它品种'],
-  //   '平菇': ['平菇', '其它品种'],
-  //   '盘菜': ['盘菜', '其它品种'],
-  //   '茄子': ['茄子', '其它品种'],
-  //   '秋葵': ['秋葵', '其它品种'],
-  //   '芹菜': ['芹菜', '其它品种'],
-  //   '松茸': ['松茸', '其它品种'],
-  //   '山野菜': ['山野菜', '其它品种'],
-  //   '四季豆': ['四季豆', '其它品种'],
-  //   '生姜': ['生姜', '其它品种'],
-  //   '蒜苔': ['蒜苔', '其它品种'],
-  //   '丝瓜': ['丝瓜', '其它品种'],
-  //   '山药': ['山药', '其它品种'],
-  //   '土豆': ['土豆', '其它品种'],
-  //   '甜菜': ['甜菜', '其它品种'],
-  //   '茼蒿': ['茼蒿', '其它品种'],
-
-  //   '八月瓜': ['八月瓜', '其它水果'],
-  //   '菠萝': ['菠萝', '其它水果'],
-  //   '菠萝蜜': ['菠萝蜜', '其它水果'],
-  //   '百香果': ['百香果', '其它水果'],
-  //   '草莓': ['草莓', '其它水果'],
-  //   '橙子': ['橙子', '其它水果'],
-  //   '吊瓜': ['吊瓜', '其它水果'],
-  //   '蛋黄果': ['蛋黄果', '其它水果'],
-  //   '甘蔗': ['甘蔗', '其它水果'],
-  //   '橄榄': ['橄榄', '其它水果'],
-  //   '姑娘果': ['姑娘果', '其它水果'],
-  //   '哈密瓜': ['哈密瓜', '其它水果'],
-  //   '火龙果': ['火龙果', '其它水果'],
-  //   '黑莓': ['黑莓', '其它水果'],
-  //   '黄桃': ['黄桃', '其它水果'],
-  //   '荔枝': ['荔枝', '其它水果'],
-  //   '龙眼': ['龙眼', '其它水果'],
-  //   '榴莲': ['榴莲', '其它水果'],
-  //   '蓝莓': ['蓝莓', '其它水果'],
-  //   '芒果': ['芒果', '其它水果'],
-  //   '木瓜': ['木瓜', '其它水果'],
-  //   '猕猴桃': ['猕猴桃', '其它水果'],
-  //   '毛桃': ['毛桃', '其它水果'],
-  //   '牛油果': ['牛油果', '其它水果'],
-  //   '柠檬': ['柠檬', '其它水果'],
-  //   '牛奶果': ['牛奶果', '其它水果'],
-  //   '诺丽果': ['诺丽果', '其它水果'],
-  //   '葡萄': ['葡萄', '其它水果'],
-  //   '苹果': ['苹果', '其它水果'],
-  //   '蟠桃': ['蟠桃', '其它水果'],
-  //   '枇杷': ['枇杷', '其它水果'],
-  //   '青梅': ['青梅', '其它水果'],
-  //   '人心果': ['人心果', '其它水果'],
-  //   '人参果': ['人参果', '其它水果'],
-  //   '牛油果': ['牛油果', '其它水果'],
-  //   '柠檬': ['柠檬', '其它水果'],
-  //   '牛奶果': ['牛奶果', '其它水果'],
-  //   '诺丽果': ['诺丽果', '其它水果'],
-  //   '无花果': ['无花果', '其它水果'],
-  //   '乌梅': ['乌梅', '其它水果'],
-  //   '西瓜': ['西瓜', '其它水果'],
-  //   '香蕉': ['香蕉', '其它水果'],
-  //   '椰子': ['椰子', '其它水果'],
-  //   '杨桃': ['杨桃', '其它水果'],
-  //   '柚子': ['柚子', '其它水果'],
-  // }
-
-
-  // return res.send(dic[req.body.category]);
 }
 
 exports.getUserJsApiTicket = function (req, res, next) {
@@ -2999,4 +3080,206 @@ exports.update_personal_auth_info = function (req, res, next) {
     });
   });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
