@@ -70,7 +70,7 @@ $(function () {
           // '     </div>' +
           '    <div class="title1">' + item.name + '</div>' +
           // '    <div class="title2">市场：' + item.province + item.city + item.market + '</div>' +
-          '    <div class="title2"></div>' +
+          '    <div class="title2">每日销量：' + item.day_sales + '</div>' +
           '    <div class="item-bottom">' +
           '      <div class="price">主营品类：' + item.main_goods + '</div>' +
           '      <div class="price"></div>' +
