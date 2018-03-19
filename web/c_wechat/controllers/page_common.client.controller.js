@@ -106,10 +106,10 @@ function get_choose_brand(category, callback) {
   });
 }
 
-function get_choose_specs(callback) {
+function get_choose_specs(category, callback) {
   $.ajax({
     url: '/api_wechat/get_choose_specs',
-    data: {},
+    data: { category: category || '' },
     method: 'post',
     success: function (data) {
       getSpecsPage(data, callback);
