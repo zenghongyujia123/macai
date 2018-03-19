@@ -207,7 +207,7 @@
 
     $('.get_choose_specs_row').click(function () {
       $("#goods-choose").popup();
-      get_choose_specs($('.get_choose_categorys').val(),function (specs) {
+      get_choose_specs($('.get_choose_categorys').val().split(' ')[0], function (specs) {
         $('.get_choose_specs').val(specs);
         $.closePopup();
       });
