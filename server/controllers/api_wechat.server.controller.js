@@ -870,7 +870,7 @@ exports.get_choose_specs = function (req, res, next) {
     ],
     '莼菜': [
       { title: '货品包装', list: ['散装', '袋装'] },
-      { title: '净重', list: ['500g以下', '500 - 1kg, 1kg - 2kg, 2kg - 5kg, 5kg以上'] },
+      { title: '净重', list: ['500g以下', '500 - 1kg',' 1kg - 2kg',' 2kg - 5kg',' 5kg以上'] },
     ],
     '刺老芽': [
       { title: '货品包装', list: ['散装', '袋装', '箱装'] },
@@ -878,7 +878,7 @@ exports.get_choose_specs = function (req, res, next) {
       { title: '货品状态', list: ['干货', '鲜货'] },
     ],
     '慈菇': [
-      { title: '单个重', list: ['10-20g,20-30g,30-50g,50-70g,70g以上'] },
+      { title: '单个重', list: ['10-20g','20-30g','30-50g','50-70g','70g以上'] },
       { title: '是否水洗', list: ['净果', '带泥'] },
     ],
     '菜苔': [
