@@ -243,8 +243,8 @@ function getSpecsItemObj(data, callback) {
       callback([data.title, $(this).text()].join('|'));
     });
     item.append(rowObj);
-    return item;
   }
+  return item;
 }
 
 function get_is_cash_goods(callback) {
