@@ -68,7 +68,7 @@ $(function () {
           '    <div class="title2">每日销量：' + (item.day_sales || '未知') + '</div>' +
           '    <div class="title2">商户角色：' + (item.identity || '未知') + '</div>' +
           '    <div class="item-bottom">' +
-          '      <div class="price">主营品类：' + item.main_goods + '</div>' +
+          '      <div class="price">主营品类：' + (item.main_goods || '未知') + '</div>' +
           '      <div class="price"></div>' +
           '      <div class="stop green">联系方式</div>' +
           '    </div>' +
