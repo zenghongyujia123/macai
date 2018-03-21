@@ -308,7 +308,7 @@ exports.market_purchases_import = function (user, infos, callback) {
       marketPurchases.main_goods = info.main_goods;
       marketPurchases.time = info.time;
       marketPurchases.identity = info.identity;
-      marketPurchases.phone = info.phon;
+      marketPurchases.phone = info.phone;
       marketPurchases.deleted_status = false;
       marketPurchases.save(function (err, result) {
         if (err) {
