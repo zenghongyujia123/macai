@@ -38,6 +38,10 @@ module.exports = function (appDb) {
     },
     phone: {
       type: String
+    },
+    deleted_status: {
+      type: Boolean,
+      default: false
     }
   });
 
@@ -73,6 +77,10 @@ module.exports = function (appDb) {
     },
     phone: {
       type: String
+    },
+    deleted_status: {
+      type: Boolean,
+      default: false
     }
   });
 
@@ -102,6 +110,10 @@ module.exports = function (appDb) {
     },
     day: {
       type: Date
+    },
+    deleted_status: {
+      type: Boolean,
+      default: false
     }
   });
 
