@@ -5,8 +5,8 @@
 'use strict';
 
 cSite.controller('MarketDayInfoListController', [
-  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'UserNetwork', 'ExcelService',
-  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, UserNetwork, ExcelService) {
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'UserNetwork', 'ExcelService', 'CommonHelper',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, UserNetwork, ExcelService, CommonHelper) {
     var pageConfig = {
       count: 0,
       title: '每日价格列表',
@@ -28,6 +28,17 @@ cSite.controller('MarketDayInfoListController', [
           ['莫某批发市场', '白菜', '11-12元／斤', '10-20元／斤', '2018-02-03']
         ];
         ExcelService.saveExcelFile('每日行情价格导入模版.xlsx', [{ data: rows, name: 'sheet1' }]);
+      },
+      market_update_status: function (status, detail_id) {
+        UserNetwork.market_update_status($scope, { model_string: 'MarketDayInfo', detail_id: detail_id, status: status }).then(function (data) {
+          // UserNetwork.market_save_photos($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id, photos: photos }).then(function (data) {
+          if (!data.err) {
+            CommonHelper.showConfirm($scope, null, '操作成功', function () {
+              $state.go('market_day_info_list', null, { reload: true });
+            }, null, null, event);
+          }
+          console.log(data);
+        });
       },
       get_list: function (next) {
         next = next || 'next';

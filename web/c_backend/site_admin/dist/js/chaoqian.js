@@ -993,8 +993,8 @@ cSite.controller('MarketDayInfoDetailController', [
 'use strict';
 
 cSite.controller('MarketDayInfoListController', [
-  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'UserNetwork', 'ExcelService',
-  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, UserNetwork, ExcelService) {
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'UserNetwork', 'ExcelService', 'CommonHelper',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, UserNetwork, ExcelService, CommonHelper) {
     var pageConfig = {
       count: 0,
       title: '每日价格列表',
@@ -1016,6 +1016,17 @@ cSite.controller('MarketDayInfoListController', [
           ['莫某批发市场', '白菜', '11-12元／斤', '10-20元／斤', '2018-02-03']
         ];
         ExcelService.saveExcelFile('每日行情价格导入模版.xlsx', [{ data: rows, name: 'sheet1' }]);
+      },
+      market_update_status: function (status, detail_id) {
+        UserNetwork.market_update_status($scope, { model_string: 'MarketDayInfo', detail_id: detail_id, status: status }).then(function (data) {
+          // UserNetwork.market_save_photos($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id, photos: photos }).then(function (data) {
+          if (!data.err) {
+            CommonHelper.showConfirm($scope, null, '操作成功', function () {
+              $state.go('market_day_info_list', null, { reload: true });
+            }, null, null, event);
+          }
+          console.log(data);
+        });
       },
       get_list: function (next) {
         next = next || 'next';
@@ -1137,8 +1148,8 @@ cSite.controller('MarketPurchasesDetailController', [
 'use strict';
 
 cSite.controller('MarketPurchasesListController', [
-  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'UserNetwork', 'ExcelService',
-  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, UserNetwork, ExcelService) {
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'UserNetwork', 'ExcelService', 'CommonHelper',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, UserNetwork, ExcelService, CommonHelper) {
     var pageConfig = {
       count: 0,
       title: '采购商',
@@ -1163,6 +1174,17 @@ cSite.controller('MarketPurchasesListController', [
           ['上海', '上海', '上海江桥', '为名蔬菜商行', '土豆', '代销', '17775338594', '200吨']
         ];
         ExcelService.saveExcelFile('每日行情采购商导入模版.xlsx', [{ data: rows, name: 'sheet1' }]);
+      },
+      market_update_status: function (status, detail_id) {
+        UserNetwork.market_update_status($scope, { model_string: 'MarketPurchases', detail_id: detail_id, status: status }).then(function (data) {
+          // UserNetwork.market_save_photos($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id, photos: photos }).then(function (data) {
+          if (!data.err) {
+            CommonHelper.showConfirm($scope, null, '操作成功', function () {
+              $state.go('market_purchases_list', null, { reload: true });
+            }, null, null, event);
+          }
+          console.log(data);
+        });
       },
       get_list: function (next) {
         next = next || 'next';

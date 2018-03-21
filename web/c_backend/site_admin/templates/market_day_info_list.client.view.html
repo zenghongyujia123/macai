@@ -16,6 +16,7 @@
       <div class="column-item" flex="">昨日价格</div>
       <div class="column-item" flex="">今日价格</div>
       <div class="column-item" flex="">日期</div>
+      <div class="column-item" flex="">操作</div>
     </div>
   </div>
   <div class="list-body">
@@ -34,6 +35,10 @@
       </div>
       <div class="column-item" flex="" layout="row" layout-align="start start">
         {{pageConfig.get_date(item.day)}}
+      </div>
+      <div class="column-item" flex="" layout="row" layout-align="start start">
+        <md-button class="md-primary" ng-click="pageConfig.market_update_status('delete',item._id)">删除
+        </md-button>
       </div>
     </div>
     <div class="list-item" layout="row" layout-align="start center">

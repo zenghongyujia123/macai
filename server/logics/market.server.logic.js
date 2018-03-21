@@ -309,6 +309,7 @@ exports.market_purchases_import = function (user, infos, callback) {
       marketPurchases.time = info.time;
       marketPurchases.identity = info.identity;
       marketPurchases.phone = info.phon;
+      marketPurchases.deleted_status = false;
       marketPurchases.save(function (err, result) {
         if (err) {
           console.error(new Date().toLocaleString(), err);
@@ -336,16 +337,17 @@ exports.market_day_info_import = function (user, infos, callback) {
         return eachCallback();
       }
 
-      if (marketDayInfo) {
-        return eachCallback();
+      if (!marketDayInfo) {
+        marketDayInfo = new MarketDayInfo({
+          market: info.market,
+          last_day_price: info.last_day_price,
+          main_goods: info.main_goods,
+          price: info.price,
+          day: info.day
+        });
       }
-      marketDayInfo = new MarketDayInfo({
-        market: info.market,
-        last_day_price: info.last_day_price,
-        main_goods: info.main_goods,
-        price: info.price,
-        day: info.day
-      });
+
+      marketDayInfo.deleted_status = false;
       marketDayInfo.save(function (err, result) {
         if (err) {
           console.error(new Date().toLocaleString(), err);

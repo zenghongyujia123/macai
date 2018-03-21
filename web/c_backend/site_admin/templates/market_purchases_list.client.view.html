@@ -13,12 +13,14 @@
     <div class="list-item" layout="row" layout-align="start center">
       <div class="column-item" flex="">采购商所在省</div>
       <div class="column-item" flex="">采购商所在城市</div>
+      
       <div class="column-item" flex="">采购商所在市场</div>
       <div class="column-item" flex="">商户名称</div>
       <div class="column-item" flex="">主营品类</div>
       <div class="column-item" flex="">身份</div>
       <div class="column-item" flex="">联系电话</div>
       <div class="column-item" flex="">每日销量</div>
+      <div class="column-item" flex="">操作</div>
     </div>
   </div>
   <div class="list-body">
@@ -47,6 +49,11 @@
       <div class="column-item" flex="" layout="row" layout-align="start start">
         {{item.day_sales}}
       </div>
+      <div class="column-item" flex="" layout="row" layout-align="start start">
+        <md-button class="md-primary" ng-click="pageConfig.market_update_status('delete',item._id)">删除
+        </md-button>
+      </div>
+
     </div>
     <div class="list-item" layout="row" layout-align="start center">
       <md-button class="md-primary" ng-click="pageConfig.get_list('prev')">上一页
