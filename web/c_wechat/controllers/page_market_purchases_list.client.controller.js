@@ -64,12 +64,7 @@ $(function () {
         var str =
           '<a href="tel:0551-65669265" class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
           '  <div class="weui-media-box__bd">' +
-          // '     <div class="title-market">' +
-          // '     <div>' + item.market + '</div>' +
-          // '     <div class="phone">查看详情</div>' +
-          // '     </div>' +
           '    <div class="title1">' + item.name + '</div>' +
-          // '    <div class="title2">市场：' + item.province + item.city + item.market + '</div>' +
           '    <div class="title2">每日销量：' + (item.day_sales || '未知') + '</div>' +
           '    <div class="title2">商户角色：' + (item.identity || '未知') + '</div>' +
           '    <div class="item-bottom">' +
@@ -128,11 +123,6 @@ $(function () {
       });
     }
   };
-
-  // tab3.nav.click(function () {
-  //   tab3.init();
-  // });
-
   tab3.market = market_for_search;
   tab3.is_init = false;
   tab3.init();
