@@ -52,13 +52,13 @@
         <div class="weui-cell__bd">
           <p>需求量</p>
         </div>
+        <!-- <div class="weui-cell__bd">
+        </div> -->
         <div class="weui-cell__bd">
           <input class="weui-input need_number" placeholder="请输入数量">
         </div>
-        <div class="weui-cell__bd">
+        <div class="weui-cell__ft" style="width:50px;">
           <input class="weui-input need_unit" id="picker-requirement-unit" value="斤">
-        </div>
-        <div class="weui-cell__ft">
         </div>
       </a>
       <div class="weui-cell weui-cell_access" href="javascript:;">
@@ -68,10 +68,8 @@
         <div class="weui-cell__bd">
           <input class="weui-input expect_price" placeholder="请输入期望价格">
         </div>
-        <div class="weui-cell__bd">
+        <div class="weui-cell__ft" style="width:50px;">
           <input class="weui-input expect_price_unit" id="picker-expect-price-unit" value="元/斤">
-        </div>
-        <div class="weui-cell__ft">
         </div>
       </div>
       <div class="weui-cell weui-cell_access" href="javascript:;">
@@ -223,7 +221,7 @@
     });
     $('.get_choose_specs_row').click(function () {
       $("#goods-choose").popup();
-      get_choose_specs($('.get_choose_categorys').val().split(' ')[0],function (specs) {
+      get_choose_specs($('.get_choose_categorys').val().split(' ')[0], function (specs) {
         $('.get_choose_specs').val(specs);
         $.closePopup();
       });
