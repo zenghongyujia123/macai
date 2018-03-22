@@ -387,7 +387,6 @@ exports.market_get_city = function (user, info, callback) {
       }
     }
   ]).exec(function (err, results) {
-    console.log(results)
     if (err) {
       console.error(new Date().toLocaleString(), err);
       return callback({ err: sysErr.database_query_error });

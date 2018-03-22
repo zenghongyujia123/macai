@@ -55,9 +55,7 @@ function getProvinceObj(item, right, callback) {
     $(this).addClass('select');
     $(this).siblings().removeClass('select');
     right.children().remove();
-    for (var i = 0; i < item.citys.length; i++) {
-      right.append(getCityObj(item, right, callback));
-    }
+    right.append(getCityObj(item, right, callback));
   });
   return province;
 }
