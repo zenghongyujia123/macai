@@ -61,7 +61,7 @@
           <p>下架时间</p>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input undercarriage_time" type="text">
+          <input class="weui-input undercarriage_time" disabled="disabled" placeholder="请选择下架时间" type="text">
         </div>
         <div class="weui-cell__ft">
         </div>
@@ -247,7 +247,7 @@
       });
     });
 
-    obj.find('.undercarriage_time').calendar();
+    $('.undercarriage_time').calendar();
 
     $('.submit').click(function () {
       var goods_name = $('.goods_name').val();
