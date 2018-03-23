@@ -58,6 +58,16 @@
       </div>
       <div class="weui-cell weui-cell_access" href="javascript:;">
         <div class="weui-cell__bd">
+          <p>下架时间</p>
+        </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input undercarriage_time" type="text">
+        </div>
+        <div class="weui-cell__ft">
+        </div>
+      </div>
+      <div class="weui-cell weui-cell_access" href="javascript:;">
+        <div class="weui-cell__bd">
           <p>请输入批发价</p>
         </div>
         <div class="weui-cell__bd">
@@ -230,12 +240,14 @@
       $("#goods-choose").popup();
       get_is_cash_goods(function (result) {
         val_is_cash_goods = result.is_cash_goods;
-        val_undercarriage_time = result.undercarriage_time;
+        // val_undercarriage_time = result.undercarriage_time;
         val_grounding_time = result.grounding_time;
-        $('.get_is_cash_goods').val([val_undercarriage_time, (val_is_cash_goods ? '现货' : '预售')].join(' '));
+        $('.get_is_cash_goods').val(val_is_cash_goods ? '现货' : '预售');
         $.closePopup();
       });
     });
+
+    obj.find('.undercarriage_time').calendar();
 
     $('.submit').click(function () {
       var goods_name = $('.goods_name').val();
@@ -243,7 +255,7 @@
       var goods_brand = $('.goods_brand').val();
       var goods_specs = $('.goods_specs').val();
       var is_cash_goods = val_is_cash_goods;
-      var undercarriage_time = val_undercarriage_time;
+      var undercarriage_time = $('.undercarriage_time').val();;
       var grounding_time = val_grounding_time;
       var price = $('.price').val();
       var price_unit = $('.price_unit').val();

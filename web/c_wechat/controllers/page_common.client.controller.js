@@ -272,16 +272,16 @@ function get_is_cash_goods(callback) {
     '      <p>预售（即将有货）</p>' +
     '    </div>' +
     '  </label>' +
-    '  <div class="weui-cell weui-cell_access" href="javascript:;">' +
-    '    <div class="weui-cell__bd">' +
-    '      <p>下架时间</p>' +
-    '    </div>' +
-    '    <div class="weui-cell__bd">' +
-    '      <input class="weui-input undercarriage_time" type="text">' +
-    '    </div>' +
-    '    <div class="weui-cell__ft">' +
-    '    </div>' +
-    '  </div>' +
+    // '  <div class="weui-cell weui-cell_access" href="javascript:;">' +
+    // '    <div class="weui-cell__bd">' +
+    // '      <p>下架时间</p>' +
+    // '    </div>' +
+    // '    <div class="weui-cell__bd">' +
+    // '      <input class="weui-input undercarriage_time" type="text">' +
+    // '    </div>' +
+    // '    <div class="weui-cell__ft">' +
+    // '    </div>' +
+    // '  </div>' +
     '  <div class="weui-cell weui-cell_access grounding_time_row" href="javascript:;" style="display:none;">' +
     '    <div class="weui-cell__bd">' +
     '      <p>供货时间</p>' +
@@ -295,7 +295,7 @@ function get_is_cash_goods(callback) {
     '</div>'
   );
 
-  obj.find('.undercarriage_time').calendar();
+  // obj.find('.undercarriage_time').calendar();
   obj.find('.grounding_time').calendar();
 
   obj.find('.un_cash_goods').click(function () {
@@ -305,11 +305,10 @@ function get_is_cash_goods(callback) {
     obj.find(".grounding_time_row").hide();
   });
   submit.click(function () {
-    var undercarriage_time = obj.find('.undercarriage_time').val();
     var grounding_time = obj.find('.grounding_time').val();
     var is_cash_goods = $('#s11')[0].checked;
     return callback({
-      undercarriage_time: undercarriage_time,
+      // undercarriage_time: undercarriage_time,
       grounding_time: grounding_time,
       is_cash_goods: is_cash_goods
     });
