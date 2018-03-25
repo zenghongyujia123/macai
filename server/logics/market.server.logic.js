@@ -385,6 +385,11 @@ exports.market_get_city = function (user, info, callback) {
         province: { $first: '$_id.province' },
         citys: { $push: '$city' }
       }
+    },
+    {
+      $sort: {
+        province: -1
+      }
     }
   ]).exec(function (err, results) {
     if (err) {
