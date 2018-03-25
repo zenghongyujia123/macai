@@ -42,7 +42,10 @@ $(function () {
     bind_event: function (obj, detail_id) {
       obj.find('.refresh').click(function (e) {
         stopBubble(e);
-        refreshGoods(detail_id, 'Purchases', function () {
+        refreshGoods(detail_id, 'Purchases', function (data) {
+          if (data.err) {
+            return;
+          }
           obj.find('.refresh-time').text('最后刷新：' + m_get_date_diff(new Date()));
           $.toast("操作成功");
         });

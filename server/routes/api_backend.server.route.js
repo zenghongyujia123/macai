@@ -22,7 +22,7 @@ module.exports = function (app) {
   app.route('/api_backend/market_make_top').post(ctr.market_make_top);
   app.route('/api_backend/market_get_top').post(ctr.market_get_top);
   app.route('/api_backend/market_update_status').post(ctr.market_update_status);
-  app.route('/api_backend/market_refresh_time').post(ctr.market_refresh_time);
+  app.route('/api_backend/market_refresh_time').post(goodsFilter.requireMarket, ctr.market_refresh_time);
   app.route('/api_backend/create_banner').post(ctr.create_banner);
   app.route('/api_backend/market_get_city').post(ctr.market_get_city);
   app.route('/api_backend/market_get_market').post(ctr.market_get_market);

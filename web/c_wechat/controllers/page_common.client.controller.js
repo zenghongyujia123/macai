@@ -336,7 +336,8 @@ function refreshGoods(detail_id, model_string, callback) {
     },
     success: function (data) {
       if (!data || data.err) {
-        return $.toptip(data.err.message, 'warning');
+        $.toptip(data.err.message, 'warning');
+        return callback();
       }
       return callback(data);
     }
