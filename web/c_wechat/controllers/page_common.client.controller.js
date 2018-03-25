@@ -335,10 +335,6 @@ function refreshGoods(detail_id, model_string, callback) {
       model_string: model_string
     },
     success: function (data) {
-      if (!data || data.err) {
-        $.toptip(data.err.message, 'warning');
-        return callback();
-      }
       return callback(data);
     }
   });
