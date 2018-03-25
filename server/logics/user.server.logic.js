@@ -39,9 +39,15 @@ exports.signin = function (userInfo, callback) {
     }
 
     if (!user) {
-      user = new User({ username: userInfo.username, role: userInfo.role.split(' ')[1], goal: userInfo.role.split(' ')[0] });
+      user = new User({
+        username: userInfo.username,
+        role: userInfo.role.split(' ')[1],
+        goal: userInfo.role.split(' ')[0],
+        nickname:userInfo.nickname
+      });
     }
     user.openid = userInfo.openid;
+    
     User.update({ openid: userInfo.openid, username: { $ne: userInfo.username } }, { $set: { openid: null, wechat_info: {} } }, function (err, result) {
       if (err) {
         console.error(err);

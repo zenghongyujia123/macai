@@ -19,6 +19,10 @@ module.exports = function (appDb) {
       type: String,
       trim: true
     },
+    nickname: {
+      type: String,
+      trim: true
+    },
     password: {
       type: String,
       trim: true

@@ -45,6 +45,16 @@
       </div>
       <div class="weui-cell">
         <div class="weui-cell__hd">
+          <label class="weui-label">用户名</label>
+        </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input nickname" type="text" placeholder="请输入用户名" value="<%= (user.nickname||'') %>">
+        </div>
+        <div class="weui-cell__ft">
+        </div>
+      </div>
+      <div class="weui-cell">
+        <div class="weui-cell__hd">
           <label class="weui-label">身份</label>
         </div>
         <div class="weui-cell__bd">
@@ -97,9 +107,13 @@
       var username = $('.username').val();
       var verify_code = $('.verify_code').val();
       var identity_name = $('.identity_name').val();
+      var nickname = $('.nickname').val();
 
       if (!username) {
         return $.toptip('请输入正确的手机号', 'warning');
+      }
+      if (!nickname) {
+        return $.toptip('请输入用户名', 'warning');
       }
       if (!verify_code || code === '' || verify_code.toString() !== code.toString()) {
         return $.toptip('请输入正确的验证码', 'warning');
@@ -110,7 +124,8 @@
 
       var data = {
         username: username,
-        role: identity_name
+        role: identity_name,
+        nickname: nickname
       };
       signin(data);
     });
@@ -133,9 +148,10 @@
       });
     }
     var username = $('.username').val();
+    var nickname = $('.nickname').val();
     var verify_code = $('.verify_code').val();
     var identity_name = $('.identity_name').val();
-    if (username && identity_name) {
+    if (username && identity_name && nickname) {
       signin({
         username: username,
         role: identity_name
