@@ -43,11 +43,10 @@ exports.signin = function (userInfo, callback) {
         username: userInfo.username,
         role: userInfo.role.split(' ')[1],
         goal: userInfo.role.split(' ')[0],
-        nickname:userInfo.nickname
       });
     }
     user.openid = userInfo.openid;
-    
+
     User.update({ openid: userInfo.openid, username: { $ne: userInfo.username } }, { $set: { openid: null, wechat_info: {} } }, function (err, result) {
       if (err) {
         console.error(err);
@@ -55,6 +54,9 @@ exports.signin = function (userInfo, callback) {
       }
       if (userInfo.wechat_info) {
         user.wechat_info = userInfo.wechat_info;
+      }
+      if (userInfo.nickname) {
+        user.nickname = userInfo.nickname;
       }
       user.save(function (err, savedUser) {
         if (err) {
