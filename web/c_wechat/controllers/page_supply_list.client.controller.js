@@ -43,6 +43,7 @@ $(function () {
         stopBubble(e);
         refreshGoods(detail_id, 'Supply', function (data) {
           if (data.err) {
+            $.toast(data.message);
             return;
           }
           obj.find('.refresh-time').text('最后刷新：' + m_get_date_diff(new Date()));
