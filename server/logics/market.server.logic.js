@@ -388,7 +388,7 @@ exports.market_get_city = function (user, info, callback) {
     },
     {
       $sort: {
-        province: -1
+        _id: -1
       }
     }
   ]).exec(function (err, results) {
