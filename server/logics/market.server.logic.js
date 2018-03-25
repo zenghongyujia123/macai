@@ -298,7 +298,10 @@ exports.market_purchases_import = function (user, infos, callback) {
 
       // if (!marketPurchases) {
       marketPurchases = new MarketPurchases({
+        market_py: info.market_py,
         province: info.province,
+        province_py: info.province_py,
+        city_py: info.city_py,
         city: info.city,
         market: info.market,
         name: info.name
@@ -376,19 +379,21 @@ exports.market_get_city = function (user, info, callback) {
       $group: {
         _id: { province: '$province', city: '$city' },
         province: { $first: '$province' },
+        province_py: { $first: '$province_py' },
         city: { $first: '$city' }
       }
     },
     {
       $group: {
         _id: '$_id.province',
+        province_py: { $first: '$_id.province_py' },
         province: { $first: '$_id.province' },
         citys: { $push: '$city' }
       }
     },
     {
       $sort: {
-        _id: -1
+        province_py: -1
       }
     }
   ]).exec(function (err, results) {

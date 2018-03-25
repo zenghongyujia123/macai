@@ -18,7 +18,15 @@ module.exports = function (appDb) {
     province: {
       type: String
     },
+    //省拼音
+    province_py: {
+      type: String
+    },
     city: {
+      type: String
+    },
+    //市拼音
+    city_py: {
       type: String
     },
     market: {
@@ -97,6 +105,10 @@ module.exports = function (appDb) {
       default: 'MarketDayInfo'
     },
     market: {
+      type: String
+    },
+    //拼音
+    market_py: {
       type: String
     },
     main_goods: {
