@@ -329,11 +329,9 @@
       if (localIds.length === 0) {
         return;
       }
-      var id = localIds.splice(0, 1);
-      alert(id);
-      alert(localIds.toString());
+      var ids = localIds.splice(0, 1);
 
-      uploadImage(id, function (res) {
+      uploadImage(ids[0], function (res) {
         wechat_server_ids.push(res.serverId)
         var imageItem = $(
           '<li class="weui-uploader__file"><img style="width:100%;height:100%;" src="' + id + '" /></li>'
