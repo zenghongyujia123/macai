@@ -237,7 +237,8 @@ function getSpecsItemObj(data, callback) {
       ' </div>'
     );
     rowObj.children().click(function () {
-      $(this).addClass('select').siblings().removeClass('select');
+      item.find('.weui-flex__item').removeClass('select');
+      $(this).addClass('select')//.siblings().removeClass('select');
       callback([data.title, $(this).text()].join('|'));
     });
     item.append(rowObj);
