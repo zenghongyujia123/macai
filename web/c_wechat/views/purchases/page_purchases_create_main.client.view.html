@@ -252,7 +252,7 @@
       if (!expect_price) { return $.toptip('请输入期望价格', 'warning'); }
       if (!expect_price_unit) { return $.toptip('请输入期望价格单位', 'warning'); }
       if (!expect_address) { expect_address = '全国 不限' }
-      if (!remark) { return $.toptip('请输入补充说明', 'warning'); }
+      if (!remark || remark.length < 10) { return $.toptip('请输入大于10字补充说明', 'warning'); }
       if (!duration) { return $.toptip('请输入采购市场', 'warning'); }
       if (!receive_address) { return $.toptip('请选择收货地址', 'warning'); }
       if (!mobile_phone) { return $.toptip('请输入联系电话', 'warning'); }
