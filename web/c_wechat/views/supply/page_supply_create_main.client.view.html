@@ -321,19 +321,24 @@
 
     $('.camera').click(function () {
       takeCamera(function (localIds) {
-        localIds.forEach(function (localId) {
-          appendImage(localId);
-        });
+        appendImage(localIds);
       })
     });
     var photoContainer = $('#uploaderFiles');
-    function appendImage(localId) {
-      uploadImage(localId, function (res) {
+    function appendImage(localIds) {
+      if (localIds.length === 0) {
+        return;
+      }
+      var id = localIds.splice(0, 1);
+      uploadImage(id, function (res) {
         wechat_server_ids.push(res.serverId)
         var imageItem = $(
-          '<li class="weui-uploader__file"><img style="width:100%;height:100%;" src="' + localId + '" /></li>'
+          '<li class="weui-uploader__file"><img style="width:100%;height:100%;" src="' + id + '" /></li>'
         );
         photoContainer.append(imageItem);
+        if (localIds.length > 0) {
+          appendImage(localIds);
+        }
       })
     }
 
