@@ -334,7 +334,7 @@
       uploadImage(ids[0], function (res) {
         wechat_server_ids.push(res.serverId)
         var imageItem = $(
-          '<li class="weui-uploader__file"><img style="width:100%;height:100%;" src="' + id + '" /></li>'
+          '<li class="weui-uploader__file"><img style="width:100%;height:100%;" src="' + ids[0] + '" /></li>'
         );
         photoContainer.append(imageItem);
         if (localIds.length > 0) {
