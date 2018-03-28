@@ -216,9 +216,9 @@ function getSpecsPage(data, callback) {
     }));
   }
   submit.click(function () {
-    // if (result.length !== data.length) {
-    //   return;
-    // }
+    if (result.length !== data.length) {
+      return;
+    }
     callback(result.join(','));
   });
   container.append(submit);
