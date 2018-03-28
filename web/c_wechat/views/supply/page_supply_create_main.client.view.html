@@ -331,6 +331,8 @@
       }
       var id = localIds.splice(0, 1);
       alert(id);
+      alert(localIds.toString());
+
       uploadImage(id, function (res) {
         wechat_server_ids.push(res.serverId)
         var imageItem = $(
