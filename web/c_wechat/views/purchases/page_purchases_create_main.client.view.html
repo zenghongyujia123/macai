@@ -367,7 +367,7 @@
     var photoContainer = $('#uploaderFiles');
     var photoNumber = $('.photo-number');
     function appendImage(localIds) {
-      if (localIds.length === 0) {
+      if (localIds.length === 0 || photoContainer.find('img').length === 4) {
         return;
       }
       var ids = localIds.splice(0, 1);
