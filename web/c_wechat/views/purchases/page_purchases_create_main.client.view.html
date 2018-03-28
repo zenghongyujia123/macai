@@ -90,7 +90,7 @@
           补充说明
           <textarea class="weui-textarea remark" placeholder="请输入文本" rows="3"></textarea>
           <div class="weui-textarea-counter">
-            <span>0</span>/200</div>
+            <span class="remark-number">0</span>/200</div>
         </div>
       </div>
     </div>
@@ -336,6 +336,10 @@
         appendImage(localIds);
       })
     });
+
+    $('.remark').keyup(function () {
+      $('.remark-number').text($(this).val().length);
+    })
 
     var photoContainer = $('#uploaderFiles');
     function appendImage(localIds) {
