@@ -337,9 +337,31 @@
       })
     });
 
-    $('.remark').keyup(function () {
-      $('.remark-number').text($(this).val().length);
-    })
+    var len = 0;
+    $('.remark').on("input propertychange", function (e) {
+      if (len >= 150 && e.keyCode == 8) {
+        return;
+      } else {
+        // 取出回车字符
+        var textareaVal = ($(this).val().replace(/<(.+?)>/gi, "&lt;$1&gt;")).replace(/\n/gi, "|");
+        // 回车数量
+        var entLen = textareaVal.split('|').length - 1;
+        // 不包含回车的数量
+        var strLen = textareaVal.split('|').join('').length;
+        $(this).attr('maxlength', 150 + (entLen * 2));
+        len = strLen;
+        if (len >= 150) {
+          len = 150;
+        };
+        // $('.textarea_box span').text(len + '/150');
+        $('.remark-number').text(len);
+
+      }
+    });
+    // <!-- 
+    //     $('.remark').keyup(function () {
+    //       $('.remark-number').text($(this).val().length);
+    //     }) -->
 
     var photoContainer = $('#uploaderFiles');
     function appendImage(localIds) {
