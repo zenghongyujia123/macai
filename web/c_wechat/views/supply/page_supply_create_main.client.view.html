@@ -103,7 +103,7 @@
           货品描述
           <textarea class="weui-textarea remark" placeholder="请输入货品描述" rows="3"></textarea>
           <div class="weui-textarea-counter">
-            <span>0</span>/200</div>
+            <span class="remark-number">0</span>/200</div>
         </div>
       </div>
     </div>
@@ -124,7 +124,8 @@
             <div class="weui-uploader">
               <div class="weui-uploader__hd">
                 <p class="weui-uploader__title">货物图片</p>
-                <div class="weui-uploader__info">0/4</div>
+                <div class="weui-uploader__info">
+                  <span class="photo-number">0</span>/4</div>
               </div>
               <div class="weui-uploader__bd">
                 <ul class="weui-uploader__files" id="uploaderFiles">
@@ -319,6 +320,28 @@
       });
     });
 
+    var len = 0;
+    $('.remark').on("input propertychange", function (e) {
+      if (len >= 150 && e.keyCode == 8) {
+        return;
+      } else {
+        // 取出回车字符
+        var textareaVal = ($(this).val().replace(/<(.+?)>/gi, "&lt;$1&gt;")).replace(/\n/gi, "|");
+        // 回车数量
+        var entLen = textareaVal.split('|').length - 1;
+        // 不包含回车的数量
+        var strLen = textareaVal.split('|').join('').length;
+        $(this).attr('maxlength', 150 + (entLen * 2));
+        len = strLen;
+        if (len >= 150) {
+          len = 150;
+        };
+        // $('.textarea_box span').text(len + '/150');
+        $('.remark-number').text(len);
+
+      }
+    });
+
     $(".price").keyup(function () {
       var reg = $(this).val().match(/\d+\.?\d{0,2}/);
       var txt = '';
@@ -356,6 +379,7 @@
       })
     });
     var photoContainer = $('#uploaderFiles');
+    var photoNumber = $('.photo-number');
     function appendImage(localIds) {
       if (localIds.length === 0) {
         return;
@@ -368,6 +392,8 @@
           '<li class="weui-uploader__file"><img style="width:100%;height:100%;" src="' + ids[0] + '" /></li>'
         );
         photoContainer.append(imageItem);
+        photoNumber.text(photoContainer.find('img').length);
+
         if (localIds.length > 0) {
           appendImage(localIds);
         }
