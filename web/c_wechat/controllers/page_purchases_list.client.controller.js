@@ -116,7 +116,8 @@ $(function () {
       $.ajax({
         url: '/api_backend/market_get_top',
         data: {
-          model_string: 'Supply'
+          model_string: 'Supply',
+          goods_category: tab1.goods_category
         },
         method: 'post',
         success: function (data) {
