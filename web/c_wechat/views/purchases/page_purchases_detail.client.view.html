@@ -30,7 +30,7 @@
             <%  } %>
               <div class="title-right">
                 <div class="name">
-                  <%= (user.wechat_info?user.wechat_info.nickname:'-') %>
+                  <%= (user.nickname||'-') %>
                 </div>
                 <div class="address">
                   <%= ((purchases.receive_province+purchases.receive_city)||'-') %>

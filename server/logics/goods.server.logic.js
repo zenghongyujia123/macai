@@ -152,7 +152,7 @@ exports.purchases_list = function (user, info, callback) {
 exports.create_supply = function (user, info, callback) {
   var supply = new Supply({
     unpassed_reason: info.unpassed_reason || '',
-    nickname: user.wechat_info.nickname,
+    nickname: user.nickname || '-',
     user: user._id,
     mobile_phone: user.username,
     goods_name: info.goods_name,
