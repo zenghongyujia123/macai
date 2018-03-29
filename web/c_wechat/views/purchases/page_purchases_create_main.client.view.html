@@ -94,7 +94,7 @@
       <div class="weui-cell">
         <div class="weui-cell__bd">
           补充说明
-          <textarea class="weui-textarea remark" placeholder="详细的描述采购要求，可以收到更满意的报价" rows="3"></textarea>
+          <textarea onKeyUp="value=value.replace(/[\d]/g,'')" class="weui-textarea remark" placeholder="详细的描述采购要求，可以收到更满意的报价" rows="3"></textarea>
           <div class="weui-textarea-counter">
             <span class="remark-number">0</span>/200</div>
         </div>
