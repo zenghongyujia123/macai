@@ -403,10 +403,11 @@
     });
 
 
-    pushHistory();
     window.addEventListener("popstate", function (e) {
-      alert("测试返回");//根据自己的需求实现自己的功能 
+      if (window.history.state === null)
+        alert("测试返回");//根据自己的需求实现自己的功能 
     }, false);
+    pushHistory();
 
     function pushHistory() {
       var state = {
