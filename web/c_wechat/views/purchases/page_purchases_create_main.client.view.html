@@ -405,7 +405,17 @@
 
     window.addEventListener("popstate", function (e) {
       if (window.history.state === null)
-        alert("测试返回");//根据自己的需求实现自己的功能 
+        $.modal({
+          title: "提示",
+          text: "还未发布成功，确定放弃？",
+          buttons: [
+            {
+              text: "关闭", className: "default", onClick: function () { history.back(); }
+            },
+            { text: "继续填写", onClick: function () { } },
+
+          ]
+        });
     }, false);
     pushHistory();
 

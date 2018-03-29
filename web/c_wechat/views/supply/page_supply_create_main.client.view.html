@@ -400,7 +400,29 @@
     getUserJsApiTicket(window.location.href, function (data) {
 
     });
+    window.addEventListener("popstate", function (e) {
+      if (window.history.state === null)
+        $.modal({
+          title: "提示",
+          text: "还未发布成功，确定放弃？",
+          buttons: [
+            {
+              text: "关闭", className: "default", onClick: function () { history.back(); }
+            },
+            { text: "继续填写", onClick: function () { } },
 
+          ]
+        });
+    }, false);
+    pushHistory();
+
+    function pushHistory() {
+      var state = {
+        title: "title",
+        url: "#"
+      };
+      window.history.pushState(state, "title", "#");
+    }
   });
 
 
