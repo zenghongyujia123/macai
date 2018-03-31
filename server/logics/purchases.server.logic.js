@@ -66,6 +66,7 @@ function create_purchases(user, info, callback) {
     remark: info.remark || '',
     duration: info.duration || '',
     frequency: info.frequency || '',
+    province_py: info.province_py || '',
     receive_province: info.receive_province || '',
     receive_city: info.receive_city || '',
     receive_district: info.receive_district || '',
