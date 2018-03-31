@@ -32,8 +32,8 @@
       <div class="column-item" flex="" layout="row" layout-align="start start">{{item.role}}</div>
       <div class="column-item" flex="" layout="row" layout-align="start start">{{item.goal}}</div>
       <div class="column-item" flex="" layout="row" layout-align="start start">{{item.identity}}</div>
-      <div class="column-item" flex="" layout="row" layout-align="start start">{{item.vip_user}}</div>
-      <div class="column-item" flex="" layout="row" layout-align="start start">{{item.personal_auth_stauts}}</div>
+      <div class="column-item" flex="" layout="row" layout-align="start start">{{item.vip_user?'vip':'非vip'}}</div>
+      <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.get_user_status_text( item.personal_auth_stauts)}}</div>
       <div class="column-item" flex="" layout="row" layout-align="start start">
         <md-button class="md-primary" ng-click="pageConfig.go_detail(item)">详情
         </md-button>

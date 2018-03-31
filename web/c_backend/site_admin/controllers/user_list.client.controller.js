@@ -52,6 +52,20 @@ cSite.controller('UserListController', [
       go_detail: function (item) {
         $state.go('user_detail', { detail_id: item._id });
       },
+      get_user_status_text: function (status) {
+        var text = '';
+        switch (status) {
+          case 'unauth':
+            text = '未认证';
+            break;
+          case 'authing':
+            text = '认证中';
+            break;
+          case 'authed':
+            text = '已认证';
+            break;
+        }
+      },
       get_list: function (next) {
         next = next || 'next';
         UserNetwork.market_list($scope, { next: next, last_item: pageConfig.last_item, model_string: 'User' }).then(function (data) {
