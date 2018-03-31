@@ -391,7 +391,7 @@ exports.market_get_city = function (user, info, callback) {
     {
       $group: {
         _id: '$_id.province',
-        province_py: { $first: '$_id.province_py' },
+        province_py: { $first: '$province_py' },
         province: { $first: '$_id.province' },
         citys: { $push: '$city' }
       }
