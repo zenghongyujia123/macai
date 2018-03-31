@@ -202,6 +202,8 @@ function getSpecsPage(data, callback) {
   var result = [];
   var container = $('.weui-popup__modal')
   var submit = $('    <a style="margin:20px;" href="javascript:;" class="weui-btn weui-btn_primary submit">选好了</a>  ');
+  var footer = $('<div class="weui-footer"><p class="weui-footer__text" style="margin-bottom:20px;">手动输入规格</p></div>');
+
   container.removeClass()
     .addClass('weui-popup__modal')
     .addClass('specs-choose-container');
@@ -221,7 +223,28 @@ function getSpecsPage(data, callback) {
     }
     callback(result.join(','));
   });
+
+  footer.click(function () {
+    $.login({
+      title: '提示',
+      text: '',
+      username: '',  // 默认用户名
+      password: '',  // 默认密码
+      onOK: function (username, password) {
+        //点击确认
+        return callback(username + '|' + password);
+      },
+      onCancel: function () {
+        //点击取消
+      }
+    });
+    $('#weui-prompt-username').attr('placeholder', '请输入规格名');
+    $('#weui-prompt-password').attr('placeholder', '请输入规格值');
+    $('#weui-prompt-password').attr('type', 'text');
+
+  });
   container.append(submit);
+  container.append(footer);
 }
 
 function getSpecsItemObj(data, callback) {
