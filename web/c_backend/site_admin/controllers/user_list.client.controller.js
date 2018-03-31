@@ -65,6 +65,7 @@ cSite.controller('UserListController', [
             text = '已认证';
             break;
         }
+        return text;
       },
       get_list: function (next) {
         next = next || 'next';

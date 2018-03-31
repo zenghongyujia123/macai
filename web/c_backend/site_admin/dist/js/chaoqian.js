@@ -1910,6 +1910,21 @@ cSite.controller('UserDetailController', [
           }
         });
       },
+      get_user_status_text: function (status) {
+        var text = '';
+        switch (status) {
+          case 'unauth':
+            text = '未认证';
+            break;
+          case 'authing':
+            text = '认证中';
+            break;
+          case 'authed':
+            text = '已认证';
+            break;
+        }
+        return text;
+      },
       get_detail: function () {
         UserNetwork.market_detail($scope, { model_string: 'User', detail_id: pageConfig.detail_id }).then(function (data) {
           console.log(data);
@@ -2003,6 +2018,7 @@ cSite.controller('UserListController', [
             text = '已认证';
             break;
         }
+        return text;
       },
       get_list: function (next) {
         next = next || 'next';

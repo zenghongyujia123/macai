@@ -36,7 +36,7 @@
         </div>
         <div class="list-item" layout="row" layout-align="start center">
           <div class="column-item" flex=""> vip状态</div>
-          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.vip_user}}</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.vip_user?'vip':'非vip'}}</div>
         </div>
         <div class="list-item" layout="row" layout-align="start center">
           <div class="column-item" flex=""> vip充值时间</div>
@@ -44,7 +44,7 @@
         </div>
         <div class="list-item" layout="row" layout-align="start center">
           <div class="column-item" flex=""> 个人认证状态</div>
-          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.personal_auth_stauts}}</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.get_user_status_text( pageConfig.detail.personal_auth_stauts)}}</div>
         </div>
         <div class="list-item" layout="row" layout-align="start center">
           <div class="column-item" flex="">个人认证时间</div>
