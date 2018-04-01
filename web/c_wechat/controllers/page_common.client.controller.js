@@ -211,7 +211,11 @@ function getSpecsPage(data, callback) {
   // var child = 
 
   for (var i = 0; i < data.length; i++) {
-    container.append(getSpecsItemObj(data[i], function (text) {
+    container.append(getSpecsItemObj(data[i], function (text, deleteText) {
+      var deleteIndex = result.indexOf(deleteText);
+      if (deleteIndex !== -1) {
+        result.splice(deleteIndex, 1);
+      }
       if (result.indexOf(text) === -1) {
         result.push(text);
       }
@@ -263,9 +267,10 @@ function getSpecsItemObj(data, callback) {
       ' </div>'
     );
     rowObj.children().click(function () {
+      var deleteText = item.find('.select').text() || '';
       item.find('.weui-flex__item').removeClass('select');
       $(this).addClass('select')//.siblings().removeClass('select');
-      callback([data.title, $(this).text()].join('|'));
+      callback([data.title, $(this).text()].join('|'), [data.title, deleteText].join('|'));
     });
     item.append(rowObj);
   }
