@@ -58,6 +58,8 @@ function create_purchases(user, info, callback) {
     need_number: info.need_number || '',
     need_unit: info.need_unit || '',
     expect_price: info.expect_price || '',
+    expect_min_price: info.expect_min_price || 0,
+    expect_max_price: info.expect_max_price || 0,
     expect_price_unit: info.expect_price_unit || '',
     expect_address: info.expect_address || '',
     expect_province: info.expect_province || '',

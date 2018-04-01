@@ -109,6 +109,12 @@ module.exports = function (appDb) {
       type: String
     },
     expect_price: {
+      type: String
+    },
+    expect_min_price: {
+      type: Number
+    },
+    expect_max_price: {
       type: Number
     },
     expect_price_unit: {

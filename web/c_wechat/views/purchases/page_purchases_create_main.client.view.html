@@ -67,115 +67,127 @@
           <input class="weui-input need_unit" id="picker-requirement-unit" value="斤">
         </div>
       </a>
+
       <div class="weui-cell weui-cell_access" href="javascript:;">
         <div class="weui-cell__bd">
-          <p>期望价格</p>
+          <p>期望价格最低</p>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input expect_price" placeholder="请输入期望价格">
+          <input class="weui-input expect_min_price" placeholder="请输入期望价格最低">
         </div>
-        <div class="weui-cell__ft" style="width:30px;">
+        <div class="weui-cell__ft" style="width:45px;">
           <input class="weui-input expect_price_unit" id="picker-expect-price-unit" value="元/斤">
         </div>
       </div>
       <div class="weui-cell weui-cell_access" href="javascript:;">
         <div class="weui-cell__bd">
-          <p>期望货源地</p>
+          <p>期望价格最高</p>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input expect_address" id="sender-city-picker" placeholder="请选择期望货源地 不填默认全国"></input>
+          <input class="weui-input expect_max_price" placeholder="请输入期望价格最高">
         </div>
         <div class="weui-cell__ft">
+        </div>
+      </div>
+      <div class=" weui-cell weui-cell_access " href="javascript:; ">
+        <div class="weui-cell__bd ">
+          <p>期望货源地</p>
+        </div>
+        <div class="weui-cell__bd ">
+          <input class="weui-input expect_address " id="sender-city-picker " placeholder="请选择期望货源地 不填默认全国 "></input>
+        </div>
+        <div class="weui-cell__ft ">
 
         </div>
       </div>
     </div>
-    <div class="weui-cells weui-cells_form">
-      <div class="weui-cell">
-        <div class="weui-cell__bd">
+    <div class="weui-cells weui-cells_form ">
+      <div class="weui-cell ">
+        <div class="weui-cell__bd ">
           补充说明
-          <textarea onKeyUp="value=value.replace(/[\d]/g,'')" class="weui-textarea remark" placeholder="详细的描述采购要求，可以收到更满意的报价" rows="3"></textarea>
-          <div class="weui-textarea-counter">
-            <span class="remark-number">0</span>/200</div>
+          <textarea onKeyUp="value=value.replace(/[\d]/g, '') " class="weui-textarea remark " placeholder="详细的描述采购要求，可以收到更满意的报价
+          " rows="3 "></textarea>
+          <div class="weui-textarea-counter ">
+            <span class="remark-number ">0</span>/200</div>
         </div>
       </div>
     </div>
-    <div class="weui-cells weui-cells_form">
-      <div class="weui-cell">
-        <div class="weui-cell__bd">
-          <div class="weui-uploader">
-            <div class="weui-uploader__hd">
-              <p class="weui-uploader__title">图片说明（选填）
+    <div class="weui-cells weui-cells_form ">
+      <div class="weui-cell ">
+        <div class="weui-cell__bd ">
+          <div class="weui-uploader ">
+            <div class="weui-uploader__hd ">
+              <p class="weui-uploader__title ">图片说明（选填）
               </p>
-              <div class="weui-uploader__info">
-                <span class="photo-number">0</span>/4</div>
+              <div class="weui-uploader__info ">
+                <span class="photo-number ">0</span>/4</div>
             </div>
-            <div class="weui-uploader__bd">
-              <ul class="weui-uploader__files" id="uploaderFiles">
+            <div class="weui-uploader__bd ">
+              <ul class="weui-uploader__files " id="uploaderFiles ">
               </ul>
-              <div class="weui-uploader__input-box">
-                <div class="weui-uploader__input camera"></div>
+              <div class="weui-uploader__input-box ">
+                <div class="weui-uploader__input camera "></div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="weui-cells" style="margin-bottom:20px;">
-      <div class="weui-cell weui-cell_access" href="javascript:;">
-        <div class="weui-cell__bd">
+    <div class="weui-cells " style="margin-bottom:20px; ">
+      <div class="weui-cell weui-cell_access " href="javascript:; ">
+        <div class="weui-cell__bd ">
           <p>采购时长
-            <span style="color:red">(必填)</span>
+            <span style="color:red ">(必填)</span>
           </p>
         </div>
-        <div class="weui-cell__bd">
-          <input class="weui-input duration" id="picker-purchases-duration" placeholder="请选择采购时长"></input>
+        <div class="weui-cell__bd ">
+          <input class="weui-input duration " id="picker-purchases-duration " placeholder="请选择采购时长 "></input>
         </div>
-        <div class="weui-cell__ft">
+        <div class="weui-cell__ft ">
         </div>
       </div>
-      <div class="weui-cell weui-cell_access" href="javascript:;">
-        <div class="weui-cell__bd">
+      <div class="weui-cell weui-cell_access " href="javascript:; ">
+        <div class="weui-cell__bd ">
           <p>采购频率</p>
         </div>
-        <div class="weui-cell__bd">
-          <input class="weui-input frequency" id="picker-purchases-frequency" placeholder="请选择采购频率"></input>
+        <div class="weui-cell__bd ">
+          <input class="weui-input frequency " id="picker-purchases-frequency " placeholder="请选择采购频率 "></input>
         </div>
-        <div class="weui-cell__ft">
+        <div class="weui-cell__ft ">
         </div>
       </div>
-      <div class="weui-cell weui-cell_access" href="javascript:;">
-        <div class="weui-cell__bd">
+      <div class="weui-cell weui-cell_access " href="javascript:; ">
+        <div class="weui-cell__bd ">
           <p>收货地址
-            <span style="color:red">(必填)</span>
+            <span style="color:red ">(必填)</span>
           </p>
         </div>
-        <div class="weui-cell__bd">
-          <input class="weui-input receive_address" id="receiver-city-picker" placeholder="请选择收货地址"></input>
+        <div class="weui-cell__bd ">
+          <input class="weui-input receive_address " id="receiver-city-picker " placeholder="请选择收货地址 "></input>
         </div>
-        <div class="weui-cell__ft">
+        <div class="weui-cell__ft ">
         </div>
       </div>
-      <div class="weui-cell weui-cell_access" href="javascript:;">
-        <div class="weui-cell__bd">
+      <div class="weui-cell weui-cell_access " href="javascript:; ">
+        <div class="weui-cell__bd ">
           <p>联系电话</p>
         </div>
-        <div class="weui-cell__bd">
-          <input class="weui-input mobile_phone" placeholder="请输入手机号"></input>
+        <div class="weui-cell__bd ">
+          <input class="weui-input mobile_phone " placeholder="请输入手机号 "></input>
         </div>
       </div>
     </div>
-    <a style="margin:20px;" href="javascript:;" class="weui-btn weui-btn_primary submit">确认发布</a>
-    <div class="weui-footer">
-      <p class="weui-footer__text" style="margin-bottom:20px;">遇到问题？可以试试
-        <a href=href="tel:0551-65669265"> 电话发布</a>
+    <a style="margin:20px; " href="javascript:; " class="weui-btn weui-btn_primary submit ">确认发布</a>
+    <div class="weui-footer ">
+      <p class="weui-footer__text " style="margin-bottom:20px; ">遇到问题？可以试试
+        <a href=href="tel:0551-65669265 "> 电话发布</a>
       </p>
     </div>
 
   </div>
-  <div id="goods-choose" class="weui-popup__container">
-    <div class="weui-popup__overlay"></div>
-    <div class="weui-popup__modal goods-choose-container">
+  <div id="goods-choose " class="weui-popup__container ">
+    <div class="weui-popup__overlay "></div>
+    <div class="weui-popup__modal goods-choose-container ">
     </div>
   </div>
 </body>
@@ -183,8 +195,8 @@
   $(function () {
     var wechat_server_ids = [];
 
-    $("#picker-requirement-unit").picker({
-      title: "请选择您的称呼",
+    $("#picker-requirement-unit ").picker({
+      title: "请选择您的称呼 ",
       cols: [
         {
           textAlign: 'center',
@@ -193,8 +205,8 @@
         }
       ]
     });
-    $("#picker-expect-price-unit").picker({
-      title: "请选择您的称呼",
+    $("#picker-expect-price-unit ").picker({
+      title: "请选择您的称呼 ",
       cols: [
         {
           textAlign: 'center',
@@ -202,8 +214,8 @@
         }
       ]
     });
-    $("#picker-purchases-duration").picker({
-      title: "采购时长",
+    $("#picker-purchases-duration ").picker({
+      title: "采购时长 ",
       cols: [
         {
           textAlign: 'center',
@@ -212,8 +224,8 @@
         }
       ]
     });
-    $("#picker-purchases-frequency").picker({
-      title: "采购频率",
+    $("#picker-purchases-frequency ").picker({
+      title: "采购频率 ",
       cols: [
         {
           textAlign: 'center',
@@ -221,16 +233,16 @@
         }
       ]
     });
-    $("#sender-city-picker").cityPicker({
-      title: "期望货源地",
+    $("#sender-city-picker ").cityPicker({
+      title: "期望货源地 ",
       showDistrict: false
     });
-    $("#receiver-city-picker").cityPicker({
-      title: "收获地址",
+    $("#receiver-city-picker ").cityPicker({
+      title: "收获地址 ",
       showDistrict: false
     });
     $('.get_choose_categorys_row').click(function () {
-      $("#goods-choose").popup();
+      $("#goods-choose ").popup();
       get_choose_categorys(function (category) {
         $('.get_choose_categorys').val(category);
         get_choose_brand(category, function (brand) {
@@ -240,14 +252,14 @@
       })
     });
     $('.get_choose_specs_row').click(function () {
-      $("#goods-choose").popup();
+      $("#goods-choose ").popup();
       get_choose_specs($('.get_choose_categorys').val().split(' ')[0], function (specs) {
         $('.get_choose_specs').val(specs);
         $.closePopup();
       });
     });
 
-    $(".expect_price").keyup(function () {
+    $(".expect_price ").keyup(function () {
       var reg = $(this).val().match(/\d+\.?\d{0,2}/);
       var txt = '';
       if (reg != null) {
@@ -265,7 +277,43 @@
       }
     });
 
-    $(".need_number").keydown(function (e) {
+    $(".expect_min_price ").keyup(function () {
+      var reg = $(this).val().match(/\d+\.?\d{0,2}/);
+      var txt = '';
+      if (reg != null) {
+        txt = reg[0];
+      }
+      $(this).val(txt);
+      if ($(this).val() > 10000000) {
+        $(this).val(10000000)
+      }
+    }).change(function () {
+      $(this).keypress();
+      var v = $(this).val();
+      if (/\.$/.test(v)) {
+        $(this).val(v.substr(0, v.length - 1));
+      }
+    });
+
+    $(".expect_max_price ").keyup(function () {
+      var reg = $(this).val().match(/\d+\.?\d{0,2}/);
+      var txt = '';
+      if (reg != null) {
+        txt = reg[0];
+      }
+      $(this).val(txt);
+      if ($(this).val() > 10000000) {
+        $(this).val(10000000)
+      }
+    }).change(function () {
+      $(this).keypress();
+      var v = $(this).val();
+      if (/\.$/.test(v)) {
+        $(this).val(v.substr(0, v.length - 1));
+      }
+    });
+
+    $(".need_number ").keydown(function (e) {
       var code = parseInt(e.keyCode);
       if ($(this).val() > 10000000) {
         $(this).val(10000000);
@@ -290,7 +338,9 @@
       var duration = $('.duration').val();
       var receive_address = $('.receive_address').val();
       var mobile_phone = $('.mobile_phone').val();
-      var expect_price = $('.expect_price').val();
+      var expect_min_price = $('.expect_min_price').val();
+      var expect_max_price = $('.expect_max_price').val();
+      var expect_price = [$('.expect_min_price').val(), $('.expect_min_price').val()].join('-');
       var expect_price_unit = $('.expect_price_unit').val();
       var frequency = $('.frequency').val();
 
@@ -299,6 +349,8 @@
       if (!need_number) { return $.toptip('请输入需求量', 'warning'); }
       if (!need_unit) { return $.toptip('请输入单位', 'warning'); }
 
+      if (!expect_min_price) { return $.toptip('请输入期望价格最低值', 'warning'); }
+      if (!expect_max_price) { return $.toptip('请输入期望价格最高值', 'warning'); }
       if (!expect_price) { return $.toptip('请输入期望价格', 'warning'); }
       if (!expect_price_unit) { return $.toptip('请输入期望价格单位', 'warning'); }
       if (!expect_address) { expect_address = '全国 不限' }
@@ -314,6 +366,8 @@
         goods_specs: goods_specs,
         need_number: need_number,
         need_unit: need_unit,
+        expect_min_price: expect_min_price,
+        expect_max_price: expect_max_price,
         expect_price: expect_price,
         frequency: frequency,
         expect_price_unit: expect_price_unit,
@@ -344,7 +398,7 @@
           if (!data || data.err) {
             return $.toptip(data.err.message, 'warning');
           }
-          $.toast("操作成功");
+          $.toast("操作成功 ");
           window.location = '/page_wechat/page_purchases_list'
         }
       });
@@ -356,12 +410,12 @@
     });
 
     var len = 0;
-    $('.remark').on("input propertychange", function (e) {
+    $('.remark').on("input propertychange ", function (e) {
       if (len >= 150 && e.keyCode == 8) {
         return;
       } else {
         // 取出回车字符
-        var textareaVal = ($(this).val().replace(/<(.+?)>/gi, "&lt;$1&gt;")).replace(/\n/gi, "|");
+        var textareaVal = ($(this).val().replace(/<(.+?)>/gi, "&lt;$1&gt; ")).replace(/\n/gi, "| ");
         // 回车数量
         var entLen = textareaVal.split('|').length - 1;
         // 不包含回车的数量
@@ -392,7 +446,7 @@
       uploadImage(ids[0], function (res) {
         wechat_server_ids.push(res.serverId)
         var imageItem = $(
-          '<li class="weui-uploader__file"><img style="width:100%;height:100%;" src="' + ids[0] + '" /></li>'
+          '<li class="weui-uploader__file "><img style="width:100%;height:100%; " src=" ' + ids[0] + ' " /></li>'
         );
         photoContainer.append(imageItem);
         photoNumber.text(photoContainer.find('img').length);
@@ -405,16 +459,16 @@
     });
 
 
-    window.addEventListener("popstate", function (e) {
+    window.addEventListener("popstate ", function (e) {
       if (window.history.state === null)
         $.modal({
-          title: "提示",
-          text: "还未发布成功，确定放弃？",
+          title: "提示 ",
+          text: "还未发布成功，确定放弃？ ",
           buttons: [
             {
-              text: "关闭", className: "default", onClick: function () { history.back(); }
+              text: "关闭 ", className: "default ", onClick: function () { history.back(); }
             },
-            { text: "继续填写", onClick: function () { } },
+            { text: "继续填写 ", onClick: function () { } },
 
           ]
         });
@@ -423,10 +477,10 @@
 
     function pushHistory() {
       var state = {
-        title: "title",
-        url: "#"
+        title: "title ",
+        url: "# "
       };
-      window.history.pushState(state, "title", "#");
+      window.history.pushState(state, "title ", "# ");
     }
   });
 
