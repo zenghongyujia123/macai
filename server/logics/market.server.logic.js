@@ -225,7 +225,7 @@ exports.market_purchases_list = function (user, info, callback) {
     query.city = info.city;
   }
   if (info.last_item.market) {
-    query.market = { $lte: info.last_item.market }
+    query.market = { $lt: info.last_item.market }
   }
 
   MarketPurchases.aggregate([
