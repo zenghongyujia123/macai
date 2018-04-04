@@ -1,0 +1,100 @@
+.page-purchases-create-main {
+  background-color: #eee;
+  -webkit-overflow-scrolling: touch;
+  height: 100%;
+  overflow-y: auto;
+  .weui-cells {
+    &:first-child {
+      margin-top: 0px;
+    }
+    .weui-input {
+      &:disabled {
+        opacity: 1;
+      }
+      text-align: right;
+    }
+  }
+}
+
+.goods-choose-container {
+  display: flex;
+  flex-direction: row;
+  .left {
+    -webkit-overflow-scrolling: touch;
+    height: 100%;
+    overflow-y: auto;
+    width: 25%;
+    border-right: 1px solid #e5e5e5;
+    .weui-flex__item {
+      .item {
+        text-align: center;
+        line-height: 50px;
+        border-bottom: 1px solid #e5e5e5;
+      }
+      &.select {
+        .item {
+          background-color: white;
+          color: #1aad19;
+        }
+      }
+    }
+  }
+  .right {
+    height: 100%;
+    overflow-y: auto;
+    width: 75%;
+    background-color: white;
+    -webkit-overflow-scrolling: touch;
+    .weui-flex__item {
+      margin: 10px 10px;
+      .title {}
+      .weui-flex {
+        border-left: 1px solid #e5e5e5;
+        border-top: 1px solid #e5e5e5;
+        .weui-flex__item {
+          &.item {
+            line-height: 40px;
+            margin: 0px;
+            text-align: center;
+            border-right: 1px solid #e5e5e5;
+          }
+        }
+        &:last-child {
+          border-bottom: 1px solid #e5e5e5;
+        }
+      }
+    }
+  }
+}
+
+.specs-choose-container {
+  -webkit-overflow-scrolling: touch;
+  overflow-y: auto;
+  .specs-container {
+    .specs-title {
+      padding: 10px;
+    }
+    .weui-flex {
+      background-color: white;
+      .weui-flex__item {
+        line-height: 40px;
+        text-align: center;
+        border-bottom: 1px solid #e5e5e5;
+        border-right: 1px solid #e5e5e5;
+        &.select {
+          background-color: #1aad19;
+          color: white
+        }
+      }
+    }
+  }
+  .weui-flex {
+    background-color: white;
+    .weui-flex__item {
+      line-height: 40px;
+      text-align: center;
+      border-bottom: 1px solid #e5e5e5;
+      border-right: 1px solid #e5e5e5;
+    }
+  }
+}

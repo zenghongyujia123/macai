@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no,width=device-width" />
+  <title>发布采购货品</title>
+  <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
+  <link rel="stylesheet" href="../libs/Swiper/dist/css/swiper.min.css" />
+  <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
+
+  <link rel="stylesheet" href="../c_wechat/css/page_index.client.style.css" />
+  <link rel="stylesheet" href="../c_wechat/css/page_purchases_create_main.client.style.css" />
+
+  <script type="text/javascript" src="../libs/Swiper/dist/js/swiper.min.js"></script>
+  <script src="../libs/jquery/dist/jquery.js"></script>
+
+  <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+  <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/city-picker.min.js"></script>
+  <script src="../c_wechat/controllers/page_common.client.controller.js"></script>
+  <script src="../c_wechat/controllers/page_wechat.client.controller.js"></script>
+  <script src="../c_wechat/controllers/page_purchases_create_main.client.controller.js"></script>
+</head>
+
+<body>
+  <div class="weui-tab page-purchases-create-main">
+    <div class="weui-cells">
+      <a class="weui-cell weui-cell_access get_choose_categorys_row" href="javascript:;">
+        <div class="weui-cell__bd">
+          <p>采购货品
+            <span style="color:red"> (必填)</span>
+          </p>
+        </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input get_choose_categorys goods_name" disabled="disabled" placeholder="请选择采购货品">
+        </div>
+        <div class="weui-cell__ft">
+        </div>
+      </a>
+    </div>
+    <div class="weui-cells">
+      <a class="weui-cell weui-cell_access get_choose_specs_row" href="javascript:;" data-target="#specs-choose">
+        <div class="weui-cell__bd">
+          <p>规格要求</p>
+        </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input get_choose_specs goods_specs" disabled="disabled" placeholder="请选择规格要求">
+        </div>
+        <div class="weui-cell__ft">
+        </div>
+      </a>
+      <a class="weui-cell weui-cell_access" href="javascript:;">
+        <div class="weui-cell__bd">
+          <p>需求量
+            <span style="color:red">(必填)
+
+            </span>
+          </p>
+        </div>
+        <!-- <div class="weui-cell__bd">
+        </div> -->
+        <div class="weui-cell__bd">
+          <input class="weui-input need_number" placeholder="请输入数量">
+        </div>
+        <div class="weui-cell__ft" style="width:30px;">
+          <input class="weui-input need_unit" id="picker-requirement-unit" value="斤">
+        </div>
+      </a>
+      <div class="weui-cell weui-cell_access" href="javascript:;">
+        <div class="weui-cell__bd">
+          <p>最低期望价格</p>
+        </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input expect_min_price" placeholder="最低期望价格">
+        </div>
+        <div class="weui-cell__ft" style="width:30px;">
+          <input class="weui-input expect_price_unit" id="picker-expect-price-unit" value="元/斤">
+        </div>
+      </div>
+      <div class="weui-cell weui-cell_access" href="javascript:;">
+        <div class="weui-cell__bd">
+          <p>最高期望价格</p>
+        </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input expect_max_price" placeholder="最高期望价格">
+        </div>
+        <div class="weui-cell__ft" style="width:30px;">
+        </div>
+      </div>
+      <div class="weui-cell weui-cell_access" href="javascript:;">
+        <div class="weui-cell__bd">
+          <p>期望货源地</p>
+        </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input expect_address" id="sender-city-picker" placeholder="请选择期望货源地 不填默认全国"></input>
+        </div>
+        <div class="weui-cell__ft">
+
+        </div>
+      </div>
+    </div>
+    <div class="weui-cells weui-cells_form">
+      <div class="weui-cell">
+        <div class="weui-cell__bd">
+          补充说明
+          <textarea onKeyUp="value=value.replace(/[\d]/g,'')" class="weui-textarea remark" placeholder="详细的描述采购要求，可以收到更满意的报价" rows="3"></textarea>
+          <div class="weui-textarea-counter">
+            <span class="remark-number">0</span>/200</div>
+        </div>
+      </div>
+    </div>
+    <div class="weui-cells weui-cells_form">
+      <div class="weui-cell">
+        <div class="weui-cell__bd">
+          <div class="weui-uploader">
+            <div class="weui-uploader__hd">
+              <p class="weui-uploader__title">图片说明（选填）
+              </p>
+              <div class="weui-uploader__info">
+                <span class="photo-number">0</span>/4</div>
+            </div>
+            <div class="weui-uploader__bd">
+              <ul class="weui-uploader__files" id="uploaderFiles">
+              </ul>
+              <div class="weui-uploader__input-box">
+                <div class="weui-uploader__input camera"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="weui-cells" style="margin-bottom:20px;">
+      <div class="weui-cell weui-cell_access" href="javascript:;">
+        <div class="weui-cell__bd">
+          <p>采购时长
+            <span style="color:red">(必填)</span>
+          </p>
+        </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input duration" id="picker-purchases-duration" placeholder="请选择采购时长"></input>
+        </div>
+        <div class="weui-cell__ft">
+        </div>
+      </div>
+      <div class="weui-cell weui-cell_access" href="javascript:;">
+        <div class="weui-cell__bd">
+          <p>采购频率</p>
+        </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input frequency" id="picker-purchases-frequency" placeholder="请选择采购频率"></input>
+        </div>
+        <div class="weui-cell__ft">
+        </div>
+      </div>
+      <div class="weui-cell weui-cell_access" href="javascript:;">
+        <div class="weui-cell__bd">
+          <p>收货地址
+            <span style="color:red">(必填)</span>
+          </p>
+        </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input receive_address" id="receiver-city-picker" placeholder="请选择收货地址"></input>
+        </div>
+        <div class="weui-cell__ft">
+        </div>
+      </div>
+      <div class="weui-cell weui-cell_access" href="javascript:;">
+        <div class="weui-cell__bd">
+          <p>联系电话</p>
+        </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input mobile_phone" placeholder="请输入手机号"></input>
+        </div>
+      </div>
+    </div>
+    <a style="margin:20px;" href="javascript:;" class="weui-btn weui-btn_primary submit">确认发布</a>
+    <div class="weui-footer">
+      <p class="weui-footer__text" style="margin-bottom:20px;">遇到问题？可以试试
+        <a href="tel:0551-65669265"> 电话发布</a>
+      </p>
+    </div>
+
+  </div>
+  <div id="goods-choose" class="weui-popup__container">
+    <div class="weui-popup__overlay"></div>
+    <div class="weui-popup__modal goods-choose-container">
+    </div>
+  </div>
+</body>
+<script>
+  $(function () {
+    var wechat_server_ids = [];
+
+    $("#picker-requirement-unit").picker({
+      title: "请选择您的称呼",
+      cols: [
+        {
+          textAlign: 'center',
+          values: ['斤', '公斤', '吨', '箱', '盒']
+          //如果你希望显示文案和实际值不同，可以在这里加一个displayValues: [.....]
+        }
+      ]
+    });
+    $("#picker-expect-price-unit").picker({
+      title: "请选择您的称呼",
+      cols: [
+        {
+          textAlign: 'center',
+          values: ['元/斤', '元/公斤', '元/吨', '元/箱', '元/盒']
+        }
+      ]
+    });
+    $("#picker-purchases-duration").picker({
+      title: "采购时长",
+      cols: [
+        {
+          textAlign: 'center',
+          values: ['7天', '3个月', '6个月']
+          //如果你希望显示文案和实际值不同，可以在这里加一个displayValues: [.....]
+        }
+      ]
+    });
+    $("#picker-purchases-frequency").picker({
+      title: "采购频率",
+      cols: [
+        {
+          textAlign: 'center',
+          values: ['每日', '每周', '每月']
+        }
+      ]
+    });
+    $("#sender-city-picker").cityPicker({
+      title: "期望货源地",
+      showDistrict: false
+    });
+    $("#receiver-city-picker").cityPicker({
+      title: "收获地址",
+      showDistrict: false
+    });
+    $('.get_choose_categorys_row').click(function () {
+      $("#goods-choose").popup();
+      get_choose_categorys(function (category) {
+        $('.get_choose_categorys').val(category);
+        get_choose_brand(category, function (brand) {
+          $('.get_choose_categorys').val([category, brand].join(' '));
+          $.closePopup();
+        });
+      })
+    });
+    $('.get_choose_specs_row').click(function () {
+      $("#goods-choose").popup();
+      get_choose_specs($('.get_choose_categorys').val().split(' ')[0], function (specs) {
+        $('.get_choose_specs').val(specs);
+        $.closePopup();
+      });
+    });
+
+    $(".expect_price").keyup(function () {
+      var reg = $(this).val().match(/\d+\.?\d{0,2}/);
+      var txt = '';
+      if (reg != null) {
+        txt = reg[0];
+      }
+      $(this).val(txt);
+      if ($(this).val() > 10000000) {
+        $(this).val(10000000)
+      }
+    }).change(function () {
+      $(this).keypress();
+      var v = $(this).val();
+      if (/\.$/.test(v)) {
+        $(this).val(v.substr(0, v.length - 1));
+      }
+    });
+
+    $(".need_number").keydown(function (e) {
+      var code = parseInt(e.keyCode);
+      if ($(this).val() > 10000000) {
+        $(this).val(10000000);
+        return false;
+      }
+      if (code >= 96 && code <= 105 || code >= 48 && code <= 57 || code == 8) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+
+    $('.submit').click(function () {
+      var goods_name = $('.goods_name').val();
+      var goods_category = $('.goods_category').val();
+      var goods_brand = $('.goods_brand').val();
+      var goods_specs = $('.goods_specs').val();
+      var need_number = $('.need_number').val();
+      var need_unit = $('.need_unit').val();
+      var expect_address = $('.expect_address').val();
+      var remark = $('.remark').val();
+      var duration = $('.duration').val();
+      var receive_address = $('.receive_address').val();
+      var mobile_phone = $('.mobile_phone').val();
+      var expect_min_price = $('.expect_min_price').val();
+      var expect_max_price = $('.expect_max_price').val();
+      var expect_price = [expect_min_price, expect_max_price].join('-');
+      var expect_price_unit = $('.expect_price_unit').val();
+      var frequency = $('.frequency').val();
+
+      if (!goods_name) { return $.toptip('请选择货品', 'warning'); }
+      if (!goods_specs) { return $.toptip('请选择规格', 'warning'); }
+      if (!need_number) { return $.toptip('请输入需求量', 'warning'); }
+      if (!need_unit) { return $.toptip('请输入单位', 'warning'); }
+
+      if (!expect_min_price) { return $.toptip('请输入最低期望价格', 'warning'); }
+      if (!expect_max_price) { return $.toptip('请输入最高期望价格', 'warning'); }
+      if (!expect_price) { return $.toptip('请输入期望价格', 'warning'); }
+      if (!expect_price_unit) { return $.toptip('请输入期望价格单位', 'warning'); }
+      if (!expect_address) { expect_address = '全国 不限' }
+      if (!remark || remark.length < 10) { return $.toptip('请输入大于10字补充说明', 'warning'); }
+      if (!duration) { return $.toptip('请输入采购市场', 'warning'); }
+      if (!receive_address) { return $.toptip('请选择收货地址', 'warning'); }
+      if (!mobile_phone) { return $.toptip('请输入联系电话', 'warning'); }
+      // photos
+      var data = {
+        goods_name: goods_name,
+        goods_category: goods_name.split(' ')[0],
+        goods_brand: goods_name.split(' ')[1],
+        goods_specs: goods_specs,
+        need_number: need_number,
+        need_unit: need_unit,
+        expect_min_price: expect_min_price,
+        expect_max_price: expect_max_price,
+        expect_price: expect_price,
+        frequency: frequency,
+        expect_price_unit: expect_price_unit,
+        expect_address: expect_address,
+        expect_province: expect_address.split(' ')[0],
+        expect_city: expect_address.split(' ')[1],
+        // expect_district: expect_address.split(' ')[2],
+        remark: remark,
+        duration: duration,
+        receive_province: receive_address.split(' ')[0],
+        receive_city: receive_address.split(' ')[1],
+        // receive_district: receive_address.split(' ')[2],
+        receive_address: receive_address,
+        mobile_phone: mobile_phone,
+        photos: [],
+        wechat_server_ids: wechat_server_ids
+      }
+
+      console.log(data);
+      $.showLoading();
+      $.ajax({
+        url: '/api_wechat/purchases/create_purchases',
+        data: data,
+        method: 'post',
+        success: function (data) {
+          $.hideLoading();
+          console.log(data);
+          if (!data || data.err) {
+            return $.toptip(data.err.message, 'warning');
+          }
+          $.toast("操作成功");
+          window.location = '/page_wechat/page_purchases_list'
+        }
+      });
+    });
+    $('.camera').click(function () {
+      takeCamera(function (localIds) {
+        appendImage(localIds);
+      })
+    });
+
+    var len = 0;
+    $('.remark').on("input propertychange", function (e) {
+      if (len >= 150 && e.keyCode == 8) {
+        return;
+      } else {
+        // 取出回车字符
+        var textareaVal = ($(this).val().replace(/<(.+?)>/gi, "&lt;$1&gt;")).replace(/\n/gi, "|");
+        // 回车数量
+        var entLen = textareaVal.split('|').length - 1;
+        // 不包含回车的数量
+        var strLen = textareaVal.split('|').join('').length;
+        $(this).attr('maxlength', 150 + (entLen * 2));
+        len = strLen;
+        if (len >= 150) {
+          len = 150;
+        };
+        // $('.textarea_box span').text(len + '/150');
+        $('.remark-number').text(len);
+
+      }
+    });
+    // <!-- 
+    //     $('.remark').keyup(function () {
+    //       $('.remark-number').text($(this).val().length);
+    //     }) -->
+
+    var photoContainer = $('#uploaderFiles');
+    var photoNumber = $('.photo-number');
+    function appendImage(localIds) {
+      if (localIds.length === 0 || photoContainer.find('img').length === 4) {
+        return;
+      }
+      var ids = localIds.splice(0, 1);
+
+      uploadImage(ids[0], function (res) {
+        wechat_server_ids.push(res.serverId)
+        var imageItem = $(
+          '<li class="weui-uploader__file"><img style="width:100%;height:100%;" src="' + ids[0] + '" /></li>'
+        );
+        photoContainer.append(imageItem);
+        photoNumber.text(photoContainer.find('img').length);
+        appendImage(localIds);
+      })
+    }
+
+    getUserJsApiTicket(window.location.href, function (data) {
+
+    });
+
+
+    window.addEventListener("popstate", function (e) {
+      if (window.history.state === null)
+        $.modal({
+          title: "提示",
+          text: "还未发布成功，确定放弃？",
+          buttons: [
+            {
+              text: "关闭", className: "default", onClick: function () { history.back(); }
+            },
+            { text: "继续填写", onClick: function () { } },
+
+          ]
+        });
+    }, false);
+    pushHistory();
+
+    function pushHistory() {
+      var state = {
+        title: "title",
+        url: "#"
+      };
+      window.history.pushState(state, "title", "#");
+    }
+  });
+
+
+
+
+</script>
+
+</html>

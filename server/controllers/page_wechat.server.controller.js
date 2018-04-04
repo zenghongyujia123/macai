@@ -48,6 +48,12 @@ exports.page_purchases_create_main = function (req, res, next) {
   var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_create_main.client.view.html');
   return res.render(filepath, {});
 };
+
+exports.page_purchases_create_price = function (req, res, next) {
+  var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_create_price.client.view.html');
+  return res.render(filepath, {});
+};
+
 exports.page_purchases_list = function (req, res, next) {
   marketLogic.market_list(req.user, { model_string: 'Banner' }, function (err, results) {
     var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_list.client.view.html');
@@ -70,6 +76,12 @@ exports.page_supply_create_main = function (req, res, next) {
   var filepath = path.join(__dirname, '../../web/c_wechat/views/supply/page_supply_create_main.client.view.html');
   return res.render(filepath, {});
 };
+
+exports.page_supply_create_price = function (req, res, next) {
+  var filepath = path.join(__dirname, '../../web/c_wechat/views/supply/page_supply_create_price.client.view.html');
+  return res.render(filepath, {});
+};
+
 exports.page_supply_list = function (req, res, next) {
   var filepath = path.join(__dirname, '../../web/c_wechat/views/supply/page_supply_list.client.view.html');
   return res.render(filepath);
