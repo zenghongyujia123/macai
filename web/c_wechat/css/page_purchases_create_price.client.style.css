@@ -85,3 +85,20 @@
   border-bottom: 1px solid #e5e5e5;
   border-right: 1px solid #e5e5e5;
 }
+.weui-uploader__bd {
+  height: 130px;
+}
+.weui-uploader__bd .weui-uploader__file {
+  text-align: center;
+}
+.weui-uploader__bd .weui-uploader__file .img {
+  width: 79px;
+  height: 79px;
+}
+.weui-uploader__bd .weui-uploader__file .name {
+  font-size: 14px;
+}
+.weui-uploader__bd .weui-uploader__file .price {
+  font-size: 12px;
+  color: #ff7977;
+}
