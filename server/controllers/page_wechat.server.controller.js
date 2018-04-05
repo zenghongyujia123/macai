@@ -50,8 +50,10 @@ exports.page_purchases_create_main = function (req, res, next) {
 };
 
 exports.page_purchases_create_price = function (req, res, next) {
-  var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_create_price.client.view.html');
-  return res.render(filepath, {});
+  goodsLogic.my_supply_list(req.user, { goods_category: req.query.goods_category || '' }, function (err,results) {
+    var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_create_price.client.view.html');
+    return res.render(filepath, {});
+  });
 };
 
 exports.page_purchases_list = function (req, res, next) {

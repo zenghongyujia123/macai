@@ -28,6 +28,7 @@ module.exports = function (app) {
   app.route('/api_wechat/supply/my_supply_list').post(userFilter.requirePostUser, ctr.my_supply_list)
   app.route('/api_wechat/supply/increase_supply_browse_count').post(userFilter.requirePostUser, ctr.increase_supply_browse_count)
   app.route('/api_wechat/supply/supply_list').post(ctr.supply_list)
+  app.route('/api_wechat/supply/has_supply').post(userFilter.requireUser, ctr.has_supply);
   // app.route('/api_wechat/shippments').post(ctr.shippments);
   // app.route('/api_wechat/uploadEvent').post(ctr.uploadEvent);
   // app.route('/api_wechat/createExpense').post(ctr.createExpense);

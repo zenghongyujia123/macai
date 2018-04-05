@@ -10,6 +10,23 @@ var sysErr = require('./../errors/system');
 
 var that = exports;
 
+exports.has_supply = function (user, info, callback) {
+  var query = {
+    user: user._id
+  }
+
+  if (info.goods_category) {
+    query.goods_category = info.goods_category;
+  }
+
+  Supply.findOne(query, function (err, supply) {
+    if (err) {
+      return callback({ err: sysErr.database_query_error });
+    }
+    return callback(null, { has_supply: !!supply });
+  });
+}
+
 exports.list = function (user, info, callback) {
   info = info || {};
   info.last_item = info.last_item || {};

@@ -115,7 +115,14 @@ exports.purchases_list = function (req, res, next) {
   });
 }
 
-
+exports.has_supply = function (req, res, next) {
+  supplyLogic.has_supply(req.user, { goods_category: req.body.goods_category }, function (err, result) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(result);
+  });
+}
 
 exports.create_supply = function (req, res, next) {
   var info = req.body || {};

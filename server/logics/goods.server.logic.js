@@ -243,6 +243,10 @@ exports.my_supply_list = function (user, info, callback) {
     query._id = { $ne: last_item._id };
   }
 
+  if (info.goods_category) {
+    query.goods_category = info.goods_category;
+  }
+
   Supply.find(query).limit(10).sort({ create_time: -1 }).exec(function (err, list) {
     if (err || !list) {
       return callback({ err: sysErr.database_query_error });
