@@ -44,7 +44,33 @@ module.exports = function (appDb) {
     updatedAt: 'update_time'
   });
   appDb.model('Goods', GoodsSchema);
-
+  var PurchasesOfferPriceSchema = new Schema({
+    object: {
+      type: String,
+      default: 'PurchasesOfferPrice'
+    },
+    purchases: {
+      type: Schema.Types.ObjectId,
+      ref: 'Purchases',
+    },
+    price: {
+      type: String,
+    },
+    supply_count: {
+      type: String,
+    },
+    supply_user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    purchases_user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    description: {
+      type: String,
+    }
+  });
   var PurchasesSchema = new Schema({
     object: {
       type: String,
