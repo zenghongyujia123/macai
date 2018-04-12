@@ -99,7 +99,7 @@
         data: { goods_category: '<%= purchases.goods_category %>' },
         success: function (data) {
           if (data && data.has_supply) {
-            window.location = '/page_wechat/page_purchases_create_price?goods_category=<%= purchases.goods_category %>';
+            window.location = '/page_wechat/page_purchases_create_price?purchases_id=<%= purchases._id %>';
           }
           else {
             $.modal({
