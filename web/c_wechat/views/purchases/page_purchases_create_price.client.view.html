@@ -34,21 +34,20 @@
               </p>
             </div>
             <div class="weui-uploader__bd">
-              <ul class="weui-uploader__files" id="uploaderFiles">
-                <li class="weui-uploader__file">
-                  <img class="img" src="">
-                  <div class="name">货品品类</div>
-                  <div class="price">121元／斤</div>
-                </li>
-                <li class="weui-uploader__file">
-                  <img class="img" src="">
-                  <div class="name">货品品类</div>
-                  <div class="price">121元／斤</div>
-                </li>
+              <ul class="weui-uploader__files">
+                <% for(var i =0;i<supplys.length;i++){ %>
+                  <li class="weui-uploader__file">
+                    <i class="weui-icon-success weui-icon_msg"></i>
+                    <img class="img" src="<%= supplys[i].photos[0] %>">
+                    <div class="name">
+                      <%= ( supplys[i].goods_brand ) %>
+                    </div>
+                    <div class="price">
+                      <%= (supplys[i].price+supplys[i].price_unit) %>
+                    </div>
+                  </li>
+                  <%  } %>
               </ul>
-              <div class="weui-uploader__input-box">
-                <div class="weui-uploader__input camera"></div>
-              </div>
             </div>
           </div>
         </div>
@@ -95,7 +94,8 @@
       <div class="weui-cell">
         <div class="weui-cell__bd">
           说明
-          <textarea onKeyUp="value=value.replace(/[\d]/g,'')" class="weui-textarea remark" placeholder="详细的描述采购要求，可以收到更满意的报价" rows="3"></textarea>
+          <textarea onKeyUp="value=value.replace(/[\d]/g,'')" class="weui-textarea remark" placeholder="详细的描述货物的卖点，当前供货量和货运方式等。描述越详细，越有助于客户了解您的货品，最终达到交易。"
+            rows="3"></textarea>
           <div class="weui-textarea-counter">
             <span class="remark-number">0</span>/200</div>
         </div>
