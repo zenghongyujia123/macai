@@ -49,6 +49,10 @@ module.exports = function (appDb) {
       type: String,
       default: 'PurchasesOfferPrice'
     },
+    supply:{
+      type: Schema.Types.ObjectId,
+      ref: 'Supply',
+    },
     purchases: {
       type: Schema.Types.ObjectId,
       ref: 'Purchases',
@@ -63,14 +67,18 @@ module.exports = function (appDb) {
       type: Schema.Types.ObjectId,
       ref: 'User'
     },
-    purchases_user: {
-      type: Schema.Types.ObjectId,
-      ref: 'User'
+    province:{
+      type: String,
+    },
+    city:{
+      type: String,
     },
     description: {
       type: String,
     }
   });
+  appDb.model('PurchasesOfferPrice', PurchasesOfferPriceSchema);
+  
   var PurchasesSchema = new Schema({
     object: {
       type: String,

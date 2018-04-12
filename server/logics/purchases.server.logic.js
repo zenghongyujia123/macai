@@ -5,6 +5,8 @@
 var mongoose = require('./../../libraries/mongoose');
 var appDb = mongoose.appDb;
 var Purchases = appDb.model('Purchases');
+var PurchasesOfferPrice = appDb.model('PurchasesOfferPrice');
+
 // var UserPay = appDb.model('UserPay');
 var sysErr = require('./../errors/system');
 var async = require('async');
@@ -125,4 +127,21 @@ function create_purchases(user, info, callback) {
 
 }
 
+exports.purchases_offer_price = function (user,supply, purchases, info, callback) {
+  new PurchasesOfferPrice({
+    supply:supply,
+    purchases: purchases,
+    price: info.price || 0,
+    province: info.province,
+    city: info.city,
+    supply_count: info.supply_count || 0,
+    supply_user: user._id,
+    description: info.description || '',
+  }).save(function (err, result) {
+    if (err || !result) {
+      return callback({ err: sysErr.database_save_error });
+    }
 
+    return callback(null, result);
+  });
+}

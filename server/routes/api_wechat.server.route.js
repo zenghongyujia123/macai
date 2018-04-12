@@ -41,4 +41,5 @@ module.exports = function (app) {
   app.route('/api_wechat_pay/payment/get_pre_pay_id').post(userFilter.requirePostUser, payCtr.get_pre_pay_id);
   app.route('/api_wechat_pay/payment/get_pre_pay_info').post(userFilter.requirePostUser, payCtr.get_pre_pay_info);
   app.route('/api_wechat_pay/payment/vip_pay_notify_url').post(payCtr.vip_pay_notify_url);
+  app.route('/api_wechat/purchases/purchases_offer_price').post(userFilter.requirePostUser,goodsFilter.requireSupply,goodsFilter.requirePurchases, ctr.purchases_offer_price)
 };

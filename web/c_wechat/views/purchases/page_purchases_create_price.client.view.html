@@ -36,8 +36,8 @@
             <div class="weui-uploader__bd">
               <ul class="weui-uploader__files">
                 <% for(var i =0;i<supplys.length;i++){ %>
-                  <li class="weui-uploader__file">
-                    <i class="weui-icon-success weui-icon_msg"></i>
+                  <li class="weui-uploader__file"  id="<%= supplys[i]._id %>">
+                    <i class=" weui-icon_msg"></i>
                     <img class="img" src="<%= supplys[i].photos[0] %>">
                     <div class="name">
                       <%= ( supplys[i].goods_brand ) %>
@@ -62,7 +62,7 @@
           <input class="weui-input expect_min_price" placeholder="买家意向：<%= (purchases.expect_price||'面议') %>">
         </div>
         <div class="weui-cell__ft" style="width:50px;">
-          <input class="weui-input expect_price_unit" id="picker-expect-price-unit" style="color:#1aad19;" disabled="disabled" value="元/斤">
+          <input class="weui-input supply_price" id="picker-expect-price-unit" style="color:#1aad19;" disabled="disabled" value="元/斤">
         </div>
       </div>
       <div class="weui-cell weui-cell_access" href="javascript:;">
@@ -71,7 +71,7 @@
           </p>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input need_number" placeholder="买家意向：<%= (purchases.need_number||'面议') %>">
+          <input class="weui-input supply_count" placeholder="买家意向：<%= (purchases.need_number||'面议') %>">
         </div>
         <div class="weui-cell__ft" style="width:30px;">
           <input class="weui-input need_unit" id="picker-requirement-unit" style="color:#1aad19;" disabled="disabled" value="斤">
@@ -83,7 +83,7 @@
           <p>货物所在地</p>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input expect_address" id="sender-city-picker" placeholder="请选择期望货源地 不填默认全国"></input>
+          <input class="weui-input address" id="sender-city-picker" placeholder="请选择货源地 不填默认全国"></input>
         </div>
         <div class="weui-cell__ft">
 
@@ -94,7 +94,7 @@
       <div class="weui-cell">
         <div class="weui-cell__bd">
           说明
-          <textarea onKeyUp="value=value.replace(/[\d]/g,'')" class="weui-textarea remark" placeholder="详细的描述货物的卖点，当前供货量和货运方式等。描述越详细，越有助于客户了解您的货品，最终达到交易。"
+          <textarea onKeyUp="value=value.replace(/[\d]/g,'')" class="weui-textarea description" placeholder="详细的描述货物的卖点，当前供货量和货运方式等。描述越详细，越有助于客户了解您的货品，最终达到交易。"
             rows="3"></textarea>
           <div class="weui-textarea-counter">
             <span class="remark-number">0</span>/200</div>
@@ -105,6 +105,78 @@
   </div>
 </body>
 <script>
+
+  $(function () {
+    $("#sender-city-picker").cityPicker({
+      title: "货源地",
+      showDistrict: false
+    });
+
+  
+
+    $('.weui-uploader__file').click(function(){
+      $(this).siblings().find('i').removeClass('weui-icon-success');
+      $(this).find('i').addClass('weui-icon-success');
+      select_supply_id = this.id;
+    });
+
+    var select_supply_id;
+    var len = 0;
+    $('.description').on("input propertychange", function (e) {
+      if (len >= 150 && e.keyCode == 8) {
+        return;
+      } else {
+        // 取出回车字符
+        var textareaVal = ($(this).val().replace(/<(.+?)>/gi, "&lt;$1&gt;")).replace(/\n/gi, "|");
+        // 回车数量
+        var entLen = textareaVal.split('|').length - 1;
+        // 不包含回车的数量
+        var strLen = textareaVal.split('|').join('').length;
+        $(this).attr('maxlength', 150 + (entLen * 2));
+        len = strLen;
+        if (len >= 150) {
+          len = 150;
+        };
+        // $('.textarea_box span').text(len + '/150');
+        $('.remark-number').text(len);
+
+      }
+    });
+
+      $('.submit').click(function () {
+      var address = $('.address').val();
+      var supply_count = $('.supply_count').val();
+      var description = $('.description').val();
+      var price = $('.supply_price').val();
+      var city, province;
+      if (!address) {
+        address = '全国 全国';
+      }
+      if(!select_supply_id){
+        return $.toast("请选择供应货品","forbidden");
+      }
+      province = address.split(' ')[0];
+      city = address.split(' ')[1];
+
+      $.ajax({
+        url: '/api_wechat/purchases/purchases_offer_price',
+        data: {
+          supply_id:select_supply_id,
+          province: province,
+          city: city,
+          purchases_id: '<%= purchases._id %>',
+          price: price || 0,
+          supply_count: supply_count || 0,
+          description: description || '',
+        },
+        method: 'post',
+        success: function (data) {
+          console.log(data);
+        }
+      });
+    });
+
+  });
 </script>
 
 </html>

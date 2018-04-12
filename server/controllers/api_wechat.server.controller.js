@@ -7073,6 +7073,14 @@ exports.update_personal_auth_info = function (req, res, next) {
   });
 }
 
+exports.purchases_offer_price = function (req, res, next) {
+  purchasesLogic.purchases_offer_price(req.user,req.supply, req.purchases, req.body, function (err,result) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(result)
+  })
+}
 
 
 
