@@ -131,6 +131,7 @@ exports.purchases_offer_price = function (user,supply, purchases, info, callback
   new PurchasesOfferPrice({
     supply:supply,
     purchases: purchases,
+    purchases_user:purchases.user,
     price: info.price || 0,
     province: info.province,
     city: info.city,

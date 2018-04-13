@@ -49,13 +49,21 @@ module.exports = function (appDb) {
       type: String,
       default: 'PurchasesOfferPrice'
     },
-    supply:{
+    is_read: {
+      type: Boolean,
+      default: false
+    },
+    supply: {
       type: Schema.Types.ObjectId,
       ref: 'Supply',
     },
     purchases: {
       type: Schema.Types.ObjectId,
       ref: 'Purchases',
+    },
+    purchases_user: {
+      type: Schema.Types.ObjectId,
+      ref: 'User'
     },
     price: {
       type: String,
@@ -67,10 +75,10 @@ module.exports = function (appDb) {
       type: Schema.Types.ObjectId,
       ref: 'User'
     },
-    province:{
+    province: {
       type: String,
     },
-    city:{
+    city: {
       type: String,
     },
     description: {
@@ -78,7 +86,7 @@ module.exports = function (appDb) {
     }
   });
   appDb.model('PurchasesOfferPrice', PurchasesOfferPriceSchema);
-  
+
   var PurchasesSchema = new Schema({
     object: {
       type: String,

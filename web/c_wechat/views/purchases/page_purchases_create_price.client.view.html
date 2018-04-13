@@ -171,7 +171,13 @@
         },
         method: 'post',
         success: function (data) {
-          console.log(data);
+          if(!data||data.err){
+            return $.toast(data.err.message,"forbidden");
+          }
+          else{
+             $.toast('报价成功！');
+             window.history.back();
+          }
         }
       });
     });
