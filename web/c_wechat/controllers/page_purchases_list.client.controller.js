@@ -10,6 +10,26 @@ $(function () {
     last_item: {},
     loading: false,
     is_init: false,
+    is_get_un_read: false,
+    un_read_offer_price_count: function () {
+      if (tab2.is_get_un_read) {
+        return;
+      }
+
+      tab2.is_get_un_read = true;
+      $.ajax({
+        url: '/api_wechat/purchases/un_read_offer_price_count',
+        data: {
+        },
+        method: 'post',
+        success: function (data) {
+          console.log(data);
+          if (data && !data.err) {
+            $('.tip-text').text('您有' + data.count + '条新报价');
+          }
+        }
+      });
+    },
     my_list: function (callback) {
       $.ajax({
         url: '/api_wechat/purchases/my_purchases_list',
@@ -26,6 +46,8 @@ $(function () {
             $.toptip(data.err.message, 'warning');
             return callback();
           }
+
+          tab2.un_read_offer_price_count();
           tab2.append_my_list(data);
           if (data.length > 0) {
             tab2.last_item = data[data.length - 1];
@@ -52,12 +74,16 @@ $(function () {
         });
         return false;
       });
+      obj.find('.check-price').click(function (e) {
+        stopBubble(e);
+        window.location = '/page_wechat/page_purchases_price_list?purchases_id=' + $(this)[0].id;
+      });
     },
     append_my_list: function (data) {
       for (var i = 0; i < data.length; i++) {
         var item = data[i];
         var obj = $(
-          ' <a href="/page_wechat/page_purchases_detail?purchases_id=' + item._id + '" class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
+          ' <a id="' + item._id + '" href="/page_wechat/page_purchases_detail?purchases_id=' + item._id + '" class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
           '   <div class="weui-media-box__bd">' +
           '     <div class="title1">' + item.goods_name +
           '     </div>' +
@@ -68,8 +94,13 @@ $(function () {
           '       <div class="price">' + item.expect_price +
           '         <span class="price-unit">' + item.expect_price_unit + '</span>' +
           '       </div>' +
-          '       <div class="refresh">' +
-          '         刷新采购' +
+          '       <div class="footer-right">' +
+          '         <div class="refresh">' +
+          '           刷新采购' +
+          '         </div>' +
+          '         <div class="check-price">' +
+          '           查看报价' +
+          '         </div>' +
           '       </div>' +
           '     </div>' +
           '   </div>' +

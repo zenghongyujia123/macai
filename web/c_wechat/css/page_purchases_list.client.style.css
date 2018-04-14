@@ -2,6 +2,26 @@
   height: 200px;
   width: 100%;
 }
+.page-purchases-list .tip-container {
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  background-color: #ebc48b;
+  font-size: 13px;
+  padding: 10px 15px;
+}
+.page-purchases-list .tip-container .tip-btn {
+  background-color: #ff9100;
+  color: white;
+  text-align: center;
+  height: 24px;
+  line-height: 24px;
+  border-radius: 3px;
+  padding: 0px 10px;
+}
 .page-purchases-list .purchases-list-item .title1 {
   font-size: 16px;
   display: flex;
@@ -49,10 +69,24 @@
   color: #999;
 }
 .page-purchases-list .purchases-list-item .item-bottom .stop,
+.page-purchases-list .purchases-list-item .item-bottom .footer-right {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+}
 .page-purchases-list .purchases-list-item .item-bottom .refresh {
   font-size: 12px;
   padding: 5px;
   border: 1px solid #e5e5e5;
   color: #999;
   border-radius: 2px;
+}
+.page-purchases-list .purchases-list-item .item-bottom .check-price {
+  font-size: 12px;
+  padding: 5px;
+  background-color: #ff6000;
+  color: white;
+  border-radius: 2px;
+  margin-left: 10px;
 }

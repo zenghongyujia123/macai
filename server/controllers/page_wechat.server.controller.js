@@ -4,6 +4,7 @@
 var path = require('path');
 var userLogic = require('../logics/user');
 var goodsLogic = require('../logics/goods');
+var purchasesLogic = require('../logics/purchases');
 var wechatLogic = require('../logics/wechat');
 var marketLogic = require('../logics/market');
 var moment = require('moment');
@@ -50,9 +51,9 @@ exports.page_purchases_create_main = function (req, res, next) {
 };
 
 exports.page_purchases_create_price = function (req, res, next) {
-  goodsLogic.my_supply_list(req.user, { goods_category:req.purchases.goods_category || '' }, function (err,results) {
+  goodsLogic.my_supply_list(req.user, { goods_category: req.purchases.goods_category || '' }, function (err, results) {
     var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_create_price.client.view.html');
-    return res.render(filepath, {purchases:req.purchases||{},supplys:results});
+    return res.render(filepath, { purchases: req.purchases || {}, supplys: results });
   });
 };
 
@@ -62,6 +63,14 @@ exports.page_purchases_list = function (req, res, next) {
     return res.render(filepath, { banners: results.list || [] });
   })
 };
+
+exports.page_purchases_price_list = function (req, res, next) {
+  purchasesLogic.offer_price_list(req.user, { purchases_id: req.query.purchases_id || '', status: req.query.status || '' }, function (err, results) {
+    var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_price_list.client.view.html');
+    return res.render(filepath, { prices: results || [] });
+  })
+};
+
 exports.page_purchases_my_list = function (req, res, next) {
   var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_my_list.client.view.html');
   return res.render(filepath, {});

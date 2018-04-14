@@ -59,10 +59,10 @@
           <p>价格</p>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input expect_min_price" placeholder="买家意向：<%= (purchases.expect_price||'面议') %>">
+          <input class="weui-input supply_price" placeholder="买家意向：<%= (purchases.expect_price||'面议') %>">
         </div>
         <div class="weui-cell__ft" style="width:50px;">
-          <input class="weui-input supply_price" id="picker-expect-price-unit" style="color:#1aad19;" disabled="disabled" value="元/斤">
+          <input class="weui-input" id="picker-expect-price-unit" style="color:#1aad19;" disabled="disabled" value="<%= (purchases.expect_price_unit||'面议') %>">
         </div>
       </div>
       <div class="weui-cell weui-cell_access" href="javascript:;">

@@ -127,11 +127,11 @@ function create_purchases(user, info, callback) {
 
 }
 
-exports.purchases_offer_price = function (user,supply, purchases, info, callback) {
+exports.purchases_offer_price = function (user, supply, purchases, info, callback) {
   new PurchasesOfferPrice({
-    supply:supply,
+    supply: supply,
     purchases: purchases,
-    purchases_user:purchases.user,
+    purchases_user: purchases.user,
     price: info.price || 0,
     province: info.province,
     city: info.city,
@@ -144,5 +144,31 @@ exports.purchases_offer_price = function (user,supply, purchases, info, callback
     }
 
     return callback(null, result);
+  });
+}
+
+exports.un_read_offer_price_count = function (user, callback) {
+  PurchasesOfferPrice.count({ status: 'unread', purchases_user: user._id }, function (err, count) {
+    if (err ) {
+      return callback({ err: sysErr.database_query_error });
+    }
+    return callback(null, count);
+  });
+}
+
+exports.offer_price_list = function (user, info, callback) {
+  var query = { purchases_user:user._id };
+  if(info.status){
+    query.status = info.status;
+  }
+  if(info.purchases_id){
+    query.purchases = info.purchases_id;
+  }
+
+  PurchasesOfferPrice.find(query).populate('purchases supply_user').exec(function (err, results) {
+    if (err || !results) {
+      return callback({ err: sysErr.database_query_error });
+    }
+    return callback(null, results);
   });
 }

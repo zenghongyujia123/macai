@@ -3,6 +3,28 @@
     height: 200px;
     width: 100%;
   }
+  .tip-container{
+    height: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    background-color: #ebc48b;
+    font-size: 13px;
+    padding:10px 15px;
+    .tip-text{
+    }
+    .tip-btn{
+      background-color: rgb(255, 145, 0);
+      color:white;
+      text-align: center;
+      height: 24px;
+      line-height: 24px;
+      border-radius: 3px;
+      padding:0px 10px;
+    }
+  }
   .purchases-list-item {
     .title1 {
       font-size: 16px;
@@ -50,12 +72,26 @@
         color: #999;
       }
       .stop,
+      .footer-right{
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        align-items: center;
+      }
       .refresh {
         font-size: 12px;
         padding: 5px;
         border: 1px solid #e5e5e5;
         color: #999;
         border-radius: 2px;
+      }
+      .check-price{
+        font-size: 12px;
+        padding:5px;
+        background-color: #ff6000;
+        color: white;
+        border-radius: 2px;
+        margin-left: 10px;
       }
     }
   }

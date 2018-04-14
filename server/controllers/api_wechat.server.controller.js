@@ -7083,6 +7083,17 @@ exports.purchases_offer_price = function (req, res, next) {
 }
 
 
+exports.un_read_offer_price_count = function (req, res, next) {
+  purchasesLogic.un_read_offer_price_count(req.user, function (err,result) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send({count:result})
+  })
+}
+
+
+
 
 
 

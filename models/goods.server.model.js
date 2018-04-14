@@ -49,9 +49,10 @@ module.exports = function (appDb) {
       type: String,
       default: 'PurchasesOfferPrice'
     },
-    is_read: {
-      type: Boolean,
-      default: false
+    status: {
+      type: String,
+      enum:['unread','read'],
+      default: 'unread'
     },
     supply: {
       type: Schema.Types.ObjectId,
@@ -84,6 +85,10 @@ module.exports = function (appDb) {
     description: {
       type: String,
     }
+  });
+  PurchasesOfferPriceSchema.plugin(timestamps, {
+    createdAt: 'create_time',
+    updatedAt: 'update_time'
   });
   appDb.model('PurchasesOfferPrice', PurchasesOfferPriceSchema);
 

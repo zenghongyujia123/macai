@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no,width=device-width" />
+  <title>报价</title>
+  <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
+  <link rel="stylesheet" href="../libs/Swiper/dist/css/swiper.min.css" />
+  <link rel="stylesheet" href="../libs/font-awesome/css/font-awesome.min.css" />
+
+  <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
+  <link rel="stylesheet" href="../c_wechat/css/page_index.client.style.css" />
+  <link rel="stylesheet" href="../c_wechat/css/com_goods_choose_container.client.style.css" />
+  <link rel="stylesheet" href="../c_wechat/css/page_purchases_price_list.client.style.css" />
+
+  <script type="text/javascript" src="../libs/Swiper/dist/js/swiper.min.js"></script>
+  <script src="../libs/jquery/dist/jquery.js"></script>
+
+  <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
+  <script src="../c_libs/common.js"></script>
+  <script src="../c_wechat/controllers/page_tool.client.controller.js"></script>
+  <script src="../c_wechat/controllers/page_common.client.controller.js"></script>
+  <!-- <script src="../c_wechat/controllers/page_purchases_price_list.client.controller.js"></script> -->
+  <style>
+  </style>
+</head>
+
+<body>
+  <div class="container">
+
+  </div>
+</body>
+<script>
+  $(function () {
+    var prices = '<%- JSON.stringify( prices) %>';
+    prices = JSON.parse(prices);
+    for (var i = 0; i < prices.length; i++) {
+      $('.container').append($(
+        '    <div class="item">' +
+        '  <div class="row">' +
+        '    <div class="key">' +
+        '       ' + prices[i].supply_user.nickname +
+        '    </div>' +
+        '    <div class="value">' +
+        '       ' + prices[i].create_time +
+        '    </div>' +
+        '  </div>' +
+        '  <div class="row">' +
+        '    <div class="key">' +
+        '      采购：' +
+        '       ' + (prices[i].purchases.goods_category + '/' + prices[i].purchases.goods_brand) +
+        '    </div>' +
+        '    <div class="value">' +
+        '    </div>' +
+        '  </div>' +
+        '  <div class="row">' +
+        '    <div class="key">' +
+        '      价格：' +
+        '       <span style="color:#FFBE00">' + (prices[i].price +'</span>'+ prices[i].purchases.expect_price_unit) +
+        '    </div>' +
+        '    <div class="value">' +
+        '      供应量：' +
+        '       <span  style="color:#FFBE00">' + (prices[i].supply_count) +
+        '    </span></div>' +
+        '  </div>' +
+        '  <div class="row">' +
+        '    <div class="key">' +
+        (prices[i].province + prices[i].city) +
+        '    </div>' +
+        '    <div class="value">' +
+        '    </div>' +
+        '  </div>' +
+        '  <div class="row">' +
+        '    <div class="key">' +
+        '      联系方式：******' +
+        '    </div>' +
+        '    <div class="value">' +
+        '    </div>' +
+        '  </div>' +
+        '  <div class="row">' +
+        '    <div class="key">' +
+        '    </div>' +
+        '    <a href="/page_wechat/page_purchases_price_list" class="detail">' +
+        '      查看详情' +
+        '    </a>' +
+        '  </div>' +
+        '</div>'
+      ));
+    }
+
+  })
+</script>
+
+</html>
