@@ -101,7 +101,7 @@
       <div class="weui-cell">
         <div class="weui-cell__bd">
           货品描述
-          <textarea  class="weui-textarea remark" placeholder="请输入货品描述" rows="3"></textarea>
+          <textarea class="weui-textarea remark" placeholder="请输入货品描述" rows="3"></textarea>
           <!-- <textarea onKeyUp="value=value.replace(/[\d]/g,'')" class="weui-textarea remark" placeholder="请输入货品描述" rows="3"></textarea> -->
           <div class="weui-textarea-counter">
             <span class="remark-number">0</span>/200</div>
@@ -325,20 +325,25 @@
       }
       console.log(data);
 
-      $.showLoading();
-      $.ajax({
-        url: '/api_wechat/supply/create_supply',
-        data: data,
-        method: 'post',
-        success: function (data) {
-          $.hideLoading();
-          console.log(data);
-          if (!data || data.err) {
-            return $.toptip(data.err.message, 'warning');
+      $.confirm("确定发布？货品将在三天内自动下架，如需延长则在‘我的供应列表中刷新货品’", function () {
+        $.showLoading();
+        $.ajax({
+          url: '/api_wechat/supply/create_supply',
+          data: data,
+          method: 'post',
+          success: function (data) {
+            $.hideLoading();
+            console.log(data);
+            if (!data || data.err) {
+              return $.toptip(data.err.message, 'warning');
+            }
+            $.toast("操作成功");
+            window.location = '/page_wechat/page_supply_list'
           }
-          $.toast("操作成功");
-          window.location = '/page_wechat/page_supply_list'
-        }
+        });
+        //点击确认后的回调函数
+      }, function () {
+        //点击取消后的回调函数
       });
     });
 
