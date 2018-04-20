@@ -13,6 +13,8 @@
 
   <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
   <script type="text/javascript" src="../libs/Swiper/dist/js/swiper.min.js"></script>
+  <script src="../libs/moment/min/moment.min.js"></script>
+  
   <script src="../libs/jquery/dist/jquery.js"></script>
 
   <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
@@ -34,6 +36,7 @@
       <div class="name-row">
         <div class="name">
           <%= (((supply.goods_class||'') + supply.goods_category + supply.goods_brand) ||'-') %>
+            <span class="grounding_time" style="font-size: 14px;"></span>
         </div>
         <a class="phone" href="tel:0551-65669265">联系客服</a>
       </div>
@@ -113,6 +116,10 @@
 </body>
 <script>
   $(function () {
+    var supply = '<%- JSON.stringify( supply) %>';
+    supply = JSON.parse(supply);
+    if (supply.grounding_time)
+      $('.grounding_time').text('(上架：'+moment( supply.grounding_time).format('YYYY-MM-DD')+')');
 
   })
 </script>

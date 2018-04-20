@@ -54,7 +54,7 @@ $(function () {
 
       obj.find('.delete').click(function (e) {
         stopBubble(e);
-        $.confirm("确定删除该采购吗", function () {
+        $.confirm("确定删除该供应吗", function () {
           deteleSupply(detail_id, function () {
             obj.remove();
           });
