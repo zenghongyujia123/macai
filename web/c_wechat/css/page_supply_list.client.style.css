@@ -67,10 +67,31 @@
   font-size: 12px;
   color: #999;
 }
+.page-supply-list .purchases-list-item .item-bottom .footer-right {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  align-items: center;
+}
 .page-supply-list .purchases-list-item .item-bottom .stop {
   font-size: 12px;
   padding: 5px;
   border: 1px solid #e5e5e5;
   color: #999;
   border-radius: 2px;
+}
+.page-supply-list .purchases-list-item .item-bottom .refresh {
+  font-size: 12px;
+  padding: 5px;
+  border: 1px solid #e5e5e5;
+  color: #999;
+  border-radius: 2px;
+}
+.page-supply-list .purchases-list-item .item-bottom .delete {
+  font-size: 12px;
+  padding: 5px;
+  background-color: #ff7977;
+  color: white;
+  border-radius: 2px;
+  margin-left: 10px;
 }

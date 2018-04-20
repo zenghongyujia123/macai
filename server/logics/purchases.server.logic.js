@@ -149,7 +149,7 @@ exports.purchases_offer_price = function (user, supply, purchases, info, callbac
 
 exports.un_read_offer_price_count = function (user, callback) {
   PurchasesOfferPrice.count({ status: 'unread', purchases_user: user._id }, function (err, count) {
-    if (err ) {
+    if (err) {
       return callback({ err: sysErr.database_query_error });
     }
     return callback(null, count);
@@ -157,11 +157,11 @@ exports.un_read_offer_price_count = function (user, callback) {
 }
 
 exports.offer_price_list = function (user, info, callback) {
-  var query = { purchases_user:user._id };
-  if(info.status){
+  var query = { purchases_user: user._id };
+  if (info.status) {
     query.status = info.status;
   }
-  if(info.purchases_id){
+  if (info.purchases_id) {
     query.purchases = info.purchases_id;
   }
 
@@ -170,5 +170,15 @@ exports.offer_price_list = function (user, info, callback) {
       return callback({ err: sysErr.database_query_error });
     }
     return callback(null, results);
+  });
+}
+
+exports.delete_purchases = function (user, purchases, callback) {
+  purchases.deleted_status = true;
+  purchases.save(function (err, result) {
+    if (err) {
+      return callback({ err: sysErr.database_save_error });
+    }
+    return callback(null, result);
   });
 }

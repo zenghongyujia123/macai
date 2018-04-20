@@ -44,6 +44,6 @@ module.exports = function (app) {
   app.route('/api_wechat/purchases/purchases_offer_price').post(userFilter.requirePostUser,goodsFilter.requireSupply,goodsFilter.requirePurchases, ctr.purchases_offer_price)
   app.route('/api_wechat/purchases/un_read_offer_price_count').post(userFilter.requirePostUser, ctr.un_read_offer_price_count)
 
-
-  
+  app.route('/api_wechat/purchases/delete_purchases').post(userFilter.requirePostUser,goodsFilter.requirePurchases, ctr.delete_purchases)
+  app.route('/api_wechat/supply/delete_supply').post(userFilter.requirePostUser,goodsFilter.requireSupply, ctr.delete_supply)
 };

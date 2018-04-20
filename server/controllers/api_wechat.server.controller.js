@@ -7074,7 +7074,7 @@ exports.update_personal_auth_info = function (req, res, next) {
 }
 
 exports.purchases_offer_price = function (req, res, next) {
-  purchasesLogic.purchases_offer_price(req.user,req.supply, req.purchases, req.body, function (err,result) {
+  purchasesLogic.purchases_offer_price(req.user, req.supply, req.purchases, req.body, function (err, result) {
     if (err) {
       return res.send(err);
     }
@@ -7084,13 +7084,40 @@ exports.purchases_offer_price = function (req, res, next) {
 
 
 exports.un_read_offer_price_count = function (req, res, next) {
-  purchasesLogic.un_read_offer_price_count(req.user, function (err,result) {
+  purchasesLogic.un_read_offer_price_count(req.user, function (err, result) {
     if (err) {
       return res.send(err);
     }
-    return res.send({count:result})
+    return res.send({ count: result })
   })
 }
+
+exports.delete_purchases = function (req, res, next) {
+  purchasesLogic.delete_purchases(req.user, req.purchases, function (err, result) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send({ count: result })
+  })
+}
+
+exports.delete_supply = function (req, res, next) {
+  supplyLogic.delete_supply(req.user, req.supply, function (err, result) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send({ count: result })
+  })
+}
+
+
+
+
+
+
+
+
+
 
 
 

@@ -95,6 +95,7 @@ exports.my_purchases_list = function (user, info, callback) {
 
   var query = {
     user: user._id,
+    deleted_status: false
   };
   var create_time = info.last_create_time || '';
 
@@ -232,6 +233,7 @@ exports.my_supply_list = function (user, info, callback) {
 
   var query = {
     user: user._id,
+    deleted_status: false
   };
   var create_time = info.last_create_time || '';
 

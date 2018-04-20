@@ -138,6 +138,16 @@ function create_supply(user, info, callback) {
 
 }
 
+exports.delete_supply = function (user, supply, callback) {
+  supply.deleted_status = true;
+  supply.save(function (err, result) {
+    if (err) {
+      return callback({ err: sysErr.database_save_error });
+    }
+    return callback(null, result);
+  });
+}
+
 
 
 

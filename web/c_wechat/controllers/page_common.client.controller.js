@@ -371,6 +371,25 @@ function refreshGoods(detail_id, model_string, callback) {
     }
   });
 }
+function detelePurchases(purchases_id, callback) {
+  deleteGoods({ purchases_id: purchases_id }, '/api_wechat/purchases/delete_purchases', callback);
+}
+
+function deteleSupply(supply_id, callback) {
+  deleteGoods({ supply_id: supply_id }, '/api_wechat/supply/delete_supply', callback);
+}
+
+function deleteGoods(data, url, callback) {
+  $.ajax({
+    url: url,
+    method: 'post',
+    data: data,
+    success: function (data) {
+      console.log(data);
+      return callback(data);
+    }
+  });
+}
 
 function stopBubble(e) {
   if (e.preventDefault) {
