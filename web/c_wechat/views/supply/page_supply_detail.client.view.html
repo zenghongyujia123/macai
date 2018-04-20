@@ -24,24 +24,18 @@
     <div class="swiper-container">
       <div class="swiper-wrapper">
         <% for(var i =0;i<supply.photos.length;i++){ %>
-          <!-- <div class="center-img">
-            <img src="<%= supply.photos[i] %>">
-          </div> -->
           <div class="swiper-slide">
             <img src="<%= supply.photos[i] %>" style="width:100%;height:100%">
           </div>
           <%  } %>
-            <!-- <div class="swiper-slide">
-              <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516822472890&di=a85e7abe638922a35d8c4c10ee3b14c6&imgtype=0&src=http%3A%2F%2Fpic1.cxtuku.com%2F00%2F09%2F61%2Fb948e039f9ee.jpg">
-            </div>
-            <div class="swiper-slide">
-              <img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1516814838684&di=d9fea51c2e8a8bf459d530a73b86073b&imgtype=0&src=http%3A%2F%2Fpic.58pic.com%2F58pic%2F15%2F39%2F05%2F96N58PICsWH_1024.jpg">
-            </div> -->
       </div>
     </div>
     <div class="detail-content">
-      <div class="name">
-        <%= (((supply.goods_class||'') + supply.goods_category + supply.goods_brand) ||'-') %>
+      <div class="name-row">
+        <div class="name">
+          <%= (((supply.goods_class||'') + supply.goods_category + supply.goods_brand) ||'-') %>
+        </div>
+        <a class="phone" href="tel:0551-65669265">联系客服</a>
       </div>
       <div class="address">
         <%= (( supply.send_province + supply.send_city )||'-') %>
@@ -65,9 +59,11 @@
         <%  } %>
     </div>
     <div class="detail-content">
-      <span class="auth-tip orange">实名认证</span>
-      <span class="auth-tip blue">企业认证</span>
-      <span class="auth-tip green">实地认证</span>
+      <% if(supply.user&&supply.user.personal_auth_stauts==='authed'){ %>
+        <span class="auth-tip orange">实名认证</span>
+        <% }else{ %>
+          <span class="auth-tip orange">未实名认证</span>
+          <% } %>
     </div>
     <div class="detail-content">
       <div class="center-title">货品规格</div>
