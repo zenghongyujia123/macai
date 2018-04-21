@@ -48,6 +48,17 @@ $(function () {
         });
         return false;
       });
+      obj.find('.delete').click(function (e) {
+        stopBubble(e);
+        $.confirm("确定删除该采购吗", function () {
+          detelePurchases(detail_id, function () {
+            obj.remove();
+          });
+          //点击确认后的回调函数
+        }, function () {
+          //点击取消后的回调函数
+        });
+      });
     },
     append_my_list: function (data) {
       for (var i = 0; i < data.length; i++) {
@@ -64,8 +75,13 @@ $(function () {
           '       <div class="price">' + item.expect_price +
           '         <span class="price-unit">' + item.expect_price_unit + '</span>' +
           '       </div>' +
+          '       <div class="footer-right">' +
           '       <div class="refresh">' +
           '         刷新采购' +
+          '       </div>' +
+          '         <div class="delete">' +
+          '           删除' +
+          '         </div>' +
           '       </div>' +
           '     </div>' +
           '   </div>' +
