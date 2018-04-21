@@ -47,7 +47,7 @@ exports.page_signin = function (req, res, next) {
 };
 exports.page_purchases_create_main = function (req, res, next) {
   var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_create_main.client.view.html');
-  return res.render(filepath, {});
+  return res.render(filepath, { user: req.user });
 };
 
 exports.page_purchases_create_price = function (req, res, next) {
