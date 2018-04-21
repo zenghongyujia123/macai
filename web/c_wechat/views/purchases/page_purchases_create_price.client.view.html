@@ -36,7 +36,7 @@
             <div class="weui-uploader__bd">
               <ul class="weui-uploader__files">
                 <% for(var i =0;i<supplys.length;i++){ %>
-                  <li class="weui-uploader__file"  id="<%= supplys[i]._id %>">
+                  <li class="weui-uploader__file" id="<%= supplys[i]._id %>">
                     <i class=" weui-icon_msg"></i>
                     <img class="img" src="<%= supplys[i].photos[0] %>">
                     <div class="name">
@@ -112,13 +112,17 @@
       showDistrict: false
     });
 
-  
 
-    $('.weui-uploader__file').click(function(){
+
+    $('.weui-uploader__file').click(function () {
       $(this).siblings().find('i').removeClass('weui-icon-success');
       $(this).find('i').addClass('weui-icon-success');
       select_supply_id = this.id;
     });
+
+    if ($('.weui-uploader__file').first()) {
+      $('.weui-uploader__file').first().click();
+    }
 
     var select_supply_id;
     var len = 0;
@@ -143,7 +147,7 @@
       }
     });
 
-      $('.submit').click(function () {
+    $('.submit').click(function () {
       var address = $('.address').val();
       var supply_count = $('.supply_count').val();
       var description = $('.description').val();
@@ -152,8 +156,8 @@
       if (!address) {
         address = '全国 全国';
       }
-      if(!select_supply_id){
-        return $.toast("请选择供应货品","forbidden");
+      if (!select_supply_id) {
+        return $.toast("请选择供应货品", "forbidden");
       }
       province = address.split(' ')[0];
       city = address.split(' ')[1];
@@ -161,7 +165,7 @@
       $.ajax({
         url: '/api_wechat/purchases/purchases_offer_price',
         data: {
-          supply_id:select_supply_id,
+          supply_id: select_supply_id,
           province: province,
           city: city,
           purchases_id: '<%= purchases._id %>',
@@ -171,12 +175,12 @@
         },
         method: 'post',
         success: function (data) {
-          if(!data||data.err){
-            return $.toast(data.err.message,"forbidden");
+          if (!data || data.err) {
+            return $.toast(data.err.message, "forbidden");
           }
-          else{
-             $.toast('报价成功！');
-             window.history.back();
+          else {
+            $.toast('报价成功！');
+            window.history.back();
           }
         }
       });
