@@ -6,15 +6,12 @@
   <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no,width=device-width" />
   <title>报价</title>
   <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
-  <link rel="stylesheet" href="../libs/Swiper/dist/css/swiper.min.css" />
-  <link rel="stylesheet" href="../libs/font-awesome/css/font-awesome.min.css" />
 
   <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
   <link rel="stylesheet" href="../c_wechat/css/page_index.client.style.css" />
   <link rel="stylesheet" href="../c_wechat/css/com_goods_choose_container.client.style.css" />
   <link rel="stylesheet" href="../c_wechat/css/page_purchases_price_list.client.style.css" />
-
-  <script type="text/javascript" src="../libs/Swiper/dist/js/swiper.min.js"></script>
+  <script src="../libs/moment/min/moment.min.js"></script>
   <script src="../libs/jquery/dist/jquery.js"></script>
 
   <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
@@ -43,7 +40,7 @@
         '       ' + prices[i].supply_user.nickname +
         '    </div>' +
         '    <div class="value">' +
-        '       ' + prices[i].create_time +
+        '       ' + moment(prices[i].create_time).format('YYYY-MM-dd hh:mm') +
         '    </div>' +
         '  </div>' +
         '  <div class="row">' +
@@ -57,7 +54,7 @@
         '  <div class="row">' +
         '    <div class="key">' +
         '      价格：' +
-        '       <span style="color:#FFBE00">' + (prices[i].price +'</span>'+ prices[i].purchases.expect_price_unit) +
+        '       <span style="color:#FFBE00">' + (prices[i].price + '</span>' + prices[i].purchases.expect_price_unit) +
         '    </div>' +
         '    <div class="value">' +
         '      供应量：' +
@@ -81,9 +78,9 @@
         '  <div class="row">' +
         '    <div class="key">' +
         '    </div>' +
-        '    <a class="detail">' +
-        '      查看详情' +
-        '    </a>' +
+        // '    <a class="detail">' +
+        // '      查看详情' +
+        // '    </a>' +
         '  </div>' +
         '</div>'
       ));

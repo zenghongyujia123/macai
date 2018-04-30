@@ -77,7 +77,7 @@ $(function () {
       });
       obj.find('.check-price').click(function (e) {
         stopBubble(e);
-        window.location = '/page_wechat/page_purchases_price_list?purchases_id=' + $(this)[0].id;
+        window.location = '/page_wechat/page_purchases_price_list?purchases_id=' + detail_id;
       });
       obj.find('.delete').click(function (e) {
         stopBubble(e);

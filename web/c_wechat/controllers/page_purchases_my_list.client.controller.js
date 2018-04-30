@@ -48,6 +48,10 @@ $(function () {
         });
         return false;
       });
+      obj.find('.check-price').click(function (e) {
+        stopBubble(e);
+        window.location = '/page_wechat/page_purchases_price_list?purchases_id=' + detail_id;
+      });
       obj.find('.delete').click(function (e) {
         stopBubble(e);
         $.confirm("确定删除该采购吗", function () {
@@ -79,6 +83,9 @@ $(function () {
           '       <div class="refresh">' +
           '         刷新采购' +
           '       </div>' +
+          '         <div class="check-price">' +
+          '           查看报价' +
+          '         </div>' +
           '         <div class="delete">' +
           '           删除' +
           '         </div>' +

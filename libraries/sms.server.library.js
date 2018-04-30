@@ -34,7 +34,7 @@ function getTimeString(time) {
     return '';
   }
   if (time.getTime) {
-    return time.format('yyyy-MM-dd hh:mm');
+    return time.format('yyyy-MM-DD hh:mm');
   }
   return time;
 }
