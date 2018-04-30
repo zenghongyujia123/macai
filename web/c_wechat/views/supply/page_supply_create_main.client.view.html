@@ -260,6 +260,7 @@
     $('.undercarriage_time').calendar();
 
     $('.submit').click(function () {
+      var remark = $('.remark').val();
       var goods_name = $('.goods_name').val();
       var goods_category = $('.goods_category').val();
       var goods_brand = $('.goods_brand').val();
@@ -303,6 +304,9 @@
         return $.toptip('请输入服务方式', 'warning');
       }
 
+      if (!remark || remark.length < 10) { return $.toptip('请输入大于10字货物描述', 'warning'); }
+
+
       // photos
       var data = {
         goods_name: goods_name,
@@ -321,7 +325,8 @@
         send_address: send_address,
         provide_services: provide_services,
         wechat_server_ids: wechat_server_ids,
-        photos: []
+        photos: [],
+        remark: remark
       }
       console.log(data);
 
