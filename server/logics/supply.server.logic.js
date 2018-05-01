@@ -12,7 +12,8 @@ var that = exports;
 
 exports.has_supply = function (user, info, callback) {
   var query = {
-    user: user._id
+    user: user._id,
+    deleted_status: { $ne: true }
   }
 
   if (info.goods_category) {
