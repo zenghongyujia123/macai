@@ -199,6 +199,14 @@ exports.market_get_market = function (req, res, next) {
   })
 }
 
+exports.offer_price_list = function (req, res, next) {
+  purchasesLogic.offer_price_list(null, req.body, function (err, results) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(results);
+  });
+}
 
 
 

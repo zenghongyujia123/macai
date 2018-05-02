@@ -5,7 +5,7 @@ var cSite = angular.module('chaoQianSite', [
   //   'LocalStorageModule',
   //   'base64',
   'ngMaterial',
-  'textAngular'
+  // 'textAngular'
 ]);
 
 cSite.config(function ($mdThemingProvider) {
@@ -304,7 +304,11 @@ cSite.factory('UserNetwork',
         },
         create_banner: function (scope, params) {
           return Http.postRequestWithCheck(scope, '/api_backend/create_banner', params);
-        }
+        },
+        offer_price_list: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/offer_price_list', params);
+        },
+        
       };
     }]);
 
@@ -674,6 +678,26 @@ cSite.factory('QiniuService', [
 
   }]);
 
+'use strict';
+
+cSite.directive('dialogLoadingBox', ['$rootScope', 'GlobalEvent', 'CommonHelper', function ($rootScope, GlobalEvent, CommonHelper) {
+  return {
+    restrict: 'E',
+    templateUrl: '/c_backend/site_admin/directive/dialog_loading_box/dialog_loading_box.client.view.html',
+    replace: true,
+    scope: {},
+    controller: function ($scope, $element) {
+      $scope.dialogInfo = {
+        isShow: false
+      };
+
+      $rootScope.$on(GlobalEvent.onShowLoading, function (event, isLoading) {
+        $scope.dialogInfo.isShow = isLoading;
+      });
+    }
+  };
+}]);
+
 /**
  * 货物照片预览
  * author: louisha
@@ -787,26 +811,6 @@ cSite.directive('mPhotoScan', ['$document', function ($document) {
     }
   }
 }]);
-'use strict';
-
-cSite.directive('dialogLoadingBox', ['$rootScope', 'GlobalEvent', 'CommonHelper', function ($rootScope, GlobalEvent, CommonHelper) {
-  return {
-    restrict: 'E',
-    templateUrl: '/c_backend/site_admin/directive/dialog_loading_box/dialog_loading_box.client.view.html',
-    replace: true,
-    scope: {},
-    controller: function ($scope, $element) {
-      $scope.dialogInfo = {
-        isShow: false
-      };
-
-      $rootScope.$on(GlobalEvent.onShowLoading, function (event, isLoading) {
-        $scope.dialogInfo.isShow = isLoading;
-      });
-    }
-  };
-}]);
-
 /**
  * Created by lance on 2016/11/17.
  */
@@ -1453,6 +1457,19 @@ cSite.controller('PurchasesDetailController', [
     var pageConfig = {
       detail_id: $stateParams.detail_id,
       detail: {},
+      price_list: [],
+      get_date: function (date) {
+        return moment(date).format('YYYY-MM-DD');
+      },
+      offer_price_list: function () {
+        UserNetwork.offer_price_list($scope, { purchases_id: pageConfig.detail_id }).then(function (data) {
+          // UserNetwork.market_save_photos($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id, photos: photos }).then(function (data) {
+          if (!data.err) {
+            pageConfig.price_list = data;
+          }
+          console.log(data);
+        });
+      },
       market_update_status: function (status) {
         UserNetwork.market_update_status($scope, { model_string: 'Purchases', detail_id: pageConfig.detail_id, status: status }).then(function (data) {
           // UserNetwork.market_save_photos($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id, photos: photos }).then(function (data) {
@@ -1502,6 +1519,7 @@ cSite.controller('PurchasesDetailController', [
     };
     $scope.pageConfig = pageConfig;
     pageConfig.get_detail();
+    pageConfig.offer_price_list();
   }]);
 
 /**

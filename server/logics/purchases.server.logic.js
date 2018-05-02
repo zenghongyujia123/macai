@@ -157,7 +157,10 @@ exports.un_read_offer_price_count = function (user, callback) {
 }
 
 exports.offer_price_list = function (user, info, callback) {
-  var query = { purchases_user: user._id };
+  var query = {};
+  if (user) {
+    query.purchases_user = user._id;
+  }
   if (info.status) {
     query.status = info.status;
   }

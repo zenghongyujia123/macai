@@ -10,86 +10,81 @@
     </div>
   </div>
   <div layout="row" layout-align="start start">
-    <div class="left" flex="">
+    <div class="left" flex="30">
       <div class="list-header">
-          <div class="list-item" layout="row" layout-align="start center"><div class="column-item" flex=""> 采购货品类型</div><div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.goods_class}}</div></div>
-          <div class="list-item" layout="row" layout-align="start center"><div class="column-item" flex=""> 采购货品品类</div><div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.goods_category}}</div></div>
-          <div class="list-item" layout="row" layout-align="start center"><div class="column-item" flex=""> 采购货品品种</div><div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.goods_brand}}</div></div>
-          <div class="list-item" layout="row" layout-align="start center"><div class="column-item" flex=""> 规格</div><div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.goods_specs}}</div></div>
-          <div class="list-item" layout="row" layout-align="start center"><div class="column-item" flex=""> 需求量</div><div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.need_number}}</div></div>
-          <div class="list-item" layout="row" layout-align="start center"><div class="column-item" flex=""> 需求量单位</div><div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.need_unit}}</div></div>
-          <div class="list-item" layout="row" layout-align="start center"><div class="column-item" flex=""> 期望价格</div><div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.expect_price}}</div></div>
-          <div class="list-item" layout="row" layout-align="start center"><div class="column-item" flex=""> 期望价格单位</div><div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.expect_price_unit}}</div></div>
-          <div class="list-item" layout="row" layout-align="start center"><div class="column-item" flex=""> 期望货源省</div><div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.expect_province}}</div></div>
-          <div class="list-item" layout="row" layout-align="start center"><div class="column-item" flex=""> 期望货源市</div><div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.expect_city}}</div></div>
-          <div class="list-item" layout="row" layout-align="start center"><div class="column-item" flex=""> 补充说明</div><div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.remark}}</div></div>
-          <div class="list-item" layout="row" layout-align="start center"><div class="column-item" flex=""> 采购频率</div><div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.frequency}}</div></div>
-          <div class="list-item" layout="row" layout-align="start center"><div class="column-item" flex=""> 采购时长</div><div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.duration}}</div></div>
-          <div class="list-item" layout="row" layout-align="start center"><div class="column-item" flex=""> 收货地址省</div><div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.receive_province}}</div></div>
-          <div class="list-item" layout="row" layout-align="start center"><div class="column-item" flex=""> 收货地址市</div><div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.receive_city}}</div></div>
-          <div class="list-item" layout="row" layout-align="start center"><div class="column-item" flex=""> 电话</div><div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.mobile_phone}}</div></div>
-          <div class="list-item" layout="row" layout-align="start center"><div class="column-item" flex=""> 角色</div><div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.role}}</div></div>
-
-        <!-- <div class="list-item" layout="row" layout-align="start center"><div class="column-item" flex=""> 供应货品类型</div><div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.goods_class}}</div></div>
         <div class="list-item" layout="row" layout-align="start center">
-          <div class="column-item" flex=""> 供应货品品类</div>
-          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.goods_category}}</div>
-        </div>
-        <div class="list-item" layout="row" layout-align="start center">
-          <div class="column-item" flex=""> 供应货品品种</div>
-          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.goods_brand}}</div>
+          <div class="column-item" flex=""> 采购货品</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.goods_class+' '+pageConfig.detail.goods_category+' '+pageConfig.detail.goods_brand}}</div>
         </div>
         <div class="list-item" layout="row" layout-align="start center">
           <div class="column-item" flex=""> 规格</div>
           <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.goods_specs}}</div>
         </div>
         <div class="list-item" layout="row" layout-align="start center">
-          <div class="column-item" flex=""> 是否现货</div>
-          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.is_cash_goods}}</div>
+          <div class="column-item" flex=""> 需求量</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.need_number+pageConfig.detail.need_unit}}</div>
         </div>
         <div class="list-item" layout="row" layout-align="start center">
-          <div class="column-item" flex=""> 下架时间</div>
-          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.undercarriage_time}}</div>
+          <div class="column-item" flex=""> 期望价格</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.expect_price+pageConfig.detail.expect_price_unit}}</div>
         </div>
         <div class="list-item" layout="row" layout-align="start center">
-          <div class="column-item" flex=""> 批发价</div>
-          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.price}}</div>
+          <div class="column-item" flex=""> 期望货源地</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.expect_province+' '+pageConfig.detail.expect_city}}</div>
         </div>
         <div class="list-item" layout="row" layout-align="start center">
-          <div class="column-item" flex=""> 批发价单位</div>
-          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.price_unit}}</div>
-        </div>
-        <div class="list-item" layout="row" layout-align="start center">
-          <div class="column-item" flex=""> 起批量</div>
-          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.min_count}}</div>
-        </div>
-        <div class="list-item" layout="row" layout-align="start center">
-          <div class="column-item" flex=""> 发货地址省</div>
-          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.send_province}}</div>
-        </div>
-        <div class="list-item" layout="row" layout-align="start center">
-          <div class="column-item" flex=""> 发货地址市</div>
-          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.send_city}}</div>
-        </div>
-        <div class="list-item" layout="row" layout-align="start center">
-          <div class="column-item" flex=""> 货品描述</div>
+          <div class="column-item" flex=""> 补充说明</div>
           <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.remark}}</div>
         </div>
         <div class="list-item" layout="row" layout-align="start center">
-          <div class="column-item" flex=""> 服务方式</div>
-          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.provide_services_string}}</div>
+          <div class="column-item" flex=""> 采购频率</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.frequency}}</div>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> 采购时长</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.duration}}</div>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> 收货地址省</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.receive_province}}</div>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> 收货地址市</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.receive_city}}</div>
         </div>
         <div class="list-item" layout="row" layout-align="start center">
           <div class="column-item" flex=""> 电话</div>
           <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.mobile_phone}}</div>
-        </div> -->
+        </div>
+        <!-- <div class="list-item" layout="row" layout-align="start center"><div class="column-item" flex=""> 角色</div><div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.role}}</div></div> -->
       </div>
     </div>
-    <div class="right" flex="">
+
+    <div class="right" flex="30">
       <div ng-repeat="photo in pageConfig.detail.photos" style="position:relative;float:left;margin:20px;">
         <img style=" width:200px;height:200px;" class="photo" ng-src="{{photo}}" />
         <div ng-click="pageConfig.delete_photo(photo)" style="position:absolute;left:0px;height:30px;line-height:30px;width:100%;bottom:0px;background-color:red;color:white;text-align:center;">删除</div>
       </div>
+    </div>
+    <div class="left" flex="40">
+      <h1 style="text-align: center">报价信息</h1>
+        <div class="list-header">
+          <div class="list-item" layout="row" layout-align="start center">
+            <div class="column-item" flex="">用户 </div>
+            <div class="column-item" flex="">手机号 </div>
+            <div class="column-item" flex="">价格 </div>
+            <div class="column-item" flex="">供应量 </div>
+            <div class="column-item" flex="">报价日期</div>
+          </div>
+
+          <div class="list-item" layout="row" layout-align="start center" ng-repeat="item in pageConfig.price_list">
+              <div class="column-item" flex="">{{item.supply_user.nickname}}</div>
+              <div class="column-item" flex="">{{item.supply_user.username}}</div>
+              <div class="column-item" flex="">{{item.price+item.purchases.expect_price_unit}} </div>
+              <div class="column-item" flex="">{{item.supply_count}} </div>
+              <div class="column-item" flex="">{{pageConfig.get_date(item.create_time)}} </div>
+            </div>
+        </div>
     </div>
   </div>
 </div>

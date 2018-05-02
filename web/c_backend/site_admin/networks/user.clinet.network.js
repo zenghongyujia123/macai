@@ -41,6 +41,10 @@ cSite.factory('UserNetwork',
         },
         create_banner: function (scope, params) {
           return Http.postRequestWithCheck(scope, '/api_backend/create_banner', params);
-        }
+        },
+        offer_price_list: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/offer_price_list', params);
+        },
+        
       };
     }]);

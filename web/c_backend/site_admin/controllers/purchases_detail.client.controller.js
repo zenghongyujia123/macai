@@ -17,6 +17,19 @@ cSite.controller('PurchasesDetailController', [
     var pageConfig = {
       detail_id: $stateParams.detail_id,
       detail: {},
+      price_list: [],
+      get_date: function (date) {
+        return moment(date).format('YYYY-MM-DD');
+      },
+      offer_price_list: function () {
+        UserNetwork.offer_price_list($scope, { purchases_id: pageConfig.detail_id }).then(function (data) {
+          // UserNetwork.market_save_photos($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id, photos: photos }).then(function (data) {
+          if (!data.err) {
+            pageConfig.price_list = data;
+          }
+          console.log(data);
+        });
+      },
       market_update_status: function (status) {
         UserNetwork.market_update_status($scope, { model_string: 'Purchases', detail_id: pageConfig.detail_id, status: status }).then(function (data) {
           // UserNetwork.market_save_photos($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id, photos: photos }).then(function (data) {
@@ -66,4 +79,5 @@ cSite.controller('PurchasesDetailController', [
     };
     $scope.pageConfig = pageConfig;
     pageConfig.get_detail();
+    pageConfig.offer_price_list();
   }]);

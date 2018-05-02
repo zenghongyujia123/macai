@@ -5,7 +5,7 @@ var cSite = angular.module('chaoQianSite', [
   //   'LocalStorageModule',
   //   'base64',
   'ngMaterial',
-  'textAngular'
+  // 'textAngular'
 ]);
 
 cSite.config(function ($mdThemingProvider) {

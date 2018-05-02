@@ -26,4 +26,7 @@ module.exports = function (app) {
   app.route('/api_backend/create_banner').post(ctr.create_banner);
   app.route('/api_backend/market_get_city').post(ctr.market_get_city);
   app.route('/api_backend/market_get_market').post(ctr.market_get_market);
+  app.route('/api_backend/offer_price_list').post(ctr.offer_price_list);
+
+  
 };
