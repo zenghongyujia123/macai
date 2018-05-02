@@ -17,7 +17,7 @@ exports.ypSendSmsVerifyCode = function (phone, callback) {
     .send({
       apikey: ypApikey,
       mobile: phone,
-      text: '【柱柱签收】您的验证码' + code + '，请在10分钟内使用。'
+      text: '【卖菜帮】您的验证码' + code + '，请在10分钟内使用。'
     })
     .end(function (err, res) {
       var resp = JSON.parse(res.text);
