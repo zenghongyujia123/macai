@@ -318,7 +318,7 @@
         grounding_time: grounding_time,
         price: price,
         price_unit: price_unit,
-        min_count: min_count.toFixed(2),
+        min_count: parseFloat(min_count).toFixed(2),
         send_province: send_address.split(' ')[0],
         send_city: send_address.split(' ')[1],
         send_district: send_address.split(' ')[2],
@@ -374,7 +374,7 @@
       }
     });
 
-    $(".price").keyup(function () {
+    $(".price").keyup(function (e) {
       var code = parseInt(e.keyCode);
       if ($(this).val() > 10000000) {
         $(this).val(10000000);
