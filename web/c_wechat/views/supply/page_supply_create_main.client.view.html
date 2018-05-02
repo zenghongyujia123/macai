@@ -318,7 +318,7 @@
         grounding_time: grounding_time,
         price: price,
         price_unit: price_unit,
-        min_count: min_count,
+        min_count: min_count.toFixed(2),
         send_province: send_address.split(' ')[0],
         send_city: send_address.split(' ')[1],
         send_district: send_address.split(' ')[2],
@@ -375,20 +375,15 @@
     });
 
     $(".price").keyup(function () {
-      var reg = $(this).val().match(/\d+\.?\d{0,2}/);
-      var txt = '';
-      if (reg != null) {
-        txt = reg[0];
-      }
-      $(this).val(txt);
+      var code = parseInt(e.keyCode);
       if ($(this).val() > 10000000) {
-        $(this).val(10000000)
+        $(this).val(10000000);
+        return false;
       }
-    }).change(function () {
-      $(this).keypress();
-      var v = $(this).val();
-      if (/\.$/.test(v)) {
-        $(this).val(v.substr(0, v.length - 1));
+      if (code >= 96 && code <= 105 || code >= 48 && code <= 57 || code == 8) {
+        return true;
+      } else {
+        return false;
       }
     });
 
