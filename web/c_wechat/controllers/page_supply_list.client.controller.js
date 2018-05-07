@@ -41,7 +41,7 @@ $(function () {
     bind_event: function (obj, detail_id) {
       obj.find('.refresh').click(function (e) {
         stopBubble(e);
-        refreshGoods(detail_id, 'Supply', function (data) {
+        refreshGoods(detail_id,null, 'Supply', function (data) {
           if (data.err) {
             $.toast(data.err.message);
             return;

@@ -358,13 +358,14 @@ function get_price(callback) {
   container.children().remove();
 }
 
-function refreshGoods(detail_id, model_string, callback) {
+function refreshGoods(detail_id,price, model_string, callback) {
   $.ajax({
     url: '/api_backend/market_refresh_time',
     method: 'post',
     data: {
       detail_id: detail_id,
-      model_string: model_string
+      model_string: model_string,
+      price:price
     },
     success: function (data) {
       return callback(data);

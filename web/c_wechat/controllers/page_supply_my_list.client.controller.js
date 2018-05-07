@@ -34,16 +34,28 @@ $(function () {
         }
       });
     },
-    bind_event: function (obj, detail_id) {
+    bind_event: function (obj, price, detail_id) {
       obj.find('.refresh').click(function (e) {
         stopBubble(e);
-        refreshGoods(detail_id, 'Supply', function (data) {
-          if (data.err) {
-            $.toast(data.err.message);
-            return;
+        $.prompt({
+          title: '刷新价格',
+          text: '请输入需要刷新的价格',
+          input: price,
+          empty: false, // 是否允许为空
+          onOK: function (input) {
+            refreshGoods(detail_id, input, 'Supply', function (data) {
+              if (data.err) {
+                $.toast(data.err.message);
+                return;
+              }
+              obj.find('.refresh-time').text('最后刷新：' + m_get_date_diff(new Date()));
+              obj.find('.price-text').text(input);
+              $.toast("操作成功");
+            });
+          },
+          onCancel: function () {
+            //点击取消
           }
-          obj.find('.refresh-time').text('最后刷新：' + m_get_date_diff(new Date()));
-          $.toast("操作成功");
         });
         return false;
       });
@@ -73,12 +85,12 @@ $(function () {
           '    <div class="title2">' + item.send_address + '</div>' +
           '    <div class="title2 refresh-time">' + m_get_date_diff(new Date(item.create_time)) + '刷新' + ' </div>' +
           '    <div class="item-bottom">' +
-          '      <div class="price">' + item.price +
+          '      <div class="price"><span class="price-text">'+  item.price +'</span>' +
           '        <span class="price-unit">' + item.price_unit + '</span>' +
           '      </div>' +
           '       <div class="footer-right">' +
           '     <div class="refresh">' +
-          '         刷新供应' +
+          '         刷新价格' +
           '       </div>' +
           '         <div class="delete">' +
           '           删除' +
@@ -87,7 +99,7 @@ $(function () {
           '    </div>' +
           '  </div>' +
           '</a>');
-        tab2.bind_event(obj, item._id);
+        tab2.bind_event(obj, item.price, item._id);
         obj.insertBefore(tab2.laodmore);
       }
     },
