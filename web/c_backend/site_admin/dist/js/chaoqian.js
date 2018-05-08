@@ -1985,7 +1985,7 @@ cSite.controller('UserListController', [
       current_page: 0,
       prev_last_item: {},
       personal_auth_stauts: '',
-      username:'',
+      username: '',
       list: [],
       table_header: [
         '头像',
@@ -2040,7 +2040,7 @@ cSite.controller('UserListController', [
         }
         return text;
       },
-      search:function(){
+      search: function () {
         pageConfig.last_item = {};
         pageConfig.current_page = 0;
         pageConfig.get_list();
@@ -2058,7 +2058,7 @@ cSite.controller('UserListController', [
           last_item: pageConfig.last_item,
           model_string: 'User',
           personal_auth_stauts: pageConfig.personal_auth_stauts,
-          username:pageConfig.username,
+          username: pageConfig.username,
         }).then(function (data) {
           console.log(data);
           if (data && !data.err) {
@@ -2079,9 +2079,7 @@ cSite.controller('UserListController', [
             }
           }
 
-          if(data.list.length===0){
-            pageConfig.list  = [];
-          }
+         
         });
       },
       get_date: function (date) {
