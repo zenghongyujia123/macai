@@ -150,7 +150,7 @@ exports.market_list = function (user, info, callback) {
   }
 
   if (info.username) {
-    query.$and = [{ username: info.username }, { nickname: info.username }];
+    query.$or = [{ username: info.username }, { nickname: info.username }];
   }
 
   model.count(query, function (err, count) {
