@@ -2043,12 +2043,14 @@ cSite.controller('UserListController', [
       search: function () {
         pageConfig.last_item = {};
         pageConfig.current_page = 0;
+        pageConfig.list = [];
         pageConfig.get_list();
       },
       change_auth_status: function (status) {
         pageConfig.personal_auth_stauts = status;
         pageConfig.last_item = {};
         pageConfig.current_page = 0;
+        pageConfig.list = [];
         pageConfig.get_list();
       },
       get_list: function (next) {
@@ -2078,8 +2080,6 @@ cSite.controller('UserListController', [
               pageConfig.last_item = data.list[0];
             }
           }
-
-         
         });
       },
       get_date: function (date) {
