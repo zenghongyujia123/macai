@@ -136,6 +136,7 @@ exports.market_list = function (user, info, callback) {
   if (info.goods_category) {
     query.goods_category = info.goods_category;
   }
+
   if (info.market) {
     query.market = info.market;
   }
@@ -143,10 +144,14 @@ exports.market_list = function (user, info, callback) {
   if (info.city) {
     query.city = info.city;
   }
+
   if (info.personal_auth_stauts) {
     query.personal_auth_stauts = info.personal_auth_stauts;
   }
-  
+
+  if (info.username) {
+    query.username = info.username;
+  }
 
   model.count(query, function (err, count) {
     if (err) {
