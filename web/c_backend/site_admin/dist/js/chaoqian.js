@@ -1984,6 +1984,7 @@ cSite.controller('UserListController', [
       last_item: {},
       current_page: 0,
       prev_last_item: {},
+      personal_auth_stauts: '',
       list: [],
       table_header: [
         '头像',
@@ -2038,9 +2039,14 @@ cSite.controller('UserListController', [
         }
         return text;
       },
+      change_auth_status: function (status) {
+        pageConfig.personal_auth_stauts = status;
+        pageConfig.last_item = {};
+        pageConfig.get_list();
+      },
       get_list: function (next) {
         next = next || 'next';
-        UserNetwork.market_list($scope, { next: next, last_item: pageConfig.last_item, model_string: 'User' }).then(function (data) {
+        UserNetwork.market_list($scope, { next: next, last_item: pageConfig.last_item, model_string: 'User', personal_auth_stauts: pageConfig.personal_auth_stauts }).then(function (data) {
           console.log(data);
           if (data && !data.err) {
             if (data.list.length > 0) {

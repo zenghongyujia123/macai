@@ -2,7 +2,9 @@
   <div class="page-operation-view" layout="row" layout-align="space-between center">
     <p class="title">{{pageConfig.title}}(总数：{{pageConfig.count}})</p>
     <div>
-      <!-- <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.download_template()">下载模版</md-button> -->
+      <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.change_auth_status('unauth')">未认证</md-button>
+      <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.change_auth_status('authing')">认证中</md-button>
+      <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.change_auth_status('authed')">已认证</md-button>
       <!-- <md-button class="md-primary md-raised md-hue-2 import">{{pageConfig.import_text}}
         <input type="file" onchange="angular.element(this).scope().pageConfig.get_excel(this)">
       </md-button> -->

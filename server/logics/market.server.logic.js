@@ -143,6 +143,10 @@ exports.market_list = function (user, info, callback) {
   if (info.city) {
     query.city = info.city;
   }
+  if (info.personal_auth_stauts) {
+    query.personal_auth_stauts = info.personal_auth_stauts;
+  }
+  
 
   model.count(query, function (err, count) {
     if (err) {
