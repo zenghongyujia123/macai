@@ -107,6 +107,10 @@ cSite.controller('UserListController', [
               pageConfig.last_item = data.list[0];
             }
           }
+
+          if(data.list.length===0){
+            pageConfig.list  = [];
+          }
         });
       },
       get_date: function (date) {
