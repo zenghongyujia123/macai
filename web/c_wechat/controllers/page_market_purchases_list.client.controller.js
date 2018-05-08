@@ -60,13 +60,21 @@ $(function () {
     append_my_list: function (data) {
       for (var i = 0; i < data.length; i++) {
         var item = data[i];
+        var phoneStyle, tel;
 
         if (i >= 3 && item.phone) {
+          phoneStyle = 'color:#ff7977;border:0px;';
+          tel = '0551-65669265';
           item.phone = item.phone.substr(0, 3) + "****" + item.phone.substr(7);
+        }
+        else {
+          tel = item.phone;
+          phoneStyle = 'border:0px;';
+          item.phone = item.phone;
         }
 
         var str =
-          '<a href="tel:0551-65669265" class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
+          '<a href="tel:' + tel + '" class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
           '  <div class="weui-media-box__bd">' +
           '    <div class="title1">' + item.name + '</div>' +
           '    <div class="title2">每日销量：' + (item.day_sales || '未知') + '</div>' +
@@ -74,7 +82,7 @@ $(function () {
           '    <div class="item-bottom">' +
           '      <div class="price">主营品类：' + (item.main_goods || '未知') + '</div>' +
           '      <div class="price"></div>' +
-          '      <div class="stop green" style="border:0px;">' + item.phone + '</div>' +
+          '      <div class="stop green" style="' + phoneStyle + '">' + item.phone + '</div>' +
           '    </div>' +
           '  </div>' +
           '</a>';
