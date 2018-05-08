@@ -61,6 +61,10 @@ $(function () {
       for (var i = 0; i < data.length; i++) {
         var item = data[i];
 
+        if (i >= 3 && item.phone) {
+          item.phone = item.phone.substr(0, 3) + "****" + item.phone.substr(7);
+        }
+
         var str =
           '<a href="tel:0551-65669265" class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
           '  <div class="weui-media-box__bd">' +
@@ -70,7 +74,7 @@ $(function () {
           '    <div class="item-bottom">' +
           '      <div class="price">主营品类：' + (item.main_goods || '未知') + '</div>' +
           '      <div class="price"></div>' +
-          '      <div class="stop green">联系方式</div>' +
+          '      <div class="stop green" style="border:0px;">' + item.phone + '</div>' +
           '    </div>' +
           '  </div>' +
           '</a>';
