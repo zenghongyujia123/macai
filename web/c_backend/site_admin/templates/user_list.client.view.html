@@ -1,10 +1,12 @@
 <div class="page-body-view">
   <div class="page-operation-view" layout="row" layout-align="space-between center">
     <p class="title">{{pageConfig.title}}(总数：{{pageConfig.count}})</p>
-    <div>
-      <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.change_auth_status('unauth')">未认证</md-button>
-      <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.change_auth_status('authing')">认证中</md-button>
-      <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.change_auth_status('authed')">已认证</md-button>
+    <div layout="row">
+      <div>
+      <md-button class="md-raised md-hue-2" ng-class="{'md-primary' :pageConfig.personal_auth_stauts==='unauth'}" ng-click="pageConfig.change_auth_status('unauth')">未认证</md-button>
+      <md-button class=" md-raised md-hue-2" ng-class="{'md-primary' :pageConfig.personal_auth_stauts==='authing'}" ng-click="pageConfig.change_auth_status('authing')">认证中</md-button>
+      <md-button class=" md-raised md-hue-2" ng-class="{'md-primary' :pageConfig.personal_auth_stauts==='authed'}" ng-click="pageConfig.change_auth_status('authed')">已认证</md-button>
+      </div>
       <!-- <md-button class="md-primary md-raised md-hue-2 import">{{pageConfig.import_text}}
         <input type="file" onchange="angular.element(this).scope().pageConfig.get_excel(this)">
       </md-button> -->
