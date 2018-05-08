@@ -1985,6 +1985,7 @@ cSite.controller('UserListController', [
       current_page: 0,
       prev_last_item: {},
       personal_auth_stauts: '',
+      username:'',
       list: [],
       table_header: [
         '头像',
@@ -2039,6 +2040,11 @@ cSite.controller('UserListController', [
         }
         return text;
       },
+      search:function(){
+        pageConfig.last_item = {};
+        pageConfig.current_page = 0;
+        pageConfig.get_list();
+      },
       change_auth_status: function (status) {
         pageConfig.personal_auth_stauts = status;
         pageConfig.last_item = {};
@@ -2051,7 +2057,8 @@ cSite.controller('UserListController', [
           next: next,
           last_item: pageConfig.last_item,
           model_string: 'User',
-          personal_auth_stauts: pageConfig.personal_auth_stauts
+          personal_auth_stauts: pageConfig.personal_auth_stauts,
+          username:pageConfig.username,
         }).then(function (data) {
           console.log(data);
           if (data && !data.err) {

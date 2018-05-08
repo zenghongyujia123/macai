@@ -1,22 +1,24 @@
 <div class="page-body-view">
   <div class="page-operation-view" layout="row" layout-align="space-between center">
     <p class="title">{{pageConfig.title}}(总数：{{pageConfig.count}})</p>
-    <div layout="row">
-      <div>
-      <md-button class="md-raised md-hue-2" ng-class="{'md-primary' :pageConfig.personal_auth_stauts==='unauth'}" ng-click="pageConfig.change_auth_status('unauth')">未认证</md-button>
-      <md-button class=" md-raised md-hue-2" ng-class="{'md-primary' :pageConfig.personal_auth_stauts==='authing'}" ng-click="pageConfig.change_auth_status('authing')">认证中</md-button>
-      <md-button class=" md-raised md-hue-2" ng-class="{'md-primary' :pageConfig.personal_auth_stauts==='authed'}" ng-click="pageConfig.change_auth_status('authed')">已认证</md-button>
+    <div layout="row" layout-align="space-between center">
+      <div >
+        <md-button class="md-raised md-hue-2" ng-class="{'md-primary' :pageConfig.personal_auth_stauts==='unauth'}" ng-click="pageConfig.change_auth_status('unauth')">未认证</md-button>
+        <md-button class="md-raised md-hue-2" ng-class="{'md-primary' :pageConfig.personal_auth_stauts==='authing'}" ng-click="pageConfig.change_auth_status('authing')">认证中</md-button>
+        <md-button class="md-raised md-hue-2" ng-class="{'md-primary' :pageConfig.personal_auth_stauts==='authed'}" ng-click="pageConfig.change_auth_status('authed')">已认证</md-button>
       </div>
-      <!-- <md-button class="md-primary md-raised md-hue-2 import">{{pageConfig.import_text}}
-        <input type="file" onchange="angular.element(this).scope().pageConfig.get_excel(this)">
-      </md-button> -->
+      <div  layout="row"layout-align="start center">
+        <md-input-container style="margin-top:50px;" class="md-block  md-primary">
+          <label class="md-primary">用户名</label>
+          <input ng-model="pageConfig.username">
+        </md-input-container>
+        <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.search()">搜索</md-button>
+      </div>
     </div>
   </div>
 
   <div class="list-header">
     <div class="list-item" layout="row" layout-align="start center">
-      <div class="column-item" flex="">头像</div>
-      <div class="column-item" flex="">用户名</div>
       <div class="column-item" flex="">昵称</div>
       <div class="column-item" flex="">角色</div>
       <div class="column-item" flex="">买／卖</div>
