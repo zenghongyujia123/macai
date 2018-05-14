@@ -43,7 +43,7 @@ $(function () {
         $.prompt({
           title: '刷新价格',
           text: '请输入需要刷新的价格',
-          input: price,
+          input: obj.find('.price-text').text(),
           empty: false, // 是否允许为空
           onOK: function (input) {
             refreshGoods(detail_id, input, 'Purchases', function (data) {
