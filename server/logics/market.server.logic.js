@@ -155,7 +155,12 @@ exports.market_list = function (user, info, callback) {
   }
 
   if (info.keyword) {
-    query.$or = [{ username: info.keyword }, { nickname: info.keyword }, { _id: info.keyword }];
+    if (mongoose.isObjectId(info.keyword)) {
+      query._id = info.keyword;
+    }
+    else {
+      query.$or = [{ username: info.keyword }, { nickname: info.keyword }];
+    }
   }
 
   model.count(query, function (err, count) {
