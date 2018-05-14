@@ -48,6 +48,11 @@
           <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.get_user_status_text( pageConfig.detail.personal_auth_stauts)}}</div>
         </div>
         <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> 个人认证通知（拒绝原因）</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.personal_auth_stauts_description}}</div>
+        </div>
+        
+        <div class="list-item" layout="row" layout-align="start center">
           <div class="column-item" flex="">个人认证时间</div>
           <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.get_date(pageConfig.detail.personal_auth_time)}}</div>
         </div>

@@ -122,10 +122,12 @@ exports.update_personal_auth_info = function (user, info, callback) {
     user.personal_auth_id_real_photo = info.personal_auth_id_real_photo;
     user.personal_auth_real_name = info.personal_auth_real_name;
     user.personal_auth_id_number = info.personal_auth_id_number;
+    user.personal_auth_stauts_description = '';
   }
 
   if (info.personal_auth_stauts === 'authed') {
     user.personal_auth_stauts = 'authed';
+    user.personal_auth_stauts_description = '';
     user.personal_auth_time = new Date();
   }
 
