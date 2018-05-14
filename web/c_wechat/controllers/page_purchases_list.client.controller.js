@@ -108,7 +108,7 @@ $(function () {
           '       </div>' +
           '       <div class="footer-right">' +
           '         <div class="refresh">' +
-          '           刷新采购' +
+          '           刷新价格' +
           '         </div>' +
           '         <div class="check-price">' +
           '           查看报价' +
