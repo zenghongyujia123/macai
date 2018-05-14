@@ -47,6 +47,17 @@ cSite.factory('CommonHelper', ['$rootScope', '$timeout', 'GlobalEvent', 'Address
                   }, delayTime);
                 }
               },
+              showMaterialSingleInput: function (scope, targetEvent, params, callback) {
+                $mdDialog.show({
+                  controller: 'MaterialDialogSingleInputController',
+                  templateUrl: '/c_backend/site_admin/dialog/single_input/single_input.client.view.html',
+                  parent: angular.element(document.body),
+                  targetEvent: targetEvent,
+                  locals: params || {},
+                  clickOutsideToClose: false,
+                  fullscreen: scope.customFullscreen // Only for -xs, -sm breakpoints.
+                }).then(callback);
+              },
               showConfirm: function (scope, title, text, sureCallback, cancelCallback, cancelLabel, ev) {
                 $mdDialog.show(
                   $mdDialog.confirm()

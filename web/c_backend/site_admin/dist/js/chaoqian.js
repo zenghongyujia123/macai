@@ -363,6 +363,17 @@ cSite.factory('CommonHelper', ['$rootScope', '$timeout', 'GlobalEvent', 'Address
                   }, delayTime);
                 }
               },
+              showMaterialSingleInput: function (scope, targetEvent, params, callback) {
+                $mdDialog.show({
+                  controller: 'MaterialDialogSingleInputController',
+                  templateUrl: '/c_backend/site_admin/dialog/single_input/single_input.client.view.html',
+                  parent: angular.element(document.body),
+                  targetEvent: targetEvent,
+                  locals: params || {},
+                  clickOutsideToClose: false,
+                  fullscreen: scope.customFullscreen // Only for -xs, -sm breakpoints.
+                }).then(callback);
+              },
               showConfirm: function (scope, title, text, sureCallback, cancelCallback, cancelLabel, ev) {
                 $mdDialog.show(
                   $mdDialog.confirm()
@@ -813,6 +824,39 @@ cSite.directive('mPhotoScan', ['$document', function ($document) {
     }
   }
 }]);
+/**
+ * Created by zenghong on 16/4/21.
+ */
+'use strict';
+
+cSite.controller('MaterialDialogSingleInputController', ['input_params', '$scope', '$mdDialog',
+  function (input_params, $scope, $mdDialog) {
+
+    $scope.dialogInfo = {
+      title: input_params.title,
+      input_label: input_params.input_label,
+      input_value: input_params.input_value || '',
+      confirm_label: input_params.confirm_label ,
+      input_type: input_params.input_type || 'string'
+    };
+
+    $scope.hide = function () {
+      $mdDialog.hide();
+    };
+
+    $scope.cancel = function () {
+      $mdDialog.cancel();
+    };
+
+    $scope.sure = function () {
+      if (!$scope.dialogInfo.input_value) {
+        return;
+      }
+
+      $mdDialog.hide($scope.dialogInfo.input_value);
+    };
+  }]);
+
 /**
  * Created by lance on 2016/11/17.
  */
@@ -1920,8 +1964,20 @@ cSite.controller('UserDetailController', [
       get_date: function (date) {
         return moment(date).format('YYYY-MM-DD');
       },
-      update_personal_auth_info: function () {
-        UserNetwork.update_personal_auth_info($scope, { personal_auth_stauts: 'authed', user_id: pageConfig.detail_id }).then(function (data) {
+      refuse: function (event) {
+        CommonHelper.showMaterialSingleInput($scope, event, {
+          input_params: {
+            title: '提示',
+            input_label: '请输入拒绝理由',
+            input_value: '',
+            confirm_label: '确定'
+          }
+        }, function (des) {
+          pageConfig.update_personal_auth_info('unauth', des);
+        });
+      },
+      update_personal_auth_info: function (status, des) {
+        UserNetwork.update_personal_auth_info($scope, { personal_auth_stauts: status, personal_auth_stauts_description: des, user_id: pageConfig.detail_id }).then(function (data) {
           console.log(data);
           if (!data.err) {
             CommonHelper.showConfirm($scope, null, '操作成功', function () {

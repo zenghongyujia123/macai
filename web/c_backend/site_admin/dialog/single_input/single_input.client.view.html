@@ -1,0 +1,21 @@
+<md-dialog class="dialog-material-input-box dialog-common-box" md-padding aria-label="Input dialog">
+  <md-dialog-content class="md-dialog-content">
+    <p class="md-title">{{dialogInfo.title}}</p>
+
+    <md-input-container class="md-primary">
+      <label class="md-primary">{{dialogInfo.input_label}}</label>
+      <input class="md-input" ng-if="dialogInfo.input_type==='string'" ng-model="dialogInfo.input_value">
+
+      <input class="md-input" ng-if="dialogInfo.input_type==='number'" input-real-number ng-model="dialogInfo.input_value">
+
+      <input class="md-input" ng-if="dialogInfo.input_type==='date'"
+             input-date-number ng-model="dialogInfo.input_value">
+
+    </md-input-container>
+
+  </md-dialog-content>
+  <md-dialog-actions>
+    <md-button class="cancel" ng-click="cancel()">取消</md-button>
+    <md-button class="sure md-raised md-primary" ng-disabled="!dialogInfo.input_value" ng-click="sure()">{{dialogInfo.confirm_label}}</md-button>
+  </md-dialog-actions>
+</md-dialog>

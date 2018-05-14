@@ -44,6 +44,7 @@ gulp.task('js-concat', function () {
     'web/c_backend/site_admin/networks/**/*.js',
     'web/c_backend/site_admin/services/**/*.js',
     'web/c_backend/site_admin/directive/**/*.js',
+    'web/c_backend/site_admin/dialog/**/*.js',
     'web/c_backend/site_admin/controllers/**/*.js',
   ])
     .pipe(jsconcat('chaoqian.js'))

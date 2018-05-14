@@ -110,6 +110,11 @@ exports.list = function (user, info, callback) {
 }
 
 exports.update_personal_auth_info = function (user, info, callback) {
+  if (info.personal_auth_stauts === 'unauth') {
+    user.personal_auth_stauts = 'unauth';
+    user.personal_auth_stauts_description = info.personal_auth_stauts_description;
+  }
+
   if (info.personal_auth_stauts === 'authing') {
     user.personal_auth_stauts = 'authing';
     user.personal_auth_id_front_photo = info.personal_auth_id_front_photo;

@@ -10,3 +10,14 @@ body .page-my-main .m-header p {
 body .page-my-main .m-header .weui-media-box__thumb {
   border-radius: 90px;
 }
+body .page-my-main .tip-container {
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+  background-color: #ebc48b;
+  font-size: 13px;
+  padding: 10px 15px;
+}
