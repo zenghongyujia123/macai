@@ -48,7 +48,12 @@ exports.market_refresh_time = function (user, info, callback) {
   var model = getModel(info.model_string);
 
   if (info.price) {
-    set.$set.price = info.price;
+    if(info.model_string==='Purchases'){
+      set.$set.expect_price = info.price;
+    }
+    else{
+      set.$set.price = info.price;
+    }
   }
 
   model.update({ _id: info.detail_id }, set, function (err, result) {
