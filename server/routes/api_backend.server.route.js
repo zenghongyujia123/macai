@@ -27,6 +27,5 @@ module.exports = function (app) {
   app.route('/api_backend/market_get_city').post(ctr.market_get_city);
   app.route('/api_backend/market_get_market').post(ctr.market_get_market);
   app.route('/api_backend/offer_price_list').post(ctr.offer_price_list);
-
-  
+  app.route('/api_backend/user_count_by_status').post(ctr.user_count_by_status);
 };

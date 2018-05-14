@@ -1,13 +1,15 @@
 <div class="page-body-view">
   <div class="page-operation-view" layout="row" layout-align="space-between center">
-    <p class="title">{{pageConfig.title}}(总数：{{pageConfig.count}})</p>
+    <p class="title">{{pageConfig.title}}(总数：{{pageConfig.count}}
+      <span style="color:red">认证中：{{pageConfig.authing_count}}</span>)
+    </p>
     <div layout="row" layout-align="space-between center">
-      <div >
+      <div>
         <md-button class="md-raised md-hue-2" ng-class="{'md-primary' :pageConfig.personal_auth_stauts==='unauth'}" ng-click="pageConfig.change_auth_status('unauth')">未认证</md-button>
         <md-button class="md-raised md-hue-2" ng-class="{'md-primary' :pageConfig.personal_auth_stauts==='authing'}" ng-click="pageConfig.change_auth_status('authing')">认证中</md-button>
         <md-button class="md-raised md-hue-2" ng-class="{'md-primary' :pageConfig.personal_auth_stauts==='authed'}" ng-click="pageConfig.change_auth_status('authed')">已认证</md-button>
       </div>
-      <div  layout="row"layout-align="start center">
+      <div layout="row" layout-align="start center">
         <md-input-container style="margin-top:50px;" class="md-block  md-primary">
           <label class="md-primary">手机号，昵称</label>
           <input ng-model="pageConfig.username">

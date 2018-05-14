@@ -208,6 +208,15 @@ exports.offer_price_list = function (req, res, next) {
   });
 }
 
+exports.user_count_by_status = function (req, res, next) {
+  userLogic.user_count_by_status(req.user, req.body, function (err, results) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send({count:results});
+  });
+}
+
 
 
 

@@ -132,6 +132,20 @@ exports.update_personal_auth_info = function (user, info, callback) {
   });
 }
 
+exports.user_count_by_status = function (user, info, callback) {
+  var query = {};
+  if (info.personal_auth_stauts) {
+    query.personal_auth_stauts = info.personal_auth_stauts;
+  }
+
+  User.count(query, function (err, count) {
+    if (err) {
+      return callback({ err: sysErr.database_query_error });
+    }
+    return callback(null,count)
+  });
+}
+
 exports.updateUserVipInfos = function (info, callback) {
   User.findOne({ openid: info.openid }, function (err, user) {
     if (err) {

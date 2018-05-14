@@ -45,6 +45,8 @@ cSite.factory('UserNetwork',
         offer_price_list: function (scope, params) {
           return Http.postRequestWithCheck(scope, '/api_backend/offer_price_list', params);
         },
-        
+        user_count_by_status: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/user_count_by_status', params);
+        },
       };
     }]);

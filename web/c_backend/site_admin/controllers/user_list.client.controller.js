@@ -4,8 +4,8 @@
 'use strict';
 
 cSite.controller('UserListController', [
-  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'ExcelService', 'UserNetwork',
-  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, ExcelService, UserNetwork) {
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', '$timeout', 'ExcelService', 'UserNetwork',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, $timeout, ExcelService, UserNetwork) {
     var pageConfig = {
       count: 0,
       title: '用户列表',
@@ -14,6 +14,7 @@ cSite.controller('UserListController', [
       current_page: 0,
       prev_last_item: {},
       personal_auth_stauts: '',
+      authing_count:0,
       username: '',
       list: [],
       table_header: [
@@ -26,6 +27,17 @@ cSite.controller('UserListController', [
         'vip状态',
         '认证状态',
       ],
+      user_count_by_status: function (personal_auth_stauts) {
+        UserNetwork.user_count_by_status($scope, {
+          personal_auth_stauts: personal_auth_stauts || 'authing',
+        }).then(function (data) {
+          console.log(data);
+          pageConfig.authing_count = data.count||0;
+          $timeout(function () {
+            pageConfig.user_count_by_status();
+          }, 10000);
+        });
+      },
       download_template: function () {
         var rows = [
           pageConfig.table_header,
@@ -181,4 +193,6 @@ cSite.controller('UserListController', [
     }
     $scope.pageConfig = pageConfig;
     pageConfig.get_list();
+    pageConfig.user_count_by_status();
+
   }]);
