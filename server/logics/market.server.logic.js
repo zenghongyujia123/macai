@@ -48,10 +48,10 @@ exports.market_refresh_time = function (user, info, callback) {
   var model = getModel(info.model_string);
 
   if (info.price) {
-    if(info.model_string==='Purchases'){
+    if (info.model_string === 'Purchases') {
       set.$set.expect_price = info.price;
     }
-    else{
+    else {
       set.$set.price = info.price;
     }
   }
@@ -154,8 +154,8 @@ exports.market_list = function (user, info, callback) {
     query.personal_auth_stauts = info.personal_auth_stauts;
   }
 
-  if (info.username) {
-    query.$or = [{ username: info.username }, { nickname: info.username }];
+  if (info.keyword) {
+    query.$or = [{ username: info.keyword }, { nickname: info.keyword }, { _id: info.keyword }];
   }
 
   model.count(query, function (err, count) {

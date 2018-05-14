@@ -2130,7 +2130,7 @@ cSite.controller('UserListController', [
           last_item: pageConfig.last_item,
           model_string: 'User',
           personal_auth_stauts: pageConfig.personal_auth_stauts,
-          username: pageConfig.username,
+          keyword: pageConfig.keyword,
         }).then(function (data) {
           console.log(data);
           if (data && !data.err) {
