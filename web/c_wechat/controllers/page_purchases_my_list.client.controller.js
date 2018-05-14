@@ -38,13 +38,28 @@ $(function () {
     bind_event: function (obj, detail_id) {
       obj.find('.refresh').click(function (e) {
         stopBubble(e);
-        refreshGoods(detail_id,null, 'Purchases', function (data) {
-          if (data.err) {
-            $.toast(data.err.message);
-            return;
+
+
+        $.prompt({
+          title: '刷新价格',
+          text: '请输入需要刷新的价格',
+          input: price,
+          empty: false, // 是否允许为空
+          onOK: function (input) {
+            refreshGoods(detail_id, input, 'Purchases', function (data) {
+              if (data.err) {
+                $.toast(data.err.message);
+                return;
+              }
+              obj.find('.refresh-time').text('最后刷新：' + m_get_date_diff(new Date()));
+              obj.find('.price-text').text(input);
+
+              $.toast("操作成功");
+            });
+          },
+          onCancel: function () {
+            //点击取消
           }
-          obj.find('.refresh-time').text('最后刷新：' + m_get_date_diff(new Date()));
-          $.toast("操作成功");
         });
         return false;
       });
@@ -76,7 +91,7 @@ $(function () {
           '     <div class="title2">浏览次数：' + (item.browse_count || 0) + '次</div>' +
           '     <div class="title2 refresh-time">最后刷新：' + m_get_date_diff(new Date(item.create_time)) + '</div>' +
           '     <div class="item-bottom">' +
-          '       <div class="price">' + item.expect_price +
+          '       <div class="price"><span class="price-text">' + item.expect_price+'</span>' +
           '         <span class="price-unit">' + item.expect_price_unit + '</span>' +
           '       </div>' +
           '       <div class="footer-right">' +

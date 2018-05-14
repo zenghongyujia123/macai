@@ -168,9 +168,9 @@ exports.market_refresh_time = function (req, res, next) {
   var require_market = req.require_market || {};
   var now = new Date();
   var time = new Date(require_market.create_time);
-  if (now.getMonth() + now.getDate() === time.getMonth() + time.getDate()) {
-    return res.send({ err: { type: 'same_day', message: '今日已刷新' } });
-  }
+  // if (now.getMonth() + now.getDate() === time.getMonth() + time.getDate()) {
+  //   return res.send({ err: { type: 'same_day', message: '今日已刷新' } });
+  // }
 
   marketLogic.market_refresh_time(req.user, req.body, function (err, results) {
     if (err) {
