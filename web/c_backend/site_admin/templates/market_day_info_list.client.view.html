@@ -11,6 +11,7 @@
 
   <div class="list-header">
     <div class="list-item" layout="row" layout-align="start center">
+      <div class="column-item" flex="">序号</div>
       <div class="column-item" flex="">批发市场</div>
       <div class="column-item" flex="">品种</div>
       <div class="column-item" flex="">昨日价格</div>
@@ -21,6 +22,9 @@
   </div>
   <div class="list-body">
     <div class="list-item" layout="row" layout-align="start center" ng-repeat=" item in pageConfig.list">
+      <div class="column-item" flex="" layout="row" layout-align="start start">
+        {{item._id}}
+      </div>
       <div class="column-item" flex="" layout="row" layout-align="start start">
         {{item.market}}
       </div>
