@@ -2005,6 +2005,7 @@ cSite.controller('UserListController', [
           personal_auth_stauts: personal_auth_stauts || 'authing',
         }).then(function (data) {
           console.log(data);
+          pageConfig.authing_count = data.count||0;
           $timeout(function () {
             pageConfig.user_count_by_status();
           }, 10000);
