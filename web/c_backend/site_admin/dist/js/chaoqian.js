@@ -1238,7 +1238,6 @@ cSite.controller('MarketPurchasesListController', [
           model_string: 'MarketPurchases',
           detail_id: detail_id,
           status: status,
-          keyword: pageConfig.keyword
         }).then(function (data) {
           // UserNetwork.market_save_photos($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id, photos: photos }).then(function (data) {
           if (!data.err) {
@@ -1256,7 +1255,12 @@ cSite.controller('MarketPurchasesListController', [
           pageConfig.current_page = 0;
           pageConfig.last_item = {};
         }
-        UserNetwork.market_list($scope, { next: next, last_item: pageConfig.last_item, model_string: 'MarketPurchases' }).then(function (data) {
+        UserNetwork.market_list($scope, {
+          next: next,
+          last_item: pageConfig.last_item,
+          model_string: 'MarketPurchases',
+          keyword: pageConfig.keyword
+        }).then(function (data) {
           console.log(data);
           if (data && !data.err) {
             if (data.list.length > 0) {
