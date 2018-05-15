@@ -58,9 +58,11 @@ exports.page_purchases_create_price = function (req, res, next) {
 };
 
 exports.page_purchases_list = function (req, res, next) {
+  var cookie = cookieLib.getCookie(req);
+  var openid = cookie.openid || '';
   marketLogic.market_list(req.user, { model_string: 'Banner' }, function (err, results) {
     var filepath = path.join(__dirname, '../../web/c_wechat/views/purchases/page_purchases_list.client.view.html');
-    return res.render(filepath, { banners: results.list || [] });
+    return res.render(filepath, { banners: results.list || [], openid: openid });
   })
 };
 
