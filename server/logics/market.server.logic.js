@@ -159,7 +159,11 @@ exports.market_list = function (user, info, callback) {
       query._id = info.keyword;
     }
     else {
-      query.$or = [{ username: info.keyword }, { nickname: info.keyword }];
+      query.$or = [
+        { username: info.keyword },
+        { nickname: info.keyword },
+        { mobile_phone: info.keyword },
+        { goods_category: info.keyword }];
     }
   }
 
