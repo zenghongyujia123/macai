@@ -99,9 +99,12 @@
 </body>
 <script>
   $(function () {
-    $('body').click(function () {
+    $('body').click(function (e) {
       if (!'<%= openid %>') {
+        stopBubble(e);
+
         $.alert("请前往微信关注“买菜帮”公众号，了解更多服务!", "提示");
+        return false;
       }
     });
   })
