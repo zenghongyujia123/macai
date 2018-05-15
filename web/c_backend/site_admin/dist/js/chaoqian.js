@@ -1208,6 +1208,7 @@ cSite.controller('MarketPurchasesListController', [
       current_page: 0,
       prev_last_item: {},
       list: [],
+      keyword: '',
       table_header: [
         '采购商所在省',
         '采购商所在城市',
@@ -1219,6 +1220,12 @@ cSite.controller('MarketPurchasesListController', [
         '每日销量',
         '采购商所在省拼音',
       ],
+      search: function () {
+        pageConfig.last_item = {};
+        pageConfig.current_page = 0;
+        pageConfig.list = [];
+        pageConfig.get_list();
+      },
       download_template: function () {
         var rows = [
           pageConfig.table_header,
@@ -1227,7 +1234,12 @@ cSite.controller('MarketPurchasesListController', [
         ExcelService.saveExcelFile('每日行情采购商导入模版.xlsx', [{ data: rows, name: 'sheet1' }]);
       },
       market_update_status: function (status, detail_id) {
-        UserNetwork.market_update_status($scope, { model_string: 'MarketPurchases', detail_id: detail_id, status: status }).then(function (data) {
+        UserNetwork.market_update_status($scope, {
+          model_string: 'MarketPurchases',
+          detail_id: detail_id,
+          status: status,
+          keyword: pageConfig.keyword
+        }).then(function (data) {
           // UserNetwork.market_save_photos($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id, photos: photos }).then(function (data) {
           if (!data.err) {
             CommonHelper.showConfirm($scope, null, '操作成功', function () {

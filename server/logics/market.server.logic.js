@@ -163,6 +163,8 @@ exports.market_list = function (user, info, callback) {
         { username: info.keyword },
         { nickname: info.keyword },
         { mobile_phone: info.keyword },
+        { phone: info.keyword },
+        { main_goods: info.keyword },
         { goods_category: info.keyword }];
     }
   }
