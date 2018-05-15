@@ -15,7 +15,7 @@ cSite.controller('UserListController', [
       prev_last_item: {},
       personal_auth_stauts: '',
       authing_count:0,
-      username: '',
+      keyword: '',
       list: [],
       table_header: [
         '头像',

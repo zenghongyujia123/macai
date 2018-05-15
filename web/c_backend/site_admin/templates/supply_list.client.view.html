@@ -1,11 +1,20 @@
 <div class="page-body-view">
   <div class="page-operation-view" layout="row" layout-align="space-between center">
     <p class="title">{{pageConfig.title}}(总数：{{pageConfig.count}})</p>
-    <div>
-      <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.download_template()">下载模版</md-button>
-      <md-button class="md-primary md-raised md-hue-2 import">{{pageConfig.import_text}}
-        <input type="file" onchange="angular.element(this).scope().pageConfig.get_excel(this)">
-      </md-button>
+    <div layout="row" layout-align="space-between center">
+      <div>
+        <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.download_template()">下载模版</md-button>
+        <md-button class="md-primary md-raised md-hue-2 import">{{pageConfig.import_text}}
+          <input type="file" onchange="angular.element(this).scope().pageConfig.get_excel(this)">
+        </md-button>
+      </div>
+      <div layout="row" layout-align="start center">
+        <md-input-container style="margin-top:50px;" class="md-block  md-primary">
+          <label class="md-primary">手机号，品类，序号</label>
+          <input ng-model="pageConfig.keyword">
+        </md-input-container>
+        <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.search()">搜索</md-button>
+      </div>
     </div>
   </div>
 

@@ -1812,6 +1812,7 @@ cSite.controller('SupplyListController', [
       current_page: 0,
       prev_last_item: {},
       list: [],
+      keyword: '',
       table_header: [
         '供应货品类型',
         '供应货品品类',
@@ -1830,6 +1831,12 @@ cSite.controller('SupplyListController', [
         '角色',
         '角色名称'
       ],
+      search: function () {
+        pageConfig.last_item = {};
+        pageConfig.current_page = 0;
+        pageConfig.list = [];
+        pageConfig.get_list();
+      },
       download_template: function () {
         var rows = [
           pageConfig.table_header,
@@ -1858,7 +1865,12 @@ cSite.controller('SupplyListController', [
       },
       get_list: function (next) {
         next = next || 'next';
-        UserNetwork.market_list($scope, { next: next, last_item: pageConfig.last_item, model_string: 'Supply' }).then(function (data) {
+        UserNetwork.market_list($scope, {
+          next: next,
+          last_item: pageConfig.last_item,
+          model_string: 'Supply',
+          keyword:pageConfig.keyword
+        }).then(function (data) {
           console.log(data);
           if (data && !data.err) {
             if (data.list.length > 0) {
@@ -2044,7 +2056,7 @@ cSite.controller('UserListController', [
       prev_last_item: {},
       personal_auth_stauts: '',
       authing_count:0,
-      username: '',
+      keyword: '',
       list: [],
       table_header: [
         '头像',
