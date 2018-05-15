@@ -14,6 +14,7 @@ cSite.controller('PurchasesListController', [
       current_page: 0,
       prev_last_item: {},
       list: [],
+      keyword: '',
       table_header: [
         '采购货品类型',
         '采购货品品类',
@@ -33,6 +34,12 @@ cSite.controller('PurchasesListController', [
         '电话',
         '角色'
       ],
+      search: function () {
+        pageConfig.last_item = {};
+        pageConfig.current_page = 0;
+        pageConfig.list = [];
+        pageConfig.get_list();
+      },
       download_template: function () {
         var rows = [
           pageConfig.table_header,
@@ -63,7 +70,12 @@ cSite.controller('PurchasesListController', [
       },
       get_list: function (next) {
         next = next || 'next';
-        UserNetwork.market_list($scope, { next: next, last_item: pageConfig.last_item, model_string: 'Purchases' }).then(function (data) {
+        UserNetwork.market_list($scope, {
+          next: next,
+          last_item: pageConfig.last_item,
+          model_string: 'Purchases',
+          keyword: pageConfig.keyword
+        }).then(function (data) {
           console.log(data);
           if (data && !data.err) {
             if (data.list.length > 0) {
