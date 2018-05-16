@@ -33,6 +33,18 @@ module.exports = function (appDb) {
     first_pinyin: {
       type: String
     },
+    //单果重
+    goods_specs_title: {
+      type: String
+    },
+    //60g以下|60-75g
+    goods_specs_string: {
+      type: String
+    },
+    //['60g以下','60-75g']
+    goods_specs_list: {
+      type: []
+    },
     deleted_status: {
       type: Boolean,
       default: false
@@ -51,7 +63,7 @@ module.exports = function (appDb) {
     },
     status: {
       type: String,
-      enum:['unread','read'],
+      enum: ['unread', 'read'],
       default: 'unread'
     },
     supply: {

@@ -1,0 +1,72 @@
+<div class="page-body-view">
+  <div class="page-operation-view" layout="row" layout-align="space-between center">
+    <p class="title">{{pageConfig.title}}(总数：{{pageConfig.count}})</p>
+    <div layout="row" layout-align="start center">
+      <div>
+        <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.download_template()">下载模版</md-button>
+        <md-button class="md-primary md-raised md-hue-2 import">{{pageConfig.import_text}}
+          <input type="file" onchange="angular.element(this).scope().pageConfig.get_excel(this)">
+        </md-button>
+      </div>
+      <div layout="row" layout-align="start center">
+        <md-input-container style="margin-top:50px;" class="md-block  md-primary">
+          <label class="md-primary">手机号，品类，序号</label>
+          <input ng-model="pageConfig.keyword">
+        </md-input-container>
+        <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.search()">搜索</md-button>
+      </div>
+    </div>
+  </div>
+
+  <div class="list-header">
+    <div class="list-item" layout="row" layout-align="start center">
+      <div class="column-item" flex="">序号</div>
+      <div class="column-item" flex="">大品类</div>
+      <div class="column-item" flex="">品类</div>
+      <div class="column-item" flex="">品种</div>
+      <div class="column-item" flex="">品种首字母</div>
+      <div class="column-item" flex="">规格名称</div>
+      <div class="column-item" flex="">规格详情</div>
+      <div class="column-item" flex="">操作</div>
+    </div>
+  </div>
+  <div class="list-body">
+    <div class="list-item" layout="row" layout-align="start center" ng-repeat=" item in pageConfig.list">
+      <div class="column-item" flex="" layout="row" layout-align="start start">
+        {{item._id}}
+      </div>
+      <div class="column-item" flex="" layout="row" layout-align="start start">
+        {{item.goods_class}}
+      </div>
+      <div class="column-item" flex="" layout="row" layout-align="start start">
+        {{item.goods_category}}
+      </div>
+      <div class="column-item" flex="" layout="row" layout-align="start start">
+        {{item.goods_brand}}
+      </div>
+      <div class="column-item" flex="" layout="row" layout-align="start start">
+        {{item.first_pinyin}}
+      </div>
+      <div class="column-item" flex="" layout="row" layout-align="start start">
+        {{item.goods_specs_title}}
+      </div>
+      <div class="column-item" flex="" layout="row" layout-align="start start">
+        {{item.goods_specs_string}}
+      </div>
+      <div class="column-item" flex="" layout="row" layout-align="start start">
+        <md-button class="md-primary" ng-click="pageConfig.market_update_status('delete',item._id)">删除
+        </md-button>
+      </div>
+
+    </div>
+    <div class="list-item" layout="row" layout-align="start center">
+      <md-button class="md-primary" ng-click="pageConfig.get_list('prev')">上一页
+      </md-button>
+      <md-button class="md-primary">
+        {{pageConfig.current_page}}
+      </md-button>
+      <md-button class="md-primary" ng-click="pageConfig.get_list('next')">下一页
+      </md-button>
+    </div>
+  </div>
+</div>

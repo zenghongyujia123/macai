@@ -83,6 +83,15 @@ exports.market_supply_import = function (req, res, next) {
   });
 }
 
+exports.goods_import = function (req, res, next) {
+  goodsLogic.goods_import(req.user, req.body, function (err, results) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(results);
+  });
+}
+
 exports.market_purchases_import = function (req, res, next) {
   marketLogic.market_purchases_import(req.user, req.body, function (err, results) {
     if (err) {

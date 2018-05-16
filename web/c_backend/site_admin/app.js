@@ -62,7 +62,11 @@ cSite.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, 
       templateUrl: '/c_backend/site_admin/templates/market_supply_detail.client.view.html',
       controller: 'MarketSupplyDetailController'
     })
-
+    .state('goods_list', {
+      url: '/goods_list',
+      templateUrl: '/c_backend/site_admin/templates/goods_list.client.view.html',
+      controller: 'GoodsListController'
+    })
     .state('market_purchases_list', {
       url: '/market_purchases_list',
       templateUrl: '/c_backend/site_admin/templates/market_purchases_list.client.view.html',

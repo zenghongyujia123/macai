@@ -27,6 +27,9 @@ cSite.factory('UserNetwork',
         supply_import: function (scope, params) {
           return Http.postRequestWithCheck(scope, '/api_backend/supply_import', params);
         },
+        goods_import: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/goods_import', params);
+        },
         purchases_import: function (scope, params) {
           return Http.postRequestWithCheck(scope, '/api_backend/purchases_import', params);
         },

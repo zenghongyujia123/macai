@@ -7,6 +7,7 @@ var async = require('async');
 var Supply = appDb.model('Supply');
 var Banner = appDb.model('Banner');
 var User = appDb.model('User');
+var User = appDb.model('Goods');
 var Purchases = appDb.model('Purchases');
 var MarketSupply = appDb.model('MarketSupply');
 var MarketPurchases = appDb.model('MarketPurchases');
@@ -39,6 +40,9 @@ function getModel(str) {
   }
   if (str === 'Banner') {
     model = Banner;
+  }
+  if (str === 'Goods') {
+    model = Goods;
   }
   return model;
 }
@@ -310,7 +314,7 @@ exports.market_supply_import = function (user, infos, callback) {
         }
         setTimeout(function () {
           return eachCallback();
-        }, 500);
+        }, 100);
       });
     });
   }, function () {
@@ -354,7 +358,7 @@ exports.market_purchases_import = function (user, infos, callback) {
         }
         setTimeout(function () {
           return eachCallback();
-        }, 500);
+        }, 100);
       });
     });
   }, function () {

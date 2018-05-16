@@ -8,6 +8,7 @@ Supply = appDb.model('Supply');
 User = appDb.model('User');
 Goods = appDb.model('Goods');
 var sysErr = require('./../errors/system');
+var async = require('async');
 
 exports.create_purchases = function (user, info, callback) {
   var purchases = new Purchases({
@@ -297,6 +298,80 @@ exports.get_supply_by_id = function (id, callback) {
     }
     return callback(null, supply);
   });
+}
+
+exports.goods_import = function (user, info, callback) {
+  var list = info.list || [];
+  var dic = {};
+  list.forEach(function (item) {
+    if (!dic[item.goods_category + item.goods_brand]) {
+      dic[item.goods_category + item.goods_brand] = {
+        goods_category: item.goods_category,
+        goods_brand: item.goods_brand,
+        first_pinyin: item.first_pinyin,
+        goods_class: item.goods_class,
+        item_list: []
+      }
+    }
+    dic[item.goods_category + item.goods_brand].item_list.push({
+      goods_specs_string: item.goods_specs_string,
+      goods_specs_title: item.goods_specs_title
+    });
+  });
+  list = [];
+  for (var prop in dic) {
+    list.push(dic[prop]);
+  }
+
+  async.eachSeries(list, function (categoryItem, eachCallback) {
+    create_goods(user, categoryItem, eachCallback);
+  }, function (err) {
+    if (err) {
+      return callback({ err: sysErr.database_save_error });
+    }
+    return callback(null, { success: true });
+  });
+}
+
+function create_goods(user, categoryItem, callback) {
+  var item_list = categoryItem.item_list || [];
+  // item_list = [
+  //   {goods_specs_title:'单果重',goods_specs_String:'10g以下|60-75g'},
+  //   {goods_specs_title:'单果重',goods_specs_String:'10g以下|60-75g'},
+  // ];
+  Goods.update(
+    {
+      goods_category: categoryItem.goods_category,
+      goods_brand: categoryItem.goods_brand
+    },
+    {
+      deleted_status: true
+    },
+    {
+      multi: true
+    }, function (err) {
+      async.eachSeries(categoryItem.item_list || [], function (item, eachCallback) {
+        var goods = new Goods({
+          goods_class: categoryItem.goods_class || '',
+          goods_category: categoryItem.goods_category || '',
+          goods_brand: categoryItem.goods_brand || '',
+          goods_specs_title: item.goods_specs_title || '',
+          goods_specs_string: item.goods_specs_string || '',
+          goods_specs_list: (item.goods_specs_string || '').split('|'),
+          first_pinyin: categoryItem.first_pinyin || '',
+        });
+        goods.save(function (err, result) {
+          if (err || !result) {
+            return eachCallback({ err: sysErr.database_save_error });
+          }
+          setTimeout(function(){
+            return eachCallback(null, result);
+          },100);
+        });
+      }, function (err) {
+        return callback();
+      });
+    });
 }
 
 
