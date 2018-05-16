@@ -2156,7 +2156,7 @@ cSite.controller('UserDetailController', [
       detail_id: $stateParams.detail_id,
       detail: {},
       get_date: function (date) {
-        return moment(date).format('YYYY-MM-DD');
+        return date?  moment(date).format('YYYY-MM-DD'):'';
       },
       refuse: function (event) {
         CommonHelper.showMaterialSingleInput($scope, event, {
