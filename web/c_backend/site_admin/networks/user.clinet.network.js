@@ -39,6 +39,9 @@ cSite.factory('UserNetwork',
         market_make_top: function (scope, params) {
           return Http.postRequestWithCheck(scope, '/api_backend/market_make_top', params);
         },
+        market_update: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/market_update', params);
+        },
         market_update_status: function (scope, params) {
           return Http.postRequestWithCheck(scope, '/api_backend/market_update_status', params);
         },

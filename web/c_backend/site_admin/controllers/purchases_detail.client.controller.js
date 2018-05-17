@@ -21,6 +21,18 @@ cSite.controller('PurchasesDetailController', [
       get_date: function (date) {
         return moment(date).format('YYYY-MM-DD');
       },
+      market_update: function () {
+        pageConfig.detail.model_string = 'Purchases';
+        UserNetwork.market_update($scope, pageConfig.detail).then(function (data) {
+          // UserNetwork.market_save_photos($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id, photos: photos }).then(function (data) {
+          if (!data.err) {
+            CommonHelper.showConfirm($scope, null, '操作成功', function () {
+              $state.go('purchases_detail');
+            }, null, null, event);
+          }
+          console.log(data);
+        });
+      },
       offer_price_list: function () {
         UserNetwork.offer_price_list($scope, { purchases_id: pageConfig.detail_id }).then(function (data) {
           // UserNetwork.market_save_photos($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id, photos: photos }).then(function (data) {

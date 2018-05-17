@@ -3,10 +3,11 @@
     <p class="title">采购货品详情</p>
     <div>
       <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.market_make_top()">{{pageConfig.detail.is_top?'取消置顶':'置顶'}}</md-button>
-      <md-button class="md-primary md-raised md-hue-2" id="qiniu-upload-test-button">上传图片</md-button>
       <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.save_photos()">保存图片</md-button>
-      <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.market_update_status('delete')">删除</md-button>
+      <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.market_update()">保存信息</md-button>
       <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.market_update_status('unpassed')">驳回</md-button>
+      <md-button class="md-primary md-raised md-hue-2" id="qiniu-upload-test-button">上传图片</md-button>
+      <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.market_update_status('delete')" style="background-color:#f5091c">删除</md-button>
     </div>
   </div>
   <div layout="row" layout-align="start start">
@@ -22,11 +23,19 @@
         </div>
         <div class="list-item" layout="row" layout-align="start center">
           <div class="column-item" flex=""> 需求量</div>
-          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.need_number+pageConfig.detail.need_unit}}</div>
+          <input class="column-item" flex="" layout="row" layout-align="start start" ng-model="pageConfig.detail.need_number"></input>
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> 需求量单位</div>
+          <input class="column-item" flex="" layout="row" layout-align="start start" ng-model="pageConfig.detail.need_unit"></input>
         </div>
         <div class="list-item" layout="row" layout-align="start center">
           <div class="column-item" flex=""> 期望价格</div>
-          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.expect_price+pageConfig.detail.expect_price_unit}}</div>
+          <input class="column-item" flex="" ng-model="pageConfig.detail.expect_price" />
+        </div>
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex=""> 期望价格单位</div>
+          <input class="column-item" flex="" layout="row" ng-model="pageConfig.detail.expect_price_unit" />
         </div>
         <div class="list-item" layout="row" layout-align="start center">
           <div class="column-item" flex=""> 期望货源地</div>
@@ -34,15 +43,15 @@
         </div>
         <div class="list-item" layout="row" layout-align="start center">
           <div class="column-item" flex=""> 补充说明</div>
-          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.remark}}</div>
+          <input class="column-item" flex="" layout="row" layout-align="start start" ng-model="pageConfig.detail.remark" />
         </div>
         <div class="list-item" layout="row" layout-align="start center">
           <div class="column-item" flex=""> 采购频率</div>
-          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.frequency}}</div>
+          <input class="column-item" flex="" layout="row" layout-align="start start" ng-model="pageConfig.detail.frequency"></input>
         </div>
         <div class="list-item" layout="row" layout-align="start center">
           <div class="column-item" flex=""> 采购时长</div>
-          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.duration}}</div>
+          <input class="column-item" flex="" layout="row" layout-align="start start" ng-model="pageConfig.detail.duration"></input>
         </div>
         <div class="list-item" layout="row" layout-align="start center">
           <div class="column-item" flex=""> 收货地址省</div>
@@ -54,7 +63,7 @@
         </div>
         <div class="list-item" layout="row" layout-align="start center">
           <div class="column-item" flex=""> 电话</div>
-          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.mobile_phone}}</div>
+          <input class="column-item" flex="" layout="row" layout-align="start start" ng-model="pageConfig.detail.mobile_phone"></input>
         </div>
         <!-- <div class="list-item" layout="row" layout-align="start center"><div class="column-item" flex=""> 角色</div><div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.role}}</div></div> -->
       </div>
@@ -68,23 +77,23 @@
     </div>
     <div class="left" flex="40">
       <h1 style="text-align: center">报价信息</h1>
-        <div class="list-header">
-          <div class="list-item" layout="row" layout-align="start center">
-            <div class="column-item" flex="">用户 </div>
-            <div class="column-item" flex="">手机号 </div>
-            <div class="column-item" flex="">价格 </div>
-            <div class="column-item" flex="">供应量 </div>
-            <div class="column-item" flex="">报价日期</div>
-          </div>
-
-          <div class="list-item" layout="row" layout-align="start center" ng-repeat="item in pageConfig.price_list">
-              <div class="column-item" flex="">{{item.supply_user.nickname}}</div>
-              <div class="column-item" flex="">{{item.supply_user.username}}</div>
-              <div class="column-item" flex="">{{item.price+item.purchases.expect_price_unit}} </div>
-              <div class="column-item" flex="">{{item.supply_count}} </div>
-              <div class="column-item" flex="">{{pageConfig.get_date(item.create_time)}} </div>
-            </div>
+      <div class="list-header">
+        <div class="list-item" layout="row" layout-align="start center">
+          <div class="column-item" flex="">用户 </div>
+          <div class="column-item" flex="">手机号 </div>
+          <div class="column-item" flex="">价格 </div>
+          <div class="column-item" flex="">供应量 </div>
+          <div class="column-item" flex="">报价日期</div>
         </div>
+
+        <div class="list-item" layout="row" layout-align="start center" ng-repeat="item in pageConfig.price_list">
+          <div class="column-item" flex="">{{item.supply_user.nickname}}</div>
+          <div class="column-item" flex="">{{item.supply_user.username}}</div>
+          <div class="column-item" flex="">{{item.price+item.purchases.expect_price_unit}} </div>
+          <div class="column-item" flex="">{{item.supply_count}} </div>
+          <div class="column-item" flex="">{{pageConfig.get_date(item.create_time)}} </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
