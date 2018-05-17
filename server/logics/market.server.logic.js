@@ -47,6 +47,16 @@ function getModel(str) {
   return model;
 }
 
+exports.market_update = function (user, info, callback) {
+  var model = getModel(info.model_string);
+  model.update({ _id: info._id }, { $set: info }, function (err, result) {
+    if (err) {
+      return callback({ err: sysErr.database_save_error });
+    }
+    return callback(null, result);
+  })
+}
+
 exports.market_refresh_time = function (user, info, callback) {
   var set = { $set: { create_time: new Date() } };
   var model = getModel(info.model_string);
