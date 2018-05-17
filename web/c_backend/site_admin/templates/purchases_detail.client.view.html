@@ -54,12 +54,8 @@
           <input class="column-item" flex="" layout="row" layout-align="start start" ng-model="pageConfig.detail.duration"></input>
         </div>
         <div class="list-item" layout="row" layout-align="start center">
-          <div class="column-item" flex=""> 收货地址省</div>
-          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.receive_province}}</div>
-        </div>
-        <div class="list-item" layout="row" layout-align="start center">
-          <div class="column-item" flex=""> 收货地址市</div>
-          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.receive_city}}</div>
+          <div class="column-item" flex=""> 收货地址</div>
+          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.receive_province+' '+pageConfig.detail.receive_city}}</div>
         </div>
         <div class="list-item" layout="row" layout-align="start center">
           <div class="column-item" flex=""> 电话</div>

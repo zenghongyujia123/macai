@@ -1942,6 +1942,22 @@ cSite.controller('SupplyDetailController', [
     var pageConfig = {
       detail_id: $stateParams.detail_id,
       detail: {},
+      get_date: function (date) {
+        return moment(date).format('YYYY-MM-DD');
+      },
+      market_update: function () {
+        pageConfig.detail.model_string = 'Supply';
+        pageConfig.detail.provide_services = (pageConfig.detail.provide_services_string || '').split('|');
+        UserNetwork.market_update($scope, pageConfig.detail).then(function (data) {
+          // UserNetwork.market_save_photos($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id, photos: photos }).then(function (data) {
+          if (!data.err) {
+            CommonHelper.showConfirm($scope, null, '操作成功', function () {
+              $state.go('supply_detail');
+            }, null, null, event);
+          }
+          console.log(data);
+        });
+      },
       market_update_status: function (status) {
         UserNetwork.market_update_status($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id, status: status }).then(function (data) {
           // UserNetwork.market_save_photos($scope, { model_string: 'Supply', detail_id: pageConfig.detail_id, photos: photos }).then(function (data) {

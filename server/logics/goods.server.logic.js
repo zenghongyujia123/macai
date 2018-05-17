@@ -175,6 +175,7 @@ exports.create_supply = function (user, info, callback) {
     send_district: info.send_district,
     send_address: info.send_address,
     provide_services: info.provide_services.split(','),
+    provide_services_string: info.provide_services,
     photos: info.photos,
   });
 

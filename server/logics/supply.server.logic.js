@@ -93,7 +93,7 @@ function create_supply(user, info, callback) {
     send_district: info.send_district,
     send_address: info.send_address,
     provide_services: info.provide_services_string.split('|'),
-    provide_services_string: info.provide_services_string,
+    provide_services_string: info.provide_services_string||'',
     photos: info.photos,
   });
   var goods_specs_list = [];
