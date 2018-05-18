@@ -710,6 +710,26 @@ cSite.factory('QiniuService', [
 
   }]);
 
+'use strict';
+
+cSite.directive('dialogLoadingBox', ['$rootScope', 'GlobalEvent', 'CommonHelper', function ($rootScope, GlobalEvent, CommonHelper) {
+  return {
+    restrict: 'E',
+    templateUrl: '/c_backend/site_admin/directive/dialog_loading_box/dialog_loading_box.client.view.html',
+    replace: true,
+    scope: {},
+    controller: function ($scope, $element) {
+      $scope.dialogInfo = {
+        isShow: false
+      };
+
+      $rootScope.$on(GlobalEvent.onShowLoading, function (event, isLoading) {
+        $scope.dialogInfo.isShow = isLoading;
+      });
+    }
+  };
+}]);
+
 /**
  * 货物照片预览
  * author: louisha
@@ -823,26 +843,6 @@ cSite.directive('mPhotoScan', ['$document', function ($document) {
     }
   }
 }]);
-'use strict';
-
-cSite.directive('dialogLoadingBox', ['$rootScope', 'GlobalEvent', 'CommonHelper', function ($rootScope, GlobalEvent, CommonHelper) {
-  return {
-    restrict: 'E',
-    templateUrl: '/c_backend/site_admin/directive/dialog_loading_box/dialog_loading_box.client.view.html',
-    replace: true,
-    scope: {},
-    controller: function ($scope, $element) {
-      $scope.dialogInfo = {
-        isShow: false
-      };
-
-      $rootScope.$on(GlobalEvent.onShowLoading, function (event, isLoading) {
-        $scope.dialogInfo.isShow = isLoading;
-      });
-    }
-  };
-}]);
-
 /**
  * Created by zenghong on 16/4/21.
  */
@@ -2317,9 +2317,10 @@ cSite.controller('UserListController', [
       current_page: 0,
       prev_last_item: {},
       personal_auth_stauts: '',
-      authing_count:0,
+      authing_count: 0,
       keyword: '',
       list: [],
+      goal: '',
       table_header: [
         '头像',
         '用户名',
@@ -2335,7 +2336,7 @@ cSite.controller('UserListController', [
           personal_auth_stauts: personal_auth_stauts || 'authing',
         }).then(function (data) {
           console.log(data);
-          pageConfig.authing_count = data.count||0;
+          pageConfig.authing_count = data.count || 0;
           $timeout(function () {
             pageConfig.user_count_by_status();
           }, 10000);
@@ -2384,6 +2385,13 @@ cSite.controller('UserListController', [
         }
         return text;
       },
+      change_goal: function (goal) {
+        pageConfig.goal = goal;
+        pageConfig.last_item = {};
+        pageConfig.current_page = 0;
+        pageConfig.list = [];
+        pageConfig.get_list();
+      },
       search: function () {
         pageConfig.last_item = {};
         pageConfig.current_page = 0;
@@ -2405,6 +2413,7 @@ cSite.controller('UserListController', [
           model_string: 'User',
           personal_auth_stauts: pageConfig.personal_auth_stauts,
           keyword: pageConfig.keyword,
+          goal: pageConfig.goal
         }).then(function (data) {
           console.log(data);
           if (data && !data.err) {

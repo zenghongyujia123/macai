@@ -168,6 +168,10 @@ exports.market_list = function (user, info, callback) {
     query.personal_auth_stauts = info.personal_auth_stauts;
   }
 
+  if (info.goal) {
+    query.goal = info.goal;
+  }
+
   if (info.keyword) {
     if (mongoose.isObjectId(info.keyword)) {
       query._id = info.keyword;

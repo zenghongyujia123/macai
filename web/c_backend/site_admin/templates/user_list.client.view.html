@@ -8,6 +8,8 @@
         <md-button class="md-raised md-hue-2" ng-class="{'md-primary' :pageConfig.personal_auth_stauts==='unauth'}" ng-click="pageConfig.change_auth_status('unauth')">未认证</md-button>
         <md-button class="md-raised md-hue-2" ng-class="{'md-primary' :pageConfig.personal_auth_stauts==='authing'}" ng-click="pageConfig.change_auth_status('authing')">认证中</md-button>
         <md-button class="md-raised md-hue-2" ng-class="{'md-primary' :pageConfig.personal_auth_stauts==='authed'}" ng-click="pageConfig.change_auth_status('authed')">已认证</md-button>
+        <md-button class="md-raised md-hue-2" ng-class="{'md-primary' :pageConfig.goal==='我来找货'}" ng-click="pageConfig.change_goal('我来找货')">我来找货</md-button>
+        <md-button class="md-raised md-hue-2" ng-class="{'md-primary' :pageConfig.goal==='我来卖货'}" ng-click="pageConfig.change_goal('我来卖货')">我来卖货</md-button>
       </div>
       <div layout="row" layout-align="start center">
         <md-input-container style="margin-top:50px;" class="md-block  md-primary">
