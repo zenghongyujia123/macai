@@ -85,3 +85,16 @@
   border-bottom: 1px solid #e5e5e5;
   border-right: 1px solid #e5e5e5;
 }
+.weui-uploader__file {
+  position: relative;
+}
+.weui-uploader__file .remove-img {
+  top: 0px;
+  right: 0px;
+  position: absolute;
+  text-align: center;
+  color: white;
+  background-color: red;
+  opacity: 0.5;
+  font-size: 12px;
+}
