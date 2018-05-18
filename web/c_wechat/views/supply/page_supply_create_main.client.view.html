@@ -426,14 +426,23 @@
       uploadImage(ids[0], function (res) {
         wechat_server_ids.push(res.serverId)
         var imageItem = $(
-          '<li class="weui-uploader__file"><img style="width:100%;height:100%;" src="' + ids[0] + '" /></li>'
+          '<li class="weui-uploader__file"><img style="width:100%;height:100%;" src="' + ids[0] + '" /><div class="remove-img">删除</div></li>'
         );
+        bindRemoveImage(imageItem, res.serverId)
         photoContainer.append(imageItem);
         photoNumber.text(photoContainer.find('img').length);
         appendImage(localIds);
       })
     }
-
+    function bindRemoveImage(imageItem, serverId) {
+      imageItem.find('.remove-img').click(function () {
+        imageItem.remove();
+        var index = wechat_server_ids.indexOf(serverId)
+        if (index >= 0) {
+          wechat_server_ids.splice(index, 1);
+        }
+      });
+    }
     getUserJsApiTicket(window.location.href, function (data) {
 
     });
