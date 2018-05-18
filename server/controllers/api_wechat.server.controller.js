@@ -4,6 +4,8 @@
 var path = require('path');
 var goodsLogic = require('../logics/goods');
 var purchasesLogic = require('../logics/purchases');
+var messageLogic = require('../logics/message');
+
 var supplyLogic = require('../logics/supply');
 var paymentLogic = require('../logics/payment');
 var marketLogic = require('../logics/market');
@@ -346,6 +348,15 @@ exports.delete_supply = function (req, res, next) {
     }
     return res.send({ count: result })
   })
+}
+
+exports.message_list = function (req, res, next) {
+  messageLogic.message_list(req.user, {user_id:req.user._id.toString()}, function (err, results) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(results);
+  });
 }
 
 

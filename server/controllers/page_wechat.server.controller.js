@@ -154,6 +154,9 @@ exports.page_my_auth = function (req, res, next) {
 exports.page_my_vip = function (req, res, next) {
   return res.render(path.join(__dirname, '../../web/c_wechat/views/my/page_my_vip.client.view.html'), { user: req.user });
 };
+exports.page_my_message = function (req, res, next) {
+  return res.render(path.join(__dirname, '../../web/c_wechat/views/my/page_my_message.client.view.html'), { user: req.user });
+};
 
 exports.page_banner_detail = function (req, res, next) {
   return res.render(path.join(__dirname, '../../web/c_wechat/views/banner/page_banner_detail.client.view.html'), { banner: req.require_market || {} });

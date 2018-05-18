@@ -46,4 +46,7 @@ module.exports = function (app) {
 
   app.route('/api_wechat/purchases/delete_purchases').post(userFilter.requirePostUser,goodsFilter.requirePurchases, ctr.delete_purchases)
   app.route('/api_wechat/supply/delete_supply').post(userFilter.requirePostUser,goodsFilter.requireSupply, ctr.delete_supply)
+
+  app.route('/api_wechat/message_list').post(userFilter.requirePostUser,ctr.message_list);
+  
 };

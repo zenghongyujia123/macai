@@ -38,6 +38,7 @@ module.exports = function (app) {
   app.route('/page_wechat/page_my_main').get(userFilter.requireUser, index.page_my_main);
   app.route('/page_wechat/page_my_auth').get(userFilter.requireUser, index.page_my_auth);
   app.route('/page_wechat/page_my_vip').get(userFilter.requireUser, index.page_my_vip);
+  app.route('/page_wechat/page_my_message').get(userFilter.requireUser, index.page_my_message);
 
   app.route('/page_wechat/page_banner_detail').get(goodsFilter.requireMarket, index.page_banner_detail);
 };
