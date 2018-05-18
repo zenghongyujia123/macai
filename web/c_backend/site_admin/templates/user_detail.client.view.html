@@ -3,6 +3,7 @@
     <p class="title">用户详情</p>
     <div>
       <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.message_create()">发送信息</md-button>
+      <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.udpate_user_base_info()">保存信息</md-button>
       <md-button class="md-primary md-raised md-hue-2" ng-disabled="pageConfig.detail.personal_auth_stauts!=='authing'" ng-click="pageConfig.update_personal_auth_info('authed')">认证通过</md-button>
       <md-button class="md-primary md-raised md-hue-2" ng-disabled="pageConfig.detail.personal_auth_stauts!=='authing'" ng-click="pageConfig.refuse($event)">认证拒绝</md-button>
     </div>
@@ -26,11 +27,11 @@
         </div>
         <div class="list-item" layout="row" layout-align="start center">
           <div class="column-item" flex=""> 角色</div>
-          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.role}}</div>
+          <input class="column-item" flex="" layout="row" layout-align="start start" ng-model="pageConfig.detail.role"></input>
         </div>
         <div class="list-item" layout="row" layout-align="start center">
           <div class="column-item" flex=""> 买／卖</div>
-          <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.goal}}</div>
+          <input class="column-item" flex="" layout="row" layout-align="start start" ng-model="pageConfig.detail.goal"></input>
         </div>
         <div class="list-item" layout="row" layout-align="start center">
           <div class="column-item" flex=""> 身份</div>

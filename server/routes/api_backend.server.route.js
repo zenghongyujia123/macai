@@ -32,4 +32,5 @@ module.exports = function (app) {
   app.route('/api_backend/market_update').post(ctr.market_update);
   app.route('/api_backend/message_create').post(ctr.message_create);
   app.route('/api_backend/message_list').post(ctr.message_list);
+  app.route('/api_backend/udpate_user_base_info').post(ctr.udpate_user_base_info);
 };

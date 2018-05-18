@@ -149,8 +149,23 @@ exports.user_count_by_status = function (user, info, callback) {
     if (err) {
       return callback({ err: sysErr.database_query_error });
     }
-    return callback(null,count)
+    return callback(null, count)
   });
+}
+
+exports.udpate_user_base_info = function (user, info, callback) {
+  User.update({ _id: info.user_id }, {
+    $set: {
+      goal: info.goal || '我来卖货',
+      role: info.role || '种植户'
+    }
+  }, function (err, result) {
+    if (err) {
+      return callback({ err: sysErr.database_save_error });
+    }
+
+    return callback(null, result);
+  })
 }
 
 exports.updateUserVipInfos = function (info, callback) {

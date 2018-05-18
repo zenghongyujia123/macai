@@ -253,6 +253,16 @@ exports.message_list = function (req, res, next) {
   });
 }
 
+exports.udpate_user_base_info = function (req, res, next) {
+  userLogic.udpate_user_base_info(req.user, req.body, function (err, results) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(results);
+  });
+}
+
+
 
 
 

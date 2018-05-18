@@ -326,6 +326,9 @@ cSite.factory('UserNetwork',
         },
         message_list: function (scope, params) {
           return Http.postRequestWithCheck(scope, '/api_backend/message_list', params);
+        },
+        udpate_user_base_info: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/udpate_user_base_info', params);
         }
       };
     }]);
@@ -2192,11 +2195,22 @@ cSite.controller('UserDetailController', [
     var pageConfig = {
       detail_id: $stateParams.detail_id,
       detail: {},
-      message_list:[],
+      message_list: [],
       get_date: function (date) {
         return date ? moment(date).format('YYYY-MM-DD') : '';
       },
-      get_message_list:function(){
+      udpate_user_base_info: function () {
+        pageConfig.detail.user_id = $stateParams.detail_id;
+        UserNetwork.udpate_user_base_info($scope, pageConfig.detail).then(function (data) {
+          console.log(data);
+          if (!data.err) {
+            CommonHelper.showConfirm($scope, null, '操作成功', function () {
+              $state.go('user_detail', null, { reload: true });
+            }, null, null, event);
+          }
+        });
+      },
+      get_message_list: function () {
         UserNetwork.message_list($scope, { user_id: $stateParams.detail_id }).then(function (data) {
           console.log(data);
           if (!data.err) {

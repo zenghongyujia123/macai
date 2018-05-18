@@ -59,6 +59,9 @@ cSite.factory('UserNetwork',
         },
         message_list: function (scope, params) {
           return Http.postRequestWithCheck(scope, '/api_backend/message_list', params);
+        },
+        udpate_user_base_info: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/udpate_user_base_info', params);
         }
       };
     }]);
