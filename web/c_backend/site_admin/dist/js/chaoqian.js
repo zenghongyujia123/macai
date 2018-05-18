@@ -321,6 +321,12 @@ cSite.factory('UserNetwork',
         user_count_by_status: function (scope, params) {
           return Http.postRequestWithCheck(scope, '/api_backend/user_count_by_status', params);
         },
+        message_create: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/message_create', params);
+        },
+        message_list: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/message_list', params);
+        }
       };
     }]);
 
@@ -701,26 +707,6 @@ cSite.factory('QiniuService', [
 
   }]);
 
-'use strict';
-
-cSite.directive('dialogLoadingBox', ['$rootScope', 'GlobalEvent', 'CommonHelper', function ($rootScope, GlobalEvent, CommonHelper) {
-  return {
-    restrict: 'E',
-    templateUrl: '/c_backend/site_admin/directive/dialog_loading_box/dialog_loading_box.client.view.html',
-    replace: true,
-    scope: {},
-    controller: function ($scope, $element) {
-      $scope.dialogInfo = {
-        isShow: false
-      };
-
-      $rootScope.$on(GlobalEvent.onShowLoading, function (event, isLoading) {
-        $scope.dialogInfo.isShow = isLoading;
-      });
-    }
-  };
-}]);
-
 /**
  * 货物照片预览
  * author: louisha
@@ -834,6 +820,26 @@ cSite.directive('mPhotoScan', ['$document', function ($document) {
     }
   }
 }]);
+'use strict';
+
+cSite.directive('dialogLoadingBox', ['$rootScope', 'GlobalEvent', 'CommonHelper', function ($rootScope, GlobalEvent, CommonHelper) {
+  return {
+    restrict: 'E',
+    templateUrl: '/c_backend/site_admin/directive/dialog_loading_box/dialog_loading_box.client.view.html',
+    replace: true,
+    scope: {},
+    controller: function ($scope, $element) {
+      $scope.dialogInfo = {
+        isShow: false
+      };
+
+      $rootScope.$on(GlobalEvent.onShowLoading, function (event, isLoading) {
+        $scope.dialogInfo.isShow = isLoading;
+      });
+    }
+  };
+}]);
+
 /**
  * Created by zenghong on 16/4/21.
  */
@@ -2186,8 +2192,36 @@ cSite.controller('UserDetailController', [
     var pageConfig = {
       detail_id: $stateParams.detail_id,
       detail: {},
+      message_list:[],
       get_date: function (date) {
-        return date?  moment(date).format('YYYY-MM-DD'):'';
+        return date ? moment(date).format('YYYY-MM-DD') : '';
+      },
+      get_message_list:function(){
+        UserNetwork.message_list($scope, { user_id: $stateParams.detail_id }).then(function (data) {
+          console.log(data);
+          if (!data.err) {
+            pageConfig.message_list = data;
+          }
+        });
+      },
+      message_create: function () {
+        CommonHelper.showMaterialSingleInput($scope, event, {
+          input_params: {
+            title: '提示',
+            input_label: '请输入信息',
+            input_value: '',
+            confirm_label: '确定'
+          }
+        }, function (content) {
+          UserNetwork.message_create($scope, { user_id: pageConfig.detail._id, content: content }).then(function (data) {
+            console.log(data);
+            if (!data.err) {
+              CommonHelper.showConfirm($scope, null, '操作成功', function () {
+                $state.go('user_detail', null, { reload: true });
+              }, null, null, event);
+            }
+          });
+        });
       },
       refuse: function (event) {
         CommonHelper.showMaterialSingleInput($scope, event, {
@@ -2237,6 +2271,7 @@ cSite.controller('UserDetailController', [
     };
     $scope.pageConfig = pageConfig;
     pageConfig.get_detail();
+    pageConfig.get_message_list();
 
     $scope.photoConfig = {
       curPhotoList: [],

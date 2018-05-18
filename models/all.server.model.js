@@ -8,4 +8,5 @@ module.exports = function (appDb) {
   require('./banner')(appDb);
   require('./user_wechat')(appDb);
   require('./shippment')(appDb);
+  require('./message')(appDb);
 };

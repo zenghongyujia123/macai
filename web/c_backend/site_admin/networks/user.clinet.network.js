@@ -54,5 +54,11 @@ cSite.factory('UserNetwork',
         user_count_by_status: function (scope, params) {
           return Http.postRequestWithCheck(scope, '/api_backend/user_count_by_status', params);
         },
+        message_create: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/message_create', params);
+        },
+        message_list: function (scope, params) {
+          return Http.postRequestWithCheck(scope, '/api_backend/message_list', params);
+        }
       };
     }]);

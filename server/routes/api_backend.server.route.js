@@ -30,4 +30,6 @@ module.exports = function (app) {
   app.route('/api_backend/offer_price_list').post(ctr.offer_price_list);
   app.route('/api_backend/user_count_by_status').post(ctr.user_count_by_status);
   app.route('/api_backend/market_update').post(ctr.market_update);
+  app.route('/api_backend/message_create').post(ctr.message_create);
+  app.route('/api_backend/message_list').post(ctr.message_list);
 };

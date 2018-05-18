@@ -2,12 +2,13 @@
   <div class="page-operation-view" layout="row" layout-align="space-between center">
     <p class="title">用户详情</p>
     <div>
+      <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.message_create()">发送信息</md-button>
       <md-button class="md-primary md-raised md-hue-2" ng-disabled="pageConfig.detail.personal_auth_stauts!=='authing'" ng-click="pageConfig.update_personal_auth_info('authed')">认证通过</md-button>
       <md-button class="md-primary md-raised md-hue-2" ng-disabled="pageConfig.detail.personal_auth_stauts!=='authing'" ng-click="pageConfig.refuse($event)">认证拒绝</md-button>
     </div>
   </div>
   <div layout="row" layout-align="start start">
-    <div class="left" flex="">
+    <div class="left" flex="30">
       <div class="list-header">
         <div class="list-item" layout="row" layout-align="start center">
           <div class="column-item" flex=""> 头像</div>
@@ -51,7 +52,7 @@
           <div class="column-item" flex=""> 个人认证通知（拒绝原因）</div>
           <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.detail.personal_auth_stauts_description}}</div>
         </div>
-        
+
         <div class="list-item" layout="row" layout-align="start center">
           <div class="column-item" flex="">个人认证时间</div>
           <div class="column-item" flex="" layout="row" layout-align="start start">{{pageConfig.get_date(pageConfig.detail.personal_auth_time)}}</div>
@@ -66,7 +67,7 @@
         </div>
       </div>
     </div>
-    <div class="right" flex="">
+    <div class="right" flex="30">
       <div style="position:relative;float:left;margin:20px;">
         <img style=" width:200px;height:200px;" class="photo" ng-src="{{pageConfig.detail.personal_auth_id_front_photo}}" ng-click="showPhotos(pageConfig.detail.personal_auth_id_front_photo)"
         />
@@ -83,6 +84,20 @@
         <div style="position:absolute;left:0px;height:30px;line-height:30px;width:100%;bottom:0px;background-color:green;color:white;text-align:center;">人证照片</div>
       </div>
     </div>
+    <div class="left" flex="40">
+        <h1 style="text-align: center">通知信息</h1>
+        <div class="list-header">
+          <div class="list-item" layout="row" layout-align="start center">
+            <div class="column-item" flex="30">时间 </div>
+            <div class="column-item" flex="70">内容 </div>
+          </div>
+  
+          <div class="list-item" layout="row" layout-align="start center" ng-repeat="item in pageConfig.message_list">
+            <div class="column-item" flex="30">{{item.create_time | date : 'yyyy-MM-dd HH:MM:ss' }}</div>
+            <div class="column-item" flex="70">{{item.content}}</div>
+          </div>
+        </div>
+      </div>
   </div>
   <div m-photo-scan photos="photoConfig.curPhotoList" show="photoConfig.showPhotoScan" start-index="tenderConfig.imgIndex">
   </div>

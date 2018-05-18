@@ -3,6 +3,7 @@
  */
 var path = require('path');
 var goodsLogic = require('../logics/goods');
+var messageLogic = require('../logics/message');
 var purchasesLogic = require('../logics/purchases');
 var supplyLogic = require('../logics/supply');
 var marketLogic = require('../logics/market');
@@ -230,9 +231,33 @@ exports.user_count_by_status = function (req, res, next) {
     if (err) {
       return res.send(err);
     }
-    return res.send({count:results});
+    return res.send({ count: results });
   });
 }
+
+exports.message_create = function (req, res, next) {
+  messageLogic.message_create(req.user, req.body, function (err, results) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(results);
+  });
+}
+
+exports.message_list = function (req, res, next) {
+  messageLogic.message_list(req.user, req.body, function (err, results) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send(results);
+  });
+}
+
+
+
+
+
+
 
 
 
