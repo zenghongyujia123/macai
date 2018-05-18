@@ -381,7 +381,6 @@ exports.market_day_info_import = function (user, infos, callback) {
     MarketDayInfo.findOne({
       market: info.market,
       main_goods: info.main_goods,
-      price: info.price,
       day: new Date(info.day)
     }, function (err, marketDayInfo) {
       if (err) {
@@ -392,13 +391,13 @@ exports.market_day_info_import = function (user, infos, callback) {
       if (!marketDayInfo) {
         marketDayInfo = new MarketDayInfo({
           market: info.market,
-          last_day_price: info.last_day_price,
           main_goods: info.main_goods,
-          price: info.price,
           day: info.day
         });
       }
 
+      marketDayInfo.price = info.price;
+      marketDayInfo.last_day_price = info.last_day_price;
       marketDayInfo.deleted_status = false;
       marketDayInfo.save(function (err, result) {
         if (err) {
@@ -406,7 +405,7 @@ exports.market_day_info_import = function (user, infos, callback) {
         }
         setTimeout(function () {
           return eachCallback();
-        }, 500);
+        }, 10);
       });
     });
   }, function () {
