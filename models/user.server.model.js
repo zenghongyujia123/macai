@@ -65,7 +65,7 @@ module.exports = function (appDb) {
       enum: ['unauth', 'authing', 'authed'],
       default: 'unauth'
     },
-    personal_auth_stauts_description:{
+    personal_auth_stauts_description: {
       type: String,
     },
     personal_auth_by_user: {
@@ -82,6 +82,9 @@ module.exports = function (appDb) {
     },
     personal_auth_id_real_photo: {
       type: String
+    },
+    read_message_time: {
+      type: Date
     }
   });
 

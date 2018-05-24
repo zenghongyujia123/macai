@@ -6,6 +6,7 @@ var userLogic = require('../logics/user');
 var goodsLogic = require('../logics/goods');
 var purchasesLogic = require('../logics/purchases');
 var wechatLogic = require('../logics/wechat');
+var messageLogic = require('../logics/message');
 var marketLogic = require('../logics/market');
 var moment = require('moment');
 var cookieLib = require('../../libraries/cookie');
@@ -132,8 +133,10 @@ exports.page_market_purchases_list = function (req, res, next) {
 };
 
 exports.page_my_main = function (req, res, next) {
-  var filepath = path.join(__dirname, '../../web/c_wechat/views/my/page_my_main.client.view.html');
-  return res.render(filepath, { user: req.user });
+  messageLogic.un_read_message_count(req.user, function (err, count) {
+    var filepath = path.join(__dirname, '../../web/c_wechat/views/my/page_my_main.client.view.html');
+    return res.render(filepath, { user: req.user, message_count: count || 0 });
+  });
 };
 
 exports.page_my_auth = function (req, res, next) {
@@ -155,7 +158,9 @@ exports.page_my_vip = function (req, res, next) {
   return res.render(path.join(__dirname, '../../web/c_wechat/views/my/page_my_vip.client.view.html'), { user: req.user });
 };
 exports.page_my_message = function (req, res, next) {
-  return res.render(path.join(__dirname, '../../web/c_wechat/views/my/page_my_message.client.view.html'), { user: req.user });
+  messageLogic.update_user_read_message(req.user, function (err) {
+    return res.render(path.join(__dirname, '../../web/c_wechat/views/my/page_my_message.client.view.html'), { user: req.user });
+  });
 };
 
 exports.page_banner_detail = function (req, res, next) {
