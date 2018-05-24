@@ -35,7 +35,7 @@ exports.message_list = function (user, info, callback) {
 
 exports.un_read_message_count = function (user, callback) {
   var query = {
-    user_id: user._id
+    user: user._id
   };
   if (user.read_message_time) {
     query.create_time = { $gte: user.read_message_time };

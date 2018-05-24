@@ -196,22 +196,22 @@ exports.get_choose_categorys = function (req, res, next) {
 
 
   var arr = [];
-  goodsLogic.get_choose_categorys(function(err,goods_list){
+  goodsLogic.get_choose_categorys(function (err, goods_list) {
     var dic = {};
     goods_list.forEach(function (goods) {
       if (!dic[goods.goods_class]) {
         dic[goods.goods_class] = {};
       }
-  
+
       if (!dic[goods.goods_class][goods.first_pinyin]) {
         dic[goods.goods_class][goods.first_pinyin] = [];
       }
-  
+
       if (dic[goods.goods_class][goods.first_pinyin].indexOf(goods.goods_category) === -1) {
         dic[goods.goods_class][goods.first_pinyin].push(goods.goods_category)
       }
     });
-  
+
     for (var proCategory in dic) {
       var category = { goods_category: proCategory, goods_name_list: [] };
       for (var pinyin in dic[proCategory]) {
@@ -222,7 +222,7 @@ exports.get_choose_categorys = function (req, res, next) {
       }
       arr.push(category);
     }
-  
+
     return res.send(arr);
   })
 
@@ -245,8 +245,8 @@ exports.get_choose_categorys = function (req, res, next) {
 };
 
 exports.get_choose_specs = function (req, res, next) {
-  goodsLogic.get_choose_specs(req.body.category,function(err,list){
-    list = list.length!==0?list:[
+  goodsLogic.get_choose_specs(req.body.category, function (err, list) {
+    list = list.length !== 0 ? list : [
       {
         title: '单果重',
         list: ['60g以下']
@@ -264,21 +264,21 @@ exports.get_choose_specs = function (req, res, next) {
   })
 };
 exports.get_choose_brand = function (req, res, next) {
-  var brands = 
-  goodsLogic.get_choose_brand(req.body.category,function(err,brands){
-    var dic = {};
-    brands.forEach(function (brand) {
-      if (!dic[brand.goods_category]) {
-        dic[brand.goods_category] = [];
-      }
-  
-      if (dic[brand.goods_category].indexOf(brand.brand) === -1) {
-        dic[brand.goods_category].push(brand.brand);
-      }
-    });
-  
-    return res.send(dic[req.body.category]);
-  })
+  var brands =
+    goodsLogic.get_choose_brand(req.body.category, function (err, brands) {
+      var dic = {};
+      brands.forEach(function (brand) {
+        if (!dic[brand.goods_category]) {
+          dic[brand.goods_category] = [];
+        }
+
+        if (dic[brand.goods_category].indexOf(brand.brand) === -1) {
+          dic[brand.goods_category].push(brand.brand);
+        }
+      });
+
+      return res.send(dic[req.body.category]);
+    })
 
 }
 
@@ -351,11 +351,20 @@ exports.delete_supply = function (req, res, next) {
 }
 
 exports.message_list = function (req, res, next) {
-  messageLogic.message_list(req.user, {user_id:req.user._id.toString()}, function (err, results) {
+  messageLogic.message_list(req.user, { user_id: req.user._id.toString() }, function (err, results) {
     if (err) {
       return res.send(err);
     }
     return res.send(results);
+  });
+}
+
+exports.un_read_message_count = function (req, res, next) {
+  messageLogic.un_read_message_count(req.user, function (err, count) {
+    if (err) {
+      return res.send(err);
+    }
+    return res.send({ count: count || 0 });
   });
 }
 
