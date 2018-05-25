@@ -48,7 +48,7 @@ $(function () {
           onOK: function (input) {
             refreshGoods(detail_id, input, 'Purchases', function (data) {
               if (data.err) {
-                $.toast(data.err.message);
+                $.toast(data.err.message, 'cancel');
                 return;
               }
               obj.find('.refresh-time').text('最后刷新：' + m_get_date_diff(new Date()));
@@ -91,7 +91,7 @@ $(function () {
           '     <div class="title2">浏览次数：' + (item.browse_count || 0) + '次</div>' +
           '     <div class="title2 refresh-time">最后刷新：' + m_get_date_diff(new Date(item.create_time)) + '</div>' +
           '     <div class="item-bottom">' +
-          '       <div class="price"><span class="price-text">' + item.expect_price+'</span>' +
+          '       <div class="price"><span class="price-text">' + item.expect_price + '</span>' +
           '         <span class="price-unit">' + item.expect_price_unit + '</span>' +
           '       </div>' +
           '       <div class="footer-right">' +

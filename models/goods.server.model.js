@@ -209,6 +209,9 @@ module.exports = function (appDb) {
     role: {
       type: String
     },
+    refresh_info:{
+      type: Schema.Types.Mixed
+    },
     deleted_status: {
       type: Boolean,
       default: false
@@ -317,6 +320,10 @@ module.exports = function (appDb) {
     },
     nickname: {
       type: String
+    },
+    //day,count
+    refresh_info:{
+      type: Schema.Types.Mixed
     },
     deleted_status: {
       type: Boolean,

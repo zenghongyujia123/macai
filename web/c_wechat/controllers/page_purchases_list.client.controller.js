@@ -3,148 +3,6 @@ $(function () {
   var mySwiper = new Swiper('.swiper-container', {
     autoplay: 5000,//可选选项，自动滑动
   });
-
-  var tab2 = {
-    nav: $('#nav2'),
-    container: $('#tab2'),
-    laodmore: $('#tab2').find('.weui-loadmore'),
-    last_item: {},
-    loading: false,
-    is_init: false,
-    is_get_un_read: false,
-    un_read_offer_price_count: function () {
-      if (tab2.is_get_un_read) {
-        return;
-      }
-
-      tab2.is_get_un_read = true;
-      $.ajax({
-        url: '/api_wechat/purchases/un_read_offer_price_count',
-        data: {
-        },
-        method: 'post',
-        success: function (data) {
-          console.log(data);
-          if (data && !data.err) {
-            $('.tip-text').text('您有' + data.count + '条新报价');
-          }
-        }
-      });
-    },
-    my_list: function (callback) {
-      $.ajax({
-        url: '/api_wechat/purchases/my_purchases_list',
-        data: {
-          last_item: tab2.last_item
-        },
-        method: 'post',
-        success: function (data) {
-          console.log(data);
-          if (!data || data.err) {
-            if (data.err.type === 'user_not_exist') {
-              window.location = '/page_wechat/page_signin';
-            }
-            $.toptip(data.err.message, 'warning');
-            return callback();
-          }
-
-          tab2.un_read_offer_price_count();
-          tab2.append_my_list(data);
-          if (data.length > 0) {
-            tab2.last_item = data[data.length - 1];
-          }
-          if (data.length < 10) {
-            tab2.container.destroyInfinite();
-            tab2.laodmore.remove();
-          }
-          if (callback)
-            return callback();
-        }
-      });
-    },
-    bind_event: function (obj, detail_id) {
-      obj.find('.refresh').click(function (e) {
-        stopBubble(e);
-        refreshGoods(detail_id,null, 'Purchases', function (data) {
-          if (data.err) {
-            $.toast(data.err.message);
-            return;
-          }
-          obj.find('.refresh-time').text('最后刷新：' + m_get_date_diff(new Date()));
-          $.toast("操作成功");
-        });
-        return false;
-      });
-      obj.find('.check-price').click(function (e) {
-        stopBubble(e);
-        window.location = '/page_wechat/page_purchases_price_list?purchases_id=' + detail_id;
-      });
-      obj.find('.delete').click(function (e) {
-        stopBubble(e);
-        $.confirm("确定删除该采购吗", function () {
-          detelePurchases(detail_id, function () {
-            obj.remove();
-          });
-          //点击确认后的回调函数
-        }, function () {
-          //点击取消后的回调函数
-        });
-      });
-    },
-    append_my_list: function (data) {
-      for (var i = 0; i < data.length; i++) {
-        var item = data[i];
-        var obj = $(
-          ' <a id="' + item._id + '" href="/page_wechat/page_purchases_detail?purchases_id=' + item._id + '" class="weui-media-box weui-media-box_appmsg purchases-list-item">' +
-          '   <div class="weui-media-box__bd">' +
-          '     <div class="title1">' + item.goods_name +
-          '     </div>' +
-          '     <div class="title2">品种：' + item.goods_brand + '</div>' +
-          '     <div class="title2">浏览次数：' + (item.browse_count || 0) + '次</div>' +
-          '     <div class="title2 refresh-time">最后刷新：' + m_get_date_diff(new Date(item.create_time)) + '</div>' +
-          '     <div class="item-bottom">' +
-          '       <div class="price">' + item.expect_price +
-          '         <span class="price-unit">' + item.expect_price_unit + '</span>' +
-          '       </div>' +
-          '       <div class="footer-right">' +
-          '         <div class="refresh">' +
-          '           刷新价格' +
-          '         </div>' +
-          '         <div class="check-price">' +
-          '           查看报价' +
-          '         </div>' +
-          '         <div class="delete">' +
-          '           删除' +
-          '         </div>' +
-          '       </div>' +
-          '     </div>' +
-          '   </div>' +
-          ' </a');
-        tab2.bind_event(obj, item._id);
-        obj.insertBefore(tab2.laodmore);
-      }
-    },
-    init: function () {
-
-    }
-  };
-
-  tab2.nav.click(function () {
-    if (tab2.is_init) {
-      return;
-    }
-    tab2.is_init = true;
-    tab2.init();
-    tab2.container.infinite().on("infinite", function () {
-      if (tab2.loading) return;
-      tab2.loading = true;
-      tab2.my_list(function (last) {
-        tab2.loading = false;
-      });
-    });
-    tab2.my_list();
-  });
-
   var tab1 = {
     nav: $('#nav1'),
     container: $('#tab1'),
@@ -153,6 +11,7 @@ $(function () {
     goods_category: '',
     loading: false,
     is_init: false,
+    top_ids: [],
     clear_list: function () {
       tab1.container.find('.purchases-list-item').remove();
     },
@@ -173,6 +32,9 @@ $(function () {
             $.toptip(data.err.message, 'warning');
             return callback();
           }
+          tab1.top_ids = data.map(function (item) {
+            return item._id;
+          });
           tab1.append_my_list(data);
           return callback();
         }

@@ -8,6 +8,7 @@ var Supply = appDb.model('Supply');
 var Banner = appDb.model('Banner');
 var User = appDb.model('User');
 var Goods = appDb.model('Goods');
+var moment = require('moment');
 var Purchases = appDb.model('Purchases');
 var MarketSupply = appDb.model('MarketSupply');
 var MarketPurchases = appDb.model('MarketPurchases');
@@ -57,9 +58,25 @@ exports.market_update = function (user, info, callback) {
   })
 }
 
-exports.market_refresh_time = function (user, info, callback) {
+exports.market_refresh_time = function (user, info, market, callback) {
   var set = { $set: { create_time: new Date() } };
   var model = getModel(info.model_string);
+  market.refresh_info = market.refresh_info || {};
+  var today = moment(new Date()).format('YYYY-MM-DD');
+  if (!market.refresh_info.day) {
+    market.refresh_info = { day: today, count: 0 };
+  }
+
+  if (market.refresh_info.day !== today) {
+    market.refresh_info.day = today;
+    market.refresh_info.count = 0;
+  }
+
+  if (market.refresh_info.count >= 3) {
+    return callback({ err: { type: 'limit_count', message: '该货品今日已刷新超过3次！' } });
+  }
+
+  market.refresh_info.count += 1;
 
   if (info.price) {
     if (info.model_string === 'Purchases') {
@@ -69,6 +86,8 @@ exports.market_refresh_time = function (user, info, callback) {
       set.$set.price = info.price;
     }
   }
+
+  set.$set.refresh_info = market.refresh_info;
 
   model.update({ _id: info.detail_id }, set, function (err, result) {
     if (err) {
@@ -109,11 +128,11 @@ exports.market_make_top = function (user, info, callback) {
 
 exports.market_get_top = function (user, info, callback) {
   var model = getModel(info.model_string);
-  var query = { is_top: true };
+  var query = { is_top: true, deleted_status: false };
   if (info.goods_category) {
     query.goods_category = info.goods_category;
   }
-  model.find(query, function (err, results) {
+  model.find(query).populate('user').exec(function (err, results) {
     if (err) {
       return callback({ err: sysErr.database_save_error });
     }
