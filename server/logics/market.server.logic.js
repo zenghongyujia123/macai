@@ -235,7 +235,7 @@ exports.market_day_info_list = function (user, info, callback) {
     query.market = info.market;
   }
   if (info.last_item.market) {
-    query.market = { $lte: info.last_item.market }
+    query.market = { $lt: info.last_item.market }
   }
 
   MarketDayInfo.aggregate([
