@@ -222,9 +222,13 @@ exports.market_list = function (user, info, callback) {
         });
       }
       else {
+        var skip_count = 9;
+        if (info.skip_count) {
+          skip_count = info.skip_count;
+        }
         query.create_time = { $gte: new Date(info.last_item.create_time) }
         query._id = { $ne: info.last_item._id };
-        model.find(query).sort({ create_time: 1 }).skip(9).limit(10).exec(function (err, results) {
+        model.find(query).sort({ create_time: 1 }).skip(skip_count).limit(10).exec(function (err, results) {
           if (err) {
             return callback({ err: sysErr.database_query_error });
           }

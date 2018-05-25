@@ -710,6 +710,26 @@ cSite.factory('QiniuService', [
 
   }]);
 
+'use strict';
+
+cSite.directive('dialogLoadingBox', ['$rootScope', 'GlobalEvent', 'CommonHelper', function ($rootScope, GlobalEvent, CommonHelper) {
+  return {
+    restrict: 'E',
+    templateUrl: '/c_backend/site_admin/directive/dialog_loading_box/dialog_loading_box.client.view.html',
+    replace: true,
+    scope: {},
+    controller: function ($scope, $element) {
+      $scope.dialogInfo = {
+        isShow: false
+      };
+
+      $rootScope.$on(GlobalEvent.onShowLoading, function (event, isLoading) {
+        $scope.dialogInfo.isShow = isLoading;
+      });
+    }
+  };
+}]);
+
 /**
  * 货物照片预览
  * author: louisha
@@ -823,26 +843,6 @@ cSite.directive('mPhotoScan', ['$document', function ($document) {
     }
   }
 }]);
-'use strict';
-
-cSite.directive('dialogLoadingBox', ['$rootScope', 'GlobalEvent', 'CommonHelper', function ($rootScope, GlobalEvent, CommonHelper) {
-  return {
-    restrict: 'E',
-    templateUrl: '/c_backend/site_admin/directive/dialog_loading_box/dialog_loading_box.client.view.html',
-    replace: true,
-    scope: {},
-    controller: function ($scope, $element) {
-      $scope.dialogInfo = {
-        isShow: false
-      };
-
-      $rootScope.$on(GlobalEvent.onShowLoading, function (event, isLoading) {
-        $scope.dialogInfo.isShow = isLoading;
-      });
-    }
-  };
-}]);
-
 /**
  * Created by zenghong on 16/4/21.
  */
@@ -1835,12 +1835,17 @@ cSite.controller('PurchasesListController', [
       },
       get_list: function (next) {
         next = next || 'next';
-        UserNetwork.market_list($scope, {
+        var params = {
           next: next,
           last_item: pageConfig.last_item,
           model_string: 'Purchases',
           keyword: pageConfig.keyword
-        }).then(function (data) {
+        };
+
+        if (next !== 'next') {
+          params.skip_count = pageConfig.list.length - 1;
+        }
+        UserNetwork.market_list($scope, params).then(function (data) {
           console.log(data);
           if (data && !data.err) {
             if (data.list.length > 0) {

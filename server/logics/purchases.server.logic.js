@@ -41,7 +41,9 @@ exports.list = function (user, info, callback) {
 
 exports.import = function (user, infos, callback) {
   async.eachSeries(infos.list, function (info, eachCallback) {
-    create_purchases(user, info, eachCallback);
+    setTimeout(function () {
+      create_purchases(user, info, eachCallback);
+    }, 1000)
   }, function (err) {
     if (err) {
       return callback({ err: sysErr.database_save_error });

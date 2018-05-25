@@ -69,13 +69,19 @@ cSite.controller('PurchasesListController', [
         $state.go('purchases_detail', { detail_id: item._id });
       },
       get_list: function (next) {
-        next = next || 'next';
-        UserNetwork.market_list($scope, {
-          next: next,
+        pageConfig.next = next || 'next';
+
+        var params = {
+          next: pageConfig.next,
           last_item: pageConfig.last_item,
           model_string: 'Purchases',
           keyword: pageConfig.keyword
-        }).then(function (data) {
+        };
+
+        if (next !== 'next') {
+          params.skip_count = pageConfig.list.length - 1;
+        }
+        UserNetwork.market_list($scope, params).then(function (data) {
           console.log(data);
           if (data && !data.err) {
             if (data.list.length > 0) {

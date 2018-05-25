@@ -60,7 +60,7 @@ exports.import = function (user, infos, callback) {
   async.eachSeries(infos.list, function (info, eachCallback) {
     setTimeout(function () {
       create_supply(user, info, eachCallback);
-    }, 1000);
+    }, 10);
   }, function (err) {
     if (err) {
       return callback({ err: sysErr.database_save_error });
