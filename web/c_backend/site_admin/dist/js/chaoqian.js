@@ -710,26 +710,6 @@ cSite.factory('QiniuService', [
 
   }]);
 
-'use strict';
-
-cSite.directive('dialogLoadingBox', ['$rootScope', 'GlobalEvent', 'CommonHelper', function ($rootScope, GlobalEvent, CommonHelper) {
-  return {
-    restrict: 'E',
-    templateUrl: '/c_backend/site_admin/directive/dialog_loading_box/dialog_loading_box.client.view.html',
-    replace: true,
-    scope: {},
-    controller: function ($scope, $element) {
-      $scope.dialogInfo = {
-        isShow: false
-      };
-
-      $rootScope.$on(GlobalEvent.onShowLoading, function (event, isLoading) {
-        $scope.dialogInfo.isShow = isLoading;
-      });
-    }
-  };
-}]);
-
 /**
  * 货物照片预览
  * author: louisha
@@ -843,6 +823,26 @@ cSite.directive('mPhotoScan', ['$document', function ($document) {
     }
   }
 }]);
+'use strict';
+
+cSite.directive('dialogLoadingBox', ['$rootScope', 'GlobalEvent', 'CommonHelper', function ($rootScope, GlobalEvent, CommonHelper) {
+  return {
+    restrict: 'E',
+    templateUrl: '/c_backend/site_admin/directive/dialog_loading_box/dialog_loading_box.client.view.html',
+    replace: true,
+    scope: {},
+    controller: function ($scope, $element) {
+      $scope.dialogInfo = {
+        isShow: false
+      };
+
+      $rootScope.$on(GlobalEvent.onShowLoading, function (event, isLoading) {
+        $scope.dialogInfo.isShow = isLoading;
+      });
+    }
+  };
+}]);
+
 /**
  * Created by zenghong on 16/4/21.
  */
@@ -1421,6 +1421,7 @@ cSite.controller('MarketPurchasesListController', [
           pageConfig.current_page = 0;
           pageConfig.last_item = {};
         }
+
         UserNetwork.market_list($scope, {
           next: next,
           last_item: pageConfig.last_item,
@@ -2307,8 +2308,8 @@ cSite.controller('UserDetailController', [
 'use strict';
 
 cSite.controller('UserListController', [
-  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', '$timeout', 'ExcelService', 'UserNetwork',
-  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, $timeout, ExcelService, UserNetwork) {
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', '$timeout', '$window', 'ExcelService', 'UserNetwork',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, $timeout, $window, ExcelService, UserNetwork) {
     var pageConfig = {
       count: 0,
       title: '用户列表',
@@ -2368,6 +2369,14 @@ cSite.controller('UserListController', [
         ExcelService.saveExcelFile('采购导入模版.xlsx', [{ data: rows, name: 'sheet1' }]);
       },
       go_detail: function (item) {
+        var data = {
+          next: pageConfig.next,
+          last_item: pageConfig.last_item,
+          personal_auth_stauts: pageConfig.personal_auth_stauts,
+          keyword: pageConfig.keyword,
+          goal: pageConfig.goal
+        }
+        $window.localStorage['local_user_list_params'] = JSON.stringify(data);
         $state.go('user_detail', { detail_id: item._id });
       },
       get_user_status_text: function (status) {
@@ -2407,8 +2416,19 @@ cSite.controller('UserListController', [
       },
       get_list: function (next) {
         next = next || 'next';
+        pageConfig.next = next;
+        if ($window.localStorage['local_user_list_params']) {
+          var local = JSON.parse($window.localStorage['local_user_list_params']);
+          pageConfig.next = local.next;
+          pageConfig.last_item = local.last_item;
+          pageConfig.personal_auth_stauts = local.personal_auth_stauts;
+          pageConfig.keyword = local.keyword;
+          pageConfig.goal = local.goal;
+          $window.localStorage['local_user_list_params'] = '';
+        }
+
         UserNetwork.market_list($scope, {
-          next: next,
+          next: pageConfig.next,
           last_item: pageConfig.last_item,
           model_string: 'User',
           personal_auth_stauts: pageConfig.personal_auth_stauts,
@@ -2424,7 +2444,7 @@ cSite.controller('UserListController', [
           }
 
           if (data.list.length > 0) {
-            if (next === 'next') {
+            if (pageConfig.next === 'next') {
               pageConfig.current_page++;
               pageConfig.last_item = data.list[data.list.length - 1];
             }

@@ -61,6 +61,7 @@ cSite.controller('MarketPurchasesListController', [
           pageConfig.current_page = 0;
           pageConfig.last_item = {};
         }
+
         UserNetwork.market_list($scope, {
           next: next,
           last_item: pageConfig.last_item,

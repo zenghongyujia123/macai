@@ -4,8 +4,8 @@
 'use strict';
 
 cSite.controller('UserListController', [
-  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', '$timeout', 'ExcelService', 'UserNetwork',
-  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, $timeout, ExcelService, UserNetwork) {
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', '$timeout', '$window', 'ExcelService', 'UserNetwork',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, $timeout, $window, ExcelService, UserNetwork) {
     var pageConfig = {
       count: 0,
       title: '用户列表',
@@ -65,6 +65,14 @@ cSite.controller('UserListController', [
         ExcelService.saveExcelFile('采购导入模版.xlsx', [{ data: rows, name: 'sheet1' }]);
       },
       go_detail: function (item) {
+        var data = {
+          next: pageConfig.next,
+          last_item: pageConfig.last_item,
+          personal_auth_stauts: pageConfig.personal_auth_stauts,
+          keyword: pageConfig.keyword,
+          goal: pageConfig.goal
+        }
+        $window.localStorage['local_user_list_params'] = JSON.stringify(data);
         $state.go('user_detail', { detail_id: item._id });
       },
       get_user_status_text: function (status) {
@@ -104,8 +112,19 @@ cSite.controller('UserListController', [
       },
       get_list: function (next) {
         next = next || 'next';
+        pageConfig.next = next;
+        if ($window.localStorage['local_user_list_params']) {
+          var local = JSON.parse($window.localStorage['local_user_list_params']);
+          pageConfig.next = local.next;
+          pageConfig.last_item = local.last_item;
+          pageConfig.personal_auth_stauts = local.personal_auth_stauts;
+          pageConfig.keyword = local.keyword;
+          pageConfig.goal = local.goal;
+          $window.localStorage['local_user_list_params'] = '';
+        }
+
         UserNetwork.market_list($scope, {
-          next: next,
+          next: pageConfig.next,
           last_item: pageConfig.last_item,
           model_string: 'User',
           personal_auth_stauts: pageConfig.personal_auth_stauts,
@@ -121,7 +140,7 @@ cSite.controller('UserListController', [
           }
 
           if (data.list.length > 0) {
-            if (next === 'next') {
+            if (pageConfig.next === 'next') {
               pageConfig.current_page++;
               pageConfig.last_item = data.list[data.list.length - 1];
             }
