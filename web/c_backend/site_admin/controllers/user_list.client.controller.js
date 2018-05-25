@@ -6,6 +6,7 @@
 cSite.controller('UserListController', [
   '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', '$timeout', '$window', 'ExcelService', 'UserNetwork',
   function ($rootScope, $scope, $state, $stateParams, $mdSidenav, $timeout, $window, ExcelService, UserNetwork) {
+
     var pageConfig = {
       count: 0,
       title: '用户列表',
@@ -65,14 +66,7 @@ cSite.controller('UserListController', [
         ExcelService.saveExcelFile('采购导入模版.xlsx', [{ data: rows, name: 'sheet1' }]);
       },
       go_detail: function (item) {
-        var data = {
-          next: pageConfig.next,
-          last_item: pageConfig.last_item,
-          personal_auth_stauts: pageConfig.personal_auth_stauts,
-          keyword: pageConfig.keyword,
-          goal: pageConfig.goal
-        }
-        $window.localStorage['local_user_list_params'] = JSON.stringify(data);
+        $window.localStorage['local_user_list_params'] = JSON.stringify(pageConfig);
         $state.go('user_detail', { detail_id: item._id });
       },
       get_user_status_text: function (status) {
@@ -110,18 +104,28 @@ cSite.controller('UserListController', [
         pageConfig.list = [];
         pageConfig.get_list();
       },
+      hand_list:function(data){
+        if (data && !data.err) {
+          if (data.list.length > 0) {
+            pageConfig.count = data.count;
+            pageConfig.list = data.list || [];
+          }
+        }
+
+        if (data.list.length > 0) {
+          if (pageConfig.next === 'next') {
+            pageConfig.current_page++;
+            pageConfig.last_item = data.list[data.list.length - 1];
+          }
+          else {
+            pageConfig.current_page--;
+            pageConfig.last_item = data.list[0];
+          }
+        }
+      },
       get_list: function (next) {
         next = next || 'next';
         pageConfig.next = next;
-        if ($window.localStorage['local_user_list_params']) {
-          var local = JSON.parse($window.localStorage['local_user_list_params']);
-          pageConfig.next = local.next;
-          pageConfig.last_item = local.last_item;
-          pageConfig.personal_auth_stauts = local.personal_auth_stauts;
-          pageConfig.keyword = local.keyword;
-          pageConfig.goal = local.goal;
-          $window.localStorage['local_user_list_params'] = '';
-        }
 
         UserNetwork.market_list($scope, {
           next: pageConfig.next,
@@ -132,23 +136,7 @@ cSite.controller('UserListController', [
           goal: pageConfig.goal
         }).then(function (data) {
           console.log(data);
-          if (data && !data.err) {
-            if (data.list.length > 0) {
-              pageConfig.count = data.count;
-              pageConfig.list = data.list || [];
-            }
-          }
-
-          if (data.list.length > 0) {
-            if (pageConfig.next === 'next') {
-              pageConfig.current_page++;
-              pageConfig.last_item = data.list[data.list.length - 1];
-            }
-            else {
-              pageConfig.current_page--;
-              pageConfig.last_item = data.list[0];
-            }
-          }
+          pageConfig.hand_list(data);
         });
       },
       get_date: function (date) {
@@ -220,7 +208,18 @@ cSite.controller('UserListController', [
       }
     }
     $scope.pageConfig = pageConfig;
-    pageConfig.get_list();
+
+    if ($window.localStorage['local_user_list_params']) {
+      var local = JSON.parse($window.localStorage['local_user_list_params']);
+      for(var prop in local){
+        pageConfig[prop] = local[prop];
+      }
+      $window.localStorage['local_user_list_params'] = '';
+    }
+    else{
+      pageConfig.get_list();
+    }
+
     pageConfig.user_count_by_status();
 
   }]);
