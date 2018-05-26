@@ -710,26 +710,6 @@ cSite.factory('QiniuService', [
 
   }]);
 
-'use strict';
-
-cSite.directive('dialogLoadingBox', ['$rootScope', 'GlobalEvent', 'CommonHelper', function ($rootScope, GlobalEvent, CommonHelper) {
-  return {
-    restrict: 'E',
-    templateUrl: '/c_backend/site_admin/directive/dialog_loading_box/dialog_loading_box.client.view.html',
-    replace: true,
-    scope: {},
-    controller: function ($scope, $element) {
-      $scope.dialogInfo = {
-        isShow: false
-      };
-
-      $rootScope.$on(GlobalEvent.onShowLoading, function (event, isLoading) {
-        $scope.dialogInfo.isShow = isLoading;
-      });
-    }
-  };
-}]);
-
 /**
  * 货物照片预览
  * author: louisha
@@ -843,6 +823,26 @@ cSite.directive('mPhotoScan', ['$document', function ($document) {
     }
   }
 }]);
+'use strict';
+
+cSite.directive('dialogLoadingBox', ['$rootScope', 'GlobalEvent', 'CommonHelper', function ($rootScope, GlobalEvent, CommonHelper) {
+  return {
+    restrict: 'E',
+    templateUrl: '/c_backend/site_admin/directive/dialog_loading_box/dialog_loading_box.client.view.html',
+    replace: true,
+    scope: {},
+    controller: function ($scope, $element) {
+      $scope.dialogInfo = {
+        isShow: false
+      };
+
+      $rootScope.$on(GlobalEvent.onShowLoading, function (event, isLoading) {
+        $scope.dialogInfo.isShow = isLoading;
+      });
+    }
+  };
+}]);
+
 /**
  * Created by zenghong on 16/4/21.
  */
@@ -1831,6 +1831,8 @@ cSite.controller('PurchasesListController', [
         ExcelService.saveExcelFile('采购导入模版.xlsx', [{ data: rows, name: 'sheet1' }]);
       },
       go_detail: function (item) {
+        $window.localStorage[$window.location.host + 'local_purchases_list_params'] = JSON.stringify(pageConfig);
+        
         $state.go('purchases_detail', { detail_id: item._id });
       },
       get_list: function (next) {
@@ -1936,7 +1938,18 @@ cSite.controller('PurchasesListController', [
       }
     }
     $scope.pageConfig = pageConfig;
-    pageConfig.get_list();
+    
+    if ($window.localStorage[$window.location.host + 'local_purchases_list_params']) {
+      var local = JSON.parse($window.localStorage[$window.location.host + 'local_purchases_list_params']);
+      for (var prop in local) {
+        pageConfig[prop] = local[prop];
+      }
+      $window.localStorage[$window.location.host + 'local_purchases_list_params'] = '';
+    }
+    else {
+      pageConfig.get_list();
+    }
+    // pageConfig.get_list();
   }]);
 
 /**
@@ -2090,6 +2103,7 @@ cSite.controller('SupplyListController', [
         ExcelService.saveExcelFile('供应导入模版.xlsx', [{ data: rows, name: 'sheet1' }]);
       },
       go_detail: function (item) {
+        $window.localStorage[$window.location.host + 'local_supply_list_params'] = JSON.stringify(pageConfig);
         $state.go('supply_detail', { detail_id: item._id });
       },
       get_list: function (next) {
@@ -2098,7 +2112,7 @@ cSite.controller('SupplyListController', [
           next: next,
           last_item: pageConfig.last_item,
           model_string: 'Supply',
-          keyword:pageConfig.keyword
+          keyword: pageConfig.keyword
         }).then(function (data) {
           console.log(data);
           if (data && !data.err) {
@@ -2188,7 +2202,17 @@ cSite.controller('SupplyListController', [
       }
     }
     $scope.pageConfig = pageConfig;
-    pageConfig.get_list();
+    if ($window.localStorage[$window.location.host + 'local_supply_list_params']) {
+      var local = JSON.parse($window.localStorage[$window.location.host + 'local_supply_list_params']);
+      for (var prop in local) {
+        pageConfig[prop] = local[prop];
+      }
+      $window.localStorage[$window.location.host + 'local_supply_list_params'] = '';
+    }
+    else {
+      pageConfig.get_list();
+    }
+    // pageConfig.get_list();
   }]);
 
 /**
@@ -2376,7 +2400,7 @@ cSite.controller('UserListController', [
         ExcelService.saveExcelFile('采购导入模版.xlsx', [{ data: rows, name: 'sheet1' }]);
       },
       go_detail: function (item) {
-        $window.localStorage['local_user_list_params'] = JSON.stringify(pageConfig);
+        $window.localStorage[$window.location.host + 'local_user_list_params'] = JSON.stringify(pageConfig);
         $state.go('user_detail', { detail_id: item._id });
       },
       get_user_status_text: function (status) {
@@ -2414,7 +2438,7 @@ cSite.controller('UserListController', [
         pageConfig.list = [];
         pageConfig.get_list();
       },
-      hand_list:function(data){
+      hand_list: function (data) {
         if (data && !data.err) {
           if (data.list.length > 0) {
             pageConfig.count = data.count;
@@ -2519,14 +2543,14 @@ cSite.controller('UserListController', [
     }
     $scope.pageConfig = pageConfig;
 
-    if ($window.localStorage['local_user_list_params']) {
-      var local = JSON.parse($window.localStorage['local_user_list_params']);
-      for(var prop in local){
+    if ($window.localStorage[$window.location.host + 'local_user_list_params']) {
+      var local = JSON.parse($window.localStorage[$window.location.host + 'local_user_list_params']);
+      for (var prop in local) {
         pageConfig[prop] = local[prop];
       }
-      $window.localStorage['local_user_list_params'] = '';
+      $window.localStorage[$window.location.host + 'local_user_list_params'] = '';
     }
-    else{
+    else {
       pageConfig.get_list();
     }
 

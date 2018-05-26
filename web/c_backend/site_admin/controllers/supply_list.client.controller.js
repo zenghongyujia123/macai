@@ -63,6 +63,7 @@ cSite.controller('SupplyListController', [
         ExcelService.saveExcelFile('供应导入模版.xlsx', [{ data: rows, name: 'sheet1' }]);
       },
       go_detail: function (item) {
+        $window.localStorage[$window.location.host + 'local_supply_list_params'] = JSON.stringify(pageConfig);
         $state.go('supply_detail', { detail_id: item._id });
       },
       get_list: function (next) {
@@ -71,7 +72,7 @@ cSite.controller('SupplyListController', [
           next: next,
           last_item: pageConfig.last_item,
           model_string: 'Supply',
-          keyword:pageConfig.keyword
+          keyword: pageConfig.keyword
         }).then(function (data) {
           console.log(data);
           if (data && !data.err) {
@@ -161,5 +162,15 @@ cSite.controller('SupplyListController', [
       }
     }
     $scope.pageConfig = pageConfig;
-    pageConfig.get_list();
+    if ($window.localStorage[$window.location.host + 'local_supply_list_params']) {
+      var local = JSON.parse($window.localStorage[$window.location.host + 'local_supply_list_params']);
+      for (var prop in local) {
+        pageConfig[prop] = local[prop];
+      }
+      $window.localStorage[$window.location.host + 'local_supply_list_params'] = '';
+    }
+    else {
+      pageConfig.get_list();
+    }
+    // pageConfig.get_list();
   }]);

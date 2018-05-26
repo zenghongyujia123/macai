@@ -66,7 +66,7 @@ cSite.controller('UserListController', [
         ExcelService.saveExcelFile('采购导入模版.xlsx', [{ data: rows, name: 'sheet1' }]);
       },
       go_detail: function (item) {
-        $window.localStorage['local_user_list_params'] = JSON.stringify(pageConfig);
+        $window.localStorage[$window.location.host + 'local_user_list_params'] = JSON.stringify(pageConfig);
         $state.go('user_detail', { detail_id: item._id });
       },
       get_user_status_text: function (status) {
@@ -104,7 +104,7 @@ cSite.controller('UserListController', [
         pageConfig.list = [];
         pageConfig.get_list();
       },
-      hand_list:function(data){
+      hand_list: function (data) {
         if (data && !data.err) {
           if (data.list.length > 0) {
             pageConfig.count = data.count;
@@ -209,14 +209,14 @@ cSite.controller('UserListController', [
     }
     $scope.pageConfig = pageConfig;
 
-    if ($window.localStorage['local_user_list_params']) {
-      var local = JSON.parse($window.localStorage['local_user_list_params']);
-      for(var prop in local){
+    if ($window.localStorage[$window.location.host + 'local_user_list_params']) {
+      var local = JSON.parse($window.localStorage[$window.location.host + 'local_user_list_params']);
+      for (var prop in local) {
         pageConfig[prop] = local[prop];
       }
-      $window.localStorage['local_user_list_params'] = '';
+      $window.localStorage[$window.location.host + 'local_user_list_params'] = '';
     }
-    else{
+    else {
       pageConfig.get_list();
     }
 
