@@ -4,8 +4,8 @@
 'use strict';
 
 cSite.controller('PurchasesListController', [
-  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'UserNetwork', 'ExcelService',
-  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, UserNetwork, ExcelService) {
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', '$window', 'UserNetwork', 'ExcelService',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, $window, UserNetwork, ExcelService) {
     var pageConfig = {
       count: 0,
       title: '采购信息列表',
@@ -67,7 +67,7 @@ cSite.controller('PurchasesListController', [
       },
       go_detail: function (item) {
         $window.localStorage[$window.location.host + 'local_purchases_list_params'] = JSON.stringify(pageConfig);
-        
+
         $state.go('purchases_detail', { detail_id: item._id });
       },
       get_list: function (next) {
@@ -79,10 +79,6 @@ cSite.controller('PurchasesListController', [
           model_string: 'Purchases',
           keyword: pageConfig.keyword
         };
-
-        if (next !== 'next') {
-          params.skip_count = pageConfig.list.length - 1;
-        }
         UserNetwork.market_list($scope, params).then(function (data) {
           console.log(data);
           if (data && !data.err) {
@@ -93,7 +89,7 @@ cSite.controller('PurchasesListController', [
           }
 
           if (data.list.length > 0) {
-            if (next === 'next') {
+            if (pageConfig.next === 'next') {
               pageConfig.current_page++;
               pageConfig.last_item = data.list[data.list.length - 1];
             }
@@ -173,7 +169,7 @@ cSite.controller('PurchasesListController', [
       }
     }
     $scope.pageConfig = pageConfig;
-    
+
     if ($window.localStorage[$window.location.host + 'local_purchases_list_params']) {
       var local = JSON.parse($window.localStorage[$window.location.host + 'local_purchases_list_params']);
       for (var prop in local) {

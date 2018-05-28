@@ -4,8 +4,8 @@
 'use strict';
 
 cSite.controller('SupplyListController', [
-  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'UserNetwork', 'ExcelService',
-  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, UserNetwork, ExcelService) {
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', '$window', 'UserNetwork', 'ExcelService',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, $window, UserNetwork, ExcelService) {
     var pageConfig = {
       count: 0,
       title: '供应信息列表',
@@ -83,7 +83,7 @@ cSite.controller('SupplyListController', [
           }
 
           if (data.list.length > 0) {
-            if (next === 'next') {
+            if (pageConfig.next === 'next') {
               pageConfig.current_page++;
               pageConfig.last_item = data.list[data.list.length - 1];
             }

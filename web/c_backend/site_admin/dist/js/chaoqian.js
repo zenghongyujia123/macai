@@ -710,6 +710,26 @@ cSite.factory('QiniuService', [
 
   }]);
 
+'use strict';
+
+cSite.directive('dialogLoadingBox', ['$rootScope', 'GlobalEvent', 'CommonHelper', function ($rootScope, GlobalEvent, CommonHelper) {
+  return {
+    restrict: 'E',
+    templateUrl: '/c_backend/site_admin/directive/dialog_loading_box/dialog_loading_box.client.view.html',
+    replace: true,
+    scope: {},
+    controller: function ($scope, $element) {
+      $scope.dialogInfo = {
+        isShow: false
+      };
+
+      $rootScope.$on(GlobalEvent.onShowLoading, function (event, isLoading) {
+        $scope.dialogInfo.isShow = isLoading;
+      });
+    }
+  };
+}]);
+
 /**
  * 货物照片预览
  * author: louisha
@@ -823,26 +843,6 @@ cSite.directive('mPhotoScan', ['$document', function ($document) {
     }
   }
 }]);
-'use strict';
-
-cSite.directive('dialogLoadingBox', ['$rootScope', 'GlobalEvent', 'CommonHelper', function ($rootScope, GlobalEvent, CommonHelper) {
-  return {
-    restrict: 'E',
-    templateUrl: '/c_backend/site_admin/directive/dialog_loading_box/dialog_loading_box.client.view.html',
-    replace: true,
-    scope: {},
-    controller: function ($scope, $element) {
-      $scope.dialogInfo = {
-        isShow: false
-      };
-
-      $rootScope.$on(GlobalEvent.onShowLoading, function (event, isLoading) {
-        $scope.dialogInfo.isShow = isLoading;
-      });
-    }
-  };
-}]);
-
 /**
  * Created by zenghong on 16/4/21.
  */
@@ -1690,6 +1690,28 @@ cSite.controller('PurchasesDetailController', [
       get_date: function (date) {
         return moment(date).format('YYYY-MM-DD');
       },
+      message_create: function () {
+        if (!pageConfig.detail.user) {
+          return alert('该货品非微信用户发布');
+        }
+        CommonHelper.showMaterialSingleInput($scope, event, {
+          input_params: {
+            title: '提示',
+            input_label: '请输入信息',
+            input_value: '',
+            confirm_label: '确定'
+          }
+        }, function (content) {
+          UserNetwork.message_create($scope, { user_id: pageConfig.detail.user, content: content }).then(function (data) {
+            console.log(data);
+            if (!data.err) {
+              CommonHelper.showConfirm($scope, null, '操作成功', function () {
+                $state.go('user_detail', null, { reload: true });
+              }, null, null, event);
+            }
+          });
+        });
+      },
       market_update: function () {
         pageConfig.detail.model_string = 'Purchases';
         UserNetwork.market_update($scope, pageConfig.detail).then(function (data) {
@@ -1769,8 +1791,8 @@ cSite.controller('PurchasesDetailController', [
 'use strict';
 
 cSite.controller('PurchasesListController', [
-  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'UserNetwork', 'ExcelService',
-  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, UserNetwork, ExcelService) {
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', '$window', 'UserNetwork', 'ExcelService',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, $window, UserNetwork, ExcelService) {
     var pageConfig = {
       count: 0,
       title: '采购信息列表',
@@ -1832,7 +1854,7 @@ cSite.controller('PurchasesListController', [
       },
       go_detail: function (item) {
         $window.localStorage[$window.location.host + 'local_purchases_list_params'] = JSON.stringify(pageConfig);
-        
+
         $state.go('purchases_detail', { detail_id: item._id });
       },
       get_list: function (next) {
@@ -1844,10 +1866,6 @@ cSite.controller('PurchasesListController', [
           model_string: 'Purchases',
           keyword: pageConfig.keyword
         };
-
-        if (next !== 'next') {
-          params.skip_count = pageConfig.list.length - 1;
-        }
         UserNetwork.market_list($scope, params).then(function (data) {
           console.log(data);
           if (data && !data.err) {
@@ -1858,7 +1876,7 @@ cSite.controller('PurchasesListController', [
           }
 
           if (data.list.length > 0) {
-            if (next === 'next') {
+            if (pageConfig.next === 'next') {
               pageConfig.current_page++;
               pageConfig.last_item = data.list[data.list.length - 1];
             }
@@ -1938,7 +1956,7 @@ cSite.controller('PurchasesListController', [
       }
     }
     $scope.pageConfig = pageConfig;
-    
+
     if ($window.localStorage[$window.location.host + 'local_purchases_list_params']) {
       var local = JSON.parse($window.localStorage[$window.location.host + 'local_purchases_list_params']);
       for (var prop in local) {
@@ -1973,6 +1991,28 @@ cSite.controller('SupplyDetailController', [
       detail: {},
       get_date: function (date) {
         return moment(date).format('YYYY-MM-DD');
+      },
+      message_create: function () {
+        if (!pageConfig.detail.user) {
+          return alert('该货品非微信用户发布');
+        }
+        CommonHelper.showMaterialSingleInput($scope, event, {
+          input_params: {
+            title: '提示',
+            input_label: '请输入信息',
+            input_value: '',
+            confirm_label: '确定'
+          }
+        }, function (content) {
+          UserNetwork.message_create($scope, { user_id: pageConfig.detail.user, content: content }).then(function (data) {
+            console.log(data);
+            if (!data.err) {
+              CommonHelper.showConfirm($scope, null, '操作成功', function () {
+                $state.go('user_detail', null, { reload: true });
+              }, null, null, event);
+            }
+          });
+        });
       },
       market_update: function () {
         pageConfig.detail.model_string = 'Supply';
@@ -2044,8 +2084,8 @@ cSite.controller('SupplyDetailController', [
 'use strict';
 
 cSite.controller('SupplyListController', [
-  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', 'UserNetwork', 'ExcelService',
-  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, UserNetwork, ExcelService) {
+  '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', '$window', 'UserNetwork', 'ExcelService',
+  function ($rootScope, $scope, $state, $stateParams, $mdSidenav, $window, UserNetwork, ExcelService) {
     var pageConfig = {
       count: 0,
       title: '供应信息列表',
@@ -2123,7 +2163,7 @@ cSite.controller('SupplyListController', [
           }
 
           if (data.list.length > 0) {
-            if (next === 'next') {
+            if (pageConfig.next === 'next') {
               pageConfig.current_page++;
               pageConfig.last_item = data.list[data.list.length - 1];
             }

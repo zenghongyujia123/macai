@@ -2,6 +2,7 @@
   <div class="page-operation-view" layout="row" layout-align="space-between center">
     <p class="title">采购货品详情</p>
     <div>
+      <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.message_create()">发送信息</md-button>
       <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.market_make_top()">{{pageConfig.detail.is_top?'取消置顶':'置顶'}}</md-button>
       <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.save_photos()">保存图片</md-button>
       <md-button class="md-primary md-raised md-hue-2" ng-click="pageConfig.market_update()">保存信息</md-button>

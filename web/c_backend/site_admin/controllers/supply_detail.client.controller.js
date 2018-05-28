@@ -20,6 +20,28 @@ cSite.controller('SupplyDetailController', [
       get_date: function (date) {
         return moment(date).format('YYYY-MM-DD');
       },
+      message_create: function () {
+        if (!pageConfig.detail.user) {
+          return alert('该货品非微信用户发布');
+        }
+        CommonHelper.showMaterialSingleInput($scope, event, {
+          input_params: {
+            title: '提示',
+            input_label: '请输入信息',
+            input_value: '',
+            confirm_label: '确定'
+          }
+        }, function (content) {
+          UserNetwork.message_create($scope, { user_id: pageConfig.detail.user, content: content }).then(function (data) {
+            console.log(data);
+            if (!data.err) {
+              CommonHelper.showConfirm($scope, null, '操作成功', function () {
+                $state.go('user_detail', null, { reload: true });
+              }, null, null, event);
+            }
+          });
+        });
+      },
       market_update: function () {
         pageConfig.detail.model_string = 'Supply';
         pageConfig.detail.provide_services = (pageConfig.detail.provide_services_string || '').split('|');
