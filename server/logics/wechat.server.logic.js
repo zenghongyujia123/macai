@@ -132,33 +132,6 @@ function getPhotoItemFromWechat(photoItem, wechatToken, callback) {
 }
 
 exports.downloadImageFromWechatToQiniu = function (serverId, callback) {
-  // access_token = '4_IIXrooJzi6z8VDgmlFnKDHGjpvnCdCbcNUlpYK9S9QFbDE4Jj0uqi-odXuwPbpAVJ-eIC9Fgmi6udWn4C2hm_OauSQin2KtVktiu2M9caJVSSB5IfRVXUxS3Q1IJYGjABAXMU'
-  // serverId = 'KHQuIPRFSU05jXkJF30l6bz1b1w_SxXiOMhMI_Clxd5U8fwhGn7ZNFfHitwGDbpe';
-  // var url = 'https://api.weixin.qq.com/cgi-bin/media/get?access_token=' + access_token + '&media_id=' + serverId;
-  // agent
-  //   .get(url)
-  //   .end(function (err, result) {
-  //     agent.post('https://cn-api.openport.com/delivery/shipments/' + id + '/upload/')
-  //       .set({
-  //         'x-openport-token': accessToken,
-  //         'x-openPort-operation': operation === 'pod' ? 'delivery' : 'pickup'
-  //       })
-  //       .attach('file', result.body, new Date().getTime() + '.jpg')
-  //       .on('error', function (err) {
-  //         console.log(err);
-  //         return callback();
-  //       })
-  //       .end(function (err, result) {
-  //         console.log('err')
-  //         console.log(err)
-  //         console.log('result')
-  //         console.log(result.text)
-  //         return callback(JSON.parse(result.text));
-  //       })
-  //   });
-
-
-
   var qiniu_a_key = '2ZL-HVYMoDc9m-nCnr1J_QDIJNRN8nfi3JWvWhtL';
   var qiniu_s_key = '7oeAB2iQIHovgxK4lNAaXhMEeqGWd3D-YigAkdlL';
 
