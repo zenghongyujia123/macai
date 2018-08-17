@@ -33,6 +33,7 @@ exports.getAccessToken = function (callback) {
     .end(function (err, result) {
       console.log('err-----');
       console.log(err);
+      console.log(result.text);
       access_token = JSON.parse(result.text).access_token;
 
       that.getUserJsApiTicketFromWechat();
