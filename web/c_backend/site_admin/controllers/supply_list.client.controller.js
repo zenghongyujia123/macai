@@ -2,7 +2,6 @@
  * Created by lance on 2016/11/17.
  */
 'use strict';
-
 cSite.controller('SupplyListController', [
   '$rootScope', '$scope', '$state', '$stateParams', '$mdSidenav', '$window', 'UserNetwork', 'ExcelService',
   function ($rootScope, $scope, $state, $stateParams, $mdSidenav, $window, UserNetwork, ExcelService) {

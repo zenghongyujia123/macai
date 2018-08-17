@@ -409,7 +409,7 @@
         return;
       }
       var ids = localIds.splice(0, 1);
-
+      alert(ids[0])
       uploadImage(ids[0], function (res) {
         wechat_server_ids.push(res.serverId)
         var imageItem = $(
