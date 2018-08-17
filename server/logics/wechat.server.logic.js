@@ -11,8 +11,10 @@ var ticket = '';
 var userLogic = require('./user.server.logic');
 
 
-var appid = 'wx682b6bf0f5c1e84d';
-var sk = '51de065319b6dac43fcaa21a81b41d74';
+var appid = 'wx322186a972a5e048';
+var sk = '175a1b9364e6c80c3689bde986368794';
+// var appid = 'wx682b6bf0f5c1e84d';
+// var sk = '51de065319b6dac43fcaa21a81b41d74';
 var pay_sk = 'sdwewwwwdddddssss345444432wwwsss';
 var mch_id = '1496512372';
 
